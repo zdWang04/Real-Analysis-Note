@@ -12,6 +12,7 @@
 
 == 笛卡尔积
 
+=== 正文
 #definition(title: "有序对")[如果 $x$ 和 $y$ 是两个对象，那么他们的_有序对 $(x,y)$ _也是一个对象，其中 $x$ 是有序对的第一个组分， $y$ 是有序对的第二个组分。
   $ (x, y) = (x', y') <==> x = x' and y = y' $
 ]
@@ -81,6 +82,8 @@
   + 综上归纳完毕
 ]
 
+=== 练习
+
 #exercise[
   1. 证明有序对$(x, y) = {{x}, {x, y}}$满足$(x, y) = (x', y') <==> x = x' and y = y'$
   #proof[
@@ -141,19 +144,110 @@
 
 #exercise[
   $A,B,C$是集合，证明$A times (B union C) = (A times B) union (A times C)$，$A times (B inter C) = (A times B) inter (A times C)$，$A times (B without C) = (A times B) without (A times C)$
+  #proof[
+    
+    - $A times (B union C) = (A times B) union (A times C)$
+      
+      + $ &forall (x,y) in A times (B union C) \  &=> x in A and y in B union C \ &=> x in A and (y in B or y in C) \ &=> (x in A and y in B) or (x in A and y in C) \ &=> (x,y) in A times B or (x, y) in A times C \ &=>(x,y) in (A times B) union (A times C) \ &=> A times (B union C) subset.eq (A times B) union (A times C) $
+      
+      + $ &forall (x, y) in (A times B) union (A times C) \ &=> (x, y) in A times B or (x, y) in A times C \ &=> (x in A and y in B) or (x in A and y in C) \ &=> x in A and (y in B or y in C) \ &=> (x, y) in A times (B union C) \ &=> (A times B) union (A times C) subset.eq A times (B union C) $
+      
+      + 综上$A times (B union C) = (A times B) union (A times C)$
+    
+    - $A times (B inter C) = (A times B) inter (A times C)$
+      
+      + $ &forall (x, y) in A times (B inter C) \ &=> x in A and y in B inter C \ &=> x in A and (y in B and y in C) \ &=> (x in A and y in B) and (x in A and y in C) \ &=> (x, y) in (A times B) inter (A times C) \ &=> A times (B inter C) subset.eq (A times B) inter (A times C) $
+      
+      + $ &(x, y) in (A times B) inter (A times C) \ &=> (x, y) in (A times B) and (x, y) in A times C \ &=> (x in A and y in B) and (x in A and y in C) \ &=> x in A and (y in B and y in C) \ &=> x in A and y in (B inter C) \ &=> (x, y) in A times (B inter C) \ &=> (A times B) inter (A times C) subset.eq A times (B inter C) $ 
+      
+      +  综上$A times (B inter C) = (A times B) inter (A times C)$
+    
+    - $A times (B without C) = (A times B) without (A times C)$
+      
+      + $ &forall (x, y) in A times (B without C) \ &=> x in A and y in B without C \ &=> x in A and (y in B and y in.not C) \ &=> (x in A and y in B) and (x in A and y in.not C) $ 由于$x in A and y in B$，那么$x in A times B$，如果$(x, y) in A times C$，那么$x in A and y in C$，这与$y in.not C$矛盾，所以$(x, y) in.not A times C$，所以$ &(x in A and y in B) and (x in A and y in.not C)  \ &=> (x, y) in (A times B) without (A times C)\  &=> A times (B without C) subset.eq (A times B) without (A times C) $
+      
+      2. $ &forall (x, y) in (A times B) without (A times C) \ &=> (x,y) in A times B and (x, y) in.not A times C \ &=> x in A and y in B and y in.not C \ &=> x in A and y in (B without C) \ &=> (x, y) in A times (B without C) \ &=> (A times B) without (A times C) subset.eq A times (B without C) $
+      
+      3. 综上$(A times B) without (A times C) = A times (B without C)$
+  ]
 ]
 
 #exercise[
-  $A, B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
+  $A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
+  #proof[
+    
+    - $(A times B) inter (C times D) = (A inter C) times (B inter D)$
+      
+      + $ &forall (x, y) in (A times B) inter (C times D) \ &=> (x, y) in (A times B) and (x, y) in (C times D) \ &=> x in A and y in B and x in C and y in D \ &=> x in A and x in C and y in B and y in D \ &=> x in (A inter C) and y in (B and D) \ &=> (x, y) in (A inter C) times (B inter D) \ &=> (A times B) inter (C times D) subset.eq (A times C) inter (B times D) $
+      
+      + $ &forall (x, y) in (A inter C) times (B inter D) \ &=> x in A inter C and y in B inter D \ &=> x in A and x in C and y in B and y in D \ &=> (x in A and y in B) and (x in C and y in D) \ &=> (x,y) in (A times B) and (x, y) in (C times D) \ &=> (x, y) in (A times B) inter (C times D) \ &=> (A inter C) times (B inter D) subset.eq (A times B) inter (C times D) $
+      
+      + 综上$(A times B) inter (C times D) = (A inter C) times (B inter D)$
+    
+    - $(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？
+      
+      + $ &forall (x, y) in (A times B) union (C times D) \ &=> (x,y) in (A times B) or (x, y) in (C times D) \ &=> (x in A and y in B) or (x in C and y in D) \ &=> x in (A union C) and y in (B union D) \ &=> (x,y) in (A union C) times (B union D) \ &=> (A times B) union (C times D) subset.eq (A union C) times (B union D) $ 
+      
+      + $ &forall (x, y) in (A union C) times (B union D) \ &=> x in (A union C) and y in (B union D) \ &=> (x in A or x in C) and (y in B or y in D) \ &=> (x in A and y in B) or (x in A and y in D) or (x in C and y in B) or (x in C and y in D) \ &=> (x, y) in (A times B) union (A times D) union (C times B) union (C times D)\ &!= (A times B) union (C times D) $
+      
+      + 综上，二者并不相等，而是$(A times B) union (C times D) subset.neq (A union C) times (B union D)$
+    
+    - $(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
+      
+      + $ &forall (x, y) in (A times B) without (C times D) \ &=> (x, y) in (A times B) and (x, y) in.not (C times D) \ &=> (x in A and y in B) and (x in.not C or y in.not D) \ &=> (x in A and y in B and x in.not C) or (x in A and y in B and y in.not D) \ &=> (x in A and x in.not C and y in B) or (x in A and y in B and y in.not D) \ &=> (x in A without C and y in B) or (x in A and y in B without D) \ &=> (x,y) in (A without C)times B or (x, y) in A times (B without D) $ 注意，$(A without C times B) union (A times B without D)$实际上是$(A times B) without (C times D)$的正确展开形式，且不等于$(A without C) times (B times D)$
+      
+      + $ &forall (x, y) in (A without C) times (B without D) \ &=>x in A without C and y in B without D\ & => x in A and x in.not C and y in B and y in.not D \ &=> x in A and y in B and x in.not C and y in.not D \ &=>(x, y) in A times B and (x, y) in.not C times D\ &=>(x, y)  in (A times B) without (C times D) $ 注意，$(x ,y) in.not C times D <=> x in.not C or y in.not D$，所以$x in.not C and y in.not D$是$(x, y) in.not C times D$的充分但非必要条件。
+
+      + 综上，$(A without C) times (B without D) subset.neq (A times B) without (C times D)$
+  ]
 ]
 
 #exercise[
-  $A,B,C,D$是非空集合，$A times B subset.eq C times D <==> A subset.eq C and B subset.eq D$，$A times B = C times D <==> A = C and B = D$，若移除$A,B,C,D$是非空的这个条件，会发生什么？
+  $A,B,C,D$是非空集合，$A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$，$A times B = C times D <=> A = C and B = D$，若移除$A,B,C,D$是非空的这个条件，会发生什么？
+
+  #proof[
+    - $A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$
+      + $A times B subset.eq C times D => A subset.eq C and B subset.eq D $
+
+        $ &A times B subset.eq C times D\ &=>forall (x, y) in A times B, (x, y) in C times D\ &=>x in A and y in B, x in C and y in D \ &=> A subset.eq C and B subset.eq D $
+      + $A subset.eq C and B subset.eq D => A times B subset.eq C times D$
+
+        $ &forall (x, y) in A times B\ &=>x in A and y in B $由已知，$forall x in A, x in C and forall y in B, y in D$，所以接着有 $ &=> x in C and y in D \ &=> (x, y) in C times D \ &=> A times B subset.eq C times D $
+    
+      + 综上，$A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$在$A, B,C,D != emptyset$时成立
+      
+      + 特别的，比如$A = C = emptyset and B subset.eq.not D$，$A times B = emptyset subset.eq C times D = emptyset$成立，但是$B subset.eq D$为假，因为$B subset.eq.not D$ 
+    
+    - $A times B = C times D <=> A = C and B = D$
+      + $A times B =C times D => A = C and B = D$
+        
+        $ &forall (x, y) in A times B \ &=> x in A and y in B $由于$A times B = C times D$，那么接着可以得到$ &x in C and y in D \ &=> A subset.eq C and B subset.eq D $同理对$forall (x, y) in C times D$进行推理，可得$C subset.eq A and D subset.eq B$，所以可得$A = C and B = D$
+      
+      + $A = C and B = D => A times B = C times D$
+
+        $ &forall (x, y) in A times B \ &=> x in A and y in B $由于$A = C and B = D$，所以接着有$ &=>x in C and y in D \ &=>(x, y) in C times D \ &=> A times B subset.eq C times D $同理对$forall (x, y) in C times D$进行推理，可得$C times D subset.eq A times B$，所以可得$A times B = C times D$
+      
+      + 综上，$A = C and B = D <=> A times B = C times D$在$A, B,C,D != emptyset$时成立
+
+      + 特别的，当$A = C = emptyset and B != D$时，$A times B = C times D = emptyset$，但是$A = C and B = D$为假，因为$B != D$
+  ]
+
 ]
 
 #exercise[
-  $X,Y$是集合，函数$pi_(X times Y -> X):X times Y -> X$被定义为$pi_(X times Y -> X)(x,y) = x$；函数$pi_(X times Y -> Y):X times Y -> Y$被定义为$pi_(X times Y -> Y)(x,y) = y$，这两个函数被称为定义在$X times Y$上的_坐标函数（co-ordinate functions）_，证明对于任意函数$f:Z -> X$和$g:Z -> Y$，存在唯一一个函数$h: Z -> X times Y$使得$pi_(X times Y -> X) compose h = f$和$pi_(X times Y -> Y) compose h = g$成立。这样的函数$h$被称为$f"和"g$的_直和（direct sum）_，并记作_$h = f plus.o g$_
+  $X,Y$是集合，函数$pi_(X times Y -> X):X times Y -> X$被定义为$pi_(X times Y -> X)(x,y) = x$；函数$pi_(X times Y -> Y):X times Y -> Y$被定义为$pi_(X times Y -> Y)(x,y) = y$，这两个函数被称为定义在$X times Y$上的_坐标函数（co-ordinate functions）_，证明对于任意函数$f:Z -> X$和$g:Z -> Y$，存在唯一一个函数$h: Z -> X times Y$使得$pi_(X times Y -> X) compose h = f$和$pi_(X times Y -> Y) compose h = g$成立
+
+  #proof[
+    
+    根据函数空间公理，记集合$H = (X times Y)^Z$为所有定义域为$Z$，值域为$(X times Y)$的函数的集合。根据题目要求，就是要证明集合${h in (X times Y)^Z: pi_(X times Y -> X) compose h = f and pi_(X times Y -> Y) compose h = g}$不为空集且只有一个元素。
+
+    定义一个$pi_(X times Y ->X)$的一个偏函数为$pi'_(X times {y_0} -> X)$，其中$y_0 in Y$，根据定义$pi'_(X times {y_0} -> X)(x, y_0) = x$，易知$pi'_(X times {y_0}->X)$为双射函数。
+
+  ]
+
 ]
+
+#note-block[这样的函数$h$被称为$f"和"g$的_直和（direct sum）_，并记作_$h = f plus.o g$_]
 
 #exercise[
   $X_1, ..., X_n$是集合，证明$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$

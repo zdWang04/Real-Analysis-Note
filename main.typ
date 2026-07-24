@@ -6,6 +6,8 @@
   subtitle: [],
   author: [dongdong],
 )
+// #show math.equation.where(block: true): set align(left) // 左对齐行间公式
+
 // Choose the language
 #set text(lang: "zh")
 
