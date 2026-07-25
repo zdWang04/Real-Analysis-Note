@@ -239,36 +239,143 @@
 
   #proof[
     
-    根据函数空间公理，记集合$H = (X times Y)^Z$为所有定义域为$Z$，值域为$(X times Y)$的函数的集合。根据题目要求，就是要证明集合${h in (X times Y)^Z: pi_(X times Y -> X) compose h = f and pi_(X times Y -> Y) compose h = g}$不为空集且只有一个元素。
+    - 存在性
+    
+      令函数$h:Z -> X times Y, forall z in Z, z |-> (f(z), g(z))$，这个函数满足定义，是存在的
+    
+      $ &(pi_(X times Y -> X) compose h)(z)\ &= pi_(X times Y -> X)(h(z))\ &= pi_(X times Y -> X)(f(z), g(z)) = f(z) $
+  
+      $ &(pi_(X times Y -> Y) compose h)(z)\ &= pi_(X times Y -> Y)(h(z))\ &= pi_(X times Y -> Y)(f(z), g(z)) = g(z) $
 
-    定义一个$pi_(X times Y ->X)$的一个偏函数为$pi'_(X times {y_0} -> X)$，其中$y_0 in Y$，根据定义$pi'_(X times {y_0} -> X)(x, y_0) = x$，易知$pi'_(X times {y_0}->X)$为双射函数。
+      所以$pi_(X times Y -> X) compose h = f and pi_(X times Y -> Y) compose h = g$成立
 
+    - 唯一性
+
+      假设有$h_1, h_2$满足条件
+
+      $ pi_(X times Y -> X) compose h_1 = &f = pi_(X times Y -> X) compose h_2 \ pi_(X times Y -> Y) compose h_1 = &g = pi_(X times Y -> Y) compose h_2 $
+
+      $ &forall z in Z , h_1(z) = (f(z), g(z))\  h_1(z) &= (pi_(X times Y -> X)(h_1(z)), (pi_(X times Y -> Y)(h_1(z))))\ &= (pi_(X times Y -> X)(h_2(z)), (pi_(X times Y -> Y)(h_2(z)))) \ &=h_2(z) $
+
+      所以$h_1 = h_2$，综上这样的$h$是存在且唯一的
   ]
-
 ]
 
 #note-block[这样的函数$h$被称为$f"和"g$的_直和（direct sum）_，并记作_$h = f plus.o g$_]
 
 #exercise[
   $X_1, ..., X_n$是集合，证明$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$
+
+  #proof[
+    - $product_(i=1)^n X_i = emptyset => exists 1<= i<= n, X_i = emptyset$
+    
+      $ product_(i=1)^n X_i=emptyset$，即存在一个$i$使得$x_i in X_i, forall 1<=i<=n$不成立，由于空集中没有任何元素，所以$exists 1<=i<=n, X_i = emptyset$
+
+    - $exists 1<= i<= n, X_i = emptyset => product_(i=1)^n X_i = emptyset$
+    
+      由于$exists 1<=i<=n, X_i = emptyset$，不妨令$X_j = emptyset, 1<=j<=n$，那么$x_j in.not X_j$，于是$product_(i=1)^(n)X_i = emptyset$
+
+    - 综上，$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$]
 ]
 
 #exercise[
   $I,J$是集合，$forall alpha in I, A_alpha$是集合，$forall beta in J, B_beta$是集合，证明$(union.big_(alpha in I) A_alpha) inter (union.big_(beta in J)B_beta) = union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)$
+
+  #proof[
+    
+    + $ &forall x in (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta)\ &=>x in union.big_(alpha in I)A_alpha and x in union.big_(beta in J)B_beta\ &=> exists alpha in I, x in A_alpha and exists beta in J, x in B_beta \ &=> exists (alpha, beta) in I times J, x in A_alpha and x in B_beta \ &=> x in union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)\ &=> (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta) subset.eq union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) $
+
+    + $ &forall x in union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)\ &=>exists (alpha, beta) in I times J, x in A_alpha and x in B_beta\ &=>exists alpha in I, exists beta in J, x in A_alpha and x in B_beta\ &=>exists alpha in I, x in A_alpha and exists beta in J, x in B_beta\ &=> x in (union.big_(alpha in I) A_alpha) inter (union.big_(beta in J) B_beta)\ &=> union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) subset.eq (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta) $
+
+    + 综上$union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) = (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta)$
+  ]
+  
 ]
 
 #exercise[
   $f:X->Y$是函数，定义函数$f$的_图（graph）_为$X times Y$子集，定义为${(x, f(x)):x in X}$，证明：对于$tilde(f):X -> Y"和"f:X->Y,f=tilde(f) <==> f, tilde(f)$有相同的图。如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$
+
+  #proof[
+    - $f=tilde(f) <=> f, tilde(f)$有相同的图
+      
+      + $f=tilde(f) => f, tilde(f)$有相同的图
+        
+        由于$f = tilde(f)$，那么$forall x in X, f(x) = tilde(f)(x)$，于是$ {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} $所以 $f"和"tilde(f)$有相同的图。
+      
+      + $f, tilde(f)"有相同的图" => f=tilde(f)$
+
+        由于$f, tilde(f)"有相同的图"$，那么$ &{(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} \ &=> forall x in X, f(x) = tilde(f)(x) $而且$f$和$tilde(f)$有相同的定义域$X$和相同的值域$Y$，所以$f = tilde(f)$
+      
+      + 综上，$f=tilde(f) <=> f, tilde(f)$有相同的图
+
+    - 如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$
+
+      - 存在性
+        
+        令函数$f:X->Y$满足$forall x in X$，$f(x)$为集合${y in Y: (x, y) in G}$中唯一的元素，也即$f(x) = y$，这是满足函数的定义的.
+      
+      - 唯一性
+        + 假设有两个函数$f:X->Y$和$tilde(f):X->Y$满足上述条件且图均为$G$，那么$ G_f &= {(x, f(x)):forall x in X} = G \ G_(tilde(f)) &= {(x, tilde(f)(x)):forall x in X} = G \ &=> {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X}\ &=>f = tilde(f) $
+
+        + 于是这样的函数只有一个.
+  ]
 ]
 
 #exercise[
   证明函数空间公理可以由幂集公理推出
+ 
+  #proof[
+    令$X,Y$是任意集合，令 $cal(P)(X times Y)$是$X times Y$的幂集，根据幂集公理，它也是一个集合
+
+    用分类公理定义$ cal(G) = {G in cal(P)(X times Y): forall x in X, exists! y in Y (x, y) in G} $
+
+    先前证明了函数和函数的图一一对应，将$cal(G)$中的元素替换为对应的函数$ forall G in cal(G),f_G:X->Y $得到的集合正是$Y^X$
+  ]
 ]
 
 #exercise(title: "严格的递归定义")[
-  函数$f:NN times NN -> NN$，$c in NN$，证明存在一个函数$a: N -> N$，使得$ &a(0) = c  \  &a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的。进一步的，仅使用皮亚诺公理和集合论证明递归的定义
+  函数$f:NN times NN -> NN$，$c in NN$，证明存在一个函数$a: NN -> NN$，使得$ &a(0) = c  \  &a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的。进一步的，仅使用皮亚诺公理和集合论证明递归的定义
+
+  #proof[
+    - 存在性
+      定义一个函数$a_n:{0,...,n} -> NN$，满足$ a_n (0) &= c\ a_n (k++) &= f(k, a_n (k)), forall 0<= k< n $根据替换公理，可以得到集合$cal(A) = {a_(n) : n in NN}$
+
+      所以可以得到函数$ a = union.big cal(A) $
+    
+      $a:NN->NN$存在且满足要求。
+
+    - 唯一性
+      
+      假设$a:NN->NN,a':NN->NN$都满足上述条件。
+      $a(0) = a'(0) = c$成立，归纳性的假设$a(n) = a'(n)$也成立，现在证明$n++$下的情况
+      $ a(n++) &= f(n, a(n))\ a'(n++) &= f(n, a'(n)) $由于归纳假设$a(n) = a'(n)$，那么$a(n++) = a'(n++)$，归纳完毕，$forall n in NN, a(n) = a'(n)$，且它们的定义域和值域都是$NN$，所以$a = a'$，于是这样的函数$a$是唯一的
+
+  ]
+
 ]
 
 #exercise(title: "自然数系是唯一的")[
   假设有另一个“另类的”自然数系$NN'$，满足皮亚诺公理，证明存在一个双射$f: NN -> NN'$，满足$f(0) = 0' in NN'$，且$forall n in NN, forall n' in NN'$，有$f(n) = n' <==> f(n++) = n'++'$
+
+  #proof[
+    - 定义函数$F:NN times NN' -> NN'$，满足$ F(n, n') = n++' $由递归定义的证明，存在一个唯一函数$f:NN->NN'$满足$ f(0) &= 0' \ f(n++) &= F(n, f(n)) = n++' $
+
+    - 单射$f(m) = f(n) => m = n$
+      
+      固定$n$，对$m$进行归纳，当$m = 0$时，$f(0) = 0' = f(n)$，由于$f$满足$f(0) = 0'$于是，所以$n = 0$，于是可以得到$m = n$
+
+      现在归纳的假设$f(m) = f(n) => m = n$成立，现在证明$m++$下的情况$ f(m++) = m++' = f(n) $如果$n = 0$，就有$f(0) = 0' = m++'$，$0'$不是任何数的后继，矛盾，所以$n != 0$
+      
+      假设$exists k in NN, n = k++$，那么$f(m++) = m++' = f(k++) = k++'$，由于$NN'$中的后继函数$++'$是单射，所以$ m++' = k++' => m = k $由于$m,k in NN$$ m++ = k++ = n $归纳完毕
+    
+    - 满射$forall n' in NN', exists n in NN, f(n) = n'$
+      
+      对$n'$进行归纳，当$n' = 0'$时，$f(n) = 0'$，$f$的定义中规定$f(0) = 0'$，所以存在$n = 0 in NN$使得$f(0) = 0'$
+
+      现在归纳的假设存在$n in NN$，使得$f(n) = n'$，接下来证明$n'++'$的情况下成立。
+
+      $ f(n++) = n'++' = f(n)++' $由归纳假设$exists n in NN, f(n) = n'$，所以前式成立，因此存在$m = n++ in NN$，使得$f(m) = n'++'$，归纳结束
+    
+    - 综上，这样的$f$是双射，也因此，自然数系唯一
+  ]
 ]
