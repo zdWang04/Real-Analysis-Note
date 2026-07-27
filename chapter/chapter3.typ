@@ -459,18 +459,99 @@
 ]
 
 #problem[证明基数相等是自反、对称和可传递的][
-  $X、Y、Z$都是集合
+  #proof[
+    令$X、Y、Z$都是集合
+    - 自反
+      
+      由于$\#(X) = \#(X)$，那么存在一个双射函数$f:X->X$，于是也就有$\#(X) = \#(X)$
+    
+    - 对称 $\#(X) = \#(Y) <=> \#(Y) = \#(X)$
+
+      由于$\#(X) = \#(Y)$，那么存在双射函数$f:X->Y$，由于$f$是双射的，那么也存在反函数$f^(-1):Y->X$，于是$\#(Y) = \#(X)$。同理可以从$\#(Y) = \#(X)$推出$\#(X) = \#(Y)$。所以满足对称性
+    
+    - 传递 $\#(X) = \#(Y) and \#(Y) = \#(Z) => \#(X) = \#(Z)$
+      
+      由于 $\#(X) = \#(Y) and \#(Y) = \#(Z)$，那么存在双射函数$f:X->Y$和双射函数$g:Y->Z$，现在定义一个函数$h:X->Z$，满足$h = g compose f$，双射函数的复合也是双射的，所有$h$是双射函数，所以$\#(X) = \#(Z)$
+  ]
+]
+#note-block[注意，在上述的证明中使用了$\#()$符号来代表集合的基数，实际上这个符号只能用于有限集，而集合相等的定义是不限制在有限集上的，所以可以将上面证明中$\#(X) = \#(Y)$一类的表述换为：“集合X与集合Y的基数相同”]
+
+
+#problem[证明$X = emptyset <=> \#(X) = 0$][
+  #proof[
+    + $X = emptyset => \#(X) = 0$
+      
+      存在空函数$f:emptyset -> {i in NN: 1<=i<=0} = emptyset$，是双射的，根据基数的定义就有$\#(X) = 0$
+    
+    + $\#(X) = 0 => X = emptyset$
+
+      根据基数的定义，$\#(X) = 0 => exists f:X->{i in NN: 1<=i<=0}=emptyset and f$是双射的，如果$X != emptyset$，那么$forall x in X, f(x) in emptyset$，矛盾，所以$X = emptyset$
+  ]
 ]
 
-#problem[证明$X = emptyset <=> \#(X) = 0$][]
+#problem[自然数集的有限子集是有界的][
+  令某个自然数子集$A in cal(P)(NN)$的基数为$n$，于是存在一个双射函数$f:{i in NN: 1<=i<=n} -> A$，所以$f(1),...f(n)$是有限个自然数，由自然数的有序性，取$M in NN, forall 1 <= i<= n, f(i) <= M$，于是$forall 1<=i<=n, f(i) <= M < M++$，所以自然数的有限子集是有界的.
+]
 
-#problem[自然数集的有限子集是有界的][]
+#problem[证明基数运算][
+  
+  #proof[
+    1. $X$是有限集，$x$是对象，且$x in.not X$，那么$X union {x}$是有限集且$\#(X union {x}) = \#(X)+1$
 
-#problem[证明基数运算][]
+      由于$X$是有限集，令其基数是$n$，那么存在一个双射函数$f:X->{i in NN: 1<=i<=n}$，接下来定定义一个分段函数$h(x):X union {x} -> {i in NN: 1<= i <= n+1}$，具体如$ h(y) = cases(f(y)&\,y in X, n+1&\,y = x) $易知$h$是双射，且基数为$n+1 in NN$，那么$X union {x}$是有限集，进一步的，$\#(X union {x}) = n + 1 = \#(X) + 1$
+  
+    2. $X、Y$是有限集，那么$X union Y$是有限集，且 $\#(X union Y) <= \#(X) + \#(Y)$，且当$X inter Y = emptyset$时取等
 
-#problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明乘法交换律][]
+      由于$X、Y$都是有限集，令其基数分别为$a,b$。现在固定$a$，对$b$进行归纳。
 
-#problem[$A、B、C$都是集合，通过构造一个明确的双射来证明$\#((A^B)^C) = \#(A^(B times C))$，并类似的，证明$forall a, b, c in NN, (a^b)^c = a^(b c)$和$a^b times a^c = a^(b+c)$][]
+      - 当$b=0$时，$Y = emptyset$，所以$X union Y = X$，所以$ &\#(X union Y) = a \ &\#(X) +\#(Y) = a + 0 = a \ &=> \#(X union Y) <= \#(X) +\#(Y) $ 且$X inter Y =X inter emptyset = emptyset$，所以$X inter Y = emptyset$时取等。
+    
+      - 假设$b$的情况下成立，即$\#(X union Y) <= a + b$且$X inter Y = emptyset$时，$\#(X union Y) = a + b$
+
+      - 接下来证明$b++$的情况，令$Y' = Y union {y} and y in.not Y$
+      
+        - 当$y in.not X$时，$ &\#(X union Y') \ &= \#(X union Y union {y}) \ &=\#(X union Y) + 1 "（基数运算1）"\ $ 由于归纳假设$\#(X union Y) <= a + b$，那么$\#(X union Y') <= a + b + 1 = a + (b++)$。特别的，当$X inter Y' = emptyset$时，$ &\#(X union Y')\ &= \#(X union Y union {y})\ &= \#(X union Y) + 1 \ &= a+b+1 = a+(b++) $
+
+        - 当$y in X$时，有关 $<=$的推理如上，因为$X inter Y != emptyset$，所以不需要证明相等的情况了。
+      
+      - 归纳完毕得证
+  
+  + $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
+
+
+  ]
+  
+]
+
+#problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明正整数的乘法交换律][
+  #proof[令函数$h:A times B -> B times A$为$h(x, y) = (y, x)$，下面证明$h$是双射的。
+    - 如果$h(x_1,y_1) = h(x_2, y_2)$，那么$(y_1, x_1) = (y_2, x_2)$，根据有序双元组的相等，就有$x_1 = x_2 and y_1 = y_2$，于是$h$是单射
+
+    - $forall (y,x) in B times A$，$exists (y, x) = h(x, y)$，其中$(x, y) in A times B$，所以$h$是满射的
+
+    - 综上$h$是双射
+  
+  所以$\#(A times B) = \#(B times A)$
+
+  如果要用基数运算证明正整数的乘法交换律，需要令$A、B$为有限集，设基数分别为$a、b$，并且假设$\#(A times B) = a b$，固定$a$，对$b$使用归纳法进行证明
+
+    - 当$b=0$时，$B = emptyset$，所以$A times B = emptyset$，于是$\#(A times B) = \#(emptyset) = 0 = a times 0 = 0$，是成立的
+
+    - 现在归纳的假设$b$时也成立，即$\#(A times B) = a b $，接下来证明$b+1$的情况
+      
+      令$y_0 in.not B$，令$B' = B union {y_0}$，所以$ A times (B union {y_0}) = (A times B) union (A times {y_0}) $由于$ (A times B) inter (A times {y_0}) = emptyset $所以$ \#((A times B) union (A times {y_0})) = \#(A times B) + \#(A times {y_0})$ 
+      
+      对于$\#(A times {y_0})$的部分，由于$A$的基数已经确定，所以有一个双射函数$f:A -> {i in NN:1<=i<=a}$，接着定义函数$g(x, y_0) = f(x)$，易知$g$的定义域为$A times {y_0}$且值域为${i in NN: 1 <= i <= a}$且是双射，于是$\#(A times {y_0}) = a$，根据归纳假设$\#(A times B) = a b$，于是 $\#(A times B') = a b + a = a(b + 1)$，归纳结束
+    
+    - 通过上述的归纳，有$\#(A times B) = a b$，于是$\#(B times A) = b a$，再有最先证明的$\#(A times B) = \#(B times A)$，就有$a b = b a$，于是正整数的乘法交换律得证]
+
+]
+
+#problem[$A、B、C$都是集合，通过构造一个明确的双射来证明$\#((A^B)^C) = \#(A^(B times C))$，并类似的，证明$forall a, b, c in NN, (a^b)^c = a^(b c)$和$a^b times a^c = a^(b+c)$][
+
+
+
+]
 
 #problem[$A、B$是集合，如果存在一个单射函数 $f: A -> B$，那么称A的基数小于等于B的基数，证明如果$A、B$都是有限集，那么$A$的基数小于等于$B$的基数，当且仅当$\#(A) <= \#(B)$][]
 
