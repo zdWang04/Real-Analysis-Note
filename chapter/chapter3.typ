@@ -73,8 +73,7 @@
 
 #lemma(title: "有限选取")[
   令$n >= 1$是一个自然数，并且对于任何自然数$1<= i <= n$，$X_i$都是非空集合，那么存在一个$n$-元组$(x_i)_(1<=i<=n)$，对于任意的$1<=i <= n$，都使得$x_i in X_i$成立，也即若任一个$X_i$非空，那么$product_(1<=i<=n)X_i$也非空。
-]
-#proof[
+  #proof[
   对$n$进行归纳。
   + $n=0$时，$i$取值为空，空真自动成立
   + $n=1$时，命题变为对于非空集合$X_1$，存在一个一元组$(x_1)$（或称对象$x_1$）$x_1 in X_1$，根据单个选取引理，如果集合非空，那么必然存在某个元素属于该集合，所以成立。
@@ -82,9 +81,11 @@
   + 由于归纳假设，存在$(x_i)_(1<=i<=n)$，对于$forall 1<= i <= n$ 使得 $x_i in X_i$ 成立。在$n++$的情况下，由于$X_(n++)$非空，再次根据单个选取引理，一定存在对象 $a in X_(n++)$ ，现在令新的(n++)-元组为$(y_i)_(1<=i <= n++)$，其中$y_i = x_i, forall 1<= i <= n$ 且 $y_(i) = a, i = n++$ ，这样的(n++)-元组是存在的，所以$y_i in X_i, forall 1<= i <= n++$
   + 综上归纳完毕
 ]
+]
 
 
-#exercise[
+
+#problem[
   1. 证明有序对$(x, y) = {{x}, {x, y}}$满足$(x, y) = (x', y') <==> x = x' and y = y'$
   #proof[
     - $(x, y) = (x', y') ==> x = x' and y = y'$
@@ -110,7 +111,7 @@
   ]
 ]
 
-#exercise[
+#problem[
 定义一个有序$n$-元组是一个满射函数$x: {i in NN: 1<= i <= n} -> X$，其值域为任意集合$X$，将$x_i$写作$x(i)$，将$x$写作$(x_i)_(1 <= i <= n)$，验证$ (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) <==> forall 1<= i <= n, x_i = y_i $
     #proof[
       + $(x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) ==> forall 1<= i <= n, x_i = y_i$
@@ -122,7 +123,7 @@
     ]
 ]
 
-#exercise[
+#problem[
    证明有序对和$n$-元组的相等是满足自反、对称和传递性的
 
    #proof[
@@ -142,7 +143,7 @@
    
 ]
 
-#exercise[
+#problem[
   $A,B,C$是集合，证明$A times (B union C) = (A times B) union (A times C)$，$A times (B inter C) = (A times B) inter (A times C)$，$A times (B without C) = (A times B) without (A times C)$
   #proof[
     
@@ -172,7 +173,7 @@
   ]
 ]
 
-#exercise[
+#problem[
   $A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
   #proof[
     
@@ -202,7 +203,7 @@
   ]
 ]
 
-#exercise[
+#problem[
   $A,B,C,D$是非空集合，$A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$，$A times B = C times D <=> A = C and B = D$，若移除$A,B,C,D$是非空的这个条件，会发生什么？
 
   #proof[
@@ -234,7 +235,7 @@
 
 ]
 
-#exercise[
+#problem[
   $X,Y$是集合，函数$pi_(X times Y -> X):X times Y -> X$被定义为$pi_(X times Y -> X)(x,y) = x$；函数$pi_(X times Y -> Y):X times Y -> Y$被定义为$pi_(X times Y -> Y)(x,y) = y$，这两个函数被称为定义在$X times Y$上的_坐标函数（co-ordinate functions）_，证明对于任意函数$f:Z -> X$和$g:Z -> Y$，存在唯一一个函数$h: Z -> X times Y$使得$pi_(X times Y -> X) compose h = f$和$pi_(X times Y -> Y) compose h = g$成立
 
   #proof[
@@ -263,7 +264,7 @@
 
 #note-block[这样的函数$h$被称为$f"和"g$的_直和（direct sum）_，并记作_$h = f plus.o g$_]
 
-#exercise[
+#problem[
   $X_1, ..., X_n$是集合，证明$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$
 
   #proof[
@@ -278,7 +279,7 @@
     - 综上，$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$]
 ]
 
-#exercise[
+#problem[
   $I,J$是集合，$forall alpha in I, A_alpha$是集合，$forall beta in J, B_beta$是集合，证明$(union.big_(alpha in I) A_alpha) inter (union.big_(beta in J)B_beta) = union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)$
 
   #proof[
@@ -292,7 +293,7 @@
   
 ]
 
-#exercise[
+#problem[
   $f:X->Y$是函数，定义函数$f$的_图（graph）_为$X times Y$子集，定义为${(x, f(x)):x in X}$，证明：对于$tilde(f):X -> Y"和"f:X->Y,f=tilde(f) <==> f, tilde(f)$有相同的图。如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$
 
   #proof[
@@ -302,9 +303,9 @@
         
         由于$f = tilde(f)$，那么$forall x in X, f(x) = tilde(f)(x)$，于是$ {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} $所以 $f"和"tilde(f)$有相同的图。
       
-      + $f, tilde(f)"有相同的图" => f=tilde(f)$
+      + $f, tilde(f)$有相同的图$ => f=tilde(f)$
 
-        由于$f, tilde(f)"有相同的图"$，那么$ &{(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} \ &=> forall x in X, f(x) = tilde(f)(x) $而且$f$和$tilde(f)$有相同的定义域$X$和相同的值域$Y$，所以$f = tilde(f)$
+        由于$f, tilde(f)$有相同的图，那么$ &{(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} \ &=> forall x in X, f(x) = tilde(f)(x) $而且$f$和$tilde(f)$有相同的定义域$X$和相同的值域$Y$，所以$f = tilde(f)$
       
       + 综上，$f=tilde(f) <=> f, tilde(f)$有相同的图
 
@@ -321,7 +322,7 @@
   ]
 ]
 
-#exercise[
+#problem[
   证明函数空间公理可以由幂集公理推出
  
   #proof[
@@ -333,7 +334,7 @@
   ]
 ]
 
-#exercise(title: "严格的递归定义")[
+#problem(title: "严格的递归定义")[
   函数$f:NN times NN -> NN$，$c in NN$，证明存在一个函数$a: NN -> NN$，使得$ &a(0) = c  \  &a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的。进一步的，仅使用皮亚诺公理和集合论证明递归的定义
 
   #proof[
@@ -354,7 +355,7 @@
 
 ]
 
-#exercise(title: "自然数系是唯一的")[
+#problem(title: "自然数系是唯一的")[
   假设有另一个“另类的”自然数系$NN'$，满足皮亚诺公理，证明存在一个双射$f: NN -> NN'$，满足$f(0) = 0' in NN'$，且$forall n in NN, forall n' in NN'$，有$f(n) = n' <==> f(n++) = n'++'$
 
   #proof[
@@ -410,17 +411,25 @@
 ]
 
 #lemma[
-  假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的。$forall x in X,"集合"X without {x}$的基数是$m$，其中$m++ = n$
+  假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的。$forall x in X,"集合"X without {x}$的基数是$n-1$
 
   #proof[
+    - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$ exists x in X, f(x) = 1$，所以$X$非空。
 
+    - 由于$X$的基数为$n$，那么存在双射$f:X->{i in NN: 1<=i<=n}$
+
+      定义一个函数$g:X without {x}-> {i in NN: 1<= i <=n-1}$，其中$x in X$，满足$forall y in X without {x}$ $ g(y)=cases(f(y)\, &f(y) < f(x), f(y)-1\, &f(y) > f(x)) $注意，$f(y) = f(x)$是不可能的，因为$f$是双射，那么$f(y) = f(x) => y = x$，而$y in X without {x}$，矛盾，所以$f(y)!=f(x)$，上面定义的分段函数是考虑了所有情况的。接下来只需要证明$g$在$X without {x}$上是双射即可。
+
+      该分段函数在每一个分段上都是是双射的，所以$g:X without {x}:{i in NN: 1<=i <=n-1}$是双射函数，也即$X without {x}$的基数是$n-1$
   ]
 ]
 
 #theorem("基数的唯一性")[
   集合$X$的基数为$n$，那么$X$不可能还有其他的基数，也即$forall m != n$，$m$不是$X$的基数
   #proof[
+    对$n$进行归纳，当$n=0$时，集合$X=emptyset$，空集不会非0基数。假设$n$的情况下，集合有唯一基数成立，现在证明$n++$的情况。
 
+    假设存在$m != n++$，$m$也是$X$的基数，由引理，$X$是非空的，且如果$x in X$，那么$X without {x}$的基数为$n$，同时也是$m-1$，由归纳假设$n = m - 1 => n++ = m$，矛盾，归纳完毕
   ]
 ]
 
@@ -430,6 +439,43 @@
 
 #theorem("自然数集"+[$NN$]+"是无限的")[
   #proof[
-    
+    假设$NN$是有限集，那么令$\#(NN) = n$，于是存在一个双射$f:{i in NN: 1<=i<=n} -> N$，那么存在$M in NN$，使得$forall 1<=i<=n, f(i) <= M$，那么$forall 1<=i<=n, f(i) < M++$，所以$M++$无法被$f$映射到，这与满射是矛盾的。于是$NN$是无限集
   ]
 ]
+
+#property[基数算术][
+  
+  + $X$是有限集，$x$是对象，且$x in.not X$，那么$X union {x}$是有限集且$\#(X union {x}) = \#(X)+1$
+  
+  + $X、Y$是有限集，那么$X union Y$是有限集，且 $\#(X union Y) <= \#(X) + \#(Y)$，且当$X inter Y = emptyset$时取等
+
+  + $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
+
+  + $X$是有限集，且函数$f:X->Y$，那么$f(X)$是有限集，且满足$\#(f(X)) <= \#(X)$，当$f$是单射时，$\#(f(X)) = \#(X)$
+
+  + $X、Y$都是有限集，那么$X times Y$也是有限的，且$\#(X times Y) = \#(X) times \#(Y)$
+
+  + $X、Y$是有限集，那么$Y^X$是有限的，且 $\#(Y^X) = \#(Y)^(\#(X))$
+]
+
+#problem[证明基数相等是自反、对称和可传递的][
+  $X、Y、Z$都是集合
+]
+
+#problem[证明$X = emptyset <=> \#(X) = 0$][]
+
+#problem[自然数集的有限子集是有界的][]
+
+#problem[证明基数运算][]
+
+#problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明乘法交换律][]
+
+#problem[$A、B、C$都是集合，通过构造一个明确的双射来证明$\#((A^B)^C) = \#(A^(B times C))$，并类似的，证明$forall a, b, c in NN, (a^b)^c = a^(b c)$和$a^b times a^c = a^(b+c)$][]
+
+#problem[$A、B$是集合，如果存在一个单射函数 $f: A -> B$，那么称A的基数小于等于B的基数，证明如果$A、B$都是有限集，那么$A$的基数小于等于$B$的基数，当且仅当$\#(A) <= \#(B)$][]
+
+#problem[$A、B$都是集合，且存在一个单射函数$f:A->B$，证明也存在一个满射函数$g:B->A$][]
+
+#problem[$A、B$是有限集，证明$A union B、A inter B$也是有限集，且$\#(A) + \#(B) = \#(A union B) + \#(A inter B)$][]
+
+#problem[令$A_1, ..., A_n$是有限集，且满足$\#(union.big_(i in {1,...,n})A_i) > n$，证明存在$i in {1,...,n}$使得$\#(A_i) >= 2$，即抽屉/鸽巢原理][]
