@@ -1,6 +1,6 @@
 #import "@preview/euler-math:0.1.0": *
 #import "@preview/theorion:0.6.0": proposition
-#import "../utils/utils.typ" : *
+#import "../utils/utils.typ": *
 
 = 集合论
 
@@ -14,7 +14,9 @@
 
 == 笛卡尔积
 
-#definition(title: "有序对")[如果 $x$ 和 $y$ 是两个对象，那么他们的_有序对 $(x,y)$ _也是一个对象，其中 $x$ 是有序对的第一个组分， $y$ 是有序对的第二个组分。
+#definition(
+  title: "有序对",
+)[如果 $x$ 和 $y$ 是两个对象，那么他们的_有序对 $(x,y)$ _也是一个对象，其中 $x$ 是有序对的第一个组分， $y$ 是有序对的第二个组分。
   $ (x, y) = (x', y') <==> x = x' and y = y' $
 ]
 
@@ -27,7 +29,7 @@
 
 #definition(title: [有序$n$-元组和$n$-次笛卡尔积])[
   $n$为一个自然数，一个有序$n$元对$(x_i)_(1 <= i <= n)$（也可写作$(x_1, x_2, ..., x_n)$）是对象$x_i$的组合，其中$x_i$是有序$n$-元组的第$i$个组分。两个有序$n$-元组是相等的，当且仅当对应组分相等。
-  $ (x_i)_(1 <= i <= n) = (y_i)_(1 <= i <= n) <==> x_i = y_i, forall 1<= i <= n $ 
+  $ (x_i)_(1 <= i <= n) = (y_i)_(1 <= i <= n) <==> x_i = y_i, forall 1<= i <= n $
 
   如果$(X_i)_(1<=i<=n)$是一个集合的有序$n$-元组，那么可以定义它的_笛卡尔积$product_(1<=i<=n)X_i$_为
   $ product_(1<=i<=n)X_i := {(x_i)_(1<=i<=n): x_i in X_i, forall 1 <= i <=n} $
@@ -43,7 +45,7 @@
 
 #note-block[
   如果$X_1$是一个集合，那么$product_(1<=i<=1)X_i = X_1$
-  
+
   #proof[
     + $i$ 唯一的取值是1，由定义1.3， $ product_(1<=i<=1)X_i={x_1 : x_1 in X_1} subset.eq X_1 $
     + 另外一方面，$forall x in X_1$，都有$x in {x_1 : x_1 in X_1} = product_(1<=i<=1)X_i$，那么$X_1 subset.eq product_(1<=i<=1)X_i$ \ \
@@ -52,9 +54,9 @@
 ]
 
 #note-block[
-   + 空笛卡尔积$product_(1<=i<=0)X_i$的计算结果是 ${()}$ 
-   + ${()}$ 不是空集
-   + ${()}$ 唯一的元素是_0-元组（或称空元组） $()$_
+  + 空笛卡尔积$product_(1<=i<=0)X_i$的计算结果是 ${()}$
+  + ${()}$ 不是空集
+  + ${()}$ 唯一的元素是_0-元组（或称空元组） $()$_
 ]
 
 #note-block[
@@ -74,13 +76,13 @@
 #lemma(title: "有限选取")[
   令$n >= 1$是一个自然数，并且对于任何自然数$1<= i <= n$，$X_i$都是非空集合，那么存在一个$n$-元组$(x_i)_(1<=i<=n)$，对于任意的$1<=i <= n$，都使得$x_i in X_i$成立，也即若任一个$X_i$非空，那么$product_(1<=i<=n)X_i$也非空。
   #proof[
-  对$n$进行归纳。
-  + $n=0$时，$i$取值为空，空真自动成立
-  + $n=1$时，命题变为对于非空集合$X_1$，存在一个一元组$(x_1)$（或称对象$x_1$）$x_1 in X_1$，根据单个选取引理，如果集合非空，那么必然存在某个元素属于该集合，所以成立。
-  + 现在归纳的假设在$n$的情况下成立。
-  + 由于归纳假设，存在$(x_i)_(1<=i<=n)$，对于$forall 1<= i <= n$ 使得 $x_i in X_i$ 成立。在$n++$的情况下，由于$X_(n++)$非空，再次根据单个选取引理，一定存在对象 $a in X_(n++)$ ，现在令新的(n++)-元组为$(y_i)_(1<=i <= n++)$，其中$y_i = x_i, forall 1<= i <= n$ 且 $y_(i) = a, i = n++$ ，这样的(n++)-元组是存在的，所以$y_i in X_i, forall 1<= i <= n++$
-  + 综上归纳完毕
-]
+    对$n$进行归纳。
+    + $n=0$时，$i$取值为空，空真自动成立
+    + $n=1$时，命题变为对于非空集合$X_1$，存在一个一元组$(x_1)$（或称对象$x_1$）$x_1 in X_1$，根据单个选取引理，如果集合非空，那么必然存在某个元素属于该集合，所以成立。
+    + 现在归纳的假设在$n$的情况下成立。
+    + 由于归纳假设，存在$(x_i)_(1<=i<=n)$，对于$forall 1<= i <= n$ 使得 $x_i in X_i$ 成立。在$n++$的情况下，由于$X_(n++)$非空，再次根据单个选取引理，一定存在对象 $a in X_(n++)$ ，现在令新的(n++)-元组为$(y_i)_(1<=i <= n++)$，其中$y_i = x_i, forall 1<= i <= n$ 且 $y_(i) = a, i = n++$ ，这样的(n++)-元组是存在的，所以$y_i in X_i, forall 1<= i <= n++$
+    + 综上归纳完毕
+  ]
 ]
 
 
@@ -90,12 +92,12 @@
   #proof[
     - $(x, y) = (x', y') ==> x = x' and y = y'$
 
-      1. 当$x = y$时，$(x, y) = {{x}}$，那么如果$(x, y) = (x', y')$，便有${{x}} = {{x'}}$，对于这个单元素集合，也就是${x} = {x'}$，再次利用单元素集合，就有$x = x' = y = y'$ 
+      1. 当$x = y$时，$(x, y) = {{x}}$，那么如果$(x, y) = (x', y')$，便有${{x}} = {{x'}}$，对于这个单元素集合，也就是${x} = {x'}$，再次利用单元素集合，就有$x = x' = y = y'$
       2. 当$x != y$时，$(x, y) = {{x}, {x, y}}$，那么如果$(x, y) = (x', y')$，便有${{x}, {x, y}} = {{x'}, {x', y'}}$，等式两边的集合都是双元素集合，且一个是单元素集合，另一个是双元素集合，只能令其对应相等，也即$ {x} = {x'}\ {x, y} = {x', y'} $所以有$x = x'$，又因为$x != y$，所以$x' != y$，只能是$y = y'$
       3. 考虑了所有的情况，得证
 
     - $x = x' and y = y' ==> (x, y) = (x', y')$
-      
+
       若$x = x' and y = y'$，代入定义x就可以得到$(x, y) = (x', y')$
   ]
   2. $X$和$Y$是集合，证明$X times Y$也是一个集合
@@ -112,63 +114,105 @@
 ]
 
 #problem[
-定义一个有序$n$-元组是一个满射函数$x: {i in NN: 1<= i <= n} -> X$，其值域为任意集合$X$，将$x_i$写作$x(i)$，将$x$写作$(x_i)_(1 <= i <= n)$，验证$ (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) <==> forall 1<= i <= n, x_i = y_i $
-    #proof[
-      + $(x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) ==> forall 1<= i <= n, x_i = y_i$
-        
-        函数$x$与函数$y$相等，那么$forall 1<= i <= n, x(i) = y(i)$，也即$forall 1<= i <= n, x_i = y_i$
-      + $forall 1<= i <= n, x_i = y_i ==> (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n)$
-        
-        $forall 1<= i <= n, x_i = y_i$说明在定义域上两个函数逐点相等，那么函数$x$和函数$y$相等，那么根据定义$x = y ==> (x_i)_(1<=i<=n) = (y_i)_(1<=i<=n)$
-    ]
+  定义一个有序$n$-元组是一个满射函数$x: {i in NN: 1<= i <= n} -> X$，其值域为任意集合$X$，将$x_i$写作$x(i)$，将$x$写作$(x_i)_(1 <= i <= n)$，验证$ (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) <==> forall 1<= i <= n, x_i = y_i $
+  #proof[
+    + $(x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) ==> forall 1<= i <= n, x_i = y_i$
+
+      函数$x$与函数$y$相等，那么$forall 1<= i <= n, x(i) = y(i)$，也即$forall 1<= i <= n, x_i = y_i$
+    + $forall 1<= i <= n, x_i = y_i ==> (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n)$
+
+      $forall 1<= i <= n, x_i = y_i$说明在定义域上两个函数逐点相等，那么函数$x$和函数$y$相等，那么根据定义$x = y ==> (x_i)_(1<=i<=n) = (y_i)_(1<=i<=n)$
+  ]
 ]
 
 #problem[
-   证明有序对和$n$-元组的相等是满足自反、对称和传递性的
+  证明有序对和$n$-元组的相等是满足自反、对称和传递性的
 
-   #proof[
+  #proof[
     1. 自反 $(x_i)_(1<=i<=n) = (x_i)_(1<=i<=n)$
-      
+
       由于$x = x$对于集合和元素成立，那么$forall 1 <= i <= n, x_i = x_i$成立，根据定义，$(x_i)_(1<=i<=n) = (x_i)_(1<=i<=n)$成立
-    
+
     2. 对称 $(x_i)_(1<=i<=n) = (y_i)_(1<=i<=n) <==> (y_i)_(1<=i<=n) = (x_i)_(1<=i<=n)$
-      
+
       对于任意元素和集合，$x = y <==> y = x$，那么根据定义展开有$forall 1 <= i <= n, x_i = y_i, y_i = x_i$，反向同理，所以对称性得证
     3. 传递 $(x_i)_(1<=i<=n) = (y_i)_(1<=i<=n) and (y_i)_(1<=i<=n) = (z_i)_(1<=i<=n) ==> (x_i)_(1<=i<=n) = (z_i)_(1<=i<=n)$
-      
+
       对于任意元素和集合，$x = y and y = z ==> x = z$成立，于是$forall 1<=i<=n, x_i = y_i, y_i = z_i ==> x_i = z_i$，根据定义传递性得证
 
     上述的证明在$n = 2$时也成立，于是有序对的相等也满足自反、对称和传递性
-   ]
-   
+  ]
+
 ]
 
 #problem[
   $A,B,C$是集合，证明$A times (B union C) = (A times B) union (A times C)$，$A times (B inter C) = (A times B) inter (A times C)$，$A times (B without C) = (A times B) without (A times C)$
   #proof[
-    
+
     - $A times (B union C) = (A times B) union (A times C)$
-      
-      + $ &forall (x,y) in A times (B union C) \  &=> x in A and y in B union C \ &=> x in A and (y in B or y in C) \ &=> (x in A and y in B) or (x in A and y in C) \ &=> (x,y) in A times B or (x, y) in A times C \ &=>(x,y) in (A times B) union (A times C) \ &=> A times (B union C) subset.eq (A times B) union (A times C) $
-      
-      + $ &forall (x, y) in (A times B) union (A times C) \ &=> (x, y) in A times B or (x, y) in A times C \ &=> (x in A and y in B) or (x in A and y in C) \ &=> x in A and (y in B or y in C) \ &=> (x, y) in A times (B union C) \ &=> (A times B) union (A times C) subset.eq A times (B union C) $
-      
+
+      + $
+          & forall (x,y) in A times (B union C) \
+          & => x in A and y in B union C \
+          & => x in A and (y in B or y in C) \
+          & => (x in A and y in B) or (x in A and y in C) \
+          & => (x,y) in A times B or (x, y) in A times C \
+          & =>(x,y) in (A times B) union (A times C) \
+          & => A times (B union C) subset.eq (A times B) union (A times C)
+        $
+
+      + $
+          & forall (x, y) in (A times B) union (A times C) \
+          & => (x, y) in A times B or (x, y) in A times C \
+          & => (x in A and y in B) or (x in A and y in C) \
+          & => x in A and (y in B or y in C) \
+          & => (x, y) in A times (B union C) \
+          & => (A times B) union (A times C) subset.eq A times (B union C)
+        $
+
       + 综上$A times (B union C) = (A times B) union (A times C)$
-    
+
     - $A times (B inter C) = (A times B) inter (A times C)$
-      
-      + $ &forall (x, y) in A times (B inter C) \ &=> x in A and y in B inter C \ &=> x in A and (y in B and y in C) \ &=> (x in A and y in B) and (x in A and y in C) \ &=> (x, y) in (A times B) inter (A times C) \ &=> A times (B inter C) subset.eq (A times B) inter (A times C) $
-      
-      + $ &(x, y) in (A times B) inter (A times C) \ &=> (x, y) in (A times B) and (x, y) in A times C \ &=> (x in A and y in B) and (x in A and y in C) \ &=> x in A and (y in B and y in C) \ &=> x in A and y in (B inter C) \ &=> (x, y) in A times (B inter C) \ &=> (A times B) inter (A times C) subset.eq A times (B inter C) $ 
-      
-      +  综上$A times (B inter C) = (A times B) inter (A times C)$
-    
+
+      + $
+          & forall (x, y) in A times (B inter C) \
+          & => x in A and y in B inter C \
+          & => x in A and (y in B and y in C) \
+          & => (x in A and y in B) and (x in A and y in C) \
+          & => (x, y) in (A times B) inter (A times C) \
+          & => A times (B inter C) subset.eq (A times B) inter (A times C)
+        $
+
+      + $
+          & (x, y) in (A times B) inter (A times C) \
+          & => (x, y) in (A times B) and (x, y) in A times C \
+          & => (x in A and y in B) and (x in A and y in C) \
+          & => x in A and (y in B and y in C) \
+          & => x in A and y in (B inter C) \
+          & => (x, y) in A times (B inter C) \
+          & => (A times B) inter (A times C) subset.eq A times (B inter C)
+        $
+
+      + 综上$A times (B inter C) = (A times B) inter (A times C)$
+
     - $A times (B without C) = (A times B) without (A times C)$
-      
-      + $ &forall (x, y) in A times (B without C) \ &=> x in A and y in B without C \ &=> x in A and (y in B and y in.not C) \ &=> (x in A and y in B) and (x in A and y in.not C) $ 由于$x in A and y in B$，那么$x in A times B$，如果$(x, y) in A times C$，那么$x in A and y in C$，这与$y in.not C$矛盾，所以$(x, y) in.not A times C$，所以$ &(x in A and y in B) and (x in A and y in.not C)  \ &=> (x, y) in (A times B) without (A times C)\  &=> A times (B without C) subset.eq (A times B) without (A times C) $
-      
-      2. $ &forall (x, y) in (A times B) without (A times C) \ &=> (x,y) in A times B and (x, y) in.not A times C \ &=> x in A and y in B and y in.not C \ &=> x in A and y in (B without C) \ &=> (x, y) in A times (B without C) \ &=> (A times B) without (A times C) subset.eq A times (B without C) $
-      
+
+      + $ & forall (x, y) in A times (B without C) \
+        & => x in A and y in B without C \
+        & => x in A and (y in B and y in.not C) \
+        & => (x in A and y in B) and (x in A and y in.not C) $ 由于$x in A and y in B$，那么$x in A times B$，如果$(x, y) in A times C$，那么$x in A and y in C$，这与$y in.not C$矛盾，所以$(x, y) in.not A times C$，所以$ & (x in A and y in B) and (x in A and y in.not C) \
+        & => (x, y) in (A times B) without (A times C) \
+        & => A times (B without C) subset.eq (A times B) without (A times C) $
+
+      2. $
+          & forall (x, y) in (A times B) without (A times C) \
+          & => (x,y) in A times B and (x, y) in.not A times C \
+          & => x in A and y in B and y in.not C \
+          & => x in A and y in (B without C) \
+          & => (x, y) in A times (B without C) \
+          & => (A times B) without (A times C) subset.eq A times (B without C)
+        $
+
       3. 综上$(A times B) without (A times C) = A times (B without C)$
   ]
 ]
@@ -176,28 +220,69 @@
 #problem[
   $A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
   #proof[
-    
+
     - $(A times B) inter (C times D) = (A inter C) times (B inter D)$
-      
-      + $ &forall (x, y) in (A times B) inter (C times D) \ &=> (x, y) in (A times B) and (x, y) in (C times D) \ &=> x in A and y in B and x in C and y in D \ &=> x in A and x in C and y in B and y in D \ &=> x in (A inter C) and y in (B and D) \ &=> (x, y) in (A inter C) times (B inter D) \ &=> (A times B) inter (C times D) subset.eq (A times C) inter (B times D) $
-      
-      + $ &forall (x, y) in (A inter C) times (B inter D) \ &=> x in A inter C and y in B inter D \ &=> x in A and x in C and y in B and y in D \ &=> (x in A and y in B) and (x in C and y in D) \ &=> (x,y) in (A times B) and (x, y) in (C times D) \ &=> (x, y) in (A times B) inter (C times D) \ &=> (A inter C) times (B inter D) subset.eq (A times B) inter (C times D) $
-      
+
+      + $
+          & forall (x, y) in (A times B) inter (C times D) \
+          & => (x, y) in (A times B) and (x, y) in (C times D) \
+          & => x in A and y in B and x in C and y in D \
+          & => x in A and x in C and y in B and y in D \
+          & => x in (A inter C) and y in (B and D) \
+          & => (x, y) in (A inter C) times (B inter D) \
+          & => (A times B) inter (C times D) subset.eq (A times C) inter (B times D)
+        $
+
+      + $
+          & forall (x, y) in (A inter C) times (B inter D) \
+          & => x in A inter C and y in B inter D \
+          & => x in A and x in C and y in B and y in D \
+          & => (x in A and y in B) and (x in C and y in D) \
+          & => (x,y) in (A times B) and (x, y) in (C times D) \
+          & => (x, y) in (A times B) inter (C times D) \
+          & => (A inter C) times (B inter D) subset.eq (A times B) inter (C times D)
+        $
+
       + 综上$(A times B) inter (C times D) = (A inter C) times (B inter D)$
-    
+
     - $(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？
-      
-      + $ &forall (x, y) in (A times B) union (C times D) \ &=> (x,y) in (A times B) or (x, y) in (C times D) \ &=> (x in A and y in B) or (x in C and y in D) \ &=> x in (A union C) and y in (B union D) \ &=> (x,y) in (A union C) times (B union D) \ &=> (A times B) union (C times D) subset.eq (A union C) times (B union D) $ 
-      
-      + $ &forall (x, y) in (A union C) times (B union D) \ &=> x in (A union C) and y in (B union D) \ &=> (x in A or x in C) and (y in B or y in D) \ &=> (x in A and y in B) or (x in A and y in D) or (x in C and y in B) or (x in C and y in D) \ &=> (x, y) in (A times B) union (A times D) union (C times B) union (C times D)\ &!= (A times B) union (C times D) $
-      
+
+      + $
+          & forall (x, y) in (A times B) union (C times D) \
+          & => (x,y) in (A times B) or (x, y) in (C times D) \
+          & => (x in A and y in B) or (x in C and y in D) \
+          & => x in (A union C) and y in (B union D) \
+          & => (x,y) in (A union C) times (B union D) \
+          & => (A times B) union (C times D) subset.eq (A union C) times (B union D)
+        $
+
+      + $
+          & forall (x, y) in (A union C) times (B union D) \
+          & => x in (A union C) and y in (B union D) \
+          & => (x in A or x in C) and (y in B or y in D) \
+          & => (x in A and y in B) or (x in A and y in D) or (x in C and y in B) or (x in C and y in D) \
+          & => (x, y) in (A times B) union (A times D) union (C times B) union (C times D) \
+          & != (A times B) union (C times D)
+        $
+
       + 综上，二者并不相等，而是$(A times B) union (C times D) subset.neq (A union C) times (B union D)$
-    
+
     - $(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
-      
-      + $ &forall (x, y) in (A times B) without (C times D) \ &=> (x, y) in (A times B) and (x, y) in.not (C times D) \ &=> (x in A and y in B) and (x in.not C or y in.not D) \ &=> (x in A and y in B and x in.not C) or (x in A and y in B and y in.not D) \ &=> (x in A and x in.not C and y in B) or (x in A and y in B and y in.not D) \ &=> (x in A without C and y in B) or (x in A and y in B without D) \ &=> (x,y) in (A without C)times B or (x, y) in A times (B without D) $ 注意，$(A without C times B) union (A times B without D)$实际上是$(A times B) without (C times D)$的正确展开形式，且不等于$(A without C) times (B times D)$
-      
-      + $ &forall (x, y) in (A without C) times (B without D) \ &=>x in A without C and y in B without D\ & => x in A and x in.not C and y in B and y in.not D \ &=> x in A and y in B and x in.not C and y in.not D \ &=>(x, y) in A times B and (x, y) in.not C times D\ &=>(x, y)  in (A times B) without (C times D) $ 注意，$(x ,y) in.not C times D <=> x in.not C or y in.not D$，所以$x in.not C and y in.not D$是$(x, y) in.not C times D$的充分但非必要条件。
+
+      + $ & forall (x, y) in (A times B) without (C times D) \
+        & => (x, y) in (A times B) and (x, y) in.not (C times D) \
+        & => (x in A and y in B) and (x in.not C or y in.not D) \
+        & => (x in A and y in B and x in.not C) or (x in A and y in B and y in.not D) \
+        & => (x in A and x in.not C and y in B) or (x in A and y in B and y in.not D) \
+        & => (x in A without C and y in B) or (x in A and y in B without D) \
+        & => (x,y) in (A without C)times B or (x, y) in A times (B without D) $ 注意，$(A without C times B) union (A times B without D)$实际上是$(A times B) without (C times D)$的正确展开形式，且不等于$(A without C) times (B times D)$
+
+      + $ & forall (x, y) in (A without C) times (B without D) \
+        & =>x in A without C and y in B without D \
+        & => x in A and x in.not C and y in B and y in.not D \
+        & => x in A and y in B and x in.not C and y in.not D \
+        & =>(x, y) in A times B and (x, y) in.not C times D \
+        & =>(x, y) in (A times B) without (C times D) $ 注意，$(x ,y) in.not C times D <=> x in.not C or y in.not D$，所以$x in.not C and y in.not D$是$(x, y) in.not C times D$的充分但非必要条件。
 
       + 综上，$(A without C) times (B without D) subset.neq (A times B) without (C times D)$
   ]
@@ -208,26 +293,39 @@
 
   #proof[
     - $A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$
-      + $A times B subset.eq C times D => A subset.eq C and B subset.eq D $
+      + $A times B subset.eq C times D => A subset.eq C and B subset.eq D$
 
-        $ &A times B subset.eq C times D\ &=>forall (x, y) in A times B, (x, y) in C times D\ &=>x in A and y in B, x in C and y in D \ &=> A subset.eq C and B subset.eq D $
+        $
+          & A times B subset.eq C times D \
+          & =>forall (x, y) in A times B, (x, y) in C times D \
+          & =>x in A and y in B, x in C and y in D \
+          & => A subset.eq C and B subset.eq D
+        $
       + $A subset.eq C and B subset.eq D => A times B subset.eq C times D$
 
-        $ &forall (x, y) in A times B\ &=>x in A and y in B $由已知，$forall x in A, x in C and forall y in B, y in D$，所以接着有 $ &=> x in C and y in D \ &=> (x, y) in C times D \ &=> A times B subset.eq C times D $
-    
+        $ & forall (x, y) in A times B \
+        & =>x in A and y in B $由已知，$forall x in A, x in C and forall y in B, y in D$，所以接着有 $ & => x in C and y in D \
+        & => (x, y) in C times D \
+        & => A times B subset.eq C times D $
+
       + 综上，$A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$在$A, B,C,D != emptyset$时成立
-      
-      + 特别的，比如$A = C = emptyset and B subset.eq.not D$，$A times B = emptyset subset.eq C times D = emptyset$成立，但是$B subset.eq D$为假，因为$B subset.eq.not D$ 
-    
+
+      + 特别的，比如$A = C = emptyset and B subset.eq.not D$，$A times B = emptyset subset.eq C times D = emptyset$成立，但是$B subset.eq D$为假，因为$B subset.eq.not D$
+
     - $A times B = C times D <=> A = C and B = D$
       + $A times B =C times D => A = C and B = D$
-        
-        $ &forall (x, y) in A times B \ &=> x in A and y in B $由于$A times B = C times D$，那么接着可以得到$ &x in C and y in D \ &=> A subset.eq C and B subset.eq D $同理对$forall (x, y) in C times D$进行推理，可得$C subset.eq A and D subset.eq B$，所以可得$A = C and B = D$
-      
+
+        $ & forall (x, y) in A times B \
+        & => x in A and y in B $由于$A times B = C times D$，那么接着可以得到$ & x in C and y in D \
+        & => A subset.eq C and B subset.eq D $同理对$forall (x, y) in C times D$进行推理，可得$C subset.eq A and D subset.eq B$，所以可得$A = C and B = D$
+
       + $A = C and B = D => A times B = C times D$
 
-        $ &forall (x, y) in A times B \ &=> x in A and y in B $由于$A = C and B = D$，所以接着有$ &=>x in C and y in D \ &=>(x, y) in C times D \ &=> A times B subset.eq C times D $同理对$forall (x, y) in C times D$进行推理，可得$C times D subset.eq A times B$，所以可得$A times B = C times D$
-      
+        $ & forall (x, y) in A times B \
+        & => x in A and y in B $由于$A = C and B = D$，所以接着有$ & =>x in C and y in D \
+        & =>(x, y) in C times D \
+        & => A times B subset.eq C times D $同理对$forall (x, y) in C times D$进行推理，可得$C times D subset.eq A times B$，所以可得$A times B = C times D$
+
       + 综上，$A = C and B = D <=> A times B = C times D$在$A, B,C,D != emptyset$时成立
 
       + 特别的，当$A = C = emptyset and B != D$时，$A times B = C times D = emptyset$，但是$A = C and B = D$为假，因为$B != D$
@@ -239,14 +337,22 @@
   $X,Y$是集合，函数$pi_(X times Y -> X):X times Y -> X$被定义为$pi_(X times Y -> X)(x,y) = x$；函数$pi_(X times Y -> Y):X times Y -> Y$被定义为$pi_(X times Y -> Y)(x,y) = y$，这两个函数被称为定义在$X times Y$上的_坐标函数（co-ordinate functions）_，证明对于任意函数$f:Z -> X$和$g:Z -> Y$，存在唯一一个函数$h: Z -> X times Y$使得$pi_(X times Y -> X) compose h = f$和$pi_(X times Y -> Y) compose h = g$成立
 
   #proof[
-    
+
     - 存在性
-    
+
       令函数$h:Z -> X times Y, forall z in Z, z |-> (f(z), g(z))$，这个函数满足定义，是存在的
-    
-      $ &(pi_(X times Y -> X) compose h)(z)\ &= pi_(X times Y -> X)(h(z))\ &= pi_(X times Y -> X)(f(z), g(z)) = f(z) $
-  
-      $ &(pi_(X times Y -> Y) compose h)(z)\ &= pi_(X times Y -> Y)(h(z))\ &= pi_(X times Y -> Y)(f(z), g(z)) = g(z) $
+
+      $
+        & (pi_(X times Y -> X) compose h)(z) \
+        & = pi_(X times Y -> X)(h(z)) \
+        & = pi_(X times Y -> X)(f(z), g(z)) = f(z)
+      $
+
+      $
+        & (pi_(X times Y -> Y) compose h)(z) \
+        & = pi_(X times Y -> Y)(h(z)) \
+        & = pi_(X times Y -> Y)(f(z), g(z)) = g(z)
+      $
 
       所以$pi_(X times Y -> X) compose h = f and pi_(X times Y -> Y) compose h = g$成立
 
@@ -254,9 +360,17 @@
 
       假设有$h_1, h_2$满足条件
 
-      $ pi_(X times Y -> X) compose h_1 = &f = pi_(X times Y -> X) compose h_2 \ pi_(X times Y -> Y) compose h_1 = &g = pi_(X times Y -> Y) compose h_2 $
+      $
+        pi_(X times Y -> X) compose h_1 = & f = pi_(X times Y -> X) compose h_2 \
+        pi_(X times Y -> Y) compose h_1 = & g = pi_(X times Y -> Y) compose h_2
+      $
 
-      $ &forall z in Z , h_1(z) = (f(z), g(z))\  h_1(z) &= (pi_(X times Y -> X)(h_1(z)), (pi_(X times Y -> Y)(h_1(z))))\ &= (pi_(X times Y -> X)(h_2(z)), (pi_(X times Y -> Y)(h_2(z)))) \ &=h_2(z) $
+      $
+               & forall z in Z , h_1(z) = (f(z), g(z)) \
+        h_1(z) & = (pi_(X times Y -> X)(h_1(z)), (pi_(X times Y -> Y)(h_1(z)))) \
+               & = (pi_(X times Y -> X)(h_2(z)), (pi_(X times Y -> Y)(h_2(z)))) \
+               & =h_2(z)
+      $
 
       所以$h_1 = h_2$，综上这样的$h$是存在且唯一的
   ]
@@ -269,28 +383,33 @@
 
   #proof[
     - $product_(i=1)^n X_i = emptyset => exists 1<= i<= n, X_i = emptyset$
-    
-      $ product_(i=1)^n X_i=emptyset$，即存在一个$i$使得$x_i in X_i, forall 1<=i<=n$不成立，由于空集中没有任何元素，所以$exists 1<=i<=n, X_i = emptyset$
+
+      $product_(i=1)^n X_i=emptyset$，即存在一个$i$使得$x_i in X_i, forall 1<=i<=n$不成立，由于空集中没有任何元素，所以$exists 1<=i<=n, X_i = emptyset$
 
     - $exists 1<= i<= n, X_i = emptyset => product_(i=1)^n X_i = emptyset$
-    
+
       由于$exists 1<=i<=n, X_i = emptyset$，不妨令$X_j = emptyset, 1<=j<=n$，那么$x_j in.not X_j$，于是$product_(i=1)^(n)X_i = emptyset$
 
-    - 综上，$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$]
+    - 综上，$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$
+  ]
 ]
 
 #problem[
   $I,J$是集合，$forall alpha in I, A_alpha$是集合，$forall beta in J, B_beta$是集合，证明$(union.big_(alpha in I) A_alpha) inter (union.big_(beta in J)B_beta) = union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)$
 
   #proof[
-    
-    + $ &forall x in (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta)\ &=>x in union.big_(alpha in I)A_alpha and x in union.big_(beta in J)B_beta\ &=> exists alpha in I, x in A_alpha and exists beta in J, x in B_beta \ &=> exists (alpha, beta) in I times J, x in A_alpha and x in B_beta \ &=> x in union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)\ &=> (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta) subset.eq union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) $
 
-    + $ &forall x in union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)\ &=>exists (alpha, beta) in I times J, x in A_alpha and x in B_beta\ &=>exists alpha in I, exists beta in J, x in A_alpha and x in B_beta\ &=>exists alpha in I, x in A_alpha and exists beta in J, x in B_beta\ &=> x in (union.big_(alpha in I) A_alpha) inter (union.big_(beta in J) B_beta)\ &=> union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) subset.eq (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta) $
+    + $
+        &forall x in (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta)\ &=>x in union.big_(alpha in I)A_alpha and x in union.big_(beta in J)B_beta\ &=> exists alpha in I, x in A_alpha and exists beta in J, x in B_beta \ &=> exists (alpha, beta) in I times J, x in A_alpha and x in B_beta \ &=> x in union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)\ &=> (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta) subset.eq union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)
+      $
+
+    + $
+        &forall x in union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)\ &=>exists (alpha, beta) in I times J, x in A_alpha and x in B_beta\ &=>exists alpha in I, exists beta in J, x in A_alpha and x in B_beta\ &=>exists alpha in I, x in A_alpha and exists beta in J, x in B_beta\ &=> x in (union.big_(alpha in I) A_alpha) inter (union.big_(beta in J) B_beta)\ &=> union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) subset.eq (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta)
+      $
 
     + 综上$union.big_((alpha, beta) in I times J)(A_alpha inter B_beta) = (union.big_(alpha in I)A_alpha) inter (union.big_(beta in J)B_beta)$
   ]
-  
+
 ]
 
 #problem[
@@ -298,25 +417,29 @@
 
   #proof[
     - $f=tilde(f) <=> f, tilde(f)$有相同的图
-      
-      + $f=tilde(f) => f, tilde(f)$有相同的图
-        
-        由于$f = tilde(f)$，那么$forall x in X, f(x) = tilde(f)(x)$，于是$ {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} $所以 $f"和"tilde(f)$有相同的图。
-      
-      + $f, tilde(f)$有相同的图$ => f=tilde(f)$
 
-        由于$f, tilde(f)$有相同的图，那么$ &{(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} \ &=> forall x in X, f(x) = tilde(f)(x) $而且$f$和$tilde(f)$有相同的定义域$X$和相同的值域$Y$，所以$f = tilde(f)$
-      
+      + $f=tilde(f) => f, tilde(f)$有相同的图
+
+        由于$f = tilde(f)$，那么$forall x in X, f(x) = tilde(f)(x)$，于是$ {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} $所以 $f"和"tilde(f)$有相同的图。
+
+      + $f, tilde(f)$有相同的图$=> f=tilde(f)$
+
+        由于$f, tilde(f)$有相同的图，那么$ & {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} \
+        & => forall x in X, f(x) = tilde(f)(x) $而且$f$和$tilde(f)$有相同的定义域$X$和相同的值域$Y$，所以$f = tilde(f)$
+
       + 综上，$f=tilde(f) <=> f, tilde(f)$有相同的图
 
     - 如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$
 
       - 存在性
-        
+
         令函数$f:X->Y$满足$forall x in X$，$f(x)$为集合${y in Y: (x, y) in G}$中唯一的元素，也即$f(x) = y$，这是满足函数的定义的.
-      
+
       - 唯一性
-        + 假设有两个函数$f:X->Y$和$tilde(f):X->Y$满足上述条件且图均为$G$，那么$ G_f &= {(x, f(x)):forall x in X} = G \ G_(tilde(f)) &= {(x, tilde(f)(x)):forall x in X} = G \ &=> {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X}\ &=>f = tilde(f) $
+        + 假设有两个函数$f:X->Y$和$tilde(f):X->Y$满足上述条件且图均为$G$，那么$          G_f & = {(x, f(x)):forall x in X} = G \
+          G_(tilde(f)) & = {(x, tilde(f)(x)):forall x in X} = G \
+                       & => {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} \
+                       & =>f = tilde(f) $
 
         + 于是这样的函数只有一个.
   ]
@@ -324,7 +447,7 @@
 
 #problem[
   证明函数空间公理可以由幂集公理推出
- 
+
   #proof[
     令$X,Y$是任意集合，令 $cal(P)(X times Y)$是$X times Y$的幂集，根据幂集公理，它也是一个集合
 
@@ -335,21 +458,24 @@
 ]
 
 #problem(title: "严格的递归定义")[
-  函数$f:NN times NN -> NN$，$c in NN$，证明存在一个函数$a: NN -> NN$，使得$ &a(0) = c  \  &a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的。进一步的，仅使用皮亚诺公理和集合论证明递归的定义
+  函数$f:NN times NN -> NN$，$c in NN$，证明存在一个函数$a: NN -> NN$，使得$ & a(0) = c \
+  & a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的。进一步的，仅使用皮亚诺公理和集合论证明递归的定义
 
   #proof[
     - 存在性
-      定义一个函数$a_n:{0,...,n} -> NN$，满足$ a_n (0) &= c\ a_n (k++) &= f(k, a_n (k)), forall 0<= k< n $根据替换公理，可以得到集合$cal(A) = {a_(n) : n in NN}$
+      定义一个函数$a_n:{0,...,n} -> NN$，满足$   a_n (0) & = c \
+      a_n (k++) & = f(k, a_n (k)), forall 0<= k< n $根据替换公理，可以得到集合$cal(A) = {a_(n) : n in NN}$
 
       所以可以得到函数$ a = union.big cal(A) $
-    
+
       $a:NN->NN$存在且满足要求。
 
     - 唯一性
-      
+
       假设$a:NN->NN,a':NN->NN$都满足上述条件。
       $a(0) = a'(0) = c$成立，归纳性的假设$a(n) = a'(n)$也成立，现在证明$n++$下的情况
-      $ a(n++) &= f(n, a(n))\ a'(n++) &= f(n, a'(n)) $由于归纳假设$a(n) = a'(n)$，那么$a(n++) = a'(n++)$，归纳完毕，$forall n in NN, a(n) = a'(n)$，且它们的定义域和值域都是$NN$，所以$a = a'$，于是这样的函数$a$是唯一的
+      $  a(n++) & = f(n, a(n)) \
+      a'(n++) & = f(n, a'(n)) $由于归纳假设$a(n) = a'(n)$，那么$a(n++) = a'(n++)$，归纳完毕，$forall n in NN, a(n) = a'(n)$，且它们的定义域和值域都是$NN$，所以$a = a'$，于是这样的函数$a$是唯一的
 
   ]
 
@@ -359,24 +485,25 @@
   假设有另一个“另类的”自然数系$NN'$，满足皮亚诺公理，证明存在一个双射$f: NN -> NN'$，满足$f(0) = 0' in NN'$，且$forall n in NN, forall n' in NN'$，有$f(n) = n' <==> f(n++) = n'++'$
 
   #proof[
-    - 定义函数$F:NN times NN' -> NN'$，满足$ F(n, n') = n++' $由递归定义的证明，存在一个唯一函数$f:NN->NN'$满足$ f(0) &= 0' \ f(n++) &= F(n, f(n)) = n++' $
+    - 定义函数$F:NN times NN' -> NN'$，满足$ F(n, n') = n++' $由递归定义的证明，存在一个唯一函数$f:NN->NN'$满足$   f(0) & = 0' \
+      f(n++) & = F(n, f(n)) = n++' $
 
     - 单射$f(m) = f(n) => m = n$
-      
+
       固定$n$，对$m$进行归纳，当$m = 0$时，$f(0) = 0' = f(n)$，由于$f$满足$f(0) = 0'$于是，所以$n = 0$，于是可以得到$m = n$
 
       现在归纳的假设$f(m) = f(n) => m = n$成立，现在证明$m++$下的情况$ f(m++) = m++' = f(n) $如果$n = 0$，就有$f(0) = 0' = m++'$，$0'$不是任何数的后继，矛盾，所以$n != 0$
-      
+
       假设$exists k in NN, n = k++$，那么$f(m++) = m++' = f(k++) = k++'$，由于$NN'$中的后继函数$++'$是单射，所以$ m++' = k++' => m = k $由于$m,k in NN$$ m++ = k++ = n $归纳完毕
-    
+
     - 满射$forall n' in NN', exists n in NN, f(n) = n'$
-      
+
       对$n'$进行归纳，当$n' = 0'$时，$f(n) = 0'$，$f$的定义中规定$f(0) = 0'$，所以存在$n = 0 in NN$使得$f(0) = 0'$
 
       现在归纳的假设存在$n in NN$，使得$f(n) = n'$，接下来证明$n'++'$的情况下成立。
 
       $ f(n++) = n'++' = f(n)++' $由归纳假设$exists n in NN, f(n) = n'$，所以前式成立，因此存在$m = n++ in NN$，使得$f(m) = n'++'$，归纳结束
-    
+
     - 综上，这样的$f$是双射，也因此，自然数系唯一
   ]
 ]
@@ -399,13 +526,13 @@
     令$X = {i in NN: i<n}, Y={i in NN: 1<= i <= n}$，函数$f: X->Y$定义为$f(x) = x++$，接下来证明$f$是双射
 
     - 单射
-      
+
       由皮亚诺公理$++$函数是单射的，所以$forall x in NN, forall y in NN, f(x) = f(y) => x++ = y++ => x = y$，所以$f$是单射的
 
     - 满射
 
       $&forall y in Y => 1 <= y <= n$，根据皮亚诺公理，$y$一定是某个自然数的后继，令$y = x++$，由于$1 <= y <= n$，所以$0++ <= x++ <= n$，进而$0<=x<n, x in X$，由于$y = x++ = f(x)$，所以$forall y in Y, exists x in X, f(x) = y$
-    
+
     - 综上，可以构造出双射函数$f:X->Y$，所以$X$和$Y$有相同的基数，所以在计算基数的时候可以替换了
   ]
 ]
@@ -414,7 +541,7 @@
   假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的。$forall x in X,"集合"X without {x}$的基数是$n-1$
 
   #proof[
-    - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$ exists x in X, f(x) = 1$，所以$X$非空。
+    - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$exists x in X, f(x) = 1$，所以$X$非空。
 
     - 由于$X$的基数为$n$，那么存在双射$f:X->{i in NN: 1<=i<=n}$
 
@@ -437,16 +564,16 @@
   一个集合是有限的，当且仅当它的基数是某个自然数$n$，否则称之为无限的。如果$X$是一个有限集，记其基数为$\#(X)$.
 ]
 
-#theorem("自然数集"+[$NN$]+"是无限的")[
+#theorem("自然数集" + [$NN$] + "是无限的")[
   #proof[
     假设$NN$是有限集，那么令$\#(NN) = n$，于是存在一个双射$f:{i in NN: 1<=i<=n} -> N$，那么存在$M in NN$，使得$forall 1<=i<=n, f(i) <= M$，那么$forall 1<=i<=n, f(i) < M++$，所以$M++$无法被$f$映射到，这与满射是矛盾的。于是$NN$是无限集
   ]
 ]
 
 #property[基数算术][
-  
+
   + $X$是有限集，$x$是对象，且$x in.not X$，那么$X union {x}$是有限集且$\#(X union {x}) = \#(X)+1$
-  
+
   + $X、Y$是有限集，那么$X union Y$是有限集，且 $\#(X union Y) <= \#(X) + \#(Y)$，且当$X inter Y = emptyset$时取等
 
   + $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
@@ -462,15 +589,15 @@
   #proof[
     令$X、Y、Z$都是集合
     - 自反
-      
+
       由于$\#(X) = \#(X)$，那么存在一个双射函数$f:X->X$，于是也就有$\#(X) = \#(X)$
-    
+
     - 对称 $\#(X) = \#(Y) <=> \#(Y) = \#(X)$
 
       由于$\#(X) = \#(Y)$，那么存在双射函数$f:X->Y$，由于$f$是双射的，那么也存在反函数$f^(-1):Y->X$，于是$\#(Y) = \#(X)$。同理可以从$\#(Y) = \#(X)$推出$\#(X) = \#(Y)$。所以满足对称性
-    
+
     - 传递 $\#(X) = \#(Y) and \#(Y) = \#(Z) => \#(X) = \#(Z)$
-      
+
       由于 $\#(X) = \#(Y) and \#(Y) = \#(Z)$，那么存在双射函数$f:X->Y$和双射函数$g:Y->Z$，现在定义一个函数$h:X->Z$，满足$h = g compose f$，双射函数的复合也是双射的，所有$h$是双射函数，所以$\#(X) = \#(Z)$
   ]
 ]
@@ -480,9 +607,9 @@
 #problem[证明$X = emptyset <=> \#(X) = 0$][
   #proof[
     + $X = emptyset => \#(X) = 0$
-      
+
       存在空函数$f:emptyset -> {i in NN: 1<=i<=0} = emptyset$，是双射的，根据基数的定义就有$\#(X) = 0$
-    
+
     + $\#(X) = 0 => X = emptyset$
 
       根据基数的定义，$\#(X) = 0 => exists f:X->{i in NN: 1<=i<=0}=emptyset and f$是双射的，如果$X != emptyset$，那么$forall x in X, f(x) in emptyset$，矛盾，所以$X = emptyset$
@@ -494,56 +621,125 @@
 ]
 
 #problem[证明基数运算][
-  
+
   #proof[
+
     1. $X$是有限集，$x$是对象，且$x in.not X$，那么$X union {x}$是有限集且$\#(X union {x}) = \#(X)+1$
 
       由于$X$是有限集，令其基数是$n$，那么存在一个双射函数$f:X->{i in NN: 1<=i<=n}$，接下来定定义一个分段函数$h(x):X union {x} -> {i in NN: 1<= i <= n+1}$，具体如$ h(y) = cases(f(y)&\,y in X, n+1&\,y = x) $易知$h$是双射，且基数为$n+1 in NN$，那么$X union {x}$是有限集，进一步的，$\#(X union {x}) = n + 1 = \#(X) + 1$
-  
+
     2. $X、Y$是有限集，那么$X union Y$是有限集，且 $\#(X union Y) <= \#(X) + \#(Y)$，且当$X inter Y = emptyset$时取等
 
       由于$X、Y$都是有限集，令其基数分别为$a,b$。现在固定$a$，对$b$进行归纳。
 
-      - 当$b=0$时，$Y = emptyset$，所以$X union Y = X$，所以$ &\#(X union Y) = a \ &\#(X) +\#(Y) = a + 0 = a \ &=> \#(X union Y) <= \#(X) +\#(Y) $ 且$X inter Y =X inter emptyset = emptyset$，所以$X inter Y = emptyset$时取等。
-    
+      - 当$b=0$时，$Y = emptyset$，所以$X union Y = X$，所以$ & \#(X union Y) = a \
+        & \#(X) +\#(Y) = a + 0 = a \
+        & => \#(X union Y) <= \#(X) +\#(Y) $ 且$X inter Y =X inter emptyset = emptyset$，所以$X inter Y = emptyset$时取等。
+
       - 假设$b$的情况下成立，即$\#(X union Y) <= a + b$且$X inter Y = emptyset$时，$\#(X union Y) = a + b$
 
       - 接下来证明$b++$的情况，令$Y' = Y union {y} and y in.not Y$
-      
-        - 当$y in.not X$时，$ &\#(X union Y') \ &= \#(X union Y union {y}) \ &=\#(X union Y) + 1 "（基数运算1）"\ $ 由于归纳假设$\#(X union Y) <= a + b$，那么$\#(X union Y') <= a + b + 1 = a + (b++)$。特别的，当$X inter Y' = emptyset$时，$ &\#(X union Y')\ &= \#(X union Y union {y})\ &= \#(X union Y) + 1 \ &= a+b+1 = a+(b++) $
+
+        - 当$y in.not X$时，$ & \#(X union Y') \
+          & = \#(X union Y union {y}) \
+          & =\#(X union Y) + 1 "（基数运算1）" \ $ 由于归纳假设$\#(X union Y) <= a + b$，那么$\#(X union Y') <= a + b + 1 = a + (b++)$。特别的，当$X inter Y' = emptyset$时，$ & \#(X union Y') \
+          & = \#(X union Y union {y}) \
+          & = \#(X union Y) + 1 \
+          & = a+b+1 = a+(b++) $
 
         - 当$y in X$时，有关 $<=$的推理如上，因为$X inter Y != emptyset$，所以不需要证明相等的情况了。
-      
+
       - 归纳完毕得证
-  
-  + $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
+
+    3. $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
+
+      由于$X$是有限集，令基数为$a$，对$a$进行归纳
+
+      - $a = 0$时，$X = emptyset$，由于$Y subset.eq X$，那么$Y = emptyset$，于是$Y$是有限集，且基数为$0$，$\#(Y) <= \#(X)$成立，由于此时$X = Y$，所以第二部分自动成立。
+
+      - 现在归纳的假设$a$时也成立，即$\#(Y) <= a$，且$Y subset.eq X$时，$\#(Y) < a$，接下来证明$a+1$下的情况
+
+      - 取元素$x_0 in.not X$，令$X'= X union {x_0}$，那么$\#(X') = a + 1$，任取$Y subset.eq X'$
+
+        - $Y = X'$，于是$\#(Y) = \#(X') = a+1$，有限，且满足$\#(Y) <= \#(X')$，因为已经相等了，所以第二部分自动成立
+
+        - $Y subset.eq X$，由于归纳假设$\#(Y) <= a < a + 1$成立；当$Y subset.neq X$时，由归纳假设$\#(Y) < a < a+1$，当$Y = X$时，$\#(Y) = \#(X) = a < a + 1$，于是在所有$Y subset.eq X'$的情况下，都有$\#(Y) <= \#(X')$
+
+        - 当$x_0 in Y and Y != X'$时，令$Y_0 = Y without {x_0}$，所以$Y_0 subset.eq X$，由于归纳假设，$Y$是有限集且$\#(Y) <= a$，那么$ \#(Y) = \#(Y_0 union {x_0}) = \#(Y_0) + 1 <= a + 1 $此时由于$Y != X'$，第二部分自动成立
+
+      - 归纳结束
+
+    4. $X$是有限集，且函数$f:X->Y$，那么$f(X)$是有限集，且满足$\#(f(X)) <= \#(X)$，当$f$是单射时，$\#(f(X)) = \#(X)$
+
+      由于$X$是有限集，令其基数为$a$，对$a$进行归纳
+
+      - $a = 0$时，$f$是空函数，$X = f(X) = emptyset$，于是$0 = \#(f(X)) <= \#(X) = 0$，空函数都是单射，于是$\#(f(X)) = \#(X)$
+
+      - 现在归纳的假设在$a$时成立，即$\#(f(X)) <= \#(X) = a$，当$f$为单射时取等。接下来证明$a+1$下的情况
+
+      - 令$X' = X union {x_0} and x_0 in.not X$，定义分段函数$h:X'->Y union {y_0}$，满足$ h(x) = cases(f(x)&\,x in X, y_0&\,x=x_0) $那么$h(X') = f(X) union {y_0}$，当$y_0 in f(X)时，$$\#(h(X')) <= \#(f(X)) + 1$，当$y_0 in.not f(X)$时取等，所以总是满足的，接着由归纳假设可得$ \#(h(X')) <= a+1 $，当$h$为单射时，$f$也为单射且$y_0 in.not f(X)$，由于归纳假设，在$f$为单射时取等，所以在$h$为单射时，$\#(h(X')) = \#(f(X)) + 1 = a+ 1$
+
+      - 归纳完毕
+
+    + $X、Y$都是有限集，那么$X times Y$也是有限的，且$\#(X times Y) = \#(X) times \#(Y)$
+
+      由于$X、Y$都是有限集，令其基数分别为$a、b$，于是有一个双射函数$f:X -> {i in NN: 1<=i<=a}$，固定$a$，对$b$进行归纳
+
+      - $b = 0 => Y = emptyset => \#(Y) = 0$，所以$X times Y = emptyset$，是一个有限集，于是$\#(X times Y) = a times 0 = 0$，
+
+      - 现在归纳的假设$b$时成立，即$\#(X times Y) = a b$，接下来证明$b+1$的情况
+
+      - 令$Y' = Y union {y_0} and y_0 in.not Y$，所以$(X times Y) inter (X times {y_0})$ $ X times Y' & = X times (Y union {y_0}) \
+                   & = (X times Y) union (X times {y_0}) $由于$y_0 in.not Y$，所以$(X times Y) inter (X times {y_0}) = emptyset$，于是有$ \#(X times Y') & = \#((X times Y) union (X times {y_0})) \
+                       & = \#((X times Y) + \#(X times {y_0}) $可以定义一个函数$h(x,y_0) = f(x)$，易知$h$是双射函数，所以$\#(X times {y_0}) = \#(X) = a$，再根据归纳假设，就有$ \#(X times Y') = a b + a = a(b+1) $
+      - 归纳结束
+
+    + $X、Y$是有限集，那么$Y^X$是有限的，且 $\#(Y^X) = \#(Y)^(\#(X))$
+
+      - 由于$X、Y$都是有限集，令其基数分别为$a、b$，固定$b$，对$a$进行归纳
+
+        - $a = 0$时，$X = emptyset => \#(X) = 0$，于是$Y^X = {f: emptyset -> Y}$，空函数是唯一的，于是$\#(Y^X) = 1 = \#(Y)^\#(X) = b^0 = 1$成立。
+
+        - 现在归纳的假设$a$的情况下成立，那么$\#(Y^X) = \#(Y)^\#(X) = b^a$，接下来证明$a+1$下的情况
+
+        - 定义一个函数$h:Y^X' -> Y^X times Y$
+
+
+
+
+
+
+
+
+
 
 
   ]
-  
+
 ]
 
-#problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明正整数的乘法交换律][
+#problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明自然数的乘法交换律][
   #proof[令函数$h:A times B -> B times A$为$h(x, y) = (y, x)$，下面证明$h$是双射的。
     - 如果$h(x_1,y_1) = h(x_2, y_2)$，那么$(y_1, x_1) = (y_2, x_2)$，根据有序双元组的相等，就有$x_1 = x_2 and y_1 = y_2$，于是$h$是单射
 
     - $forall (y,x) in B times A$，$exists (y, x) = h(x, y)$，其中$(x, y) in A times B$，所以$h$是满射的
 
     - 综上$h$是双射
-  
-  所以$\#(A times B) = \#(B times A)$
 
-  如果要用基数运算证明正整数的乘法交换律，需要令$A、B$为有限集，设基数分别为$a、b$，并且假设$\#(A times B) = a b$，固定$a$，对$b$使用归纳法进行证明
+    所以$\#(A times B) = \#(B times A)$
+
+    如果要用基数运算证明自然数的乘法交换律，需要令$A、B$为有限集，设基数分别为$a、b$，并且假设$\#(A times B) = a b$，固定$a$，对$b$使用归纳法进行证明
 
     - 当$b=0$时，$B = emptyset$，所以$A times B = emptyset$，于是$\#(A times B) = \#(emptyset) = 0 = a times 0 = 0$，是成立的
 
-    - 现在归纳的假设$b$时也成立，即$\#(A times B) = a b $，接下来证明$b+1$的情况
-      
-      令$y_0 in.not B$，令$B' = B union {y_0}$，所以$ A times (B union {y_0}) = (A times B) union (A times {y_0}) $由于$ (A times B) inter (A times {y_0}) = emptyset $所以$ \#((A times B) union (A times {y_0})) = \#(A times B) + \#(A times {y_0})$ 
-      
+    - 现在归纳的假设$b$时也成立，即$\#(A times B) = a b$，接下来证明$b+1$的情况
+
+      令$y_0 in.not B$，令$B' = B union {y_0}$，所以$ A times (B union {y_0}) = (A times B) union (A times {y_0}) $由于$ (A times B) inter (A times {y_0}) = emptyset $所以$\#((A times B) union (A times {y_0})) = \#(A times B) + \#(A times {y_0})$
+
       对于$\#(A times {y_0})$的部分，由于$A$的基数已经确定，所以有一个双射函数$f:A -> {i in NN:1<=i<=a}$，接着定义函数$g(x, y_0) = f(x)$，易知$g$的定义域为$A times {y_0}$且值域为${i in NN: 1 <= i <= a}$且是双射，于是$\#(A times {y_0}) = a$，根据归纳假设$\#(A times B) = a b$，于是 $\#(A times B') = a b + a = a(b + 1)$，归纳结束
-    
-    - 通过上述的归纳，有$\#(A times B) = a b$，于是$\#(B times A) = b a$，再有最先证明的$\#(A times B) = \#(B times A)$，就有$a b = b a$，于是正整数的乘法交换律得证]
+
+    - 通过上述的归纳，有$\#(A times B) = a b$，于是$\#(B times A) = b a$，再有最先证明的$\#(A times B) = \#(B times A)$，就有$a b = b a$，于是自然数的乘法交换律得证
+  ]
 
 ]
 
