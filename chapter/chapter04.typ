@@ -1,5 +1,4 @@
 #import "@preview/euler-math:0.1.0": *
-// #import "@preview/theorion:0.6.0": proposition
 #import "../utils/utils.typ": *
 
 = 整数和有理数
