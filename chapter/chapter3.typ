@@ -698,24 +698,20 @@
 
       - 由于$X、Y$都是有限集，令其基数分别为$a、b$，固定$b$，对$a$进行归纳
 
-        - $a = 0$时，$X = emptyset => \#(X) = 0$，于是$Y^X = {f: emptyset -> Y}$，空函数是唯一的，于是$\#(Y^X) = 1 = \#(Y)^\#(X) = b^0 = 1$成立。
+        - $a = 0$时，$X = emptyset => \#(X) = 0$，所以$Y^X = {f: emptyset -> Y}$，空函数是唯一的，于是$\#(Y^X) = 1 = \#(Y)^\#(X) = b^0 = 1$成立。
 
         - 现在归纳的假设$a$的情况下成立，那么$\#(Y^X) = \#(Y)^\#(X) = b^a$，接下来证明$a+1$下的情况
 
-        - 定义一个函数$h:Y^X' -> Y^X times Y$
+        - 令$X' = X union {x_0} and x_0 in.not X$，首先定义一个函数$f:X'->Y$，接着定义函数$h:Y^(X') -> Y^X times Y$，满足$h(f) = (g, y_0)$，其中$g:X->Y,forall x in X, g(x) = f(x)$，$y_0 = f(x_0)$，接下来证明$h$是双射.
 
+          - $f_1,f_2 in Y^X', h(f_1) = h(f_2)$，于是$(g_1, y_1) = (g_2, y_2)$，根据有序对的相等，有$g_1 = g_2 and y_1 = y_2$，$forall x' in X'$，如果$x' in X$，那么由于$g_1 = g_2$，那么$g_1(x') = g_2(x')$，根据先前的定义，就有$f_1(x') = f_2(x')$；如果$x' = x_0$，那么$f_1(x') = y_1 = y_2 = f_2(x')$，综上$h(f_1) = h(f_2) => f_1 = f_2$，于是单射得证
 
+          - $forall (g, y) in Y^X times Y$，要构造一个$f:X'->Y$满足$h(f) = (g, y)$，定义$f(x) = g(x), forall x in X$，定义$y = f(x_0)$，这考虑了所有的$X'$中的元素，且满足函数的定义，确实存在这样的$f$满足$h(f) = (g, y)$，于是满射得证
 
+          - 综上$h$是双射得证
 
-
-
-
-
-
-
-
+        - 于是$Y^(X')$与$Y^X times Y$有相同的基数，由先前证明$\#(Y^X times Y) = \#(Y^X) times \#(Y)$，根据归纳假设$\#(Y^X) = b^a$，于是$\#(Y^X times Y) = b^a * b = b^(a+1)$，归纳结束
   ]
-
 ]
 
 #problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明自然数的乘法交换律][
@@ -743,16 +739,94 @@
 
 ]
 
-#problem[$A、B、C$都是集合，通过构造一个明确的双射来证明$\#((A^B)^C) = \#(A^(B times C))$，并类似的，证明$forall a, b, c in NN, (a^b)^c = a^(b c)$和$a^b times a^c = a^(b+c)$][
+#problem[$A、B、C$都是集合，通过构造一个明确的双射来证明$\#((A^B)""^C) = \#(A^(B times C))$，并类似的，证明$forall a, b, c in NN, (a^b)""^c = a^(b c)$和$a^b times a^c = a^(b+c)$][
+  #proof[
 
+    首先理解集合，$((A^B)""^C) = {F|F:C -> A^B}$，所以$forall c in C$，$F(c) = f$，其中$f:B->A$，接着$forall b in B, f(b) in A$，于是$F(c)(b) in A$
 
+    接下来构造函数$h:(A^B)""^C -> A^(B times C)$，在给定$F in (A^B)""^C$时，$h(F):B times C -> A$，也就是说函数$h$的输入为一个函数$F$时，会返回一个定义域在$B times C$，值域在$A$上的新函数，于是定义$h(F)(b,c) = F(c)(b)$，接下来证明$h$是双射
+
+    - $F_1, F_2 in (A^B)""^C$，且$h(F_1) = h(F_2)$，$forall (b,c) in B times C$，有$F_1(c)(b) = F_2(c)(b)$，固定$c$，$forall b in B$，都成立，于是函数$F_1(c) = F_2(c)$这两个函数相等，由于$c$可以任取，所以$F_1 = F_2$，于是单射得证
+
+    - $forall f in A^(B times C)$，定义$F:C -> A^B$，对任意$c in C$满足$ F(c)(b) = f(b, c) $验证，$h(F)(b,c) = F(c)(b) = f(b, c)$，所以$h(F) = f$，满射得证
+
+    - 综上$h$是双射，于是$\#((A^B)""^C) = \#(A^(B times C))$
+
+    要证明自然数的指数运算，需要$A、B、C$都是有限集，分别令其基数为$a、b、c$，于是根据先前的结果，$\#((A^(B times C))) = \#(A)^(\#(B times C)) = a^(b c)$，$\#((A^(B))""^C) = \#((A)^(\#(B)))""^(\#(C)) = (a^b)""^c$，于是就有$(a^b)""^c = a^(b c)$
+
+  ]
+]
+
+#problem[$A、B$是集合，如果存在一个单射函数 $f: A -> B$，那么称A的基数小于等于B的基数，证明如果$A、B$都是有限集，那么$A$的基数小于等于$B$的基数，当且仅当$\#(A) <= \#(B)$][
+
+  #proof[
+    - $A$的基数小于等于$B$的基数 $=> \#(A) <= \#(B)$
+
+      由于$A$的基数小于等于$B$的基数，那么存在一个单射函数$f:A -> B$，所以$\#(A) = \#(f(A))$，由于$f(A) subset.eq B$，那么$\#(f(A)) <= \#(B)$，所以$\#(A) <= \#(B)$
+
+    - $\#(A) <= \#(B) =>$ $A$的基数小于等于$B$的基数
+
+      令$A、B$的基数分别为$a、b$，那么有双射函数$f:A->{i in NN:1<=i<=a}$和双射函数$g:B-> {i in NN: 1<=i <= b}$，于是有$ g^(-1):{i in NN:1<=i<=b}->B $也是双射，令$h:A->B$，和$w:{i in NN: 1<=i<=a} -> {i in NN: 1<=i<=b}$且$w(x) = x$，所以有$h = g^(-1) compose w compose f$，易知$w$是单射，所以$h$是单射，于是$A$的基数小于等于$B$的基数
+  ]
 
 ]
 
-#problem[$A、B$是集合，如果存在一个单射函数 $f: A -> B$，那么称A的基数小于等于B的基数，证明如果$A、B$都是有限集，那么$A$的基数小于等于$B$的基数，当且仅当$\#(A) <= \#(B)$][]
+#problem[$A、B$都是集合，且存在一个单射函数$f:A->B$，证明也存在一个满射函数$g:B->A$][
 
-#problem[$A、B$都是集合，且存在一个单射函数$f:A->B$，证明也存在一个满射函数$g:B->A$][]
+  - $A != emptyset and B != emptyset$
 
-#problem[$A、B$是有限集，证明$A union B、A inter B$也是有限集，且$\#(A) + \#(B) = \#(A union B) + \#(A inter B)$][]
+    由于存在单射函数$f:A->B$，于是$f(A) subset.eq B$，接着定义函数$f':A->f(A)$且$forall x in A, f'(x) = f(x)$，易知$f'$是双射。于是存在逆函数$f'^(-1):f(A) -> A$，接着可以定义函数$g:B->A$，其中$ g(y)=cases(f^(-1)(y)&\, y in f(A), a_0&\, y in B without f(A)) $
 
-#problem[令$A_1, ..., A_n$是有限集，且满足$\#(union.big_(i in {1,...,n})A_i) > n$，证明存在$i in {1,...,n}$使得$\#(A_i) >= 2$，即抽屉/鸽巢原理][]
+    $forall x in A$，$exists y in f(A)$，使得$y = f(x)$，于是$g(y) = f^(-1)(y) = x$，所以对于任意的$x in A$，确实存在$y in f(A) subset.eq B$使得$x = g(y)$，于是函数$g$是满射
+
+  - 若$A = emptyset and B = emptyset$，那么空函数$f:emptyset ->emptyset$总存在，满射函数$g:emptyset->emptyset$存在
+
+  - 若$A = emptyset and B != emptyset$，那么$g$不是函数
+
+  - 同理若$A != emptyset and B = emptyset$，那么$f$不是函数
+]
+
+#problem[$A、B$是有限集，证明$A union B、A inter B$也是有限集，且$\#(A) + \#(B) = \#(A union B) + \#(A inter B)$][
+
+  #proof[
+
+    由于$A、B$都是有限集，那么$A union B、A inter B$也是有限集，令集合$A、B$基数分别为$a、b$，那么有双射函数$f:A->{i in NN: 1<=i<=a}$和双射函数$g:B->{i in NN: 1<=i<=b}$
+
+    - 固定$a$，对$b$进行归纳
+
+    - $b = 0$时，$B = emptyset$，于是$\#(B) = 0$，进而$A inter B = emptyset and A union B = A$，所以有$ a = a+0 = \#(A) + \#(B) = \#(A union B) + \#(A inter B) = \#(A) + \#(emptyset) = a + 0 = a $成立
+
+    - 现在归纳的假设在$b$的情况下成立，即$\#(A union B) + \#(A inter B) = a + b$，接下来证明$b+1$下的情况
+
+    - 令$B' = B union {b_0} and b_0 in.not B$，易知$\#(B') = b + 1$
+
+      - 当$b_0 in.not A$时，也即${b_0} inter (A union B) = emptyset and A inter {b_0} = emptyset$，就有$ \#(A union B') = \#(A union B union {b_0}) = \#(A union B) + 1 $也有$ \#(A inter B') = \#((A inter B) union (A inter {b_0})) = \#((A inter B) union emptyset) = \#(A inter B) $就有$ \#(A union B') + \#(A inter B') = \#(A union B) +1+\#(A inter B) $代入归纳假设就有，$ \#(A union B') + \#(A inter B') = b+1+a = a+(b+1) $
+
+      - 当$b_0 in A$时，有${b_0} union A = A and A inter {b_0} = {b_0} and b_0 in.not (A inter B)$，就有$ \#(A union B') = \#(A union B union {b_0}) = \#(A union B) $还有$ \#(A inter B') & = \#(A inter (B union {b_0})) \
+                       & = \#(A inter B union A inter {b_0}) \
+                       & = \#(A inter B union {b_0}) = \#(A inter B) + 1 $代入归纳假设，于是就有$ a+b+1 = \#(A) + \#(B') = \#(A union B) + \#(A inter B) +1 = a+(b+1) $成立
+
+      - 考虑了所有情况，在$b+1$的情况下成立
+
+    - 归纳结束
+  ]
+
+]
+
+#problem[令$A_1, ..., A_n$是有限集，且满足$\#(union.big_(i in {1,...,n})A_i) > n$，证明存在$i in {1,...,n}$使得$\#(A_i) >= 2$，即抽屉/鸽巢原理][
+
+  - 对$n$进行归纳，当$n =1$时，若$\#(union.big_(i in {1})A_i) = \#(A_1) > 1$，就有$\#(A_1) >= 2$，所以存在$A_1$使得成立
+
+  - 现在归纳的假设：如果$\#(union.big_(i in {1,...,n})(A_i)) > n$时，存在$A_i, i in {1,...,n}$，使得$\#(A_i) >= 2$，接下来证明$n+1$的情况
+
+  - 如果$\#(union.big_(i in {1,...,n})(A_i)) > n$，令$U =A_(n+1) union union.big_(i in {1,...,n})(A_i)=union.big_(i in {1,...,n+1})A_i$，满足$\#(U) > n+1$，于是有$ \#(U) = \#(A_(n+1) union union.big_(i in {1,...,n})(A_i)) <= \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i) $接着有$ \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i) > n + 1 $在该情况下满足归纳假设中的前提条件，$\#(union.big_(i in {1,...,n})A_i) > n$，于是$ \#(A_(n+1)) & >1 \
+    =>
+    \#(A_(n+1)) & >= 2 $
+
+  - 如果$\#(union.big_(i in {1,...,n})(A_i)) <= n$，假设$\#(union.big_(i in {1,...,n+1})(A_i)) > n + 1$，那么$ n+1 < \#(union.big_(i in {1,...,n+1})(A_i)) =\ \#(A_(n+1) union union.big_(i in {1,...,n})A_i) <= \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i))<=\#(A_(n+1)) +n $于是$    \#(A_(n+1)) & >1 \
+    => \#(A_(n+1)) & >=2 $
+
+  - 综上在$\#(union.big_(i in {1,...,n})(A_i))$与$n$的所有有序关系中，都可以找到$A_(n+1)$，其基数大于等于2
+
+  - 归纳完毕
+]
