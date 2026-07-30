@@ -601,7 +601,7 @@
       由于 $\#(X) = \#(Y) and \#(Y) = \#(Z)$，那么存在双射函数$f:X->Y$和双射函数$g:Y->Z$，现在定义一个函数$h:X->Z$，满足$h = g compose f$，双射函数的复合也是双射的，所有$h$是双射函数，所以$\#(X) = \#(Z)$
   ]
 ]
-#note-block[注意，在上述的证明中使用了$\#()$符号来代表集合的基数，实际上这个符号只能用于有限集，而集合相等的定义是不限制在有限集上的，所以可以将上面证明中$\#(X) = \#(Y)$一类的表述换为：“集合X与集合Y的基数相同”]
+#note-block[注意，在上述的证明中使用了$\#()$符号来代表集合的基数，实际上这个符号只能用于有限集，而集合相等的定义是不限制在有限集上的，所以可以将上面证明中$\#(X) = \#(Y)$一类的表述换为：“集合$X$与集合$Y$的基数相同”]
 
 
 #problem[证明$X = emptyset <=> \#(X) = 0$][
@@ -617,7 +617,10 @@
 ]
 
 #problem[自然数集的有限子集是有界的][
-  令某个自然数子集$A in cal(P)(NN)$的基数为$n$，于是存在一个双射函数$f:{i in NN: 1<=i<=n} -> A$，所以$f(1),...f(n)$是有限个自然数，由自然数的有序性，取$M in NN, forall 1 <= i<= n, f(i) <= M$，于是$forall 1<=i<=n, f(i) <= M < M++$，所以自然数的有限子集是有界的.
+  #proof[
+
+    令某个自然数子集$A in cal(P)(NN)$的基数为$n$，于是存在一个双射函数$f:{i in NN: 1<=i<=n} -> A$，所以$f(1),...f(n)$是有限个自然数，由自然数的有序性，取$M in NN, forall 1 <= i<= n, f(i) <= M$，于是$forall 1<=i<=n, f(i) <= M < M++$，所以自然数的有限子集是有界的.
+  ]
 ]
 
 #problem[证明基数运算][
@@ -730,7 +733,7 @@
 
     - 现在归纳的假设$b$时也成立，即$\#(A times B) = a b$，接下来证明$b+1$的情况
 
-      令$y_0 in.not B$，令$B' = B union {y_0}$，所以$ A times (B union {y_0}) = (A times B) union (A times {y_0}) $由于$ (A times B) inter (A times {y_0}) = emptyset $所以$\#((A times B) union (A times {y_0})) = \#(A times B) + \#(A times {y_0})$
+      令$B' = B union {y_0} and y_0 in.not B$，所以$ A times (B union {y_0}) = (A times B) union (A times {y_0}) $由于$ (A times B) inter (A times {y_0}) = emptyset $所以$\#((A times B) union (A times {y_0})) = \#(A times B) + \#(A times {y_0})$
 
       对于$\#(A times {y_0})$的部分，由于$A$的基数已经确定，所以有一个双射函数$f:A -> {i in NN:1<=i<=a}$，接着定义函数$g(x, y_0) = f(x)$，易知$g$的定义域为$A times {y_0}$且值域为${i in NN: 1 <= i <= a}$且是双射，于是$\#(A times {y_0}) = a$，根据归纳假设$\#(A times B) = a b$，于是 $\#(A times B') = a b + a = a(b + 1)$，归纳结束
 
@@ -766,14 +769,14 @@
 
     - $\#(A) <= \#(B) =>$ $A$的基数小于等于$B$的基数
 
-      令$A、B$的基数分别为$a、b$，那么有双射函数$f:A->{i in NN:1<=i<=a}$和双射函数$g:B-> {i in NN: 1<=i <= b}$，于是有$ g^(-1):{i in NN:1<=i<=b}->B $也是双射，令$h:A->B$，和$w:{i in NN: 1<=i<=a} -> {i in NN: 1<=i<=b}$且$w(x) = x$，所以有$h = g^(-1) compose w compose f$，易知$w$是单射，所以$h$是单射，于是$A$的基数小于等于$B$的基数
+      令$A、B$的基数分别为$a、b$，那么有双射函数$f:A->{i in NN:1<=i<=a}$和双射函数$g:B-> {i in NN: 1<=i <= b}$，于是$g^(-1):{i in NN:1<=i<=b}->B$也是双射，令$h:A->B$，和$w:{i in NN: 1<=i<=a} -> {i in NN: 1<=i<=b}$且$w(x) = x$，所以有$h = g^(-1) compose w compose f$，易知$w$是单射，所以$h$是单射，于是$A$的基数小于等于$B$的基数
   ]
 
 ]
 
 #problem[$A、B$都是集合，且存在一个单射函数$f:A->B$，证明也存在一个满射函数$g:B->A$][
 
-  - $A != emptyset and B != emptyset$
+  - 若$A != emptyset and B != emptyset$
 
     由于存在单射函数$f:A->B$，于是$f(A) subset.eq B$，接着定义函数$f':A->f(A)$且$forall x in A, f'(x) = f(x)$，易知$f'$是双射。于是存在逆函数$f'^(-1):f(A) -> A$，接着可以定义函数$g:B->A$，其中$ g(y)=cases(f^(-1)(y)&\, y in f(A), a_0&\, y in B without f(A)) $
 
@@ -819,7 +822,7 @@
 
   - 现在归纳的假设：如果$\#(union.big_(i in {1,...,n})(A_i)) > n$时，存在$A_i, i in {1,...,n}$，使得$\#(A_i) >= 2$，接下来证明$n+1$的情况
 
-  - 如果$\#(union.big_(i in {1,...,n})(A_i)) > n$，令$U =A_(n+1) union union.big_(i in {1,...,n})(A_i)=union.big_(i in {1,...,n+1})A_i$，满足$\#(U) > n+1$，于是有$ \#(U) = \#(A_(n+1) union union.big_(i in {1,...,n})(A_i)) <= \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i) $接着有$ \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i) > n + 1 $在该情况下满足归纳假设中的前提条件，$\#(union.big_(i in {1,...,n})A_i) > n$，于是$ \#(A_(n+1)) & >1 \
+  - 如果$\#(union.big_(i in {1,...,n})(A_i)) > n$，令$U =A_(n+1) union union.big_(i in {1,...,n})(A_i)=union.big_(i in {1,...,n+1})A_i$，满足$\#(U) > n+1$，于是有$ \#(U) = \#(A_(n+1) union union.big_(i in {1,...,n})(A_i)) <= \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i) $接着有$ \#(A_(n+1)) + \#(union.big_(i in {1,...,n})A_i) > n + 1 $在该情况下满足归纳假设中的前提条件，所以$\#(union.big_(i in {1,...,n})A_i) > n$，于是$ \#(A_(n+1)) & >1 \
     =>
     \#(A_(n+1)) & >= 2 $
 

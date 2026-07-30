@@ -14,11 +14,11 @@
 #pagebreak()
 
 
-#include "chapter/chapter1.typ"
+#include "chapter/chapter01.typ"
 #pagebreak()
-#include "chapter/chapter2.typ"
+#include "chapter/chapter02.typ"
 #pagebreak()
-#include "chapter/chapter3.typ"
+#include "chapter/chapter03.typ"
 #pagebreak()
 
 
