@@ -84,8 +84,7 @@
     + 综上归纳完毕
   ]
 ]
-
-
+#practice-separate()
 
 #problem[
   1. 证明有序对$(x, y) = {{x}, {x, y}}$满足$(x, y) = (x', y') <==> x = x' and y = y'$
