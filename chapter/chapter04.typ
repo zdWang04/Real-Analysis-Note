@@ -261,6 +261,119 @@
 
 == 有理数
 
+#definition[有理数][
+  有理数是形如$a slash.double b$的表达式，其中$a, b in ZZ and b !=0$，$a slash.double b = c slash.double d <=> a d = b c$，所有有理数的集合记作$QQ$
+]
+
+#definition[有理数的运算][$a slash.double b, c slash.double d in QQ$
+
+  和定义为$(a slash.double b) +(c slash.double d) = (a d + b c) slash.double (b d)$
+
+  乘积定义为$(a slash.double b) * (c slash.double d) = (a b) slash.double (c d)$
+
+  负运算定义为$-(a slash.double b) = (-a) slash.double b$
+]
+
+#note-block[
+  有理数$a slash.double 1$与整数$a$有相同的性质：
+  $ (a slash.double 1) + (b slash.double 1) & = (a + b) slash.double 1 \
+  (a slash.double 1) * (b slash.double 1) & = (a b) slash.double (1) \
+                      -(a slash.double 1) & = (-a) slash.double 1 $并且$ a slash.double 1 = b slash.double 1 <=> a = b $
+  因此可以认为
+  $a slash.double 1 eq.triple a, forall a in ZZ$
+]
+
+#lemma[有理数的和、乘积和负运算是定义明确的]
+
+#lemma[有理数$a slash.double b = 0 <=> a = 0 and b!= 0$
+][
+  #proof[根据有理数的定义$b != 0$，如果$a slash.double b = 0 = 0 slash.double$；那么$a 1 =a = b 0 = 0$，如果$a = 0$，那么$a 1 = b 0$，于是有$a slash.double b = 0 slash.double 1 = 0$]
+]
+
+#definition[倒数运算][
+  $x in QQ and x != 0$并且$x = a slash.double b$，定义其倒数为$x^(-1) = b slash.double a$
+]
+
+#theorem[有理数的代数定律][
+  $x,y,z in QQ$，有以下成立
+  + $x + y = y + z$
+  + $(x+y)+z = x+(y+z)$
+  + $x + 0 = 0 + x = x$
+  + $x + (-x) = (-x) + x = 0$
+  + $x y = y x$
+  + $(x y)z = x(y z)$
+  + $x 1 = 1 x = x$
+  + $x(y + z) = x y + x z$
+  + $(y + z)x = y x + z x$
+  如果$x != 0$，那么有
+  + $x x^(-1) =x^(-1) x= 1$
+]
+
+#note-block[
+  以上的等式断定了有理数集$QQ$构成了域
+]
+
+#definition[商的定义][
+  定义$x, y in ZZ$的商$x slash z$为$ x slash y := x y^(-1) $
+]
+
+#note-block[
+  $x slash y = x y^(-1) = (x slash.double 1) (1 slash.double y) = x slash.double y$
+
+  上面的推理对每一个整数$x$和每一个非零整数$y$成立，于是现在可以将“$slash.double$”替代为“$slash$”了
+]
+
+#definition[正负有理数][
+  $x, y in QQ$，$a,b in ZZ$
+
+  有理数$x = a slash b$是正的$<=>$ $a > 0 and b >0$
+
+  有理数$x = a slash b$是负的$<=>$ $x = -y$，其中$y$是正的有理数
+]
+
+#lemma[有理数的三歧性][
+  $x in QQ$，那么下面只有一个命题是成立的
+  + $x = 0$
+  + $x$是正的
+  + $x$是负的
+]
+
+#definition[有理数的序][
+  $x,y in QQ$
+
+  $x > y <=> x-y$是正的
+
+  $x < y <=> x-y$是负的
+
+  当$x > y or x = y$时，$x >= y$
+
+  当$x < y or x = y$时，$x <= y$
+]
+
+#theorem[有理数的序的基本性质][
+  $x,y,z in QQ$，下列成立
+  + 有理数的序的三歧性
+  + $x < y <=> y > x$
+  + $x < y and y < z => x < z$
+  + $x < y => x + z < y + z$
+  + $x < y and z$是正的$=> x z < y z$
+]
+
+#practice-separate()
+
+#problem[有理数相等是自反、对称和可传递的][]
+
+#problem[有理数的和、积和负运算是良定义的][]
+
+#problem[证明有理数的代数运算][]
+
+#problem[证明有理数的三歧性][]
+
+#problem[证明有理数的序的基本性质][]
+
+#problem[$x,y,z in QQ, x<y$，$z$是负的，那么$x z > y z$][]
+
+
 == 绝对值和整数运算
 
 == 有理数的间隙
