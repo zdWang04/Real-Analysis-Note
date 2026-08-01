@@ -517,6 +517,82 @@
 ]
 
 
-== 绝对值和整数运算
+== 绝对值和指数运算
+
+#definition[绝对值][
+  $x in QQ$，$x$的绝对值定义为$ abs(x) := cases(x&\, x"是正有理数", 0 & \,x=0, -x&\,x"是负有理数") $
+]
+
+#definition[距离][
+  $x, y in QQ$，定义$x$和$y$之间的_距离_为$abs(x-y)$，记作$ d(x, y) = abs(x-y) $
+]
+
+#theorem[绝对值和距离的基本性质][$x,y,z in QQ$
+  + 绝对值的非退化性，$abs(x) >= 0$。此外，$abs(x) = 0 <=> x = 0$
+  + 绝对值的三角不等式，$abs(x+y) <= abs(x) + abs(y)$
+  + 不等式$-y <= x <= y"成立" <=> y>= abs(x)$，特别的，$-abs(x) <= x <= abs(x)$
+  + 绝对值的可乘性，$abs(x y) = abs(x) abs(y)$，特别的，$abs(-x) = abs(x)$
+  + 距离的非退化性，$d(x,y)>=0$。此外，$d(x,y) = 0 <=> x = y$
+  + 距离的对称性，$d(x,y) = d(y, x)$
+  + 距离的三角不等式，$d(x,z) <= d(x, y) + d(y, z)$
+]
+
+#definition[$epsilon$-接近性][
+  $epsilon in QQ and epsilon > 0$，$x,y in QQ$，称$y$是$epsilon$-接近于$x$的，当且仅当$d(y,x) <= epsilon$
+]
+
+#note-block[
+  如果$epsilon = 0$，那么只有$y=x$时，才称$y"是"epsilon$-接近于$x$的；如果$epsilon <0$，无论何时都无法称$y"是"epsilon$-接近于$x$的，因为$d(y,x)$总是非负的
+
+  这个定义未来会被更严格的极限概念所替代
+
+  $epsilon, delta$常用作小的正数的代表
+]
+
+#theorem[$epsilon$-接近性的性质][
+  $x,y,z,w in QQ$
+  + $x = y <=> forall epsilon in QQ and epsilon > 0$，$x$都是$epsilon$-接近于$y$的
+  + $epsilon > 0$，如果$x$是$epsilon$-接近于$y$的，那么$y$也是$epsilon$-接近于$x$的
+  + $epsilon, delta > 0$，如果$x$是$epsilon$-接近于$y$的，并且$y$是$delta$-接近于$z$的，那么$x$和$z$是$(epsilon + delta)$-接近的
+  + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x + z$和$y + w$是$(epsilon + delta)$-接近的，$x - z$和$y - w$是$(epsilon - delta)$-接近的
+  + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，那么对于任意$epsilon' > epsilon$，$x$和$y$也是$epsilon$-接近的
+  + $epsilon > 0$，如果$y$和$z$都是$epsilon$-接近于$x$的，并且$w$位于$y$和$z$之间（即$y <= w <= z or z <= w <= y$），那么$w$也是$epsilon$-接近于$x$的
+  + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，且$z != 0$，那么$x z$和$y z$是$epsilon abs(x)$-接近的
+  + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x z$和$y w$是$(epsilon abs(z) + delta abs(x) + epsilon delta)$-接近的
+]
+
+#definition[有理数的自然数次幂运算][
+  $x in QQ$，定义$x^0 := 1$，特别的，定义$0^0 := 1$，现在归纳的假设对于某个自然数$n$，$x^n$已经被定义了，于是定义$x^(n+1) := x^n times x$
+]
+
+#definition[有理数的负整数次幂运算][
+  $x in QQ and x != 0$，对任意负整数$-n$，定义$x^(-n) := 1/x^n$
+]
+
+#theorem[指数运算的性质$upright(I)$][
+  $x, y in QQ, n,m in NN$
+  + $x^n x^m = x^(n+m), (x^n)^m = x^(n m), (x y)^n = x^n y^n$
+  + 如果$n > 0$，那么$x^n = 0 <=> x = 0$
+  + 如果$x >= y >= 0$，那么$x^n >= y^n >=0$，如果$x > y >= 0 and n > 0$，那么$x^n > y^n >= 0$
+  + $abs(x^n) = abs(x)^n$
+]
+
+#theorem[指数运算的性质$upright(I I)$][
+  $x, y in QQ and x,y!=0$，令$n,m in ZZ$
+  + $x^n x^m = x^(n+m), (x^n)^m = x^(n m), (x y)^n = x^n y^n$
+  + $x >= y > 0$，那么当$n$正数时有$x^n >= y^n > 0$，当$n$为负数时有，$0 < x^n <= y^n$
+  + $x, y > 0$，$n !=0$并且$x^n = y^n$，那么$x = y$
+  + $abs(x^n) = abs(x)^n$
+]
+
+#practice-separate()
+
+#problem[证明绝对值和距离的基本性质][]
+#problem[证明$epsilon$-接近性的性质][]
+#problem[证明指数运算的性质$upright(I)$][]
+#problem[证明指数运算的性质$upright(I I)$][]
+#problem[证明对于任意正整数$N$，都有$2^N >= N$成立][]
+
+
 
 == 有理数的间隙
