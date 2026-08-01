@@ -38,7 +38,7 @@
   ]
 ]
 
-#lemma[
+#note-block[
   自然数$n$可以和整数$n bar.h 0$等同起来
 ]
 
@@ -294,7 +294,7 @@
   $a slash.double 1 eq.triple a, forall a in ZZ$
 ]
 
-#lemma[有理数的和、乘积和负运算是定义明确的]
+#theorem[有理数的和、乘积和负运算是定义明确的]
 
 #lemma[有理数$a slash.double b = 0 <=> a = 0 and b!= 0$
 ][
@@ -325,7 +325,7 @@
 ]
 
 #definition[商的定义][
-  定义$x, y in ZZ$的商$x slash z$为$ x slash y := x y^(-1) $
+  $x, y in ZZ$，定义商为$x slash y$为$ x slash y := x y^(-1) $
 ]
 
 #note-block[

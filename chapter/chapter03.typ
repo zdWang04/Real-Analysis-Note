@@ -87,33 +87,35 @@
 #practice-separate()
 
 #problem[
-  1. 证明有序对$(x, y) = {{x}, {x, y}}$满足$(x, y) = (x', y') <==> x = x' and y = y'$
+  + 证明有序对$(x, y) = {{x}, {x, y}}$满足$(x, y) = (x', y') <==> x = x' and y = y'$
+  + $X$和$Y$是集合，证明$X times Y$也是一个集合
+][
   #proof[
-    - $(x, y) = (x', y') ==> x = x' and y = y'$
+    - 证明有序对$(x, y) = {{x}, {x, y}}$满足$(x, y) = (x', y') <==> x = x' and y = y'$
+      + $(x, y) = (x', y') ==> x = x' and y = y'$
 
-      1. 当$x = y$时，$(x, y) = {{x}}$，那么如果$(x, y) = (x', y')$，便有${{x}} = {{x'}}$，对于这个单元素集合，也就是${x} = {x'}$，再次利用单元素集合，就有$x = x' = y = y'$
-      2. 当$x != y$时，$(x, y) = {{x}, {x, y}}$，那么如果$(x, y) = (x', y')$，便有${{x}, {x, y}} = {{x'}, {x', y'}}$，等式两边的集合都是双元素集合，且一个是单元素集合，另一个是双元素集合，只能令其对应相等，也即$ {x} = {x'}\ {x, y} = {x', y'} $所以有$x = x'$，又因为$x != y$，所以$x' != y$，只能是$y = y'$
-      3. 考虑了所有的情况，得证
+        1. 当$x = y$时，$(x, y) = {{x}}$，那么如果$(x, y) = (x', y')$，便有${{x}} = {{x'}}$，对于这个单元素集合，也就是${x} = {x'}$，再次利用单元素集合，就有$x = x' = y = y'$
+        2. 当$x != y$时，$(x, y) = {{x}, {x, y}}$，那么如果$(x, y) = (x', y')$，便有${{x}, {x, y}} = {{x'}, {x', y'}}$，等式两边的集合都是双元素集合，且一个是单元素集合，另一个是双元素集合，只能令其对应相等，也即$ {x} = {x'}\ {x, y} = {x', y'} $所以有$x = x'$，又因为$x != y$，所以$x' != y$，只能是$y = y'$
+        3. 考虑了所有的情况，得证
 
-    - $x = x' and y = y' ==> (x, y) = (x', y')$
+      + $x = x' and y = y' ==> (x, y) = (x', y')$
 
-      若$x = x' and y = y'$，代入定义x就可以得到$(x, y) = (x', y')$
+        若$x = x' and y = y'$，代入定义x就可以得到$(x, y) = (x', y')$
+
+
+    - $X$和$Y$是集合，证明$X times Y$也是一个集合
+
+      $forall x in X, forall y in Y"有" x in X union Y, y in X union Y$，令任意集合$X$的幂集为$cal(P)(X)$，那么，${x}, {x, y} in cal(P)(X union Y)$，于是${{x}, {x, y}} subset.eq cal(P)(X union Y)$，所以就有
+      $ (x, y) = {{x}, {x, y}} subset.eq cal(P)(cal(P)(X union Y)) $
+      至此，证明了对于集合$X"和"Y$，$X times Y$中的元素（也即有序对$(x, y)$们）都生活在 $cal(P)(cal(P)(X union Y))$ 中
+
+      现在定义笛卡尔积为$ X times Y := {z in cal(P)(cal(P)(X union Y)):exists x in X, exists y in Y, z = {{x}, {x, y}}} $
+      幂集公理保证$cal(P)(cal(P)(X union Y))$一定是集合，且分类条件明确，那么根据分类公理，$X times Y$也是一个集合
   ]
-  2. $X$和$Y$是集合，证明$X times Y$也是一个集合
-  #proof[
-    + $forall x in X, forall y in Y"有" x in X union Y, y in X union Y$，令任意集合$X$的幂集为$cal(P)(X)$
 
-    那么，${x}, {x, y} in cal(P)(X union Y)$，于是${{x}, {x, y}} subset.eq cal(P)(X union Y)$，所以就有
-    $ (x, y) = {{x}, {x, y}} subset.eq cal(P)(cal(P)(X union Y)) $
-    至此，证明了对于集合$X"和"Y$，$X times Y$中的元素（也即有序对$(x, y)$们）都生活在 $cal(P)(cal(P)(X union Y))$ 中
-    2. 现在定义笛卡尔积为$ X times Y := {z in cal(P)(cal(P)(X union Y)):exists x in X, exists y in Y, z = {{x}, {x, y}}} $
-    幂集公理保证$cal(P)(cal(P)(X union Y))$一定是集合，且分类条件明确，那么根据分类公理，$X times Y$也是一个集合
-
-  ]
 ]
 
-#problem[
-  定义一个有序$n$-元组是一个满射函数$x: {i in NN: 1<= i <= n} -> X$，其值域为任意集合$X$，将$x_i$写作$x(i)$，将$x$写作$(x_i)_(1 <= i <= n)$，验证$ (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) <==> forall 1<= i <= n, x_i = y_i $
+#problem[定义一个有序$n$-元组是一个满射函数$x: {i in NN: 1<= i <= n} -> X$，其值域为任意集合$X$，将$x_i$写作$x(i)$，将$x$写作$(x_i)_(1 <= i <= n)$，验证$ (x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) <==> forall 1<= i <= n, x_i = y_i $][
   #proof[
     + $(x_i)_(1 <= i <= n) = (y_i)_(1<=i<=n) ==> forall 1<= i <= n, x_i = y_i$
 
@@ -124,9 +126,7 @@
   ]
 ]
 
-#problem[
-  证明有序对和$n$-元组的相等是满足自反、对称和传递性的
-
+#problem[证明有序对和$n$-元组的相等是满足自反、对称和传递性的][
   #proof[
     1. 自反 $(x_i)_(1<=i<=n) = (x_i)_(1<=i<=n)$
 
@@ -144,8 +144,7 @@
 
 ]
 
-#problem[
-  $A,B,C$是集合，证明$A times (B union C) = (A times B) union (A times C)$，$A times (B inter C) = (A times B) inter (A times C)$，$A times (B without C) = (A times B) without (A times C)$
+#problem[$A,B,C$是集合，证明$A times (B union C) = (A times B) union (A times C)$，$A times (B inter C) = (A times B) inter (A times C)$，$A times (B without C) = (A times B) without (A times C)$][
   #proof[
 
     - $A times (B union C) = (A times B) union (A times C)$
@@ -216,8 +215,7 @@
   ]
 ]
 
-#problem[
-  $A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？
+#problem[$A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？][
   #proof[
 
     - $(A times B) inter (C times D) = (A inter C) times (B inter D)$
@@ -287,8 +285,7 @@
   ]
 ]
 
-#problem[
-  $A,B,C,D$是非空集合，$A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$，$A times B = C times D <=> A = C and B = D$，若移除$A,B,C,D$是非空的这个条件，会发生什么？
+#problem[$A,B,C,D$是非空集合，$A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$，$A times B = C times D <=> A = C and B = D$，若移除$A,B,C,D$是非空的这个条件，会发生什么？][
 
   #proof[
     - $A times B subset.eq C times D <=> A subset.eq C and B subset.eq D$
@@ -332,8 +329,7 @@
 
 ]
 
-#problem[
-  $X,Y$是集合，函数$pi_(X times Y -> X):X times Y -> X$被定义为$pi_(X times Y -> X)(x,y) = x$；函数$pi_(X times Y -> Y):X times Y -> Y$被定义为$pi_(X times Y -> Y)(x,y) = y$，这两个函数被称为定义在$X times Y$上的_坐标函数（co-ordinate functions）_，证明对于任意函数$f:Z -> X$和$g:Z -> Y$，存在唯一一个函数$h: Z -> X times Y$使得$pi_(X times Y -> X) compose h = f$和$pi_(X times Y -> Y) compose h = g$成立
+#problem[$X,Y$是集合，函数$pi_(X times Y -> X):X times Y -> X$被定义为$pi_(X times Y -> X)(x,y) = x$；函数$pi_(X times Y -> Y):X times Y -> Y$被定义为$pi_(X times Y -> Y)(x,y) = y$，这两个函数被称为定义在$X times Y$上的_坐标函数（co-ordinate functions）_，证明对于任意函数$f:Z -> X$和$g:Z -> Y$，存在唯一一个函数$h: Z -> X times Y$使得$pi_(X times Y -> X) compose h = f$和$pi_(X times Y -> Y) compose h = g$成立][
 
   #proof[
 
@@ -377,8 +373,7 @@
 
 #note-block[这样的函数$h$被称为$f"和"g$的_直和（direct sum）_，并记作_$h = f plus.o g$_]
 
-#problem[
-  $X_1, ..., X_n$是集合，证明$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$
+#problem[$X_1, ..., X_n$是集合，证明$product_(i=1)^n X_i = emptyset <==> exists 1<=i<=n,X_i = emptyset$][
 
   #proof[
     - $product_(i=1)^n X_i = emptyset => exists 1<= i<= n, X_i = emptyset$
@@ -393,9 +388,7 @@
   ]
 ]
 
-#problem[
-  $I,J$是集合，$forall alpha in I, A_alpha$是集合，$forall beta in J, B_beta$是集合，证明$(union.big_(alpha in I) A_alpha) inter (union.big_(beta in J)B_beta) = union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)$
-
+#problem[$I,J$是集合，$forall alpha in I, A_alpha$是集合，$forall beta in J, B_beta$是集合，证明$(union.big_(alpha in I) A_alpha) inter (union.big_(beta in J)B_beta) = union.big_((alpha, beta) in I times J)(A_alpha inter B_beta)$][
   #proof[
 
     + $
@@ -411,9 +404,7 @@
 
 ]
 
-#problem[
-  $f:X->Y$是函数，定义函数$f$的_图（graph）_为$X times Y$子集，定义为${(x, f(x)):x in X}$，证明：对于$tilde(f):X -> Y"和"f:X->Y,f=tilde(f) <==> f, tilde(f)$有相同的图。如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$
-
+#problem[$f:X->Y$是函数，定义函数$f$的_图（graph）_为$X times Y$子集，定义为${(x, f(x)):x in X}$，证明：对于$tilde(f):X -> Y"和"f:X->Y,f=tilde(f) <==> f, tilde(f)$有相同的图。如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$][
   #proof[
     - $f=tilde(f) <=> f, tilde(f)$有相同的图
 
@@ -444,9 +435,7 @@
   ]
 ]
 
-#problem[
-  证明函数空间公理可以由幂集公理推出
-
+#problem[证明函数空间公理可以由幂集公理推出][
   #proof[
     令$X,Y$是任意集合，令 $cal(P)(X times Y)$是$X times Y$的幂集，根据幂集公理，它也是一个集合
 
@@ -509,11 +498,11 @@
 
 == 集合的基数
 
-#definition(title: "相等的基数")[
+#definition[相等的基数][
   称集合$X,Y$有_相等的基数_当且仅当存在一个双射$f: X -> Y$
 ]
 
-#definition[
+#definition[集合的基数][
   设$n$是一个自然数，称集合$X$的基数为$n$当且仅当$X$和集合${i in NN: 1<=i<=n}$有相同的基数。$X$有$n$个元素当且仅当$X$的基数为$n$
 ]
 
@@ -536,8 +525,7 @@
   ]
 ]
 
-#lemma[
-  假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的。$forall x in X,"集合"X without {x}$的基数是$n-1$
+#lemma[假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的。$forall x in X,"集合"X without {x}$的基数是$n-1$][
 
   #proof[
     - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$exists x in X, f(x) = 1$，所以$X$非空。
