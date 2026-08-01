@@ -235,11 +235,22 @@
 #problem[证明序的性质][
   #proof[
     $a,b,c in ZZ$
-    + 由于$a > b$，那么$exists x in N$，使得$a = b + x$，并且$b != a$，于是有$a - b = x$且$a - b != 0$，所以$a > b$，则有$a - b$是正自然数；如果$a - b = x$且$x$是正自然数，那么$a = b +x$，于是有$a >= b$，由于$x$是正自然数，那么$a - b != 0 => a!=b$，所以$a - b$是正自然数，则有$a > b$
-    + 如果$a > b$，那么存在正自然数$x$使得$a = b + x$，于是$a + c = b + x + c = b + c + x$，就有$a + c > b + c$
-    + 如果$a > b$，那么存在正自然数$x$使得$a = b + x$，于是$a c = (b + x)c = b c + x c$，由于$c$是正的，那么$x c > 0$，于是$a c > b c$
-    + 如果$a > b$，那么存在正自然数$x$使得$a = b + x$，所以$-a = -b + (-x) => -a + x = -b$，所以$a > b => -b > -a$
-    + 如果$a > b and b > c$，那么存在正自然数$x,y$分别满足$a = b + x$和$b = c + y$，于是有$a = c + (y + x)$，$(y + x)$也是正自然数，所以$a > c$
+    + $a > b$当且仅当$a - b$是正自然数
+
+      由于$a > b$，那么$exists x in N$，使得$a = b + x$，并且$b != a$，于是有$a - b = x$且$a - b != 0$，所以$a > b$，则有$a - b$是正自然数；如果$a - b = x$且$x$是正自然数，那么$a = b +x$，于是有$a >= b$，由于$x$是正自然数，那么$a - b != 0 => a!=b$，所以$a - b$是正自然数，则有$a > b$
+    + 如果$a>b$，那么$a+c > b+c$
+
+      如果$a > b$，那么存在正自然数$x$使得$a = b + x$，于是$a + c = b + x + c = b + c + x$，就有$a + c > b + c$
+    + 如果$a>b$，而且$c$是正的，那么$a c > b c$
+
+      如果$a > b$，那么存在正自然数$x$使得$a = b + x$，于是$a c = (b + x)c = b c + x c$，由于$c$是正的，那么$x c > 0$，于是$a c > b c$
+    + 如果$a > b$，那么$-a < -b$
+
+      如果$a > b$，那么存在正自然数$x$使得$a = b + x$，所以$-a = -b + (-x) => -a + x = -b$，所以$a > b => -b > -a$
+    + 如果$a >b and b>c$，那么$a > c$
+
+      如果$a > b and b > c$，那么存在正自然数$x,y$分别满足$a = b + x$和$b = c + y$，于是有$a = c + (y + x)$，$(y + x)$也是正自然数，所以$a > c$
+
     + 序的三歧性
       - 至少有一个成立，令整数$a = x - y, x in ZZ, y in ZZ$，$n$为正自然数，由整数的三歧性有
       $  x - y = 0 & => x = y \
@@ -306,7 +317,7 @@
   + $x(y + z) = x y + x z$
   + $(y + z)x = y x + z x$
   如果$x != 0$，那么有
-  + $x x^(-1) =x^(-1) x= 1$
+  10. $x x^(-1) =x^(-1) x= 1$
 ]
 
 #note-block[
@@ -328,7 +339,28 @@
 
   有理数$x = a slash b$是正的$<=>$ $a > 0 and b >0$
 
-  有理数$x = a slash b$是负的$<=>$ $x = -y$，其中$y$是正的有理数
+  有理数$x = a slash b$是负的$<=>$ $x = -y$，其中$y$是正的有理数，即$a < 0 and b > 0$
+]
+
+#lemma[两个正有理数的和、积都是正有理数；两个负有理数的和是负有理数，积是正有理数；一个正有理数和一个负有理数的积是负有理数][
+  #proof[
+    + $x, y in QQ$，令$x = a slash b, y = c slash d$，且$x, y$是正有理数
+
+    - $x + y = (a d+ b c) slash (b d)$，由于$a > 0 and c > 0$，那么利用整数的序的性有$a d > 0 and b c > 0$，于是有$a d + b c > b c > 0$，于是$x + y$是正有理数
+    - $x y = (a c)slash (b d)$，由于$a > 0 and c > 0$，那么$a c > 0$，于是$x y$是正有理数
+
+    + $x, y in QQ$，令$x = a slash b, y = c slash d$，且$x, y$是负有理数
+
+      - $x + y = (a d+ b c) slash (b d)$，由于$a, c < 0 and b, d >0$，那么$a d < 0 and b c < 0$，所以$a d + b c < b c < 0$，于是$x + y$是负有理数
+      - $x y = (a c) slash (b d)$，由于$a < 0 and c < 0$，那么$-a > 0 and -c > 0$，所以$a c = (-a)(-c) > 0$，于是$x y$是正有理数
+
+    + $x, y in QQ$，令$x = a slash b, y = c slash d$，且$x$是负有理数，$y$是正有理数
+
+      $x y = a c slash b d$，由于$a < 0 and c > 0$，根据整数的序的性质就有$a c < 0$，于是$x y$是负有理数
+  ]
+  #note-block[
+    这个引理并非原书中的内容，只是为了方便证明序的相关性质
+  ]
 ]
 
 #lemma[有理数的三歧性][
@@ -361,17 +393,128 @@
 
 #practice-separate()
 
-#problem[有理数相等是自反、对称和可传递的][]
+#problem[有理数相等是自反、对称和可传递的][
+  $x,y,z in QQ$，令$x = a slash.double b, y = c slash.double d, z = e slash.double f$，其中$a,b,c,d,e,f in ZZ$，并且$b,d,f != 0$
 
-#problem[有理数的和、积和负运算是良定义的][]
+  + 自反$x = x$
 
-#problem[证明有理数的代数运算][]
+    $x = x => a slash.double b = a slash.double b => a b = a b$，因为整数的相等是自反的，得证
+  + 对称$x = y <=> y = x$
 
-#problem[证明有理数的三歧性][]
+    $x = y => a slash.double b = c slash.double d => a d = b c$，因为整数的相等是对称的，所以$a d = b c <=> b c = a d => y = x$，反向同理
+  + 传递$x = y and y = z => x = z$
+    $ & x = y => a slash.double b = c slash.double d => a d = c b \
+    & y = z => c slash.double d = e slash.double f => c f = d e $于是有
+    $ a d f & = c b f \
+    c f b & = d e b $就有$a d f = d e b$，由于$d != 0$，利用整数的乘法的消去律，就有$a f = b e=> a slash.double b = e slash.double f => x = z$，于是传递性得证
+]
 
-#problem[证明有理数的序的基本性质][]
+#problem[有理数的和、积和负运算是良定义的][
+  #proof[
+    即证当$a slash b = a' slash b'$和$c slash d = c' slash d'$时，三种运算可以得到相同的结果
 
-#problem[$x,y,z in QQ, x<y$，$z$是负的，那么$x z > y z$][]
+    - 和
+      $     (a slash b) + (c slash d) & = (a d + b c) slash (b d) \
+      (a' slash b') + (c' slash d') & = (a'd' + b'c') slash (b'd') \ $由于$a b' = a'b and c d' = c'd$，那么有
+      $ a b' d d' & = a'b d d' \
+      b b' c d' & = b b' c' d \ $接着有
+      $ a b' d d' + b b' c d' = a'b d d' + b b' c' d\ $由于$b,d!=0$，那么就有
+      $ (a d + b c) slash (b d) = (a'd' + b'c') slash (b'd') $于是有理数的和是定义明确的
+
+    - 积
+    $     (a slash b)(c slash d) & = (a c) slash (b d) \
+    (a' slash b')(c' slash d') & = (a' c') slash (b' d') \ $由于$a b' = a'b and c d' = c'd$，于是有
+    $ a b'c d' & = a'b c d' \
+    a'b c d' & = a'b c'd \ $于是有
+    $ a b' c d' + a b' c' d = a'b c d' + a b'c'd $根据整数的消去律就有$a b' c d' = a' b c d'$，此外由于$b,d,b',d' != 0$，就有$(a c) slash (b d) = (a'c') slash (b'd')$，于是有理数的积是定义明确的
+
+    - 负运算
+    $   -(a slash b) & = (-a) slash b \
+    -(a' slash b') & = (-a') slash b' $由于$a b' =a' b$，那么$-(a b') = -(a' b)$，就有$(-a) b' = (-a') b$，由于$b,b' != 0$，那么$(-a) slash b = (-a') slash b'$
+  ]
+]
+
+#problem[证明有理数的代数运算][
+  #proof[$x,y,z in QQ$，令$x = a slash b, y = c slash d, z = e slash f$
+    + $x + y = y + z$
+      $
+        x + y = (a d + b c) slash (b d) = (c b + d a) slash (d b) = y + x
+      $
+    + $(x + y) + z = x + (y + z)$
+      $ (x + y) + z & = (a d + b c) slash (b d) + e slash f = (a d f + b c f + b d e) slash (b d e) \
+      x + (y + z) & = a slash b + (c f + e d) slash (d f) = (a d f + b c f + b d e) slash (b d e) \ $所以$(x+y)+z=x+(y+z)$
+    + $x + 0 = 0 + x = x$
+      $ x + 0 = a slash b + 0 slash 1 = (a 1 + 0 b) slash (b 1) = a slash b = x $根据交换律和传递性$x + 0 = 0 + x = x$
+    + $x + (-x) = (-x) + x = 0$
+      $ x + (-x) = a slash b + (-a) slash b = (a b + (-a b)) slash b^2 = 0 slash b^2 = 0 $由交换律和传递性$x+(-x) = (-x)+x = 0$
+    + $x y = y x$
+      $
+        x y = (a c) slash (b d) = (c a) slash (d b) = y x
+      $
+    + $(x y)z = x (y z)$
+      $ (x y)z = (a c slash b d)(e slash f) & = a c e slash b d f \
+      x(y z) = (a slash b)(c e slash d f) & = a c e slash b d f $所以$(x y)z=x(y z)$
+    + $x 1=1 x = x$
+      $ x 1 = a slash b (1 slash 1) = a 1 slash b 1 = a slash b = x $由交换性和传递性$x 1 = 1 x = x$
+    + $x(y+z) = x y + x z$
+      $  x(y + z) & = (a slash b)((c f + d e) slash d f) = (a c f + a d e) slash b d f \
+      x y + x z & = (a slash b)(c slash d) + (a slash b)(e slash f) \
+                & = (a c slash b d) + (a e slash b f) \
+                & = (a c f + a e d) slash b d f $所以有$x(y+z) = x y + x z$
+    + $(y+z)x = y x + z x$
+      由分配律和交换律证明
+    + $x != 0, x x^(-1) = x^(-1) x = 1$
+      由于$x != 0$，那么$a,b != 0$，于是
+      $ x x^(-1) = (a slash b)(b slash a) = a b slash a b = 1 slash 1 = 1 $由交换律和传递性$x x^(-1) = x^(-1) x = 1$
+  ]
+]
+
+#problem[证明有理数的三歧性][
+  $x in QQ$，并且$x = a slash b$
+  - 如果$x = 0$，那么$x = 0 slash b$，即$a = 0$，根据整数的三歧性，此时$x$是正的和$x$是负的都不成立
+  - 如果$x$是正的，那么$a > 0 and b > 0$，根据整数的三歧性，此时$a != 0$，且$a <0$不成立，那么$x$就不是零，也不是负的
+  - 如果$x$是负的，那么$a < 0 and b >0$，根据整数的三歧性，此时$a != 0$，且$a > 0$也不成立，那么$x$就不是零，也不是正的
+]
+
+#problem[证明有理数的序的基本性质][
+  $x, y, z in QQ$，令$x = a slash b, y = c slash d, z = e slash f$，且$b d > 0$
+  #proof[
+    + 序的三歧性
+      - 首先证明至少有一个命题成立
+        首先由整数的三歧性，$a d>b c$，$a d = b c$，$a d < b c$三个命题只有一个成立，如果是$a d > b c$，那么有$a d - b c > 0 => x - y = (a d - b c) slash b d > 0$，于是$x -y$是正的有理数，于是$x > y$成立；$a d = b c$时，$x = y$成立；$a d < b c$时，同前推理$x - y < 0$，于是$x - y$是负有理数，于是$x < y$成立
+      - 然后证明至多有一个成立
+        - 如果$x > y$，那么$x - y = (a d + (-b c)) slash b d$是正的有理数，即$a d - b c > 0 and b d > 0$，由整数的序的三歧性，此时$a d - b c = 0$和$a d - b c < 0$都不成立，因此$x = y$和$x < y$都不成立
+        - 如果$x < y$，那么$x - y = (a d + (-b c)) slash b d$是负的有理数，即$a d - b c < 0 and b d > 0$，由整数的序的三歧性，此时$a d - b c = 0$和$a d - b c > 0$都不成立，于是$x - y$是零和$x - y$是正有理数都不成立
+        - 如果$x = y$，那么$a d = b c$，根据整数的三歧性，此时只能有$a d = b c$成立，所以无法得到$a d < b c$和$a d > b c$，于是也不无法得到$x > y$和$x < y$
+    + $x < y <=> y > x$
+      - $x < y => y > x$
+
+        由于$x < y$，那么$x - y = (a d - b c) slash b d$是负有理数，于是有$a d - b c < 0$，由整数的序的性质$-(a d - b c) > 0$，那么$y - x = (-(a d - b c)) slash b d$是正有理数，所以$y > x$
+
+      - $y > x => x < y$
+
+        由于$y > x$，那么$y - x = (c b - a d) slash b d$是正有理数，于是$c b - a d>0$，于是$-(c b - a d) < 0$，那么$x - y = (-(c b - a d)) slash b d$是负有理数，于是$x < y$
+
+      - 综上$x > y <=> x < y$
+
+    + $x < y and y < z => x < z$
+
+      $x < y => x - y = q_1, q_1 in QQ and q_1$是负有理数，$y < z => y - z = q_2, q_2 in QQ and q_2$是负有理数。于是$x - z = x - y + y - z = q_1 + q_2$，易知$q_1 + q_2$为负有理数，所以$x < z$
+
+    + $x<y => x+z<y+z$
+      $x < y => x - y = q_1, q_1 in QQ and q_1$是负有理数，$(x + z) - (y + z) = x - y = q_1$，也是负有理数，所以$x+z < y+z$
+
+    + $x < y and z"是正有理数" => x z < y z$
+
+      $x < y => x - y = q_1, q_1 in QQ and q_1$是负有理数，所以$x z - y z = (x - y)z = q_1 z$，由先前的引理，$q_1 z$是负有理数，于是$x z < y z$
+  ]
+]
+
+#problem[$x,y,z in QQ, x<y$，$z$是负的，那么$x z > y z$][
+  #proof[
+    $x < y => x - y = q_1, q_1 in QQ and q_1$是负有理数，那么$x z - y z =(x - y)z = q_1 z$，$q_1"和"z$都是负有理数，由先前的引理，$q_1 z$是正有理数，于是$x z > y z$
+  ]
+]
 
 
 == 绝对值和整数运算
