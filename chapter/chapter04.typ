@@ -530,7 +530,7 @@
 #theorem[绝对值和距离的基本性质][$x,y,z in QQ$
   + 绝对值的非退化性，$abs(x) >= 0$。此外，$abs(x) = 0 <=> x = 0$
   + 绝对值的三角不等式，$abs(x+y) <= abs(x) + abs(y)$
-  + 不等式$-y <= x <= y"成立" <=> y>= abs(x)$，特别的，$-abs(x) <= x <= abs(x)$
+  + 不等式$-y <= x <= y$成立$<=> y>= abs(x)$，特别的，$-abs(x) <= x <= abs(x)$
   + 绝对值的可乘性，$abs(x y) = abs(x) abs(y)$，特别的，$abs(-x) = abs(x)$
   + 距离的非退化性，$d(x,y)>=0$。此外，$d(x,y) = 0 <=> x = y$
   + 距离的对称性，$d(x,y) = d(y, x)$
@@ -587,7 +587,14 @@
 
 #practice-separate()
 
-#problem[证明绝对值和距离的基本性质][]
+#problem[证明绝对值和距离的基本性质][
+  $x,y,z in QQ$
+  + $abs(x) >=0$，$abs(x)=0 <=> x = 0$
+    - 如果$x$是正有理数，那么$abs(x) = x > 0$，如果$abs(x)$是负有理数，那么$abs(x) = -x > 0$，如果$x = 0$，那么$abs(x) = 0$，根据有理数的三歧性，所有情况下都有$abs(x) >= 0$，于是得证
+    - $abs(x) = 0 => x = 0$，如果$x$是正有理数，就有$abs(x) = x > 0$，如果是负有理数，就有$abs(x) = -x > 0$，根据有理数的三歧性，就有$x = 0$；$x = 0 => abs(x) = 0$，根据绝对值的定义，$abs(x) = abs(0) = 0$，于是$abs(x) = 0 <=> x = 0$
+  + $abs(x+y) <= abs(x) + abs(y)$
+    -
+]
 #problem[证明$epsilon$-接近性的性质][]
 #problem[证明指数运算的性质$upright(I)$][]
 #problem[证明指数运算的性质$upright(I I)$][]
