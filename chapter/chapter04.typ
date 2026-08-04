@@ -593,7 +593,43 @@
     - 如果$x$是正有理数，那么$abs(x) = x > 0$，如果$abs(x)$是负有理数，那么$abs(x) = -x > 0$，如果$x = 0$，那么$abs(x) = 0$，根据有理数的三歧性，所有情况下都有$abs(x) >= 0$，于是得证
     - $abs(x) = 0 => x = 0$，如果$x$是正有理数，就有$abs(x) = x > 0$，如果是负有理数，就有$abs(x) = -x > 0$，根据有理数的三歧性，就有$x = 0$；$x = 0 => abs(x) = 0$，根据绝对值的定义，$abs(x) = abs(0) = 0$，于是$abs(x) = 0 <=> x = 0$
   + $abs(x+y) <= abs(x) + abs(y)$
-    -
+    - $x,y$同号
+      $x,y$同时为正时，$x + y > 0, abs(x + y) = x + y$，$abs(x) + abs(y) = x + y$，所以有$abs(x+y) = abs(x) + abs(y)$；同时为负也同理
+    - $x,y$其一为$0$，比如$x$，于是$abs(x) = 0$，于是$abs(x+y) = 0 + abs(y) = abs(x) + abs(y)$
+    - $x, y$异号，不妨令$abs(x) = -x and abs(x) >= abs(y) = y > 0$，于是$-x - y >= 0 => x+y <= 0$，所以$abs(x+y) = -(x+y) = -x - y <= -x <= -x + y = abs(x) + abs(y)$
+    - 在所有讨论下都有$abs(x +y) <= abs(x) + abs(y)$
+
+  + $-y<=x<=y <=> y >= abs(x)$
+    - $=>$
+
+      如果$x>=0$，那么$abs(x) = x <=y$；如果$x < 0$，那么$abs(x) = -x$，由于$x >= -y$，那么$-x <= y$，就有$y >= abs(s)$，于是在所有情况下，都有$y >= abs(x)$
+
+    - $arrow.l.double$
+
+      如果$x >= 0$，那么$y >= abs(x) = x >= -x >= -y$，于是有$-y<=x<=y$；如果$x < 0$，那么$y >= abs(x) = -x$，也有$x >= -y$，于是就有$y >= -x >= x >= -y$；于是在所有情况下，都有$-y <= x<= y$
+
+    - 特别的，当$y = abs(x)$时就有，$-abs(x) <= y <= abs(x)$
+
+  + $abs(x y) = abs(x)abs(y)$
+    - 如果$x, y >=0$，那么$abs(x y) = x y$，$abs(x) abs(y) =x y$，就有$abs(x y) = abs(x) abs(y)$
+    - 如果$x, y < 0$，那么$abs(x y) = x y$，$abs(x) abs(y) =-x (-y) = x y$，也有$abs(x y) = abs(x) abs(y)$
+    - 如果$x >= 0, y < 0$，那么有$abs(x y) = x (-y)$，$abs(x) abs(y) = x(-y)$，也有$abs(x y) = abs(x) abs(y)$
+    - 综上都有$abs(x y) = abs(x)abs(y)$
+    - 特别的$abs(-x) = abs(-1)abs(x) = abs(x)$
+
+  + $d(x,y) >= 0$,$d(x,y)=0 <=> x = y$
+    - $d(x,y) = abs(x - y)$，由绝对值的非负性，就有$d(x,y) >= 0$
+    - $d(x, y) = abs(x - y) = 0 => x - y = 0 => x = y$
+
+      $x = y => d(x, y) = abs(x - y) = abs(0) = 0$
+
+  + $d(x, y) = d(y, x)$
+
+    $d(x, y) = abs(x - y) = abs(-(y-x)) = abs(y-x) = d(y,x)$
+
+  + $d(x,z) <= d(x, y) + d(y, z)$
+
+    $d(x, y) + d(y,z) = abs(x - y) + abs(y - z) >= abs(x - y + y - z) = abs(x - z) = d(x,z)$
 ]
 #problem[证明$epsilon$-接近性的性质][]
 #problem[证明指数运算的性质$upright(I)$][]
