@@ -554,10 +554,10 @@
   + $x = y <=> forall epsilon in QQ and epsilon > 0$，$x$都是$epsilon$-接近于$y$的
   + $epsilon > 0$，如果$x$是$epsilon$-接近于$y$的，那么$y$也是$epsilon$-接近于$x$的
   + $epsilon, delta > 0$，如果$x$是$epsilon$-接近于$y$的，并且$y$是$delta$-接近于$z$的，那么$x$和$z$是$(epsilon + delta)$-接近的
-  + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x + z$和$y + w$是$(epsilon + delta)$-接近的，$x - z$和$y - w$是$(epsilon - delta)$-接近的
-  + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，那么对于任意$epsilon' > epsilon$，$x$和$y$也是$epsilon$-接近的
+  + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x + z$和$y + w$是$(epsilon + delta)$-接近的，$x - z$和$y - w$是$(epsilon + delta)$-接近的
+  + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，那么对于任意$epsilon' > epsilon$，$x$和$y$也是$epsilon'$-接近的
   + $epsilon > 0$，如果$y$和$z$都是$epsilon$-接近于$x$的，并且$w$位于$y$和$z$之间（即$y <= w <= z or z <= w <= y$），那么$w$也是$epsilon$-接近于$x$的
-  + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，且$z != 0$，那么$x z$和$y z$是$epsilon abs(x)$-接近的
+  + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，且$z != 0$，那么$x z$和$y z$是$epsilon abs(z)$-接近的
   + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x z$和$y w$是$(epsilon abs(z) + delta abs(x) + epsilon delta)$-接近的
 ]
 
@@ -588,51 +588,139 @@
 #practice-separate()
 
 #problem[证明绝对值和距离的基本性质][
-  $x,y,z in QQ$
-  + $abs(x) >=0$，$abs(x)=0 <=> x = 0$
-    - 如果$x$是正有理数，那么$abs(x) = x > 0$，如果$abs(x)$是负有理数，那么$abs(x) = -x > 0$，如果$x = 0$，那么$abs(x) = 0$，根据有理数的三歧性，所有情况下都有$abs(x) >= 0$，于是得证
-    - $abs(x) = 0 => x = 0$，如果$x$是正有理数，就有$abs(x) = x > 0$，如果是负有理数，就有$abs(x) = -x > 0$，根据有理数的三歧性，就有$x = 0$；$x = 0 => abs(x) = 0$，根据绝对值的定义，$abs(x) = abs(0) = 0$，于是$abs(x) = 0 <=> x = 0$
-  + $abs(x+y) <= abs(x) + abs(y)$
-    - $x,y$同号
-      $x,y$同时为正时，$x + y > 0, abs(x + y) = x + y$，$abs(x) + abs(y) = x + y$，所以有$abs(x+y) = abs(x) + abs(y)$；同时为负也同理
-    - $x,y$其一为$0$，比如$x$，于是$abs(x) = 0$，于是$abs(x+y) = 0 + abs(y) = abs(x) + abs(y)$
-    - $x, y$异号，不妨令$abs(x) = -x and abs(x) >= abs(y) = y > 0$，于是$-x - y >= 0 => x+y <= 0$，所以$abs(x+y) = -(x+y) = -x - y <= -x <= -x + y = abs(x) + abs(y)$
-    - 在所有讨论下都有$abs(x +y) <= abs(x) + abs(y)$
+  #proof[
+    $x,y,z in QQ$
+    + $abs(x) >=0$，$abs(x)=0 <=> x = 0$
+      - 如果$x$是正有理数，那么$abs(x) = x > 0$，如果$abs(x)$是负有理数，那么$abs(x) = -x > 0$，如果$x = 0$，那么$abs(x) = 0$，根据有理数的三歧性，所有情况下都有$abs(x) >= 0$，于是得证
+      - $abs(x) = 0 => x = 0$，如果$x$是正有理数，就有$abs(x) = x > 0$，如果是负有理数，就有$abs(x) = -x > 0$，根据有理数的三歧性，就有$x = 0$；$x = 0 => abs(x) = 0$，根据绝对值的定义，$abs(x) = abs(0) = 0$，于是$abs(x) = 0 <=> x = 0$
+    + $abs(x+y) <= abs(x) + abs(y)$
+      - $x,y$同号
+        $x,y$同时为正时，$x + y > 0, abs(x + y) = x + y$，$abs(x) + abs(y) = x + y$，所以有$abs(x+y) = abs(x) + abs(y)$；同时为负也同理
+      - $x,y$其一为$0$，比如$x$，于是$abs(x) = 0$，于是$abs(x+y) = 0 + abs(y) = abs(x) + abs(y)$
+      - $x, y$异号，不妨令$abs(x) = -x and abs(x) >= abs(y) = y > 0$，于是$-x - y >= 0 => x+y <= 0$，所以$abs(x+y) = -(x+y) = -x - y <= -x <= -x + y = abs(x) + abs(y)$
+      - 在所有讨论下都有$abs(x +y) <= abs(x) + abs(y)$
 
-  + $-y<=x<=y <=> y >= abs(x)$
-    - $=>$
+    + $-y<=x<=y <=> y >= abs(x)$
+      - $=>$
 
-      如果$x>=0$，那么$abs(x) = x <=y$；如果$x < 0$，那么$abs(x) = -x$，由于$x >= -y$，那么$-x <= y$，就有$y >= abs(s)$，于是在所有情况下，都有$y >= abs(x)$
+        如果$x>=0$，那么$abs(x) = x <=y$；如果$x < 0$，那么$abs(x) = -x$，由于$x >= -y$，那么$-x <= y$，就有$y >= abs(s)$，于是在所有情况下，都有$y >= abs(x)$
 
-    - $arrow.l.double$
+      - $arrow.l.double$
 
-      如果$x >= 0$，那么$y >= abs(x) = x >= -x >= -y$，于是有$-y<=x<=y$；如果$x < 0$，那么$y >= abs(x) = -x$，也有$x >= -y$，于是就有$y >= -x >= x >= -y$；于是在所有情况下，都有$-y <= x<= y$
+        如果$x >= 0$，那么$y >= abs(x) = x >= -x >= -y$，于是有$-y<=x<=y$；如果$x < 0$，那么$y >= abs(x) = -x$，也有$x >= -y$，于是就有$y >= -x >= x >= -y$；于是在所有情况下，都有$-y <= x<= y$
 
-    - 特别的，当$y = abs(x)$时就有，$-abs(x) <= y <= abs(x)$
+      - 特别的，当$y = abs(x)$时就有，$-abs(x) <= y <= abs(x)$
 
-  + $abs(x y) = abs(x)abs(y)$
-    - 如果$x, y >=0$，那么$abs(x y) = x y$，$abs(x) abs(y) =x y$，就有$abs(x y) = abs(x) abs(y)$
-    - 如果$x, y < 0$，那么$abs(x y) = x y$，$abs(x) abs(y) =-x (-y) = x y$，也有$abs(x y) = abs(x) abs(y)$
-    - 如果$x >= 0, y < 0$，那么有$abs(x y) = x (-y)$，$abs(x) abs(y) = x(-y)$，也有$abs(x y) = abs(x) abs(y)$
-    - 综上都有$abs(x y) = abs(x)abs(y)$
-    - 特别的$abs(-x) = abs(-1)abs(x) = abs(x)$
+    + $abs(x y) = abs(x)abs(y)$
+      - 如果$x, y >=0$，那么$abs(x y) = x y$，$abs(x) abs(y) =x y$，就有$abs(x y) = abs(x) abs(y)$
+      - 如果$x, y < 0$，那么$abs(x y) = x y$，$abs(x) abs(y) =-x (-y) = x y$，也有$abs(x y) = abs(x) abs(y)$
+      - 如果$x >= 0, y < 0$，那么有$abs(x y) = x (-y)$，$abs(x) abs(y) = x(-y)$，也有$abs(x y) = abs(x) abs(y)$
+      - 综上都有$abs(x y) = abs(x)abs(y)$
+      - 特别的$abs(-x) = abs(-1)abs(x) = abs(x)$
 
-  + $d(x,y) >= 0$,$d(x,y)=0 <=> x = y$
-    - $d(x,y) = abs(x - y)$，由绝对值的非负性，就有$d(x,y) >= 0$
-    - $d(x, y) = abs(x - y) = 0 => x - y = 0 => x = y$
+    + $d(x,y) >= 0$,$d(x,y)=0 <=> x = y$
+      - $d(x,y) = abs(x - y)$，由绝对值的非负性，就有$d(x,y) >= 0$
+      - $d(x, y) = abs(x - y) = 0 => x - y = 0 => x = y$
 
-      $x = y => d(x, y) = abs(x - y) = abs(0) = 0$
+        $x = y => d(x, y) = abs(x - y) = abs(0) = 0$
 
-  + $d(x, y) = d(y, x)$
+    + $d(x, y) = d(y, x)$
 
-    $d(x, y) = abs(x - y) = abs(-(y-x)) = abs(y-x) = d(y,x)$
+      $d(x, y) = abs(x - y) = abs(-(y-x)) = abs(y-x) = d(y,x)$
 
-  + $d(x,z) <= d(x, y) + d(y, z)$
+    + $d(x,z) <= d(x, y) + d(y, z)$
 
-    $d(x, y) + d(y,z) = abs(x - y) + abs(y - z) >= abs(x - y + y - z) = abs(x - z) = d(x,z)$
+      $d(x, y) + d(y,z) = abs(x - y) + abs(y - z) >= abs(x - y + y - z) = abs(x - z) = d(x,z)$
+  ]
 ]
-#problem[证明$epsilon$-接近性的性质][]
-#problem[证明指数运算的性质$upright(I)$][]
+#problem[证明$epsilon$-接近性的性质][
+  #proof[
+    + $x = y <=> forall epsilon in QQ and epsilon > 0, x$是$epsilon$-接近于$y$的
+      - $=>$
+
+        $x = y => d(x, y) = 0$，于是$forall epsilon in QQ and epsilon > 0$，都有$epsilon > d(x,y) = 0$，于是对于任意正有理数$epsilon$，$x$都是$epsilon$-接近于$y$的
+      - $arrow.l.double$
+
+        由于对于任意的正有理数$epsilon$，$x$是$epsilon$-接近于$y$的，那么就有$forall epsilon in QQ and epsilon > 0, d(x, y) <= epsilon$，由于是对任意的$epsilon > 0$成立的，于是需要$d(x,y) <= 0$，由绝对值的非退化性可知，只能是$d(x, y)=0$，也即$x = y$
+
+    + $epsilon > 0$，如果$x$是$epsilon$-接近于$y$，那么$y$也是$epsilon$-接近于$x$的
+
+      $x$是$epsilon$-接近于$y$，于是$d(x, y) <= epsilon$，由于距离的对称性，就有$d(y,x) <= epsilon$，根据定义，$y$也是$epsilon$-接近于$x$的
+
+    + $epsilon, delta > 0$，如果$x$是$epsilon$-接近于$y$的，并且$y$是$delta$-接近于$z$的，那么$x$和$z$是$(epsilon + delta)$-接近的
+
+      易有$ d(x,y) & = abs(x - y) <= epsilon \
+      d(y,z) & = abs(y - z) <= delta $有$ d(x, z) <= d(x, y) + d(y, z) <= epsilon + delta $于是$x$是$(epsilon + delta)$-接近于$z$的
+
+    + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x + z$和$y + w$是$(epsilon + delta)$-接近的，$x - z$和$y - w$是$(epsilon + delta)$-接近的
+
+      - 易有$ d(x, y) & = abs(x - y) <= epsilon \
+        d(z, w) & = abs(z - w) <= delta $于是有$ d(x+z,y+w) = abs(x + z - (y+w)) <= abs(x - y) + abs(z -w) <= epsilon + delta $所以$x + z$和$y + w$是$(epsilon + delta)$-接近的
+      - 易有$ -epsilon<= x - y & <= epsilon \
+         -delta <= z - w & <= delta => -delta <= w - z <= delta $所以有$ -(epsilon + delta) & <= x - y - z + w <= epsilon + delta => \
+        -(epsilon + delta) & <=(x-z) - (y - w) <= epsilon + delta => \
+                           & d(x-z, y -w) <= epsilon + delta $于是$x - z$和$y - w$是$(epsilon + delta)$-接近的
+
+    + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，那么对于任意$epsilon' > epsilon$，$x$和$y$也是$epsilon'$-接近的
+
+      易知$d(x, y) <= epsilon$，由于$forall epsilon', epsilon' > epsilon$，那么有$d(x,y) <= epsilon < epsilon'$，根据定义，$x$也是$epsilon'$-接近$y$的
+
+    + $epsilon > 0$，如果$y$和$z$都是$epsilon$-接近于$x$的，并且$w$位于$y$和$z$之间（即$y <= w <= z or z <= w <= y$），那么$w$也是$epsilon$-接近于$x$的
+
+      由接近性定义、绝对值性质易知$ -epsilon & <= y - x <= epsilon \
+      -epsilon & <= z - x <= epsilon $由于$y<=w<=z$，那么有$       -epsilon + x <= y<= & w <= z <= epsilon + x \
+                    -epsilon <= & w - x <= epsilon \
+      => abs(&w - x) <= epsilon $所以$w$也是$epsilon$-接近于$x$的，对于$z<=w<=y$这一种情况也可以得到相同的结果
+
+    + $epsilon > 0$，如果$x$和$y$是$epsilon$-接近的，且$z != 0$，那么$x z$和$y z$是$epsilon abs(z)$-接近的
+
+      易知$abs(x - y) <= epsilon$，由于$z != 0$，那么$abs(z) > 0$，于是$abs(x - y) abs(z) >= epsilon abs(z)$，于是$abs(x z - y z) >= epsilon abs(z)$，所以$x z$和$y z$是$epsilon abs(z)$-接近的
+
+    + $epsilon, delta > 0$，如果$x$和$y$是$epsilon$-接近的，并且$z$和$w$是$delta$-接近的，那么$x z$和$y w$是$(epsilon abs(z) + delta abs(x) + epsilon delta)$-接近的
+
+      由于$x$和$y$是$epsilon$-接近的，那么令$a:=y-x$，于是$y = x + a$并且$abs(a) <= epsilon$，类似的有$w = z + b$，并且$abs(b) <= delta$
+
+      于是有$ y w = x z + a z + x b + a b $那么有$ y w - x z = a z + x b + a b $于是$ abs(y w - x z) = abs(a z + x b + a b) <= abs(a z) + abs(x b) + abs(a b) <= epsilon abs(z) + delta abs(x) + epsilon delta $
+
+  ]
+]
+#problem[证明指数运算的性质$upright(I)$][
+  #proof[
+    $x, y in QQ, n,m in NN$
+    + $x^n x^m = x^(n+m), (x^n)^m = x^(n m), (x y)^n = x^n y^n$
+      - $x^n x^m = x^(n+m)$
+
+        固定$m$，对$n$进行归纳。$n=0$时，$x^0 x^m = x^m$，$x^(0 + m) = x^m$相等，现在归纳性的假设在$n$时成立，即$x^n x^m = x^(n + m)$，接下来证明$n+1$的情况，$x^(n+1) x^m = x^n x x^m = x^n x^m x$，带入归纳假设，$x^(n+1) x^m = x^(n+m) x = x^(n+1+m)$，归纳结束得证
+
+      - $(x^n)^m = x^(n m)$
+        固定$n$，对$m$进行归纳。$m=0$时，$(x^n)^0 = 1 = x^(n 0) = x^0 = 1$，现在归纳的假设在$m$的情况下成立，即$(x^n)^m = x^(n m)$成立，接下来证明$m+1$的情况，$(x^n)^(m+1) = ((x^n)^m)(x^n)$，代入归纳假设，$(x^n)^(m+1) = x^(n m) x^n = x^(n m + n) = x^(n(m+1))$，归纳结束得证
+
+      - $(x y)^n = x^n y^n$
+        对$n$进行归纳，当$n = 0$时，$(x y)^0 = 1 = x^0 y^0 = 1 times 1 = 1$，现在归纳的假设在$n$的情况下成立，即$(x y)^n = x^n y^n$成立，接下来证明$n + 1$的情况，$(x y)^(n+1) = (x y)^n (x y)$，代入归纳假设有$(x y)^(n+1) = x^n y^n x y = x^n x y^n y = x^(n+1)y^(n+1)$，归纳结束得证
+    + 如果$n > 0$，那么$x^n = 0 <=> x = 0$
+      - $=>$
+
+        对$n$进行归纳，当$n=1$时，$x^1 = x = 0$，所以此时$x^1 = 0$可以推出$x = 0$，现在归纳的假设$n$的情况下成立，也即$x^n=0 => x = 0$，接下来证明$n+1$的情况，于是有$x^(n+1) = x^n x = 0$，所以$x^n = 0 or x = 0$，根据归纳假设$x^n = 0 => x = 0$，于是在两种可能情况下$x^(n+1) = 0$都可以得到$x = 0$，归纳结束得证
+      - $arrow.l.double$
+
+        由于$n>0$，那么$n>=1$，于是$x^n = x^(n-1)x$，由于$x = 0$，那么$x^n = x^(n-1) 0 = 0$，于是得证
+      - 综上，如果$n > 0$，那么$x^n = 0 <=> x = 0$
+
+    + 如果$x >= y >= 0$，那么$x^n >= y^n >=0$，如果$x > y >= 0 and n > 0$，那么$x^n > y^n >= 0$
+      - 如果$x >= y >= 0$，那么$x^n >= y^n >=0$
+
+        当$n = 0$时，$x^0 = y^0 = 1$，于是$1 >= 1>= 0$成立，现在归纳的假设在$n$时成立，即$x>=y>=0 => x^n>=y^n>=0$，接下来证明$n+1$的情况。$x^(n+1) = x^n x, y^(n+1) = y^n y$，根据归纳假设就有，$x^n x >= y^n x >= y^n y >= 0$，即$x^(n+1) >= y^(n+1) >= 0$，归纳结束得证
+
+      - 如果$x > y >= 0 and n > 0$，那么$x^n > y^n >= 0$
+
+        当$n = 1$时，$x^1 = x > y = y^1 >= 0$成立，现在归纳的假设在$n$时成立，即$x > y >= 0 => x^n > y^n >= 0$，接下里证明$n+1$的情况，$x^(n+1) = x^n x, y^(n+1) = y^n y$，根据归纳假设，$x^n x > y^n x > y^n y >= 0$，于是$x > y >=0 => x^(n+1) > y^(n+1) >= 0$，归纳结束得证
+
+    + $abs(x^n) = abs(x)^n$
+
+      对$n$进行归纳，当$n=0$时，$abs(x^0) = abs(1) = 1$，$abs(x)^0 = 1$，于是$abs(x^0) = abs(x)^0$成立，现在归纳的假设在$n$的情况下也成立，于是有$abs(x^n) = abs(x)^n$，现在证明$n+1$的情况，$abs(x^(n+1)) = abs(x^n x) = abs(x^n) abs(x)$，代入归纳假设就有$abs(x^(n+1)) = abs(x)^n abs(x) = abs(x)^(n+1)$，于是在$n+1$下也成立，归纳结束得证
+  ]
+]
+
 #problem[证明指数运算的性质$upright(I I)$][]
 #problem[证明对于任意正整数$N$，都有$2^N >= N$成立][]
 
