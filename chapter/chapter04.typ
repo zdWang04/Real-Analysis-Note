@@ -633,6 +633,7 @@
       $d(x, y) + d(y,z) = abs(x - y) + abs(y - z) >= abs(x - y + y - z) = abs(x - z) = d(x,z)$
   ]
 ]
+
 #problem[证明$epsilon$-接近性的性质][
   #proof[
     + $x = y <=> forall epsilon in QQ and epsilon > 0, x$是$epsilon$-接近于$y$的
@@ -721,9 +722,45 @@
   ]
 ]
 
-#problem[证明指数运算的性质$upright(I I)$][]
-#problem[证明对于任意正整数$N$，都有$2^N >= N$成立][]
+#problem[证明指数运算的性质$upright(I I)$][
+  #proof[
+    $x, y in QQ and x,y!=0$，令$n,m in ZZ$，且$n = a -b, m = c - d$
+    + $x^n x^m = x^(n+m), (x^n)^m = x^(n m), (x y)^n = x^n y^n$
+      - $x^n x^m = x^(n+m)$
+        $
+          x^n x^m = x^(a-b)x^(c-d) = x^(a-b+c-d) = x^(n+m)
+        $
+      - $(x^n)^m = x^(n m)$
+        $
+          (x^n)^m & = (x^(a-b))""^(c-d) = (x^a x^(-b))""^(c-d) \
+                  & = x^(a(c-d)) x^(-b(c-d)) = x^(a c - a d - b c + b d) \
+                  & = x^((a-b)(c-d)) = x^(n m)
+        $
+      - $(x y)^n = x^n y^n$
+        $
+          (x y)^n= (x y)^(a-b) = (x y)^a(x y)^(-b) = x^a y^a x^(-b) y^(-b) = x^(a-b)y^(a-b) = x^n y^n
+        $
+    + $x >= y > 0$，那么当$n$是正整数时有$x^n >= y^n > 0$，当$n$为负数时有，$0 < x^n <= y^n$
 
+      当$n$是正整数时，$n$对应某个自然数$n' > 0$，于是根据自然数幂次的指数运算性质，在$x >= y > 0$时，就有$x^n >= y^n > 0$；当$n$是负整数时，存在某个自然数$n' > 0, n' = -n > 0$，于是根据自然数幂次的指数运算性质，在$x >= y > 0$时$x^(-n) >= y^(-n) > 0$，于是有$y^n >0 and x^n >0 and y^n >= x^n$，总之有$0 < x^n <= y^n$
 
+    + $x, y > 0$，$n !=0$并且$x^n = y^n$，那么$x = y$
+
+      由于$n!=0$，那么$a != b$，于是$ x^n = y^n => x^(a-b) = y^(a-b) => (x/y)^(a-b) = 1 $
+      由于$forall n in ZZ and n != 0, 1^n = 1$成立，于是$x/y = 1 => x = y$
+
+    + $abs(x^n) = abs(x)^n$
+      $
+        abs(x^n) = abs(x^(a-b)) = abs(x^a x^(-b)) = abs(x)^a abs(x)^(-b) = abs(x)^(a-b) = abs(x)^n
+      $
+  ]
+]
+
+#problem[证明对于任意正整数$N$，都有$2^N >= N$成立][
+  #proof[
+    对$N$进行归纳，当$N=1$时，有$2^1 = 2 >= 1$成立，现在归纳的假设$N$的情况下成立，即$2^N >= N$，接下来证明$N+1$的情况
+    $ 2^(N+1) = 2^N times 2 >= N times 2 = N + N >= N + 1 $成立，归纳结束
+  ]
+]
 
 == 有理数的间隙
