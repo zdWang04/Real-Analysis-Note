@@ -94,3 +94,29 @@
 ]
 
 == 等价的柯西序列
+
+#definition[$epsilon$-接近的序列][
+  $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是两个序列，$epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^infinity$是_$epsilon$-接近_于序列$(b_n)_(n=0)^infinity$的，当且仅当$abs(a_i- b_i) <= epsilon,forall i in NN$
+]
+
+#definition[最终$epsilon$-接近的序列][
+  $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是两个序列，$epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^infinity$是_最终$epsilon$-接近_于序列$(b_n)_(n=0)^infinity$的，当且仅当存在$N in NN$，使得$abs(a_i- b_i) <= epsilon, forall i >= N$成立
+]
+
+#definition[等价序列][
+  $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$两个序列是等价的，当且仅当对于任意$epsilon in QQ and epsilon > 0$，存在$N in NN$，使得$abs(a_i - b_i) <= epsilon, forall i >= N$
+]
+#pagebreak()
+#note-block[
+  对于一个序列内部，它的收敛行为我们使用了（最终）$epsilon$-稳定性和柯西序列进行描述
+
+  对于两个序列之间，将上面的内容进行类比，就得到（最终）$epsilon$-接近性和等价序列
+]
+
+#example[$(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是两个序列，其中$a_n = 1 + 10^(-n), b_n = 1 - 10^(-n)$，那么他们是等价的][
+  $forall epsilon > 0$，要找到$N in NN$，使得$abs(a_n - b_n) <= epsilon, forall n >= N$，那么就有$ abs(1+10^(-n) - 1 + 10^(-n)) = 2 times 10^(-n) <= epsilon $当$n >= N$时，$2 times 10^(-n) <= 2 times 10^(-N)$那么即求$ 2 times 10^(-N) <= epsilon $由于$10^N > N, N in NN$，那么就有$10^(-N)< 1/N$，所以$ 2 times 1/N <= epsilon\ => N >=2/epsilon $所以对于任意正有理数$epsilon$，取$N = ceil(2/ epsilon)$即可
+]
+
+#practice-separate()
+
+#problem[证明：如果$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的有理数序列，那么$(a_n)_(n=1)^infinity$是柯西序列，当且仅当$(b_n)_(n=1)^infinity$是柯西序列][]
