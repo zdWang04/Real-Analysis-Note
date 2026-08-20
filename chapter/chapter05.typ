@@ -104,7 +104,7 @@
 ]
 
 #definition[等价序列][
-  $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$两个序列是等价的，当且仅当对于任意$epsilon in QQ and epsilon > 0$，存在$N in NN$，使得$abs(a_i - b_i) <= epsilon, forall i >= N$
+  $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$两个序列是等价的，当且仅当对于任意$epsilon in QQ^+$，存在$N in NN$，使得$abs(a_i - b_i) <= epsilon, forall i >= N$
 ]
 #pagebreak()
 #note-block[
@@ -119,4 +119,54 @@
 
 #practice-separate()
 
-#problem[证明：如果$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的有理数序列，那么$(a_n)_(n=1)^infinity$是柯西序列，当且仅当$(b_n)_(n=1)^infinity$是柯西序列][]
+#problem[证明：如果$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的有理数序列，那么$(a_n)_(n=1)^infinity$是柯西序列，当且仅当$(b_n)_(n=1)^infinity$是柯西序列][
+
+  #proof[
+    由于两个序列是等价序列，那么$forall epsilon in QQ^+, exists N in NN$，使得$abs(a_n - b_n) <= epsilon/3, forall n >= N$
+
+    - $=>$
+
+      当$(a_n)_(n=1)^infinity$是柯西序列时，$forall epsilon in QQ^+, exists N' in NN$，使得$abs(a_j - a_k) <= epsilon/3, forall j, k >= N'$
+
+      那么当$N'' = max(N, N')$时，就有$ abs(b_j - b_k) <= abs(b_j - a_j) + abs(a_j - a_k) + abs(a_k - b_k) <=epsilon/3 + epsilon/3 + epsilon/3 = epsilon, forall j, k >= N'' $于是$(b_n)_(n=1)^infinity$是柯西序列
+
+    - $arrow.l.double$同理
+  ]
+
+  #note-block[
+    证明关键是利用$epsilon/3$凑配出$abs(b_j - b_k) <= epsilon$的不等式
+  ]
+]
+
+#problem[证明：如果$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的有理数序列，那么$(a_n)_(n=1)^infinity$是有界的，当且仅当$(b_n)_(n=1)^infinity$是有界的][
+
+  #proof[
+    两序列为等价序列，那么$forall epsilon in QQ^+, exists N in NN$，使得$abs(a_j - b_j) <= epsilon, forall j >= N$
+
+    - $=>$
+
+      由于$(a_n)_(n=1)^infinity$是有界的，那么$exists M in QQ^+$，使得$abs(a_i) <= M, forall i in NN^+$，于是$ abs(b_i) <= abs(b_i - a_i) + abs(a_i) <= epsilon + M $于是$(b_n)_(n=1)^infinity$是有界的
+
+    - $arrow.l.double$同理
+  ]
+]
+
+== 实数的构造
+
+#definition[实数][
+  + _实数_被定义为形如$"LIM"_(n -> infinity) a_n$的对象，其中$(a_n)_(n=1)^infinity$是_有理数柯西序列_
+  + 两个实数$"LIM"_(n -> infinity) a_n$和$"LIM"_(n -> infinity) b_n$被成为是_相等的_，当且仅当$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是_等价的柯西序列_
+  + 所有实数组成的集合记作$RR$
+
+  #note-block[
+    这里的$"LIM"$和先前构造整数时的形式减法$bar.h$以及构造有理数时的形式除法$slash.double$一样，当对实数的代数性质以及运算进行了足够的证明之后，$"LIM"$会和早已熟悉的$lim$匹配
+  ]
+]
+
+#theorem[实数相等是良定义的][]
+#definition[实数加法][
+
+  $x = "LIM"_(n -> infinity) a_n, y = "LIM"_(n -> infinity) b_n$是实数，那么$x + y := "LIM"_(n -> infinity) (a_n + b_n)$
+]
+
+#lemma[柯西序列的和也是柯西的][]
