@@ -16,7 +16,7 @@
 
 #definition(
   title: "有序对",
-)[如果 $x$ 和 $y$ 是两个对象，那么他们的_有序对 $(x,y)$ _也是一个对象，其中 $x$ 是有序对的第一个组分， $y$ 是有序对的第二个组分。
+)[如果 $x$ 和 $y$ 是两个对象，那么他们的_有序对 $(x,y)$ _也是一个对象，其中 $x$ 是有序对的第一个组分， $y$ 是有序对的第二个组分.
   $ (x, y) = (x', y') <==> x = x' and y = y' $
 ]
 
@@ -28,7 +28,7 @@
 #note-block[可以将加法构造为一个函数 $+:N times N -> N$ ，该函数被定义为 $(x, y) |-> x+y$ ]
 
 #definition(title: [有序$n$-元组和$n$-次笛卡尔积])[
-  $n$为一个自然数，一个有序$n$元对$(x_i)_(1 <= i <= n)$（也可写作$(x_1, x_2, ..., x_n)$）是对象$x_i$的组合，其中$x_i$是有序$n$-元组的第$i$个组分。两个有序$n$-元组是相等的，当且仅当对应组分相等。
+  $n$为一个自然数，一个有序$n$元对$(x_i)_(1 <= i <= n)$（也可写作$(x_1, x_2, ..., x_n)$）是对象$x_i$的组合，其中$x_i$是有序$n$-元组的第$i$个组分.两个有序$n$-元组是相等的，当且仅当对应组分相等.
   $ (x_i)_(1 <= i <= n) = (y_i)_(1 <= i <= n) <==> x_i = y_i, forall 1<= i <= n $
 
   如果$(X_i)_(1<=i<=n)$是一个集合的有序$n$-元组，那么可以定义它的_笛卡尔积$product_(1<=i<=n)X_i$_为
@@ -40,7 +40,7 @@
 ]
 #pagebreak()
 #note-block[
-  如果$x$是一个对象，那么_1-元组$(x)$_被认为和$x$是相等的，尽管严格来说是不一样，但是并不影响。
+  如果$x$是一个对象，那么_1-元组$(x)$_被认为和$x$是相等的，尽管严格来说是不一样，但是并不影响.
 ]
 
 #note-block[
@@ -74,13 +74,13 @@
 ]
 
 #lemma(title: "有限选取")[
-  令$n >= 1$是一个自然数，并且对于任何自然数$1<= i <= n$，$X_i$都是非空集合，那么存在一个$n$-元组$(x_i)_(1<=i<=n)$，对于任意的$1<=i <= n$，都使得$x_i in X_i$成立，也即若任一个$X_i$非空，那么$product_(1<=i<=n)X_i$也非空。
+  令$n >= 1$是一个自然数，并且对于任何自然数$1<= i <= n$，$X_i$都是非空集合，那么存在一个$n$-元组$(x_i)_(1<=i<=n)$，对于任意的$1<=i <= n$，都使得$x_i in X_i$成立，也即若任一个$X_i$非空，那么$product_(1<=i<=n)X_i$也非空.
   #proof[
-    对$n$进行归纳。
+    对$n$进行归纳.
     + $n=0$时，$i$取值为空，空真自动成立
-    + $n=1$时，命题变为对于非空集合$X_1$，存在一个一元组$(x_1)$（或称对象$x_1$）$x_1 in X_1$，根据单个选取引理，如果集合非空，那么必然存在某个元素属于该集合，所以成立。
-    + 现在归纳的假设在$n$的情况下成立。
-    + 由于归纳假设，存在$(x_i)_(1<=i<=n)$，对于$forall 1<= i <= n$ 使得 $x_i in X_i$ 成立。在$n++$的情况下，由于$X_(n++)$非空，再次根据单个选取引理，一定存在对象 $a in X_(n++)$ ，现在令新的(n++)-元组为$(y_i)_(1<=i <= n++)$，其中$y_i = x_i, forall 1<= i <= n$ 且 $y_(i) = a, i = n++$ ，这样的(n++)-元组是存在的，所以$y_i in X_i, forall 1<= i <= n++$
+    + $n=1$时，命题变为对于非空集合$X_1$，存在一个一元组$(x_1)$（或称对象$x_1$）$x_1 in X_1$，根据单个选取引理，如果集合非空，那么必然存在某个元素属于该集合，所以成立.
+    + 现在归纳的假设在$n$的情况下成立.
+    + 由于归纳假设，存在$(x_i)_(1<=i<=n)$，对于$forall 1<= i <= n$ 使得 $x_i in X_i$ 成立.在$n++$的情况下，由于$X_(n++)$非空，再次根据单个选取引理，一定存在对象 $a in X_(n++)$ ，现在令新的(n++)-元组为$(y_i)_(1<=i <= n++)$，其中$y_i = x_i, forall 1<= i <= n$ 且 $y_(i) = a, i = n++$ ，这样的(n++)-元组是存在的，所以$y_i in X_i, forall 1<= i <= n++$
     + 综上归纳完毕
   ]
 ]
@@ -215,7 +215,7 @@
   ]
 ]
 
-#problem[$A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$。$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？][
+#problem[$A,B,C,D$是集合，证明$(A times B) inter (C times D) = (A inter C) times (B inter D)$.$(A times B) union (C times D) = (A union C) times (B union D)$ 是否为真？$(A times B) without (C times D) = (A without C) times (B without D)$是否为真？][
   #proof[
 
     - $(A times B) inter (C times D) = (A inter C) times (B inter D)$
@@ -279,7 +279,7 @@
         & => x in A and x in.not C and y in B and y in.not D \
         & => x in A and y in B and x in.not C and y in.not D \
         & =>(x, y) in A times B and (x, y) in.not C times D \
-        & =>(x, y) in (A times B) without (C times D) $ 注意，$(x ,y) in.not C times D <=> x in.not C or y in.not D$，所以$x in.not C and y in.not D$是$(x, y) in.not C times D$的充分但非必要条件。
+        & =>(x, y) in (A times B) without (C times D) $ 注意，$(x ,y) in.not C times D <=> x in.not C or y in.not D$，所以$x in.not C and y in.not D$是$(x, y) in.not C times D$的充分但非必要条件.
 
       + 综上，$(A without C) times (B without D) subset.neq (A times B) without (C times D)$
   ]
@@ -404,13 +404,13 @@
 
 ]
 
-#problem[$f:X->Y$是函数，定义函数$f$的_图（graph）_为$X times Y$子集，定义为${(x, f(x)):x in X}$，证明：对于$tilde(f):X -> Y"和"f:X->Y,f=tilde(f) <==> f, tilde(f)$有相同的图。如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$][
+#problem[$f:X->Y$是函数，定义函数$f$的_图（graph）_为$X times Y$子集，定义为${(x, f(x)):x in X}$，证明：对于$tilde(f):X -> Y"和"f:X->Y,f=tilde(f) <==> f, tilde(f)$有相同的图.如果集合$G subset.eq X times Y$，且$forall x in X$，集合${y in Y: (x, y) in G}$中只有一个元素，证明只有一个函数$f:X->Y$的图是$G$][
   #proof[
     - $f=tilde(f) <=> f, tilde(f)$有相同的图
 
       + $f=tilde(f) => f, tilde(f)$有相同的图
 
-        由于$f = tilde(f)$，那么$forall x in X, f(x) = tilde(f)(x)$，于是$ {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} $所以 $f"和"tilde(f)$有相同的图。
+        由于$f = tilde(f)$，那么$forall x in X, f(x) = tilde(f)(x)$，于是$ {(x, f(x)):forall x in X} = {(x, tilde(f)(x)): forall x in X} $所以 $f"和"tilde(f)$有相同的图.
 
       + $f, tilde(f)$有相同的图$=> f=tilde(f)$
 
@@ -447,7 +447,7 @@
 
 #problem(title: "严格的递归定义")[
   函数$f:NN times NN -> NN$，$c in NN$，证明存在一个函数$a: NN -> NN$，使得$ & a(0) = c \
-  & a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的。进一步的，仅使用皮亚诺公理和集合论证明递归的定义
+  & a(n++) = f(n, a(n))，forall n in NN $成立，并且该函数是唯一的.进一步的，仅使用皮亚诺公理和集合论证明递归的定义
 
   #proof[
     - 存在性
@@ -457,11 +457,11 @@
 
       所以可以得到函数$ a = union.big cal(A) $
 
-      $a:NN->NN$存在且满足要求。
+      $a:NN->NN$存在且满足要求.
 
     - 唯一性
 
-      假设$a:NN->NN,a':NN->NN$都满足上述条件。
+      假设$a:NN->NN,a':NN->NN$都满足上述条件.
       $a(0) = a'(0) = c$成立，归纳性的假设$a(n) = a'(n)$也成立，现在证明$n++$下的情况
       $  a(n++) & = f(n, a(n)) \
       a'(n++) & = f(n, a'(n)) $由于归纳假设$a(n) = a'(n)$，那么$a(n++) = a'(n++)$，归纳完毕，$forall n in NN, a(n) = a'(n)$，且它们的定义域和值域都是$NN$，所以$a = a'$，于是这样的函数$a$是唯一的
@@ -489,7 +489,7 @@
 
       对$n'$进行归纳，当$n' = 0'$时，$f(n) = 0'$，$f$的定义中规定$f(0) = 0'$，所以存在$n = 0 in NN$使得$f(0) = 0'$
 
-      现在归纳的假设存在$n in NN$，使得$f(n) = n'$，接下来证明$n'++'$的情况下成立。
+      现在归纳的假设存在$n in NN$，使得$f(n) = n'$，接下来证明$n'++'$的情况下成立.
 
       $ f(n++) = n'++' = f(n)++' $由归纳假设$exists n in NN, f(n) = n'$，所以前式成立，因此存在$m = n++ in NN$，使得$f(m) = n'++'$，归纳结束
 
@@ -504,7 +504,7 @@
 ]
 
 #definition[集合的基数][
-  设$n$是一个自然数，称集合$X$的基数为$n$当且仅当$X$和集合${i in NN: 1<=i<=n}$有相同的基数。$X$有$n$个元素当且仅当$X$的基数为$n$
+  设$n$是一个自然数，称集合$X$的基数为$n$当且仅当$X$和集合${i in NN: 1<=i<=n}$有相同的基数.$X$有$n$个元素当且仅当$X$的基数为$n$
 ]
 
 #note-block[
@@ -526,14 +526,14 @@
   ]
 ]
 
-#lemma[假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的。$forall x in X,"集合"X without {x}$的基数是$n-1$][
+#lemma[假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的.$forall x in X,"集合"X without {x}$的基数是$n-1$][
 
   #proof[
-    - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$exists x in X, f(x) = 1$，所以$X$非空。
+    - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$exists x in X, f(x) = 1$，所以$X$非空.
 
     - 由于$X$的基数为$n$，那么存在双射$f:X->{i in NN: 1<=i<=n}$
 
-      定义一个函数$g:X without {x}-> {i in NN: 1<= i <=n-1}$，其中$x in X$，满足$forall y in X without {x}$ $ g(y)=cases(f(y)\, &f(y) < f(x), f(y)-1\, &f(y) > f(x)) $注意，$f(y) = f(x)$是不可能的，因为$f$是双射，那么$f(y) = f(x) => y = x$，而$y in X without {x}$，矛盾，所以$f(y)!=f(x)$，上面定义的分段函数是考虑了所有情况的。接下来只需要证明$g$在$X without {x}$上是双射即可。
+      定义一个函数$g:X without {x}-> {i in NN: 1<= i <=n-1}$，其中$x in X$，满足$forall y in X without {x}$ $ g(y)=cases(f(y)\, &f(y) < f(x), f(y)-1\, &f(y) > f(x)) $注意，$f(y) = f(x)$是不可能的，因为$f$是双射，那么$f(y) = f(x) => y = x$，而$y in X without {x}$，矛盾，所以$f(y)!=f(x)$，上面定义的分段函数是考虑了所有情况的.接下来只需要证明$g$在$X without {x}$上是双射即可.
 
       该分段函数在每一个分段上都是是双射的，所以$g:X without {x}:{i in NN: 1<=i <=n-1}$是双射函数，也即$X without {x}$的基数是$n-1$
   ]
@@ -542,19 +542,19 @@
 #theorem("基数的唯一性")[
   集合$X$的基数为$n$，那么$X$不可能还有其他的基数，也即$forall m != n$，$m$不是$X$的基数
   #proof[
-    对$n$进行归纳，当$n=0$时，集合$X=emptyset$，空集不会非0基数。假设$n$的情况下，集合有唯一基数成立，现在证明$n++$的情况。
+    对$n$进行归纳，当$n=0$时，集合$X=emptyset$，空集不会非0基数.假设$n$的情况下，集合有唯一基数成立，现在证明$n++$的情况.
 
     假设存在$m != n++$，$m$也是$X$的基数，由引理，$X$是非空的，且如果$x in X$，那么$X without {x}$的基数为$n$，同时也是$m-1$，由归纳假设$n = m - 1 => n++ = m$，矛盾，归纳完毕
   ]
 ]
 
 #definition("有限集")[
-  一个集合是有限的，当且仅当它的基数是某个自然数$n$，否则称之为无限的。如果$X$是一个有限集，记其基数为$\#(X)$.
+  一个集合是有限的，当且仅当它的基数是某个自然数$n$，否则称之为无限的.如果$X$是一个有限集，记其基数为$\#(X)$.
 ]
 
 #theorem("自然数集" + [$NN$] + "是无限的")[
   #proof[
-    假设$NN$是有限集，那么令$\#(NN) = n$，于是存在一个双射$f:{i in NN: 1<=i<=n} -> N$，那么存在$M in NN$，使得$forall 1<=i<=n, f(i) <= M$，那么$forall 1<=i<=n, f(i) < M++$，所以$M++$无法被$f$映射到，这与满射是矛盾的。于是$NN$是无限集
+    假设$NN$是有限集，那么令$\#(NN) = n$，于是存在一个双射$f:{i in NN: 1<=i<=n} -> N$，那么存在$M in NN$，使得$forall 1<=i<=n, f(i) <= M$，那么$forall 1<=i<=n, f(i) < M++$，所以$M++$无法被$f$映射到，这与满射是矛盾的.于是$NN$是无限集
   ]
 ]
 
@@ -564,7 +564,7 @@
 
   + $X、Y$是有限集，那么$X union Y$是有限集，且 $\#(X union Y) <= \#(X) + \#(Y)$，且当$X inter Y = emptyset$时取等
 
-  + $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
+  + $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的.且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
 
   + $X$是有限集，且函数$f:X->Y$，那么$f(X)$是有限集，且满足$\#(f(X)) <= \#(X)$，当$f$是单射时，$\#(f(X)) = \#(X)$
 
@@ -582,7 +582,7 @@
 
     - 对称 $\#(X) = \#(Y) <=> \#(Y) = \#(X)$
 
-      由于$\#(X) = \#(Y)$，那么存在双射函数$f:X->Y$，由于$f$是双射的，那么也存在反函数$f^(-1):Y->X$，于是$\#(Y) = \#(X)$。同理可以从$\#(Y) = \#(X)$推出$\#(X) = \#(Y)$。所以满足对称性
+      由于$\#(X) = \#(Y)$，那么存在双射函数$f:X->Y$，由于$f$是双射的，那么也存在反函数$f^(-1):Y->X$，于是$\#(Y) = \#(X)$.同理可以从$\#(Y) = \#(X)$推出$\#(X) = \#(Y)$.所以满足对称性
 
     - 传递 $\#(X) = \#(Y) and \#(Y) = \#(Z) => \#(X) = \#(Z)$
 
@@ -621,11 +621,11 @@
 
     2. $X、Y$是有限集，那么$X union Y$是有限集，且 $\#(X union Y) <= \#(X) + \#(Y)$，且当$X inter Y = emptyset$时取等
 
-      由于$X、Y$都是有限集，令其基数分别为$a,b$。现在固定$a$，对$b$进行归纳。
+      由于$X、Y$都是有限集，令其基数分别为$a,b$.现在固定$a$，对$b$进行归纳.
 
       - 当$b=0$时，$Y = emptyset$，所以$X union Y = X$，所以$ & \#(X union Y) = a \
         & \#(X) +\#(Y) = a + 0 = a \
-        & => \#(X union Y) <= \#(X) +\#(Y) $ 且$X inter Y =X inter emptyset = emptyset$，所以$X inter Y = emptyset$时取等。
+        & => \#(X union Y) <= \#(X) +\#(Y) $ 且$X inter Y =X inter emptyset = emptyset$，所以$X inter Y = emptyset$时取等.
 
       - 假设$b$的情况下成立，即$\#(X union Y) <= a + b$且$X inter Y = emptyset$时，$\#(X union Y) = a + b$
 
@@ -633,20 +633,20 @@
 
         - 当$y in.not X$时，$ & \#(X union Y') \
           & = \#(X union Y union {y}) \
-          & =\#(X union Y) + 1 "（基数运算1）" \ $ 由于归纳假设$\#(X union Y) <= a + b$，那么$\#(X union Y') <= a + b + 1 = a + (b++)$。特别的，当$X inter Y' = emptyset$时，$ & \#(X union Y') \
+          & =\#(X union Y) + 1 "（基数运算1）" \ $ 由于归纳假设$\#(X union Y) <= a + b$，那么$\#(X union Y') <= a + b + 1 = a + (b++)$.特别的，当$X inter Y' = emptyset$时，$ & \#(X union Y') \
           & = \#(X union Y union {y}) \
           & = \#(X union Y) + 1 \
           & = a+b+1 = a+(b++) $
 
-        - 当$y in X$时，有关 $<=$的推理如上，因为$X inter Y != emptyset$，所以不需要证明相等的情况了。
+        - 当$y in X$时，有关 $<=$的推理如上，因为$X inter Y != emptyset$，所以不需要证明相等的情况了.
 
       - 归纳完毕得证
 
-    3. $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的。且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
+    3. $X$是有限集，集合$Y subset.eq X$，那么$Y$也是有限的.且$\#(Y)<=\#(X)$，如果$Y subset.neq X$，那么$\#(Y) < \#(X)$
 
       由于$X$是有限集，令基数为$a$，对$a$进行归纳
 
-      - $a = 0$时，$X = emptyset$，由于$Y subset.eq X$，那么$Y = emptyset$，于是$Y$是有限集，且基数为$0$，$\#(Y) <= \#(X)$成立，由于此时$X = Y$，所以第二部分自动成立。
+      - $a = 0$时，$X = emptyset$，由于$Y subset.eq X$，那么$Y = emptyset$，于是$Y$是有限集，且基数为$0$，$\#(Y) <= \#(X)$成立，由于此时$X = Y$，所以第二部分自动成立.
 
       - 现在归纳的假设$a$时也成立，即$\#(Y) <= a$，且$Y subset.eq X$时，$\#(Y) < a$，接下来证明$a+1$下的情况
 
@@ -666,7 +666,7 @@
 
       - $a = 0$时，$f$是空函数，$X = f(X) = emptyset$，于是$0 = \#(f(X)) <= \#(X) = 0$，空函数都是单射，于是$\#(f(X)) = \#(X)$
 
-      - 现在归纳的假设在$a$时成立，即$\#(f(X)) <= \#(X) = a$，当$f$为单射时取等。接下来证明$a+1$下的情况
+      - 现在归纳的假设在$a$时成立，即$\#(f(X)) <= \#(X) = a$，当$f$为单射时取等.接下来证明$a+1$下的情况
 
       - 令$X' = X union {x_0} and x_0 in.not X$，定义分段函数$h:X'->Y union {y_0}$，满足$ h(x) = cases(f(x)&\,x in X, y_0&\,x=x_0) $那么$h(X') = f(X) union {y_0}$，当$y_0 in f(X)时，$$\#(h(X')) <= \#(f(X)) + 1$，当$y_0 in.not f(X)$时取等，所以总是满足的，接着由归纳假设可得$ \#(h(X')) <= a+1 $，当$h$为单射时，$f$也为单射且$y_0 in.not f(X)$，由于归纳假设，在$f$为单射时取等，所以在$h$为单射时，$\#(h(X')) = \#(f(X)) + 1 = a+ 1$
 
@@ -689,7 +689,7 @@
 
       - 由于$X、Y$都是有限集，令其基数分别为$a、b$，固定$b$，对$a$进行归纳
 
-        - $a = 0$时，$X = emptyset => \#(X) = 0$，所以$Y^X = {f: emptyset -> Y}$，空函数是唯一的，于是$\#(Y^X) = 1 = \#(Y)^\#(X) = b^0 = 1$成立。
+        - $a = 0$时，$X = emptyset => \#(X) = 0$，所以$Y^X = {f: emptyset -> Y}$，空函数是唯一的，于是$\#(Y^X) = 1 = \#(Y)^\#(X) = b^0 = 1$成立.
 
         - 现在归纳的假设$a$的情况下成立，那么$\#(Y^X) = \#(Y)^\#(X) = b^a$，接下来证明$a+1$下的情况
 
@@ -706,7 +706,7 @@
 ]
 
 #problem[设$A、B$是集合，通过构造一个明确的双射来证明$\#(A times B) = \#(B times A)$，并利用基数算术证明自然数的乘法交换律][
-  #proof[令函数$h:A times B -> B times A$为$h(x, y) = (y, x)$，下面证明$h$是双射的。
+  #proof[令函数$h:A times B -> B times A$为$h(x, y) = (y, x)$，下面证明$h$是双射的.
     - 如果$h(x_1,y_1) = h(x_2, y_2)$，那么$(y_1, x_1) = (y_2, x_2)$，根据有序双元组的相等，就有$x_1 = x_2 and y_1 = y_2$，于是$h$是单射
 
     - $forall (y,x) in B times A$，$exists (y, x) = h(x, y)$，其中$(x, y) in A times B$，所以$h$是满射的
@@ -766,7 +766,7 @@
 
   - 若$A != emptyset and B != emptyset$
 
-    由于存在单射函数$f:A->B$，于是$f(A) subset.eq B$，接着定义函数$f':A->f(A)$且$forall x in A, f'(x) = f(x)$，易知$f'$是双射。于是存在逆函数$f'^(-1):f(A) -> A$，接着可以定义函数$g:B->A$，其中$ g(y)=cases(f^(-1)(y)&\, y in f(A), a_0&\, y in B without f(A)) $
+    由于存在单射函数$f:A->B$，于是$f(A) subset.eq B$，接着定义函数$f':A->f(A)$且$forall x in A, f'(x) = f(x)$，易知$f'$是双射.于是存在逆函数$f'^(-1):f(A) -> A$，接着可以定义函数$g:B->A$，其中$ g(y)=cases(f^(-1)(y)&\, y in f(A), a_0&\, y in B without f(A)) $
 
     $forall x in A$，$exists y in f(A)$，使得$y = f(x)$，于是$g(y) = f^(-1)(y) = x$，所以对于任意的$x in A$，确实存在$y in f(A) subset.eq B$使得$x = g(y)$，于是函数$g$是满射
 

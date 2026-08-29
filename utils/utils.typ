@@ -17,12 +17,12 @@
 //   #content
 // ]
 #let note-block(content, title: "侧记") = block(
-  fill: rgb("f5f5f5"), // 保留您最喜欢的淡灰色背景
+  fill: rgb("f5f5f5"),
   width: 100%,
-  stroke: (left: 4pt + rgb("888888")), // 左侧加粗装饰边框（使用了沉稳的深灰色）
-  inset: (left: 12pt, right: 12pt, top: 10pt, bottom: 10pt), // 调整内边距，让文字离左边线有优雅的距离
+  stroke: (left: 4pt + rgb("888888")),
+  inset: (left: 12pt, right: 12pt, top: 10pt, bottom: 10pt),
 )[
-  // 标题：侧记（保留了比底色稍深的灰色精致小标签样式）
+
   #box(
     fill: rgb("e8e8e8"),
     inset: (x: 8pt, y: 4pt),
