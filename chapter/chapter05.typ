@@ -743,13 +743,150 @@
 ]
 == 最小上界性质
 
+#definition[上界][
+  $E subset.eq RR, M in RR, M$是$E$的上界$<=> forall x in E, x<=M$
+]
 
-// #lemma[$forall x in RR^+, exists N in ZZ^+, x > 1/N >0$][]
+#example[$RR^+$没有上界][
+  假设$RR^+$有上界，为$M$，于是$forall x in RR^+,0 < x <= M$，那么$M+1 in RR^+$，于是就有$M+1<=M => 1<=0$矛盾，所以$RR^+$没有上界
+]
 
-// #corollary[两个实数之间至少有一个有理数][
-//   $x,y in RR, x>y => exists q in QQ, x < q < y$
+#example[$emptyset$的上界是任意实数][
+  由于空集中没有任何元素，所以无法选择任何数进行比较，空真自动成立
+]
 
-//   #proof[
-//     令$x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n$，由于$x< y$，那么$y-x$是正的，那么$exists c in QQ^+, forall i in ZZ^+, a_i - b_i >= c$
-//   ]
-// ]
+#definition[最小上界][
+  $E subset.eq RR, M in RR, M$是$E$的最小上界，当且仅当：
+  + $M$是$E$的上界
+  + $E$的任何其他上界$M' >= M$
+]
+
+#lemma[最小上界的唯一性][
+  #proof[
+    $E subset.eq RR$，令$E$的最小上界为$M_1, M_2$，所以$M_1,M_2$都是上界，由于$M_1$是最小上界，所以$M_1 <= M_2$，由于$M_2$是最小上界，所以$M_2 <= M_1$，于是就有$M_1 = M_2$，所以最小上界唯一
+  ]
+]
+
+#theorem[最小上界的存在性][
+  $E != emptyset, E subset.eq RR$，如果$E$有上界，也一定存在最小上界
+
+  #proof[
+    令$n in ZZ^+$，由于$E$有上界，令其为$M$，由阿基米德定理，就有$ exists K in ZZ, K/n >= M $因此$K/n$也是$E$的一个上界，由于$E != emptyset$，那么取$x_0 in E$，再次利用阿基米德性质就有$ exists L in ZZ, x_0 > L/n $因此$L/n$不是$E$的一个上界，也因此就有$ K/n > L/n => K >= L $
+
+    因此$exists m_n in ZZ, L < m_n <= K$，并且$m_n$满足$m_n/n$是$E$的上界，而$(m_n-1)/n$不是$E$的上界（这样的$m_n$存在且唯一，见问题 5.71和问题 5.72的证明）
+
+    令$N in ZZ^+. n,n' in ZZ^+,n,n'>=N$，由于$m_n/n$是上界，而$(m_(n')-1)/n'$不是上界，就有$ m_n/n > (m_(n')-1)/n' => m_n/n - m_(n')/n' > -1/n' >= -1/N $由于$(m_n-1)/n$不是上界，而$m_(n')/n'$是上界，就有$ m_(n')/n' > (m_n-1)/n => m_(n)/n - m_n'/n' < 1/n <= 1/N $综上就有$ forall n,n'>=N>=1, abs(m_n/n - m_(n')/n') <= 1/N $这正是柯西序列的定义，且$m_n/n in QQ$，那么定义实数$ S:= "LIM"_(n->infinity)m_n/n $由于$"LIM"_(n->infinity)1/n = 0$，那么$ S = "LIM"_(n->infinity)(m_n-1)/n $
+
+    至此构造出了"可能"的最小上界$S$，接下来需要验证$S$满足最小上界的定义
+
+    由于$forall n in ZZ^+, m_n/n$都是$E$的上界，那么$ forall x in E, x<=m_n/n $于是$ x <= "LIM"_(n->infinity)m_n/n = S $所以$S$是$E$的上界
+
+    令$y$是$E$的任意上界，由于$(m_n -1)/n$不是上界，所以就有$ y > (m_n - 1)/n => y > "LIM"_(n->infinity)(m_n - 1)/n = S $所以$S$是所有上界中最小的，所以$S$确实是最小上界
+
+    综上，最小上界是存在的
+  ]
+]
+
+
+#definition[上确界（Supremum）][
+  + $E subset.eq RR and E != emptyset$且$E$有上界，定义$sup(E)$是$E$的最小上界
+  + $E subset.eq RR and E != emptyset$且$E$没有上界，定义$ sup(E) := +infinity $
+  + $E = emptyset$，定义$ sup(E) := -infinity $
+
+  #note-block[
+    + 上确界的良定义由最小上界的唯一性和存在性所保障
+    + 目前$+infinity, -infinity$还没有什么特别的意思，具体的性质在广义实数系中讨论
+  ]
+]
+
+
+
+#example[$exists x in RR^+, x^2 = 2$][
+  定义集合$ E := {y in RR: y>=0 and y^2 < 2} $由于$y = 1 in E$，所以$E != emptyset$，此外易知$2$是$E$的一个上界，所以集合$E$有上确界，记作$ x := sup(E) $
+
+  因为$y = 1 in E$，那么$x >= 1$. 因为$2$是$E$的一个上界，那么$x <= 2$. 总之$ 1<=x<=2 $为了证明$x^2=2$，只需要证明$x^2>2$和$x^2<2$都是矛盾的即可
+
+  取$epsilon in QQ, 0< epsilon <1$，所以有$ 0< epsilon^2 < epsilon $
+
+  + 如果$x^2 < 2$，那么$ (x+epsilon)^2 = x^2 + 2 x epsilon + epsilon^2 <= x^2 + 4epsilon + epsilon^2 < x^2 + 5 epsilon $由于$x^2 < 2$，那么可以选取一个$epsilon$，满足$x^2 + 5 epsilon < 2$，于是$x+epsilon in E$，但是$x < x +epsilon$，这与$x = sup(E)$矛盾
+  + 如果$x^2 > 2$，那么$ (x-epsilon)^2 = x^2 - 2 x epsilon + epsilon^2 > x^2 - 2 x epsilon >=x^2 - 4 epsilon $那么可以选取一个$epsilon$，满足$x^2 - 4 epsilon > 2$，假设$ 0 < x - epsilon < y => (x-epsilon)^2 < y^2 <= 2 $矛盾，所以$ forall y in E, x-epsilon > y $所以$x - epsilon$也是$E$的上界，同时$ x-epsilon < x $这与$x = sup(E)$矛盾
+  + 综上，由实数的序的三歧性，只能是$x^2 = 2$，所以确实有实数满足$x^2 = 2$
+]
+
+#practice-separate()
+
+#problem[最大下界][
+
+  $E subset.eq RR and E != emptyset$，如果$E$有最小上界，记为$M = sup(E)$，同时定义集合$ -E = {-x : x in E} $证明集合$-E$有最小下界，记作$-M = inf(-E)$
+
+  #proof[
+    由于$M = sup(E)$，那么$ forall x in E, M >= x $那么$ forall -x in -E, -x >= -M $于是$-M$是$-E$的一个下界
+
+    任取一个集合$-E$的下界$l$，那么就有$ forall -x in -E, l <= -x $所以有$ forall x in E, -l >= x $所以$-l$是集合$E$的一个上界，由于$M$是最小上界，就有 $M <= -l => l <= -M$
+
+    综上，集合$-E$的任意下界$l$都满足，$l <= -M$，所以$inf(-E) = -M$
+  ]
+]
+
+#problem[上界分水岭的存在性][
+  $E subset.eq RR and E != emptyset, n in ZZ^+, L,K in ZZ and L < K$，假设$K/n$是$E$的上界，$L/n$不是$E$的上界，证明：$exists m in ZZ and L<m<=K$，满足$m/n$是$E$的上界，$(m-1)/n$不是$E$的上界
+
+  #proof[
+
+    定义命题$P(j) := j/n (L <=j <= K)$是$E$的上界，已知$P(K)$为真，$P(L)$为假.
+
+    对于待证命题，使用反证法，假设$forall L< m <=K$，如果$m/n$是上界，那么$(m-1)/n$也是上界是真的
+
+    由于$P(K)$为真，那么可以得到$P(K-1)$为真，于是$P(K-2)$也为真，...,$P(L+1)$也为真，于是$P(L)$也为真，这与已知矛盾
+
+    所以$forall L<m<=K$，如果$m/n$是上界，那么$(m-1)/n$也是上界是假的，即$exists L< m <= K$，使得$m/n$是上界且$(m-1)/n$不是上界
+  ]
+
+  #note-block[
+    + 上界分水岭的存在性是自己起的名字，传播更广的名字是二分法引理（Dichotomy Lemma）、有理数栅格引理（Rational Grid Lemma）和确界逼近引理（Supremum Approximation Lemma）
+    + 这个引理说明了，上界与非上界之间在整数自增分母的语境下，是有间断点的，存在一个$m$，在这个分水岭之前不是上界，之后就是上界了
+  ]
+]
+
+#problem[上界分水岭的唯一性][
+  $E subset.eq RR and E != emptyset$，$n in ZZ^+, m,m' in ZZ$且满足$m/n,m'/n$都是$E$的上界，$(m-1)/n,(m'-1)/n$都不是$E$的上界，证明：$m = m'$
+
+  #proof[
+    定义命题$P(j) := j/n (L <=j <= K)$，由先前上界分水岭的存在性的证明，可知$L< m,m' <=K$，而且在$m < j <= K or m' < j <=K$的范围内，$P(j)$是真的，同时在$L<j<=m-1 or L<j<=m'-1$的范围内，$P(j)$是假的
+
+    + 如果$m > m'$，取$m' < j < m$，由于$j > m'$，那么$P(j)$是真的，由于$j < m => j <= m-1$，那么$P(j)$是假的，矛盾
+    + 如果$m < m'$，取$m < j < m'$，由于$j > m$，那么$P(j)$是真的，由于$j , m' => j <= m'-1$，那么$P(j)$是假的，矛盾
+    + 由整数的三歧性，只能是$m = m'$，所以上界分水岭唯一
+  ]
+
+  #note-block[
+    + 上界分水岭的唯一性也是自己起的名字
+    + 上界分水岭的存在性和上界分水岭的唯一性可以合称为_二分法引理_
+  ]
+]
+
+#problem[令有理数序列$(q_n)_(n=1)^infinity$满足$forall M in ZZ^+,n,n' in ZZ^+ and n,n'>=M, abs(q_n-q_(n')) <= 1/M$，证明：$(q_n)_(n=1)^infinity$是柯西序列；进一步的，定义$S:="LIM"_(n->infinity)q_n$，证明：$forall M in ZZ^+, abs(q_M - S) <= 1/M$][
+
+  #proof[
+    + 由阿基米德原理，$epsilon in QQ^+, exists N in ZZ^+,$满足$ epsilon > 1/N $由于$ forall M in ZZ^+, abs(q_n -q_(n')) <= 1/M $可以取$M >= N => 1/M <= 1/N$，于是就有$ forall epsilon in QQ^+,exists M in ZZ^+, forall n, n' >=M, abs(q_n-q_(n')) <= 1/M <= 1/N < epsilon $这正是柯西序列的定义，所以$(q_n)_(n=1)^infinity$是柯西序列
+
+    + 取$n = M, n' > M$，就有$ abs(q_M - q_(n')) <= 1/M $定义常数柯西序列$(q_M)_(n=M+1)^infinity$和常数柯西序列$(1/M)_(n=M+1)^infinity$，定义序列$(q_M - q_n)_(n=M+1)^infinity$，易知这是常数柯西序列$(q_M)_(n=M+1)^infinity$与柯西序列$(q_n)_(n=1)^infinity$的差，也是一个柯西序列
+
+      由于$ forall n' >= M + 1, abs(q_M - q_(n')) <= 1/M => -1/M <=q_M - q_(n') <= 1/M $于是在序列可选的角标范围内，逐项都满足不等式，所以就有$ -"LIM"_(n->infinity)1/M & <= "LIM"_(n->infinity)(q_M - q_n)<= "LIM"_(n->infinity)1/M \
+                              & => -1/M <= q_M -S <= 1/M \
+                              & => abs(q_M - S) <= 1/M $
+  ]
+  #note-block[
+    第一问中，阿基米德原理里写$epsilon in QQ^+$，是因为之前证明了有理数可以以常数柯西序列的形式嵌入在实数系中，所以对于实数的阿基米德原理也是可以正常工作的，至于非要强调$epsilon in QQ^+$，是因为目前的柯西序列定义中是$epsilon in QQ^+$
+  ]
+]
+
+#problem[$forall x, y in RR and x < y, exists q in RR without QQ, x < q < y$][
+  前已经证明，$sqrt(2)$是无理数，且$x < y => y - x > 0$，那么由阿基米德性质就有$ exists N in ZZ^+, y-x>sqrt(2)/N => x < y - sqrt(2)/N $由于有理数在实数间稠密，那么$ exists q in QQ, x < q < y - sqrt(2)/N $取$r = q + sqrt(2)/N$，由于$q > x and sqrt(2)/N > 0$，那么$ r = q + sqrt(2)/N > x $另外$ r = q+sqrt(2)/N < y-sqrt(2)/N + sqrt(2)/N = y $所以$ x<r<y $
+
+  $r = q + sqrt(2)/N => (r - q)N = sqrt(2)$，如果$r$是有理数，那么$(r-q)N$也是有理数，矛盾，所以$r$是无理数
+
+  综上，实数之间无理数也是稠密的
+]
+
+== 实数指数运算（第一部分）

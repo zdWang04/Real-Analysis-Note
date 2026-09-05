@@ -558,7 +558,7 @@
   ]
 ]
 
-#property[基数算术][
+#lemma[基数算术][
 
   + $X$是有限集，$x$是对象，且$x in.not X$，那么$X union {x}$是有限集且$\#(X union {x}) = \#(X)+1$
 
@@ -572,6 +572,8 @@
 
   + $X、Y$是有限集，那么$Y^X$是有限的，且 $\#(Y^X) = \#(Y)^(\#(X))$
 ]
+
+#practice-separate()
 
 #problem[证明基数相等是自反、对称和可传递的][
   #proof[
