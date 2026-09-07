@@ -516,7 +516,7 @@
     min(x, y) = cases(x\, x<=y, y\, x>y)
   $
 ]
-
+#pagebreak()
 #lemma[取大/取小操作的性质][
   + $max(x, y) = -min(-x, -y)$
   + $min(x, y) = -max(-x, -y)$
@@ -773,7 +773,10 @@
   #proof[
     令$n in ZZ^+$，由于$E$有上界，令其为$M$，由阿基米德定理，就有$ exists K in ZZ, K/n >= M $因此$K/n$也是$E$的一个上界，由于$E != emptyset$，那么取$x_0 in E$，再次利用阿基米德性质就有$ exists L in ZZ, x_0 > L/n $因此$L/n$不是$E$的一个上界，也因此就有$ K/n > L/n => K >= L $
 
-    因此$exists m_n in ZZ, L < m_n <= K$，并且$m_n$满足$m_n/n$是$E$的上界，而$(m_n-1)/n$不是$E$的上界（这样的$m_n$存在且唯一，见问题 5.71和问题 5.72的证明）
+    因此$exists m_n in ZZ, L < m_n <= K$，并且$m_n$满足$m_n/n$是$E$的上界，而$(m_n-1)/n$不是$E$的上界
+    #note-block[
+      这样的$m_n$存在且唯一，见问题 5.71和问题 5.72的证明
+    ]
 
     令$N in ZZ^+. n,n' in ZZ^+,n,n'>=N$，由于$m_n/n$是上界，而$(m_(n')-1)/n'$不是上界，就有$ m_n/n > (m_(n')-1)/n' => m_n/n - m_(n')/n' > -1/n' >= -1/N $由于$(m_n-1)/n$不是上界，而$m_(n')/n'$是上界，就有$ m_(n')/n' > (m_n-1)/n => m_(n)/n - m_n'/n' < 1/n <= 1/N $综上就有$ forall n,n'>=N>=1, abs(m_n/n - m_(n')/n') <= 1/N $这正是柯西序列的定义，且$m_n/n in QQ$，那么定义实数$ S:= "LIM"_(n->infinity)m_n/n $由于$"LIM"_(n->infinity)1/n = 0$，那么$ S = "LIM"_(n->infinity)(m_n-1)/n $
 
@@ -884,9 +887,336 @@
 #problem[$forall x, y in RR and x < y, exists q in RR without QQ, x < q < y$][
   前已经证明，$sqrt(2)$是无理数，且$x < y => y - x > 0$，那么由阿基米德性质就有$ exists N in ZZ^+, y-x>sqrt(2)/N => x < y - sqrt(2)/N $由于有理数在实数间稠密，那么$ exists q in QQ, x < q < y - sqrt(2)/N $取$r = q + sqrt(2)/N$，由于$q > x and sqrt(2)/N > 0$，那么$ r = q + sqrt(2)/N > x $另外$ r = q+sqrt(2)/N < y-sqrt(2)/N + sqrt(2)/N = y $所以$ x<r<y $
 
-  $r = q + sqrt(2)/N => (r - q)N = sqrt(2)$，如果$r$是有理数，那么$(r-q)N$也是有理数，矛盾，所以$r$是无理数
+  $r = q + sqrt(2)/N => (r - q)N = sqrt(2)$，如果$r$是有理数，那么$(r-q)N$也是有理数，进而$sqrt(2)$也是有理数，矛盾，所以$r$是无理数
 
   综上，实数之间无理数也是稠密的
 ]
 
 == 实数指数运算（第一部分）
+
+#definition[实数的自然数次幂][
+  $x in RR$，定义$x^0 := 1$，假设递归的定义了$x$的$n$次幂$x^n$，再定义$ x^(n+1) := x^n times x $
+]
+
+#definition[非零实数的整数次幂][
+  $x in RR and x!=0, -n in ZZ^-$，定义$ x^(-n) := 1/x^n $
+]
+
+#note-block[
+  实数的整数次幂的定义与有理数的整数次幂是完全一致的
+]
+
+#theorem[实数的整数次幂运算也满足有理数的指数运算性质][
+  $x, y in RR, n,m in NN$，有以下性质成立
+  + $x^n x^m = x^(n+m)$
+  + $n > 0, x^n=0 <=> x = 0$
+  + $x >=y >= 0 => x^n>=y^n>=0$
+  + $x > y >=0 and n>0 => x^n > y^n >=0$
+  + $abs(x^n) = abs(x)^n$
+  \
+  $x, y in RR and x,y!=0, n,m in ZZ$，有以下性质成立
+  + $x^n x^m = x^(n+m), (x^n)""^m = x^(n m), (x y)^n = x^n y^n$
+  + $x >= y>0, n > 0 => x^n >= y^n > 0$
+  + $x >= y>0, n < 0 => 0 < x^n <= y^n$
+  + $x, y > 0, n!=0 , x^n = y^n => x = y$
+  + $abs(x^n) = abs(x)^n$
+
+  #proof(title: "元证明")[
+    观察有理数的整数次幂的运算性质的证明过程，它依赖于有理数的代数运算性质和序的性质，而先前已经证明过，实数也满足同样的代数运算性质和序的性质，那么需要将“有理数版本”的证明修改为“实数版本”的证明，即可证明实数的整数次幂运算也满足有理数的整数次幂的运算性质
+  ]
+]
+
+#definition[实数的$n$次方根][
+  $x in RR and x>=0, n in ZZ^+$，定义_$x$的$n$次方根_为$ x^(1/n) := sup{y in RR: y >= 0 and y^n <= x } $特别的，将$x^(1/2)$写作$sqrt(x)$
+]
+
+#lemma[$x in RR, 0<=x<=1, n in NN => 0<= x^n <= 1$][
+  + $n=0$时，$x^0 = 1 <= 1$成立
+  + 现在归纳性的假设$n$时成立，即$0 <= x^n <= 1$，接下来证明$n+1$的情况
+  + 由于$x^(n+1) = x^n x$，那么$ x^n <= 1 & => x^n x <= x <= 1 \
+      0<=x^n & => 0=0 x <= x^n x $所以有$0 <= x^(n+1) <= 1$
+  + 综上，由归纳法得证
+]
+
+#lemma[$x in RR, x>=1, n in NN => x^n >= 1$][
+  + $n=0$时，$x^0 = 1 >= 1$
+  + 现在归纳性的假设$n$时成立，即$x^n >= 1$，现在证明$n+1$下的情况
+  + 由于$x^(n+1) = x^n x$，那么$ x^n >=1 => x^n x >= x >= 1 $所以有$x^(n+1) >= 1$
+  + 综上，由归纳法得证
+]
+
+#note-block[
+  上面两个引理是为了证明下面这个引理，这是书中没有的
+]
+
+#lemma[非负实数的$n$次方根的存在性][
+  $x in RR_(>=0), n in ZZ^+$，定义集合$ E := {y in R: y>=0 and y^n <=x} $集合$E$非空且有界，特别的，$x^(1/n)$是实数
+
+  #proof[
+    由于$y = 0$时，$y^n = 0 <= x$，所以$0 in E$，$E$非空
+
+    + 考虑$0 <= x <= 1$时，取$y in E$，如果$y > 1$，那么$y^n > 1 >= x$，矛盾，所以$y<=1$，因此集合$E$是有界的
+    + 考虑$x > 1$时，取$y in E$，如果$y > x$，那么$y > 1$，于是$y^n > x$，矛盾，所以$y <= x$，所以$E$是有界的
+    + 所有情况下都说明$E$有界，那么$sup(E)$一定存在，所以$x^(1/n)$一定存在
+  ]
+]
+
+#lemma[非负实数的$n$次方根的性质][
+  $x, y in RR_(>=0), n,m,k,l in ZZ^+$，有以下性质成立
+  + $y = x^(1/n) <=> y^n = x$
+  + $x^(1/n)$是非负实数$<=>x$是非负实数
+  + $x > y <=> x^(1/n) > y^(1/n)$
+  + $x > 1, k>l <=>x^(1/k) < x^(1/l)$
+  + $0<x<1, k>l <=>x^(1/k) > x^(1/l)$
+  + $(x y)^(1/n) = x^(1/n) y^(1/n)$
+  + $(x^(1/n))""^(1/m) = x^(1/(n m))$
+]
+
+#definition[正实数的有理数次幂][
+  $x in RR^+, q in QQ$，对于有理数$q = a/b, a in ZZ, b in ZZ^+$，定义正实数的有理数次幂为$ x^q := (x^(1/b))""^a $
+]
+
+#lemma[正实数的有理数次幂是良定义的][
+  $x in RR^+, a, a' in ZZ, b,b' in ZZ^+$，满足$a/b = a'/b'$，那么有$(x^(1/b))""^a = (x^(1/b'))""^(a')$
+
+  #proof[
+    + $a = 0$时，$a'/b' = 0 => a' = 0$，所以有$ (x^(1/b))""^0 = 1 = (x^(1/b'))""^0 $成立
+    + $a > 0$时，$a'/b' = a/b > 0 => a' > 0$，并且$a b' = a' b$，那么定义$y:=x^(1/(a b')) = x^(1/(a'b))$，就有$ (x^(1/b'))""^a' = (y^a)""^a' = (y^a')""^a = (x^(1/b))""^a $也是成立的
+    + $a < 0$时，$-a > 0$，同理就有$-a' > 0$，同时也有$-a b' = -a' b$，定义$y := x^(1/(-a b')) = x^(1/(-a' b))$，就有$ (x^(1/b'))""^(-a') = (y^(-a))""^(-a') = (y^(-a'))""^(-a) = (x^(1/b))""^(-a) $也是成立的
+  ]
+]
+
+#lemma[正实数有理数次幂的性质][
+  $x, y in RR^+, q, r in QQ$，有以下性质成立
+  + $x^q in RR^+$
+  + $x^(q+r) = x^q x^r, (x^q)""^r = x^(q r)$
+  + $x^(-q) = 1/(x^q)$
+  + $q > 0, x > y <=> x^q > y^q$
+  + $x > 1, x^q > x^r <=> q > r$
+  + $x < 1, x^q > x^r <=> q < r$
+  + $(x y)^q = x^q y^q$
+]
+
+#lemma[二项式展开引理][
+  $forall a, b in RR_(>=0), n in ZZ^+, (a+b)^n >= a^n + n a^(n-1)b$
+  #proof[
+    对$n$进行数学归纳
+    + $n=1$时，$(a + b)^1 = a + b >= a^1 + 1 a^(1-1)b =a+b$成立
+    + 现在归纳的假设$n$时成立，即$(a+b)^n >= a^n + n a^(n-1)b$，接下来证明$n+1$的情况
+    + $(a+b)^(n+1) = (a+b)^n (a+b)$，由于$a+b >= 0$，那么就有$ (a+b)^n (a+b) >= (a^n + n a^(n-1)b)(a+b) & = a^(n+1) + n a^n b + a^n b + n a^(n-1) b^2 \
+                                               & = a^(n+1) + (n+1)a^n b + n a^(n-1) b^2 $由于$n a^(n-1)b^2 >= 0$，那么就有$ (a+b)^(n+1) >= a^(n+1) + (n+1)a^n b $
+    + 归纳结束得证
+  ]
+]
+
+#theorem[差幂公式][
+  $forall a, b in RR, n in ZZ^+$，有下式成立$ a^n - b^n = (a-b)(a^(n-1) + a^(n-2)b + ... + a^(n-j)b^(j-1) + ... + a b^(n-2) + b^(n-1) ) $
+
+  #proof[
+
+    令$ S := (a^(n-1) + a^(n-2)b + ... + a^(n-j)b^(j-1) + ... + a b^(n-2) + b^(n-1) ) $那么$ (a-b)S & = a S - b S \
+           & = a^n + a^(n-1)b + ... + a^(n-j+1)b^(j-1) + ... + a^2b^(n-2) + a b^(n-1) \
+           & - (a^(n-1)b + a^(n-2)b^2 + ... + a^(n-j)b^j + ... + a b^(n-1) + b^n ) \
+           & = a^n - b^n $于是得证
+  ]
+]
+
+#lemma[非负实数正整数次幂的单调性][
+  $x, y in RR_(>=0), n in ZZ^+, x >= y => x^n >= y^n$
+
+  #proof[
+    + 当$n = 1$时，$x >= y => x = x^1 >= y^1 =y$成立
+    + 现在归纳的假设$n$时成立，即$x >= y => x^n >= y^n$，现在证明$n+1$的情况
+    + $x^(n+1) = x^n x, y^(n+1) = y^n y$，那么就有$ x^(n+1) = x^n x >= y^n x >= y^n y = y^(n+1) $
+    + 归纳结束得证
+  ]
+]
+
+#lemma[幂函数的局部 Lipschitz 估计][
+  + 减量上界估计
+
+    $forall y in RR_(>=0),forall n in ZZ^+, forall 0<=epsilon <= y$满足$ y^n - (y-epsilon)^n <= n y^(n-1)epsilon $
+
+  + 增量下界估计
+
+    $forall y in RR_(>=0),forall n in ZZ^+, forall epsilon in RR^+$满足$ (y+epsilon)^n - y^n >= n y^(n-1)epsilon $
+
+  #proof[
+    + 减量上界估计
+      由差幂公式就有$ & "   "y^n - (y - epsilon)^(n) \
+      & = (y - (y-epsilon))(y^(n-1) + y^(n-2)(y-epsilon) + ... + y(y-epsilon)^(n-2) + (y-epsilon)^(n-1)) \
+      & =epsilon(y^(n-1) + y^(n-2)(y-epsilon) + ... + y(y-epsilon)^(n-2) + (y-epsilon)^(n-1)) $
+      由于$0<=epsilon<=y$，那么$y >= y-epsilon >= 0$，那么就有$forall n in ZZ^+, y^n >= (y-epsilon)^n$，所以就有
+      $ y^(n-1) & = y^(n-2) y >=y^(n-2)(y-epsilon) \
+      y^(n-1) & = y^(n-3) y^2 >= y^(n-3) (y-epsilon)^2 \
+              & ... \
+      y^(n-1) & >= (y-epsilon)^n $那么就有$ y^n - (y-epsilon)^n <= epsilon (y^(n-1) + ... + y^(n-1)) = n y^(n-1) epsilon $
+
+    + 增量下界估计
+      由于$y in RR_(>=0), epsilon in RR^+$，那么可以使用二项式引理，就有$ (y + epsilon)^n >= y^n + n y^(n-1) epsilon => (y+epsilon)^n - y^n >= n y^(n-1)epsilon $
+  ]
+]
+
+#corollary[幂函数的局部保号性][
+  $forall y, delta in RR^+, n in ZZ^+, y^n > delta => exists epsilon in RR^+, (y-epsilon)^n > delta$
+
+  #proof[
+    如果存在这样的$epsilon$，那么需要满足$ (y-epsilon)^n > delta => y^n - (y-epsilon)^n < y^n - delta $限制$0 < epsilon <y$，那么$y-epsilon > 0$，于是使用减量上界估计，就有$ y^n - (y-epsilon)^n <= n y^(n-1)epsilon $所以只需要存在$epsilon$满足$ n y^(n-1)epsilon < y^n - delta $即可
+
+    由于$y^n > delta => y^n -delta > 0$以及$n y^(n-1) > 0$，于是$(y^n - delta)/(n y^(n-1)) > 0$，那么根据阿基米德原理，一定存在$0 < epsilon < (y^n - delta)/(n y^(n-1)) and epsilon < y$使得$(y-epsilon)^n > delta$成立，取$ 0 < epsilon < min(y, (y^n - delta)/(n y^(n-1))) $即满足不等式
+  ]
+]
+
+#note-block[
+  在这里添加了许多原书中没有的引理和定理，这是为了方便完成非负实数的$n$次方根的性质的证明，具体来说：
+  + 证明了二项式展开引理，只依赖实数的自然数次幂的定义和数学归纳法
+  + 证明了增量下界估计，只依赖二项式展开引理
+  + 证明了差幂公式，只依赖实数的自然数次幂的定义，实数的代数运算法则
+  + 证明了非负实数正整数次幂的单调性，只依赖实数的自然数次幂的定义，实数的序的性质，数学归纳法
+  + 证明了减量上界估计，只依赖差幂公式和非负实数正整数次幂的单调性
+  + 证明了幂函数的局部保号性，只依赖减量上界估计
+]
+
+#lemma[正实数取大取小操作的性质（幂次）][
+  $x, y in RR^+, q in QQ^+$
+  + $max(x^q, y^q) = max(x, y)^q$
+  + $min(x^q, y^q) = min(x, y)^q$
+  #note-block[
+    这是作为本节的课后习题出现的，这里单独提取为一个引理，题目中额外问了$q<1$和$q >= 1$时，性质会如何变化，答案是不变，只要指数是大于零的，那么幂函数的单调递增总保持
+  ]
+]
+
+#practice-separate()
+
+#problem[证明非负实数的$n$次方根的性质][
+  $x, y in RR_(>=0), n,m,k,l in ZZ^+$
+
+  #proof[
+    + $y = x^(1/n) <=> y^n = x$\
+      定义集合$E := sup{z in RR_(>=0): z^n <= x}$，前已证必有上确界
+      - $=>$\
+        由定义$y = x^(1/n) = sup(E)$
+        - 假设$y^n > x$，那么$exists epsilon in RR^+,forall z in E, (y-epsilon)^n > x >= z^n$，那么$y-epsilon$也是上界，但是$y-epsilon < y$，这与$y = sup(E)$矛盾
+        - 假设$y^n < x$，那么$exists epsilon in RR^+, (y+epsilon)^n < x$，所以$y+epsilon in E$，但是$y + epsilon > y$，那么$y$就不是最小上界，矛盾
+        - 所以由实数的序的三歧性，只能是$y^n = x$
+      - $arrow.double.l$\
+        由于$y^n = x$，那么$y in E$，由于$x^(1/n) = sup(E)$，于是$y <= x^(1/n)$
+
+        由于$y^n = x$，那么$forall z in E, z^n <= x = y^n =>z <= y$，因为之前证明了正整数次幂下实数也符合有理数的指数运算，所以可以在实数底数下用正整数次幂的消去律，所以$y$也是$E$的上界，那么就有$y>=x^(1/n)$
+
+        所以$y>=x^(1/n) and y<= x^(1/n) => y = x^(1/n)$
+    + $x^(1/n)$是非负实数$<=>x$是非负实数
+      - $=>$\
+        令$y = x^(1/n)$，那么$x = y^n$，由于$y = x^(1/n) >=0$，那么$x = y^n >= 0$，所以$x$是非负实数
+      - $arrow.double.l$\
+        由于$x>=0$，那么定义集合$E = {z in RR_(>=0) : z^n <=x}$，那么$x^(1/n) = sup(E)$，所以有$forall z in E, x^(1/n) >= z >=0$，所以$x^(1/n)$是非负实数
+    + $x > y <=> x^(1/n) > y^(1/n)$\
+      令$a = x^(1/n), b = y^(1/n)$
+      - $=>$\
+        假设$a <= b$，那么$a^n <= b^n => x <= y$，与$x > y$矛盾，所以$a > b$，即$x^(1/n) > y^(1/n)$
+      - $arrow.double.l$\
+        $a > b => a^n > b^n$，由于$x = a^n, y = b^n$，那么$x > y$
+    + $x > 1, k>l <=>x^(1/k) < x^(1/l)$\
+      令$a = x^(1/k), b=x^(1/l)$，那么$a^k = b^l = x > 1$，那么$a^k > 1^k = 1 => a > 1, b^l > 1^l=1 => b>1$
+      - $=>$\
+        由于$k > l => k - l > 0$，那么$a^(k-l) > 1 = 1^(k-l)$，于是有$ b^l = a^k & = a^(k-l) a^l > a^l \
+                  & => b> a \
+                  & => x^(1/k) < x^(1/l) $
+      - $arrow.double.l$\
+        $x > 1 => x^(1/l) > x^(1/k) > 1$，假设$k <= l$，那么$k-l<=0 =>0 < a^(k-l) <= 1$，所以有$ b^l = a^k = a^(k-l) a^l <= a^l\ => b<=a $矛盾，所以只能是$k > l$
+
+    + $0<x<1, k>l <=>x^(1/k) > x^(1/l)$\
+      令$a = x^(1/k), b = x^(1/l)$，那么$0 < a^k = b^l = x < 1$，那么$a^k < 1=1^k => 0<a<1, b^l < 1 = 1^l => 0 < b < 1$
+
+      - $=>$\
+        由$k > l$有$k - l > 0$，那么$0 < a < 1 => a^(k-l) < 1$，于是$ b^l & = a^k = a^(k-l)a^l < a^l \
+            & => a > b $所以有$x^(1/k) > x^(1/l)$
+      - $arrow.double.l$\
+        假设$k <=l$，那么有$k-l <=0$，由于$0 < a < 1$，所以有$a^(k-l) >= 1$，于是$ b^l & = a^k=a^(k-l)a^l >= a^l \
+            & => b>=a $矛盾，所以$k > l$
+
+    + $(x y)^(1/n) = x^(1/n) y^(1/n)$\
+      令$a = x^(1/n), b = y^(1/n), c = (x y)^(1/n)$，那么$x = a^n, y = b^n, x y = c^n$，那么$x y = a^n b^n = (a b)^n = c^n => a b = c$，即$x^(1/n) y^(1/n) = (x y)^(1/n)$
+
+    + $(x^(1/n))""^(1/m) = x^(1/(n m))$\
+      令$a = x^(1/(n m))$，那么$x = a^(n m)$，令$(x^(1/n))""^(1/m) = b$，那么$x^(1/n) = b^m => x = (b^m)""^n = b^(n m)$，于是$ a^(n m) = b^(n m) => a = b => (x^(1/n))""^(1/m) = x^(1/(n m)) $
+  ]
+]
+
+#problem[正实数有理数次幂的性质][
+  $x, y in RR^+, q, r in QQ$，令$q = a/b, r = c/d$，其中$a, c in ZZ, b, d in ZZ^+$
+
+  #proof[
+    + $x^q in RR^+$\
+      $x^q = (x^(1/b))^a$，那么$ x > 0=>x^(1/b) > 0 => x^(1/b)^a > 0 $所以$x^q in RR^+$
+    + $x^(q+r) = x^q x^r, (x^q)""^r = x^(q r)$\
+      $q+r = (a d + b c)/(b d)$，所以$ x^(q+r) & = (x^(1/(b d)))""^(a d + b c) \
+          x^q & = (x^(1/b))""^a \
+          x^r & = (x^(1/d))""^c $所以有$ x^q x^r & = (x^(1/b))""^a (x^(1/d))""^c \
+              & = (x^(1/(b d)))""^(a d) (x^(1/(b d)))""^(b c) \
+              & = (x^(1/(b d)))""^(a d + b c) $所以$ x^q x^r = x^(q + r) $
+
+      $q r = (a c)/ (b d)$，所以$ x^(q r) = x^(1/(b d))""^(a c) $也有$ (x^q)^r = ((x^q)^(1/d))""^c $定义$ y & := x^(1/(b d)) \
+        & => x^(q r) = y^(a c) \
+        & => x^q = (y^(1/r))""^(a c) = y^(a d) $那么$ ((x^q)""^(1/d))""^c = ((y^(a d))""^(1/d))""^c = y^(a c) = (x^(1/(b d)))""^(a c) $所以$(x^q)""^r = x^(q r)$
+    + $x^(-q) = 1/(x^q)$\
+      $ x^(-q) = ((x^(1/b))""^(a))""^(-1) = 1/((x^(1/b))""^a) = 1/(x^q) $
+    + $q > 0, x > y <=> x^q > y^q$\
+      $a > 0, x^q = (x^(1/b))""^a, y^q = (y^(1/b))""^a$
+      - $=>$\
+        $ x > y => x^(1/b) > y^(1/b) => (x^(1/b))""^a > (y^(1/b))""^a => x^q > y^q $
+      - $arrow.double.l$\
+        假设$0 < x <= y$，那么$x^q = (x^(1/b))""^a <= (y^(1/b))""^a = y^q$，矛盾，所以$x > y$
+
+    + $x > 1, x^q > x^r <=> q > r$\
+      - $=>$\
+        $x>1 => x^q > x^r > 1 => x^(q-r) > 1$，假设$q <= r => -(q - r) >= 0$，那么$ x > 1 => x^(-(q-r)) >= 1=>x^(q-r) <= 1 $矛盾，所以$q > r$
+      - $arrow.double.l$\
+        易有$x > 1 => x^q, x^r > 1$，此外
+        $q > r => q - r = (a d - b c)/ (b d) > 0 => a d - b c > 0$，于是$ x > 1 => x^(1/(b d)) > 1 => (x^(1/(b d)))""^(a d - b c) = x^(q-r)=x^(q)/(x^(r)) > 1 => x^q > x^r $
+    + $0 < x < 1, x^q > x^r <=> q < r$
+      - $=>$\
+        $0 < x < 1 => 0 < x^q, x^r < 1$，由于$x^q > x^r => x^(q - r) > 1$，假设$q >= r => q - r >= 0$，那么有$ 0 < x < 1 => x^(q - r) <= 1 $矛盾，所以$q > r$
+      - $arrow.double.l$\
+        易有$0 <x < 1 => 0 < x^q, x^r < 1$，此外$ q < r => q - r = (a d - b c)/ (b d) < 0 => -(a d - b c) > 0 $于是$ x < 1 => x^(1/(b d)) < 1 => (x^(1/(b d)))""^(-(a d - b c)) < 1 => (x^(1/(b d)))""^((a d - b c)) = x^q/(x^r) > 1 => x^q > x^r $
+    + $(x y)^q = x^q y^q$\
+      $
+        (x y)^q & = ((x y)^(1/b))""^a \
+                & = (x^(1/b) y^(1/b))""^a \
+                & = (x^(1/b))""^a (y^(1/b))""^a \
+                & = x^q y^q
+      $
+  ]
+]
+
+#problem[$x in RR, n in NN$且是一个偶数，证明$x^n >=0$][
+  #proof[
+    + $x = 0$，易有$x^n = 0$
+    + $x > 0$，易有$x^n > 0$
+    + $x < 0$，那么$-x > 0$，由于$n$是一个偶数，那么$exists k in NN, n = 2k$，所以有$ (-x)^(n) = (-x)^(2k) = ((-x)^2)""^k > 0 $
+    + 综上，由实数的三歧性，实数的偶次幂总大于等于零
+  ]
+]
+
+#problem[$x in RR, abs(x) = (x^2)^(1/2)$][
+  #proof[
+    + $x = 0$，$abs(0) = 0 = (0^2)^(1/2)$
+    + $x > 0$，$abs(x) = x$，令$y = (x^2)^(1/2) > 0$，那么有$ y^2 = x^2 => y = x $于是$abs(x) = (x^2)^(1/2)$
+    + $x < 0$，$abs(x) = -x$，定义$y := (x^2)^(1/2), z := -x$，所以有$ y^2 = x^2 = (-x)^2 = z^2 => y = z = -x $于是$abs(x) = (x^2)^(1/2)$
+  ]
+]
+
+#problem[证明正实数取大取小操作的性质（幂次）][
+  #proof[
+    + $max(x^q, y^q) = max(x, y)^q$\
+      - $x >= y => x^q >= y^q => max(x^q, y^q) = x^q$，而且$ x >= y => max(x, y) = x => max(x, y)^q = x^q $所以$max(x^q, y^q) = max(x, y)^q$
+      - $x < y => x^q < y^q => max(x^q, y^q) = y^q$，而且$ x < y => max(x, y) = y => max(x, y)^q = y^q $所以$ max(x^q, y^q) = max(x, y)^q $
+      - 综上，由实数的序的三歧性，总有$max(x^q, y^q) = max(x, y)^q$成立
+    + $min(x^q, y^q) = min(x, y)^q$
+      - $x <= y => x^q <= y^q => min(x^q, y^q) = x^q$，而且$ x <=y => min(x, y) = x => min(x, y)^q = x^q $所以$min(x^q, y^q) = min(x, y)^q$
+      - $x > y => x^q > y^q => min(x^q, y^q) = y^q$，而且$ x > y => min(x, y) = y => min(x, y)^q = y^q $所以$min(x^q, y^q) = min(x, y)^q$
+      - 综上，由实数的序的三歧性，总有$min(x^q, y^q) = min(x, y)^q$成立
+  ]
+
+
+]
