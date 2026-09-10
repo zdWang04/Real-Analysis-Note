@@ -9,7 +9,11 @@
 // #show math.equation.where(block: true): set align(left) // 左对齐行间公式
 
 #set text(lang: "zh")
-
+// #set block(width: 100%)
+#show math.equation.where(block: true): eq => block(
+  width: 100%,
+  align(center, eq),
+)
 #outline(title: "目录", indent: auto)
 #pagebreak()
 
