@@ -289,3 +289,128 @@
 ]
 
 == 广义实数系
+
+#definition[广义实数系][
+
+  广义实数系是实数系$RR$加上两个额外元素$-infinity, +infinity$
+  - 广义实数系记作$RR^*$
+  - $-infinity, +infinity$不同于任何$RR$中的元素
+  - 对于任意$RR^*$中的元素$x$
+    - $x in RR <=> x$是有限的
+    - $x = -infinity or x = +infinity <=> x$是无限的
+]
+
+#definition[广义实数的相反数][
+
+  $forall x in RR^*$，如果：
+  - $x in RR$，相反数为$-x$
+  - $x = -infinity$，相反数定义为$-(-infinity) := +infinity$
+  - $x = +infinity$，相反数定义为$-(+infinity) := -infinity$
+]
+#pagebreak()
+#definition[广义实数系上的序][
+
+  $x, y in RR^*$，称$x <= y$，当且仅当下列其一为真：
+  - $x, y in RR and x <= y$
+  - $x = -infinity$
+  - $y = +infinity$
+]
+
+#theorem[广义实数系的序的性质][
+  $x, y, z in RR^*$，有以下成立：
+  - $x <= x$
+  - $x < y , x = y, x > y$同时只有一个成立
+  - $x <= y and y <= z => x <= z$
+  - $x <= y => -x >= -y$
+]
+
+#definition[广义实数系的子集的上确界/下确界][
+
+  1. $E subset.eq RR^*$，定义$E$的最小上界/上确界$sup(E)$为：
+  - $E subset.eq RR$，那么$sup(E)$的定义如实数子集的上确界的定义
+  - $-infinity in E and +infinity in.not E$，定义$sup(E) := sup(E without {-infinity})$，此时的定义亦如实数子集的上确界的定义
+  - $+infinity in E$，定义$sup(E) := +infinity$
+
+  2. $E subset.eq RR^*$，定义$E$的最小下界/下确界$inf(E)$为
+  $ inf(E) := -sup(-E) $其中$-E := {-x : x in E}$
+
+]
+
+#theorem[广义实数系上/下确界的性质][
+  $E subset.eq RR^*$，有下列成立
+  - $forall x in E, x <= sup(E) and x >= inf(E)$
+  - $M in RR^*$，是$E$的一个上界，那么$sup(E) <= M$
+  - $M in RR^*$，是$E$的一个下界，那么$inf(E) <= M$
+]
+
+#practice-separate()
+
+#problem[证明广义实数系的序的性质][
+
+  $x, y, z in RR^*$
+  #proof[
+    + 自反性
+      - 如果$x in RR$，即为实数的自反性
+      - 如果$x = +infinity$，由定义$forall y in RR^*, y <= +infinity$总成立，所以$+infinity <= +infinity$
+      - 如果$x = -infinity$，由定义$forall y in RR^*, -infinity <= y$总成立，所以$-infinity <= -infinity$
+    + 三歧性
+      - 如果$x = +infinity$
+        - $y = +infinity$，那么$y = x$
+        - $y = -infinity$，由定义$forall x in RR^*, -infinity <= x$，于是$y <= x and y != x$，所以$y < x$
+        - $y in RR$，再由定义$y <= +infinity and y != +infinity$，那么$y < x$
+      - 如果$x = -infinity$
+        - $y = -infinity$，那么$x = y$
+        - $y = +infinity$，那么$x <= y and x != y$，那么$x < y$
+        - $y in RR$，那么$x = -infinity < y$
+      - 如果$x in RR and y in {+infinity, -infinity}$
+        - $y = -infinity$，那么$x > y$
+        - $y = +infinity$，那么$y > x$
+      - 如果$x in RR and y in RR$，这种情况在实数的三歧性中业已证明
+    + 传递性
+      由于$x <= y and y <= z$
+      - $x = -infinity$，那么总有$x = -infinity <= z$
+      - $x = +infinity$，由于$x <= y$，那么$y = +infinity$，由于$y <= z$，那么$z = +infinity$，于是$x <= z$
+      - $x in RR$
+        - $y in RR or y = +infinity$
+          - $(z in RR and y <= z )or z = +infinity$，无论那种情况，都有$x <= z$
+    + 相反数反号
+      - $x = -infinity$，那么$-x = +infinity$，总有$-x >= -y$
+      - $y = +infinity$，那么$-y = -infinity$，总有$-x >= -y$
+      - $x,y in RR$，由实数的序的性质可证
+  ]
+]
+#problem[证明广义实数系上/下确界的性质][
+
+  $E subset.eq RR^*$
+  #proof[
+    + $forall x in E, x <= sup(E) and x >= inf(E)$
+      - $+infinity in E and -infinity in.not E$
+        - 那么$sup(E) = +infinity$，总有$forall x in E, sup(E) >= x$
+        - 由于$+infinity in E and -infinity in.not E$，那么$+infinity in.not -E and -infinity in -E$，由于$ inf(E) = -sup(-E without {-infinity}) $于是
+        $
+          & forall x in E, -x in -E, -x <= sup(-E without {-infinity}) \
+          & => x >= -sup(-E without {-infinity}) = inf(E)
+        $
+      - $-infinity in E and +infinity in.not E$
+        - $sup(E) = sup(E without {-infinity}) in RR$，于是
+          $ forall x in E & => x = -infinity or x in E without {-infinity} \ $
+
+          如果$x = -infinity$，那么一定也有$x < sup(E)$
+
+          如果$x in E without {-infinity}$，那么$x <= sup(E without {-infinity}) = sup(E)$
+        - $inf(E) = -sup(-E) = -infinity$，易有$x <= inf(E)$
+      - $-infinity in E and +infinity in E$
+        易有$sup(E) = +infinity, inf(E) = -sup(-E) = -infinity$，于是总有$forall x in E, x <= sup(E), x >= inf(E)$
+      - $-infinity in.not E and +infinity in.not E$，那么即为实数上的上下确界，前面业已证明
+    + $M in RR^*$，是$E$的一个上界，那么$sup(E) <= M$
+      - $+infinity in E$，由于$M$是$E$的上界，那么$M = +infinity$，同时$sup(E) = +infinity = M$
+      - $E subset.eq RR$，那么如实数中，上界总大于等于上确界
+      - $+infinity in.not E and -infinity in E$，那么$sup(E) = sup(E without {-infinity}) in RR$，如实数中的情况
+    + $M in RR^*$，是$E$的一个下界，那么$inf(E) <= M$
+      - $-infinity in E$，那么$M = -infinity$，于是$inf(E) = -infinity = M$
+      - $E subset.eq RR$，那么如实数中，下界总大于等于下确界
+      - $-infinity in.not E and +infinity in E$，那么$+infinity in.not -E and -infinity in -E$，那么$inf(E) = -sup(-E) = -sup(-E without {-infinity}) in RR$，如实数中的情况
+  ]
+]
+
+== 序列的上确界和下确界
