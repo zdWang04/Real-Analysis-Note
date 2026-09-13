@@ -414,3 +414,111 @@
 ]
 
 == 序列的上确界和下确界
+
+#definition[序列的上确界和下确界][
+
+  $(a_n)_(n=m)^infinity$是实数序列，定义：
+
+  + 序列的上确界为$ sup((a_n)_(n=m)^infinity) := sup{a_n:n>=m} $
+  + 序列的下确界为$ inf((a_n)_(n=m)^infinity) := inf{a_n:n>=m} $
+
+  有时也记作
+  $
+    sup((a_n)_(n=m)^infinity) = sup_(n>=m)a_n\
+    inf((a_n)_(n=m)^infinity) = inf_(n>=m)a_n
+  $
+]
+
+#theorem[最小上界性质][
+  $(a_n)_(n=m)^infinity$是实数序列，$x = sup(a_n)_(n=m)^infinity in RR^*$，那么
+
+  + $forall n >=m, a_n <= x$
+  + $M in RR^*$，是序列的一个上界，那么有$x <= M$
+  + $forall y in RR^*, y < x => exists n >= m, y< a_n <= x$
+
+]
+
+#lemma[单调有界序列必然收敛][
+  $(a_n)_(n=m)^infinity$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛，并且有
+  $
+    lim_(n->infinity)(a_n) = sup_(n>=m) a_n <= M
+  $
+
+  类似的，$M in RR$是该序列的下界，并且该序列递减，那么该序列收敛，并且有
+  $
+    lim_(n->infinity)(a_n) = inf_(n>=m) a_n >= M
+  $
+]
+
+#note-block[
+  结合之前证明：收敛序列一定有界，那么单调收敛序列一定有界；还有单调有界序列必然收敛，那么可以得到对于单调序列收敛必有界，有界必收敛
+]
+
+#example[$x in RR and 0<x<1, lim_(n->infinity)x^n = 0$][
+  该序列在$0<x<1$时单调递减，且有最大下界$0$，于是极限为0
+]
+
+
+#practice-separate()
+
+#problem[验证序列$(1/n)_(n=1)^infinity$的上确界是$1$，下确界是$0$][
+  #proof[
+    + $sup_(n>=1)1/n = 1$
+
+      易有$forall n >= 1, 1 >= 1/n > 0$，所以$1$是一个上界，令最小上界为$1 - epsilon, epsilon in RR$，由于是最小下界，那么$1 - epsilon <= 1 => epsilon >= 0$
+      - 那么取$epsilon >0, 1 - epsilon < 1$
+        - 如果$1 - epsilon < 0$，那么显然不是一个上界
+        - 如果$0 < 1 - epsilon < 1$，那么由阿基米德性质$exists N in ZZ^+, 1/n > 1 -epsilon$，其中$1/n$也是序列中的元素，所以$1 - epsilon$不是一个上界
+      - 综上，只能是$epsilon = 0$，进而最小上界为$1 - epsilon = 1$
+
+    + $inf_(n>=1)1/n = 0$
+
+      $forall n in ZZ^+, 1 >= 1/n > 0$，所以$0$是一个下界，现在假设最大下界为$0 + epsilon = epsilon$，由于是最大下界，那么$epsilon >= 0$
+
+      $epsilon > 0$时，由阿基米德性质，$exists n in ZZ^+, 1/n < epsilon$，其中$1/n$是序列中的一个元素，所以$epsilon$不是一个下界
+
+      那么只能是$epsilon = 0$，于是最大下界为$0 + epsilon = epsilon = 0$
+  ]
+]
+
+#problem[最小上界性质][
+
+  $(a_n)_(n=m)^infinity$是实数序列，$x = sup(a_n)_(n=m)^infinity in RR^*$
+
+  #proof[
+
+
+    + 由定理 6.27(1) 可证
+    + 由定理 6.27(2) 可证
+    + $forall y in RR^*, y < x => exists n >= m, y < a_n <=x$
+
+      由于$x$是最小上界，那么有$a_n <= x$，由于$y < x$，那么$y != +infinity$，如果$y = -infinity$，那么一定有$y < a_n <= x$，因为$(a_n)_(n=m)^infinity$是实数序列
+
+      如果$y in RR$，定义集合$E := {a_n : n>= m}$，所以$x = sup_(n>=m)a_n = sup(E)$
+
+      假设$forall n >= m, y >= a_n$，这意味这$y$是$E$的一个上界，由于$x$是最小上界，于是$y >= x$，这与$y < x$矛盾，所以$exists n >=m, y < a_n <= x$
+  ]
+]
+
+#problem[单调有界序列必然收敛][
+  $(a_n)_(n=m)^infinity$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛
+
+  #proof[
+
+    由于$M in RR$是该序列的一个上界，那么上确界有一定是实数，所以令$x = sup_(n>=m)a_n in RR$，那么任取$epsilon in RR^+$，就有$x - epsilon < x$，于是$ exists N >= m, x-epsilon < a_N <= x $由于该序列单调递增，那么$forall n >= N, a_n >= a_N$，于是有
+    $ x - epsilon & < a_N <= a_n <= x < x + epsilon \
+                & => -epsilon < a_n - x < epsilon \
+                & => abs(a_n - x) < epsilon $这正是序列收敛的定义，于是就有
+    $
+      lim_(n->infinity)a_n = sup_(n>=m)a_n <= M
+    $
+  ]
+]
+
+#problem[证明$x > 1$时，$(x^n)_(n=1)^infinity$不收敛][
+  定义新序列$(1/x^n)_(n=1)^infinity$，由于$x > 1$，那么$ forall n,m in ZZ^+, n>=m => x^n > x^m > 1 => 0 < 1/x^n <1/x^m < 1 $于是$(1/x^n)_(n=1)^infinity$是单调递减的，且有$inf_(n>=m)1/x^n = 0$，于是$ lim_(n->infinity)1/x^n = 0 $
+
+  现在假设$(x^n)_(n=1)^infinity$收敛到$L$，同时根据$1/x^n x^n = 1$，就有$0 L = 0 = 1$，矛盾，所以$x > 1$时，$(x^n)_(n=1)^infinity$不收敛
+]
+
+== 上极限、下极限和极限点
