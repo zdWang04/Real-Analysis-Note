@@ -1,6 +1,5 @@
-#import "@preview/euler-math:0.1.0": *
 #import "../utils/utils.typ": *
-
+#import "@preview/euler-math:0.1.0": *
 
 = 序列的极限
 
@@ -123,7 +122,7 @@
   + 序列$(min(a_n, b_n))_(n=m)^infinity$收敛到$min(x, y)$
   $ lim_(n->infinity)min(a_n, b_n) = min(lim_(n->infinity)a_n, lim_(n->infinity)b_n) $
 ]
-
+#pagebreak()
 #practice-separate()
 
 #problem[$(a_n)_(n=0)^infinity$是实数序列，且$forall n in NN, a_(n+1) > a_n$，证明：$forall m,n in NN, m> n => a_m > a_n$][
@@ -316,7 +315,7 @@
   - $y = +infinity$
 ]
 
-#theorem[广义实数系的序的性质][
+#property[广义实数系的序的性质][
   $x, y, z in RR^*$，有以下成立：
   - $x <= x$
   - $x < y , x = y, x > y$同时只有一个成立
@@ -336,7 +335,7 @@
 
 ]
 
-#theorem[广义实数系上/下确界的性质][
+#property[广义实数系上/下确界的性质][
   $E subset.eq RR^*$，有下列成立
   - $forall x in E, x <= sup(E) and x >= inf(E)$
   - $M in RR^*$，是$E$的一个上界，那么$sup(E) <= M$
@@ -429,7 +428,7 @@
   $
 ]
 
-#theorem[最小上界性质][
+#property[最小上界性质][
   $(a_n)_(n=m)^infinity$是实数序列，$x = sup(a_n)_(n=m)^infinity in RR^*$，那么
 
   + $forall n >=m, a_n <= x$
@@ -522,3 +521,75 @@
 ]
 
 == 上极限、下极限和极限点
+
+#definition[极限点][
+  $x in RR, epsilon in RR^+, (a_n)_(n=m)^infinity$是实数序列，定义：
+  + $x$是$epsilon$-贴附于$(a_n)_(n=m)^infinity$的$<=>$存在一个$n>= m$，使得$a_n$可以$epsilon$-接近于$x$
+  + $x$是持续$epsilon$-贴附于$(a_n)_(n=m)^infinity$的$<=> forall N >= m, (a_n)_(n=N)^infinity$是$epsilon$-贴附于$x$的
+  + $x$是$(a_n)_(n=m)^infinity$的极限点/黏附点$<=> forall epsilon in RR^+$，$x$是持续$epsilon$-贴附于$(a_n)_(n=m)^infinity$的
+
+  将上述定义展开就有，如果$x$是序列$(a_n)_(n=m)^infinity$的极限点，那么就有
+  $
+    forall epsilon in RR^+, forall N >= m, exists n>= N, abs(a_n - x) <= epsilon
+  $
+
+  #note-block[
+    观察定义(2)的描述，其实相当于抛弃了前$N-m$项，然后在剩下的序列元素中研究
+  ]
+]
+
+#lemma[极限其实也是极限点][
+  实数序列$(a_n)_(n=m)^infinity$收敛到$L$，那么$L$也是该序列的极限点，且是唯一的极限点
+
+  #proof[
+    任取$epsilon in RR^+, N >= m$，由收敛定义有
+    $ exists N_0 >= m, forall n >= N_0, abs(a_n - x) <= epsilon $现在取$n = max(N, N_0)$，那么有$n >= N_0 and n>=N$，所以有$ abs(a_n-L) <= L $也即
+    $ forall N >= m, exists n >= N, abs(a_n - L) <= epsilon $所以$L$是该序列的一个极限点
+
+    收敛序列的极限点唯一可由收敛的唯一性直接得到
+  ]
+
+
+]
+
+#definition[上极限和下极限][
+
+  $(a_n)_(n=m)^infinity$是序列，现在定义序列$(a_N^+)_(N=m)^infinity$，其中
+  $
+    a_N^+ := sup(a_n)_(n = N)^infinity
+  $
+
+  定义_序列$(a_n)_(n=m)^infinity$的上极限_为
+  $ lim_(n->infinity) sup a_n := inf(a_N^+)_(N = m)^infinity $
+
+  类似的，定义序列$(a_N^-)_(N=m)^infinity$，其中
+  $ a_N^- := inf(a_n)_(n=N)^infinity $
+  并定义_序列$(a_n)_(n=m)^infinity$的下极限_为
+  $
+    lim_(n->infinity)inf a_n := sup(a_N^-)_(N = m)^infinity
+  $
+
+  有时也将上下极限记作
+  $
+    lim_(n->infinity)sup a_n = overline(lim)_(n->infinity)a_n\
+    lim_(n->infinity)inf a_n = underline(lim)_(n->infinity)a_n\
+  $
+
+  #note-block[
+    $a_N^+$相当于将原序列从$a_N$处截断，取包含$a_N$的尾部的上确界，若干个这样的上确界组成了一个新序列，取新序列的下确界，即为上极限
+  ]
+]
+
+#property[序列上/下极限点的性质][
+  $(a_n)_(n=m)^infinity$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点，有下列成立
+
+  + $forall x > L^+, exists N >= m, forall n>= N, a_n < x$
+  + $forall y < L^-, exists N >= m, forall n>= N, a_n > y$
+  + $forall x < L^+, forall N >= m, exists n >= N, a_n > x$
+  + $forall y > L^-, forall N >= m, exists n >= N, a_n < y$
+  + $inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$
+  + $c$是序列$(a_n)_(n=m)^infinity$的任意极限点，那么$L^- <= c <= L^+$
+  + $L^+$是有限的，那么$L^+$是序列的一个极限点
+  + $L^-$是有限的，那么$L^-$是序列的一个极限点
+  + $c in RR, lim_(n->infinity)a_n = c <=> L^+ = L^- = c$
+]

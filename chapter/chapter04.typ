@@ -46,7 +46,7 @@
   $(a bar.h b)$是一个整数，定义其负数为$-(a bar.h b) = (b bar.h a)$.特别的，对于正自然数$n = n bar.h 0$，定义它的负数为$-n = 0 bar.h n$
 ]
 
-#lemma[整数的三歧性][
+#theorem[整数的三歧性][
   $x$是一个整数，下面三个命题中恰好有一个为真
   + $x$是$0$
   + $x$是正自然数$n$
@@ -66,7 +66,7 @@
   如果$n$是一个正自然数，那么$-n$称为一个负整数
 ]
 
-#theorem[整数的代数定律][
+#property[整数的代数定律][
   $x,y,z in ZZ$，有以下成立
   + $x + y = y + x$
   + $(x+y)+z = x+(y+z)$
@@ -102,12 +102,12 @@
   如果$a,b,c in ZZ$，且满足$a c = b c and c != 0$，那么$a = b$
 ]
 
-#definition[整数排序][
+#definition[整数的序][
 
   $n,m in ZZ$，$n>=m$或$m <=n$当且仅当存在$a in NN$，使得$n = m+a$；$n > m$或$m < n$当且仅当$n >= m and n !=m$
 ]
 
-#lemma[序的性质][
+#property[整数的序的性质][
   令$a,b,c in ZZ$，有以下成立
   + $a > b$当且仅当$a - b$是正自然数
   + 如果$a>b$，那么$a+c > b+c$
@@ -305,7 +305,7 @@
   $x in QQ and x != 0$并且$x = a slash.double b$，定义其倒数为$x^(-1) = b slash.double a$
 ]
 
-#theorem[有理数的代数定律][
+#property[有理数的代数定律][
   $x,y,z in QQ$，有以下成立
   + $x + y = y + z$
   + $(x+y)+z = x+(y+z)$
@@ -316,10 +316,9 @@
   + $x 1 = 1 x = x$
   + $x(y + z) = x y + x z$
   + $(y + z)x = y x + z x$
-  如果$x != 0$，那么有
-  10. $x x^(-1) =x^(-1) x= 1$
+  + 如果$x != 0$，那么有$x x^(-1) =x^(-1) x= 1$
 ]
-
+#pagebreak()
 #note-block[
   以上的等式断定了有理数集$QQ$构成了_域_
 ]
@@ -363,7 +362,7 @@
   ]
 ]
 
-#lemma[有理数的三歧性][
+#theorem[有理数的三歧性][
   $x in QQ$，那么下面只有一个命题是成立的
   + $x = 0$
   + $x$是正的
@@ -378,8 +377,8 @@
   + $x <= y <=> x < y or x = y$
 ]
 
-#theorem[有理数的序的基本性质][
-  $x,y,z in QQ$，下列成立
+#property[有理数的序的基本性质][
+  $x,y,z in QQ$，有下列成立
   + 有理数的序的三歧性
   + $x < y <=> y > x$
   + $x < y and y < z => x < z$
@@ -525,7 +524,7 @@
   $x, y in QQ$，定义$x$和$y$之间的_距离_为$abs(x-y)$，记作$ d(x, y) = abs(x-y) $
 ]
 
-#theorem[绝对值和距离的基本性质][$x,y,z in QQ$
+#property[绝对值和距离的基本性质][$x,y,z in QQ$
   + 绝对值的非退化性，$abs(x) >= 0$.此外，$abs(x) = 0 <=> x = 0$
   + 绝对值的三角不等式，$abs(x+y) <= abs(x) + abs(y)$
   + 不等式$-y <= x <= y$成立$<=> y>= abs(x)$，特别的，$-abs(x) <= x <= abs(x)$
@@ -547,7 +546,7 @@
   - $epsilon, delta$常用作小的正数的代表
 ]
 
-#theorem[$epsilon$-接近性的性质][
+#property[$epsilon$-接近性的性质][
   $x,y,z,w in QQ$
   + $x = y <=> forall epsilon in QQ and epsilon > 0$，$x$都是$epsilon$-接近于$y$的
   + $epsilon > 0$，如果$x$是$epsilon$-接近于$y$的，那么$y$也是$epsilon$-接近于$x$的
@@ -567,16 +566,16 @@
   $x in QQ and x != 0$，对任意负整数$-n$，定义$x^(-n) := 1/x^n$
 ]
 
-#theorem[指数运算的性质$upright(I)$][
-  $x, y in QQ, n,m in NN$
+#property[指数运算的性质$upright(I)$][
+  $x, y in QQ, n,m in NN$，有以下成立
   + $x^n x^m = x^(n+m), (x^n)^m = x^(n m), (x y)^n = x^n y^n$
   + 如果$n > 0$，那么$x^n = 0 <=> x = 0$
   + 如果$x >= y >= 0$，那么$x^n >= y^n >=0$，如果$x > y >= 0 and n > 0$，那么$x^n > y^n >= 0$
   + $abs(x^n) = abs(x)^n$
 ]
 
-#theorem[指数运算的性质$upright(I I)$][
-  $x, y in QQ and x,y!=0$，令$n,m in ZZ$
+#property[指数运算的性质$upright(I I)$][
+  $x, y in QQ and x,y!=0$，令$n,m in ZZ$，有以下成立
   + $x^n x^m = x^(n+m), (x^n)^m = x^(n m), (x y)^n = x^n y^n$
   + $x >= y > 0$，那么当$n$正数时有$x^n >= y^n > 0$，当$n$为负数时有，$0 < x^n <= y^n$
   + $x, y > 0$，$n !=0$并且$x^n = y^n$，那么$x = y$

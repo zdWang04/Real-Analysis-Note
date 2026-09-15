@@ -163,7 +163,8 @@
   ]
 ]
 
-#theorem[实数相等是良定义的][
+#proposition[实数相等是良定义的][
+
   令$x = "LIM"_(n -> infinity) a_n,y = "LIM"_(n -> infinity) b_n,z= "LIM"_(n -> infinity) c_n, x,y,z in RR$
   #proof[
     + $x = x$
@@ -186,7 +187,8 @@
   ]
 ]
 #definition[实数加法][
-  $x = "LIM"_(n -> infinity) a_n, y = "LIM"_(n -> infinity) b_n$是实数，那么$x + y := "LIM"_(n -> infinity) (a_n + b_n)$
+
+  $x = "LIM"_(n -> infinity) a_n, y = "LIM"_(n -> infinity) b_n$是实数，那么定义$x + y := "LIM"_(n -> infinity) (a_n + b_n)$
 ]
 
 #lemma[柯西序列的和也是柯西的][
@@ -216,12 +218,13 @@
   $x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n$，$x,y$都是实数，定义$x y:="LIM"_(n->infinity)a_n b_n$
 ]
 
-#lemma[实数乘法是良定义的][
-  $x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n,x'="LIM"_(n->infinity)a'_n, x,x',y in RR$，那么$x y = x'y$
+#proposition[实数乘法是良定义的][
+
+  令$x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n,x'="LIM"_(n->infinity)a'_n, x,x',y in RR$，那么$x y = x'y$
 
   #proof[
 
-    由于$(b_n)_(n=1)^infinity$是柯西序列，那么它是有界的，令界为$M$，由于$x = x'$，那么$ exists N in ZZ^+, abs(a_j - a'_j) <= epsilon/M, epsilon in QQ^+,j>= N $所以有$ abs(a_j b_j - a'_j b_j) = abs(a_j - a'_j) abs(b_j) <= epsilon/M M = epsilon, j>= N $于是序列$(a_n)_(n=1)^infinity (b_n)_(n=1)^infinity$和$(a'_n)_(n=1)^infinity (b_n)_(n=1)^infinity$是等价的，所以$x y = x'y$
+    由于$(b_n)_(n=1)^infinity$是柯西序列，那么它是有界的，令界为$M$，由于$x = x'$，那么$ exists N in ZZ^+, abs(a_j - a'_j) <= epsilon/M, epsilon in QQ^+,j>= N $所以有$ abs(a_j b_j - a'_j b_j) = abs(a_j - a'_j) abs(b_j) <= epsilon/M M = epsilon, j>= N $于是序列$(a_n b_n)_(n=1)^infinity$和$(a'_n b_n)_(n=1)^infinity$是等价的，所以$x y = x'y$
   ]
   #note-block[
     同实数加法是良定义的证明，还应当证明$y = y' => x y = x y'$
@@ -233,16 +236,14 @@
 ]
 
 #definition[实数的相反数][
-
   $-x := (-1) times x$
-
-  #note-block[
-    令$x = "LIM"_(n->infinity)a_n$根据实数相反数的定义和乘法就有$ -x = -1 times x = "LIM"_(n->infinity)-1 times "LIM"_(n->infinity)a_n = "LIM"_(n->infinity)-a_n $
-  ]
+]
+#pagebreak()
+#note-block[
+  令$x = "LIM"_(n->infinity)a_n$根据实数相反数的定义和乘法就有$ -x = -1 times x = "LIM"_(n->infinity)-1 times "LIM"_(n->infinity)a_n = "LIM"_(n->infinity)-a_n $
 ]
 
 #definition[实数的减法][
-
   $x - y := x + (-y)$
   #note-block[
     令$x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n$，类似的，根据实数相反数的定义和乘法和加法就有$ x - y = x + (-y) = "LIM"_(n->infinity)a_n + "LIM"_(n->infinity)-b_n = "LIM"_(n->infinity)(a_n - b_n) $
@@ -283,12 +284,11 @@
 ]
 
 #definition[实数的倒数][
-  $x$是一个非零实数，$(a_n)_(n=1)^infinity$是一个远离$0$的柯西序列，且满足$x = "LIM"_(n->infinity)a_n$.
-
-  定义$x$的倒数为$ x^(-1) := "LIM"_(n->infinity)a_n^(-1) $
+  $x$是一个非零实数，$(a_n)_(n=1)^infinity$是一个远离$0$的柯西序列，且满足$x = "LIM"_(n->infinity)a_n$，则定义$x$的倒数为$ x^(-1) := "LIM"_(n->infinity)a_n^(-1) $
 ]
+#pagebreak()
+#proposition[实数的倒数是良定义的][
 
-#lemma[实数的倒数是良定义的][
   $(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是远离$0$的柯西序列且$"LIM"_(n->infinity)a_n = "LIM"_(n->infinity)b_n$，那么$"LIM"_(n->infinity)a_n^(-1) = "LIM"_(n->infinity)b_n^(-1)$
 
   #proof[
@@ -334,7 +334,7 @@
   由于$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的等价序列，那么$ forall epsilon in QQ^+, exists N in NN, abs(b_i - a_i) <= epsilon, i >= N $
   于是就有$ abs(b_i) <= abs(b_i - a_i) + abs(b_i) <= epsilon + M, i >= N $对于${b_i:i<N}$的部分，是一个有限序列，先前证明过引理：有限序列也是有界的，不妨令界为$W$，于是$abs(b_i) <= max(W, M+epsilon), forall i in NN$，于是序列$(b_n)_(n=0)^infinity$也是有界的
 ]
-
+#pagebreak()
 #problem[证明$"LIM"_(n->infinity)1/n = 0$][
   即证明序列$(1/n)_(n=1)^infinity$与序列$(0)_(n=1)^infinity$是等价的$ 1/n >= epsilon => 0< n <= 1/epsilon $取$N = ceil(1/epsilon)$，于是$ forall epsilon in QQ^+, exists N in ZZ^+,forall j >= N, abs(1/j - 0) = abs(1/j) <= epsilon $于是二序列等价，于是$"LIM"_(n->infinity)1/n = 0$
 ]
@@ -357,7 +357,7 @@
   ]
 ]
 
-#theorem[实数的三歧性][
+#proposition[实数的三歧性][
   实数$x = "LIM"_(n->infinity)a_n$是正的、负的、$0$，这三种情况同时只有一个成立
   #proof[
     + 首先证明至少有一个成立，也即证明三种同时不成立是不可能的
@@ -423,8 +423,8 @@
   + $x <= y <=> x < y or x = y$
 ]
 
-#theorem[实数的序的基本性质][
-  $x,y,z in RR$，下列成立
+#property[实数的序的基本性质][
+  $x,y,z in RR$，有下列成立
   + 实数的三歧性
   + $x > y <=> y < x$
   + $x <y and y < z => x < z$
@@ -432,6 +432,7 @@
   + $x < y and x$是正的$=> x z < y z$
 
   #proof[
+
     令$x = "LIM"_(n->infinity)a_n,y = "LIM"_(n->infinity)b_n,z = "LIM"_(n->infinity)c_n$
     + 见定理 5.38的证明
     + $x > y <=> y < x$
@@ -467,7 +468,9 @@
 ]
 
 #lemma[$y in RR^+, x in RR, x > y => x^(-1) < y^(-1)$][
-  由于$y$是正的，那么$x > y=> x$也是正的，假设$x^(-1) >= y^(-1)$，就有$ 1 = x x^(-1) > y x^(-1) >= y y^(-1) = 1 $于是$1 > 1$，矛盾，由实数的序的三歧性，$x^(-1) < y^(-1)$
+  #proof[
+    由于$y$是正的，那么$x > y=> x$也是正的，假设$x^(-1) >= y^(-1)$，就有$ 1 = x x^(-1) > y x^(-1) >= y y^(-1) = 1 $于是$1 > 1$，矛盾，由实数的序的三歧性，$x^(-1) < y^(-1)$
+  ]
 ]
 
 #lemma[$(a_n)_(n=1)^infinity$是非负有理数组成的柯西序列，那么实数$x = "LIM"_(n->infinity)a_n$是非负实数][
@@ -517,7 +520,7 @@
   $
 ]
 #pagebreak()
-#lemma[取大/取小操作的性质][
+#property[取大/取小操作的性质][$x, y in RR$，有下列成立
   + $max(x, y) = -min(-x, -y)$
   + $min(x, y) = -max(-x, -y)$
   + $max(x, y) = max(y, x)$
@@ -595,7 +598,7 @@
     有理数在实数中也是稠密的
   ]
 ]
-
+#pagebreak()
 #problem[$x, y in RR, epsilon in RR^+$，证明$abs(x - y) < epsilon <=>-epsilon + y< x < epsilon+y$，证明$abs(x - y) <= epsilon <=> -epsilon + y<= x <= epsilon + y$][
   + $abs(x - y) < epsilon <=>-epsilon + y< x < epsilon+y$
     - $=>$
@@ -906,7 +909,7 @@
   实数的整数次幂的定义与有理数的整数次幂是完全一致的
 ]
 
-#theorem[实数的整数次幂运算也满足有理数的指数运算性质][
+#property[实数的整数次幂运算也满足有理数的指数运算性质][
   $x, y in RR, n,m in NN$，有以下性质成立
   + $x^n x^m = x^(n+m)$
   + $n > 0, x^n=0 <=> x = 0$
@@ -925,7 +928,7 @@
     观察有理数的整数次幂的运算性质的证明过程，它依赖于有理数的代数运算性质和序的性质，而先前已经证明过，实数也满足同样的代数运算性质和序的性质，那么需要将“有理数版本”的证明修改为“实数版本”的证明，即可证明实数的整数次幂运算也满足有理数的整数次幂的运算性质
   ]
 ]
-
+#pagebreak()
 #definition[实数的$n$次方根][
   $x in RR and x>=0, n in ZZ^+$，定义_$x$的$n$次方根_为$ x^(1/n) := sup{y in RR: y >= 0 and y^n <= x } $特别的，将$x^(1/2)$写作$sqrt(x)$
 ]
@@ -961,7 +964,7 @@
   ]
 ]
 
-#lemma[非负实数的$n$次方根的性质][
+#property[非负实数的$n$次方根的性质][
   $x, y in RR_(>=0), n,m,k,l in ZZ^+$，有以下性质成立
   + $y = x^(1/n) <=> y^n = x$
   + $x^(1/n)$是非负实数$<=>x$是非负实数
@@ -976,7 +979,8 @@
   $x in RR^+, q in QQ$，对于有理数$q = a/b, a in ZZ, b in ZZ^+$，定义正实数的有理数次幂为$ x^q := (x^(1/b))""^a $
 ]
 
-#lemma[正实数的有理数次幂是良定义的][
+#proposition[正实数的有理数次幂是良定义的][
+
   $x in RR^+, a, a' in ZZ, b,b' in ZZ^+$，满足$a/b = a'/b'$，那么有$(x^(1/b))""^a = (x^(1/b'))""^(a')$
 
   #proof[
@@ -986,7 +990,7 @@
   ]
 ]
 
-#lemma[正实数有理数次幂的性质][
+#proposition[正实数有理数次幂的性质][
   $x, y in RR^+, q, r in QQ$，有以下性质成立
   + $x^q in RR^+$
   + $x^(q+r) = x^q x^r, (x^q)""^r = x^(q r)$
@@ -1077,12 +1081,12 @@
   + 证明了幂函数的局部保号性，只依赖减量上界估计
 ]
 
-#lemma[正实数取大取小操作的性质（幂次）][
+#property[正实数取大取小操作的性质（幂次）][
   $x, y in RR^+, q in QQ^+$
   + $max(x^q, y^q) = max(x, y)^q$
   + $min(x^q, y^q) = min(x, y)^q$
   #note-block[
-    这是作为本节的课后习题出现的，这里单独提取为一个引理，题目中额外问了$q<1$和$q >= 1$时，性质会如何变化，答案是不变，只要指数是大于零的，那么幂函数的单调递增总保持
+    这是作为本节的课后习题出现的，这里单独提取为一个引理，题目中额外问了$q<1$和$q >= 1$时，性质会如何变化，答案是不变，只要指数部分是大于零的，那么幂函数的单调递增总保持
   ]
 ]
 
