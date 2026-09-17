@@ -91,7 +91,7 @@
     $ & "    "abs(a_j - L) <= epsilon, abs(a_k - L) <= epsilon \
     & => abs(a_j - a_k) <= abs(a_j - L) + abs(L - a_k) <= 2 epsilon $所以$(a_n)_(n=m)^infinity$也是柯西序列
   ]
-]
+]<lemma-convergent-sequence-is-cauchy>
 
 // #lemma[形式极限是极限][
 //   如果$(a_n)_(n=1)^infinity$是一个有理数柯西序列，那么$(a_n)_(n=1)^infinity$收敛到$"LIM"_(n->infinity)a_n$，即$ "LIM"_(n->infinity)a_n = lim_(n->infinity)a_n $
@@ -102,7 +102,13 @@
   + 实数序列$(a_n)_(n=m)^infinity$是有界的$<=> exists M in RR^+, forall n>=m, abs(a_n) <= M$
 ]
 
-#corollary[所有收敛实数序列都是有界的]
+#corollary[所有收敛实数序列都是有界的][
+  #proof[
+    $(a_n)_(n=m)^infinity$是一个收敛的实数序列，假设收敛到$L$，就有
+    $ forall epsilon in RR^+, exists N >= m, forall n >= N, abs(a_n - L) <= epsilon => abs(a_n) <= epsilon + abs(L) $对于有限序列$(a_n)_(n=m)^(n=N)$，一定是有界的，令界为$M$，于是取$M' = max(M, epsilon + abs(L))$，可见$M'$是序列的一个界
+  ]
+]
+
 #theorem[极限定律][
   $(a_n)_(n=m)^infinity, (b_n)_(n=m)^infinity$都是收敛的实数序列，$x, y in RR$，令$x := lim_(n->infinity)a_n, y := lim_(n->infinity)b_n$
   + 序列$(a_n+b_n)_(n=m)^infinity$收敛到$x + y$
@@ -167,7 +173,7 @@
   问题 6.15和问题 6.16说明收敛序列的极限与索引以及开始位置关系不大，我们更关系的是极限过程下的长期行为
 ]
 
-#problem[证明收敛序列也是柯西序列][见引理 6.8的证明]
+#problem[证明@lemma-convergent-sequence-is-cauchy][见引理 6.8的证明]
 
 #problem[证明形式极限就是正式极限][
   $(a_n)_(n=1)^infinity$是有理数柯西序列，那么$(a_n)_(n=1)^infinity$收敛到$"LIM"_(n->infinity)a_n$，即
@@ -436,6 +442,17 @@
   + $forall y in RR^*, y < x => exists n >= m, y< a_n <= x$
 
 ]
+#pagebreak()
+#property[最大下界性质][
+  $(a_n)_(n=m)^infinity$是实数序列，$x = inf(a_n)_(n=m)^infinity in RR^*$，那么
+
+  + $forall n >=m, a_n >= x$
+  + $M in RR^*$，是序列的一个下界，那么有$x >= M$
+  + $forall y in RR^*, y > x => exists n >= m, y > a_n >= x$
+  #note-block[
+    刚好和最小上界性质反过来
+  ]
+]
 
 #lemma[单调有界序列必然收敛][
   $(a_n)_(n=m)^infinity$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛，并且有
@@ -548,9 +565,7 @@
 
     收敛序列的极限点唯一可由收敛的唯一性直接得到
   ]
-
-
-]
+]<lemma-limit-point-is-limit>
 
 #definition[上极限和下极限][
 
@@ -583,8 +598,8 @@
 #property[序列上/下极限点的性质][
   $(a_n)_(n=m)^infinity$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点，有下列成立
 
-  + $forall x > L^+, exists N >= m, forall n>= N, a_n < x$
-  + $forall y < L^-, exists N >= m, forall n>= N, a_n > y$
+  + $forall x > L^+, exists N >= m, forall n >= N, a_n < x$
+  + $forall y < L^-, exists N >= m, forall n >= N, a_n > y$
   + $forall x < L^+, forall N >= m, exists n >= N, a_n > x$
   + $forall y > L^-, forall N >= m, exists n >= N, a_n < y$
   + $inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$
@@ -592,4 +607,324 @@
   + $L^+$是有限的，那么$L^+$是序列的一个极限点
   + $L^-$是有限的，那么$L^-$是序列的一个极限点
   + $c in RR, lim_(n->infinity)a_n = c <=> L^+ = L^- = c$
+]<property-limit-sup-inf>
+
+#lemma[比较引理][
+  $(a_n)_(n=m)^infinity,(b_n)_(n=m)^infinity$是两个实数序列，满足$forall n >= m, a_n <= b_n$，那么有如下不等式成立
+  + $ sup(a_n)_(n=m)^infinity <= sup(b_n)_(n=m)^infinity $
+  + $ inf(a_n)_(n=m)^infinity <= inf(b_n)_(n=m)^infinity $
+  + $ lim_(n->infinity) sup a_n <= lim_(n->infinity) sup b_n $
+  + $ lim_(n->infinity) inf a_n <= lim_(n->infinity) inf b_n $
+]<lemma-comparison-principle>
+
+#corollary[夹逼检验][
+  $(a_n)_(n=m)^infinity, (b_n)_(n=m)^infinity, (c_n)_(n=m)^infinity$是实数序列，满足
+  $
+    forall n >= m, a_n <= b_n <= c_n
+  $
+  如果$(a_n)_(n=m)^infinity, (c_n)_(n=m)^infinity$都收敛到$L$，那么$(b_n)_(n=m)^infinity$也收敛到$L$
+]<corollary-squeeze-test>
+
+#corollary[数列零检验][
+  实数序列$(a_n)_(n=m)^infinity$的极限存在且等于$0$，当且仅当极限$lim_(n->infinity)abs(a_n)$存在且等于$0$
+]<corollary-zero-test-for-sequences>
+
+#theorem[实数的完备性][
+  实数序列$(a_n)_(n=m)^infinity$是柯西序列，当且仅当它是收敛的
+
+  #proof[
+    - $=>$\
+      $(a_n)_(n=m)^infinity$是柯西序列，那么它是有界的，所以由@property-limit-sup-inf(5)可得$L^+,L^- in RR$
+
+      利用柯西序列的定义就有
+      $
+        forall epsilon/2 in RR^+, exists N >= 1, forall n >= N, abs(a_n - a_N) <= epsilon/2 => -epsilon/2 + a_N <= a_n <= epsilon/2 + a_N
+      $
+      由@lemma-comparison-principle 就有
+      $ -epsilon/2 + a_N <= inf(a_n)_(n=N)^infinity <= sup(a_n)_(n=N)^infinity <= epsilon/2 + a_N $再次利用@lemma-comparison-principle 搭配上下极限定义，就有
+      $ & -epsilon/2 + a_N <= L^- <=L^+ <= epsilon/2 + a_N \
+      & => 0<=L^+ - L^-<= epsilon => abs(L^+ - L^-) <= epsilon $由于$epsilon$是任取的，那么$L^+ = L^-$，结合@property-limit-sup-inf(9)，说明$(a_n)_(n=1)^infinity$是收敛的
+
+    - $arrow.double.l$ 见@lemma-convergent-sequence-is-cauchy 的证明
+  ]
 ]
+
+#definition[没有有限上下界][
+  对于序列$(a_n)_(n=m)^infinity$，其极限点为$c$
+  - $c = +infinity <=>$该序列没有有限上界
+  - $c = -infinity <=>$该序列没有有限下界
+]
+
+#practice-separate()
+
+#problem[证明 @lemma-limit-point-is-limit][见 @lemma-limit-point-is-limit 的证明]
+
+#problem[证明极限点/上极限/下极限的定义中，起始角标的选取是无关紧要的][
+  + $(a_n)_(n=m)^infinity$是实数序列，$m >= m'$，那么$c$是$(a_n)_(n=m)^infinity$的极限点，当且仅当$c$是$(a_n)_(n=m')^infinity$的极限点
+    #proof[
+      - $=>$\
+        由于$c$是$(a_n)_(n=m)^infinity$的极限点，就有
+        $ forall epsilon in RR^+, forall N >= m, exists n>= N, abs(a_n - c) <= epsilon $自然有$N >= m >= m'$，于是
+        $ forall epsilon in RR^+, forall N >= m',exists n >= N, abs(a_n - c) <= epsilon $这说明$c$是$(a_n)_(n=m')^infinity$的极限点
+      - $arrow.double.l$\
+        由于$c$是$(a_n)_(n=m')^infinity$的极限点，那么有
+        $ forall epsilon in RR^+, forall N >= m', exists n >= N, abs(a_n - c) <= epsilon $对于$(a_n)_(n=m)^infinity$，取$N >= m >= m'$，于是有$ forall epsilon in RR^+, forall N >= m>=m', exists n >= N, abs(a_n - c) <= epsilon $
+
+        #note-block[
+          由于对于任意的$N >= m'$，总存在$n >= N$满足上式，就算$N$取值到了$m$到$m'$之间，$n$也可以取到后面的值，因为只要求存在一个$n >= N$满足不等式
+        ]
+    ]
+  + $(a_n)_(n=m)^infinity$和$(a_(n+k))_(n=m)^infinity$是两个实数序列，且$k >= 0$，那么$c$是$(a_n)_(n=m)^infinity$的极限点，当且仅当$c$是$(a_(n+k))_(n=m)^infinity$的极限点
+    #proof[
+      令$m' = m+k>=m$，那么$ (a_(n+k))_(n=m)^infinity=(a_n)_(n=m')^infinity $由(1)易证
+    ]
+
+  + $(a_n)_(n=m)^infinity$是实数序列，$m <= m'$，那么$c$是$(a_n)_(n=m)^infinity$的上极限，当且仅当$c$是$(a_n)_(n=m')^infinity$的上极限
+    #proof[
+      由上极限的定义，有
+      $ lim_(n->infinity) sup a_n = inf (a_N^+)_(N = m)^infinity $
+      其中$(a_N^+) = sup(a_n)_(n=N)^infinity$，所以有
+      $
+        a_m^+ >= a_(m-1)^+ >= ... >= a_(m')^+>= ...
+      $
+      所以从$m'$开始算的序列的下确界和从$m$开始算的序列的下确界是相等的，只不过后者比前者多了$a_m^+,...,a_(m'-1)^+$这些元素，而且它们单调递减，即便删除也不影响对下确界的判断
+    ]
+  + $(a_n)_(n=m)^infinity$是实数序列，$k >= 0$，那么$c$是$(a_(n+k))_(n=m)^infinity$的上极限，当且仅当$c$是$(a_n)_(n=m)^infinity$的上极限
+    #proof[
+      令$m' = m + k >= m$，那么就有
+      $
+        (a_(n+k))_(n=m)^infinity = (a_n)_(n = m')^infinity
+      $
+      由(3)易证
+    ]
+  + $(a_n)_(n=m)^infinity$是实数序列，$m <= m'$，那么$c$是$(a_n)_(n=m)^infinity$的下极限，当且仅当$c$是$(a_n)_(n=m')^infinity$的下极限
+    #proof[
+      同(3)
+    ]
+  + $(a_n)_(n=m)^infinity$是实数序列，$k >= 0$，那么$c$是$(a_(n+k))_(n=m)^infinity$的下极限，当且仅当$c$是$(a_n)_(n=m)^infinity$的下极限
+    #proof[
+      同(4)
+    ]
+  #note-block[
+    以上的结果说明，极限点/上下极限的判断与序列起始位置无关，与序列平移也无关
+  ]
+]
+
+#problem[证明@property-limit-sup-inf ][
+  #proof[
+    $(a_n)_(n=m)^infinity$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点
+    + $forall x > L^+, exists N >= m, forall n >= N, a_n < x$\
+      $x > L^+$，由于$L^+ = inf(a_N^+)_(N =m)^infinity$，那么$x > inf(a_N^+)_(N =m)^infinity$，于是
+      $ exists N >= m, x > a_N^+ = sup(a_n)_(n=N)^infinity $进一步就有
+      $ forall n>= N, x > a_n $综上得证
+
+    + $forall y < L^-, exists N >= m, forall n >= N, a_n > y$\
+      $y < L^-$，由于$L^- = sup(a_N^-)_(N = m)^infinity$，那么$y < sup(a_N^-)_(N = m)^infinity$，于是
+      $ exists N >= m, y < a_N^+ = inf(a_n)_(n=N)^infinity $进一步有
+      $ forall n >= N, y < a_n $综上得证
+
+    + $forall x < L^+, forall N >= m, exists n >= N, a_n > x$\
+      $x < L^+$，由于$L^+ = inf(a_N^+)_(N = m)^infinity$，那么$x < inf(a_N^+)_(N = m)^infinity$，于是
+      $ forall N >= m, x < a_N^+ = sup(a_n)_(n=N)^infinity $进一步有
+      $ exists n >= N, x < a_n $综上得证
+
+    + $forall y > L^-, forall N >= m, exists n >= N, a_n < y$\
+      $y > L^-$，由于$L^- = sup(a_N^-)_(N = m)^infinity$，$y > sup(a_N^-)_(N = m)^infinity$，于是
+      $ forall N >= m, y > a_N^- = inf(a_n)_(n=N)^infinity $进一步有
+      $ exists n >= N, y > a_n $综上得证
+
+    + $inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$\
+
+      $L^+ = inf(a_N^+)_(N=m)^infinity$，定义集合$E = {sup(a_n)_(n=N)^infinity:N>=m }$，于是$sup(a_n)_(n=m)^infinity in E$，由于$L^+ = inf(E)$，那么就有$L^+ <= sup(a_n)_(n=m)^infinity$
+
+      同理，就有$inf(a_n)_(n=m)^infinity <= L^-$
+
+      假设$L^- > L^+$，所以
+      $ exists N >= m, sup(a_N^-)_(N=m)^infinity > a_N^+\ $进而有
+      $ exists M >= m, a_N^+ < a_M^- <=sup(a_N^-)_(N=m)^infinity $取$p = N + M + 1$，那么$p > N, p > M$，于是就有$a_p < a_N^+ < a_M^- < a_p => a_p < a_p$，矛盾
+
+      综上$inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$
+
+    + $c$是序列$(a_n)_(n=m)^infinity$的任意极限点，那么$L^- <= c <= L^+$\
+      假设$c > L^+$，那么取$epsilon = (c - L^+)/2 > 0$，由于$c$是极限点，那么就有
+      $ forall N >= m, exists n >= N, abs(a_n - c) <= epsilon\
+      => a_n >= -epsilon + c =( L^+ + c )/2 > L^+ $因为任意的$N>=m$都存在$n >= N$满足上式，说明序列$(a_n)_(n=N)^infinity$至少有一项大于$( L^+ + c )/2$，所以有
+      $ a_N^+ = sup(a_n)_(n=N)^infinity >= ( L^+ + c )/2 $可以看到序列$(a_N^+)_(N=m)^infinity$中的每一项都满足大于等于$( L^+ + c )/2$，所以就有
+      $ L^+ = inf(a_N^+)_(N=m)^infinity >= (L^+ + c)/2 => c <= L^+ $与假设矛盾，所以$c <= L^+$
+
+      假设$L^- > c$，那么取$epsilon = (L^- - c )/ 2 > 0$，由于$c$是一个极限点，那么
+      $ forall N >= m, exists n >= N, abs(a_n - c) <= epsilon\
+      => a_n <= epsilon + c = (L^- + c) / 2 < L^- $于是说明任意的$N >= m$，总存在$n >= N$满足上式，说明序列$(a_n)_(n=N)^infinity$至少有一项小于$(L^- + c) / 2$，所以有
+      $ a_N^- = inf(a_n)_(n=N)^infinity <= (L^- + c) / 2 $可以看到序列$(a_N^-)_(N=m)^infinity$的每一项都小于等于$(L^- + c) / 2$，所以有
+      $ L^- = sup(a_N^-)_(N=m)^infinity <= (L^- + c)/2 => L^- <= c $与假设矛盾，所以有$L^- <= c$
+
+      综上$L^- <= c <= L^+$
+    + $L^+$是有限的，那么$L^+$是序列的一个极限点\
+      任取$epsilon in RR^+$，由于$L^+ in RR$，那么有
+      $
+        L^+ - epsilon < L^+ < L^+ + epsilon
+      $
+      对于前半部分，有
+      $
+        forall N >= m, exists n >= N, L^+ - epsilon < a_n
+      $
+      对于后半部分，有
+      $ exists N' >= m, forall n >= N', a_n < L^+ + epsilon $取$N'' = max(N, N')$于是有
+      $ forall N'' >= m ,exists n >= N'', L^+ - epsilon< a_n < L^+ + epsilon => abs(a_n - L^+) < epsilon $这说明$L^+$是一个极限点
+
+    + $L^-$是有限的，那么$L^-$是序列的一个极限点\
+      任取$epsilon in RR^+$，由于$L^- in RR$，那么
+      $
+        L^- - epsilon < L^- < L^- + epsilon
+      $
+      对于前半部分，有
+      $
+        exists N' >=m, forall n >= N, a_n > L^- - epsilon
+      $
+      对于后半部分，有
+      $
+        forall N >= m, exists n >= N', a_n < L^- + epsilon
+      $
+      取$N'' = max(N, N')$，就有
+      $ forall N'' >= m, exists n >= N'', L^- - epsilon < a_n < L^- + epsilon => abs(a_n - L^-) < epsilon $这说明$L^-$是一个极限点
+    + $c in RR, lim_(n->infinity)a_n = c <=> L^+ = L^- = c$\
+      - $=>$\
+        由于极限也是极限点，那么由(6)就有
+        $ L^- <= c <= L^+ $由于序列收敛到$c$，那么就有
+        $
+          forall epsilon in RR^+, exists N >= m, forall n >= N, abs(a_n - c) <= epsilon => -epsilon + c <= a_n <= epsilon + c
+        $
+        于是就有
+        $ forall n >= N, a_n <= epsilon + c => a_N^+ = sup(a_n)_(n=N)^infinity <= epsilon + c\
+        forall n >= N, a_n >= -epsilon + c => a_N^- = inf(a_n)_(n=N)^infinity >= -epsilon + c $进而有
+        $ L^+ = inf(a_k^+)_(k = N)^infinity <= epsilon + c\
+        L^- = sup(a_k^-)_(k = N)^infinity >= -epsilon + c\ $所以就有
+        $ -epsilon + c <= L^- <= L^+ <= epsilon + c\
+        => abs(L^+ - c) <= epsilon, abs(L^- - c) <= epsilon $由于$epsilon$是任取的，就有$L^+ = L^- = c$
+      - $arrow.double.l$\
+        任选$epsilon in RR^+$，由(5)可得
+        $
+          -epsilon + c = -epsilon + L^- < L^- = L^+ < epsilon + L^+ = epsilon + c
+        $
+        对于前半部分有
+        $
+          exists N >=m, forall n >= N, a_n > -epsilon + c
+        $
+        对于后半部分有
+        $
+          exists N' >= m, forall n >= N', a_n < epsilon + c
+        $
+        取$N'' = max(N, N')$，于是有
+        $ forall n >= N'',-epsilon + c < a_n < epsilon + c => abs(a_n - c) < epsilon $于是序列收敛到$c$
+  ]
+]
+
+#problem[证明@lemma-comparison-principle][
+  $(a_n)_(n=m)^infinity,(b_n)_(n=m)^infinity$是两个实数序列，满足$forall n >= m, a_n <= b_n$
+
+  #proof[
+    + $sup(a_n)_(n=m)^infinity <= sup(b_n)_(n=m)^infinity$\
+      $
+        & forall n>=m, a_n <= b_n \
+        & => a_n <= b_n <= sup(b_n)_(n=m)^infinity \
+        & => sup(a_n)_(n=m)^infinity <= sup(b_n)_(n=m)^infinity
+      $
+    + $inf(a_n)_(n=m)^infinity <= inf(b_n)_(n=m)^infinity$\
+      $
+        & forall n >= m, a_n <= b_n \
+        & => inf(a_n)_(n=m)^infinity <= a_n <= b_n \
+        & => inf(a_n)_(n=m)^infinity <= inf(a_n)_(n=m)^infinity
+      $
+    + $lim_(n->infinity) sup a_n <= lim_(n->infinity) sup b_n$\
+      $
+        & forall N >= m,forall n >= N >=m, a_n <= b_n =>sup(a_n)_(n=N)^infinity <= sup(b_n)_(n=N)^infinity \
+        & => forall N >=m, a_N^+ <= b_N^+ \
+        & => inf(a_N^+)_(N=m)^infinity <= inf(b_N^+)_(N=m)^infinity \
+        & => lim_(n->infinity) sup a_n <= lim_(n->infinity) sup b_n
+      $
+    + $lim_(n->infinity) inf a_n <= lim_(n->infinity) inf b_n$\
+      同(3)的证明
+  ]
+]
+
+#problem[证明@corollary-squeeze-test][
+  由于$(a_n)_(n=m)^infinity, (c_n)_(n=m)^infinity$都收敛到$L$，那么就有
+  $
+    lim_(n->infinity) sup a_n = lim_(n->infinity) inf a_n = L\
+    lim_(n->infinity) sup c_n = lim_(n->infinity) inf c_n = L\
+  $
+  由于$forall n >= m, a_n <= b_n <= c_n$，那么就有
+  $
+    & L = lim_(n->infinity) sup a_n<=lim_(n->infinity) sup b_n <= lim_(n->infinity) sup c_n = L \
+    & L = lim_(n->infinity) inf a_n<=lim_(n->infinity) inf b_n <= lim_(n->infinity) inf c_n = L \
+  $
+  所以$lim_(n->infinity) inf b_n = lim_(n->infinity) sup b_n = L$，所以$(b_n)_(n=m)^infinity$收敛且收敛到$L$
+]
+
+#problem[构造一个例子：序列$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$，满足$forall n in ZZ^+, a_n < b_n$，但是$sup(a_n)_(n=1)^infinity lt.not sup(b_n)_(n=1)^infinity$][
+  #proof[
+
+    取$a_n = 1 - 1/n, b_n = 1$，所以$forall n in ZZ^+, a_n = 1- 1/n < 1 = b_n$
+
+    易知$sup(b_n)_(n=m)^infinity = sup(a_n)_(n=m)^infinity = 1$，所以$sup(a_n)_(n=m)^infinity lt.not sup(b_n)_(n=m)^infinity$
+
+    @lemma-comparison-principle 中要求$<=$而非$<$，所以不冲突
+  ]
+]
+
+#problem[证明@corollary-zero-test-for-sequences][
+  #proof[
+    - $=>$\
+      $lim_(n->infinity)a_n=0$说明
+      $ forall epsilon in RR^+, exists N >= m, forall n >= N, abs(a_n - 0) = abs(a_n) = abs(abs(a_n)) <= epsilon $这正是序列$(abs(a_n))_(n=m)^infinity$收敛到$0$的定义
+
+    - $arrow.double.l$\
+      $lim_(n->infinity)abs(a_n)=0$说明
+      $ forall epsilon in RR^+, exists N >=m, forall n>=N,abs(abs(a_n) - 0) = abs(abs(a_n))= abs(a_n) = abs(a_n - 0) <= epsilon $这正是序列$(a_n)_(n=m)^infinity$收敛到$0$的定义
+  ]
+
+  #note-block[
+    将命题改写为$c != 0, lim_(n->infinity)a_n = c <=> lim_(n->infinity)abs(a_n) = c$，是否还正确？
+
+    #proof[
+      - $c < 0$时显然不正确，例如$lim_(n->infinity)(-1) = -1$，$lim_(n->infinity)(abs(-1)) = 1$
+      - $c > 0$时
+        - $=>$\
+          取$epsilon = c/2 > 0$，那么
+          $ exists N >= m, forall n >= N, abs(a_n - c) <= c/2 => 0 < c/2 <= a_n <= (3c)/2 $所以$n >= N$时$abs(a_n) = a_n$，于是$lim_(n->infinity)abs(a_n) = c$
+        - $arrow.double.l$\
+          取$a_n = -1$，那么$abs(a_n) = 1$，于是$lim_(n->infinity)abs(a_n) = 1, lim_(n->infinity)a_n = -1$，二者不相等
+
+      综上当$c > 0$时，$lim_(n->infinity)a_n = c => lim_(n->infinity)abs(a_n) = c$
+    ]
+  ]
+]
+
+#problem[证明$lim_(n->infinity)sup a_n$是序列$(a_n)_(n=m)^infinity$的一个极限点，而且是最大的极限点][
+
+  #proof[
+    令$lim_(n->infinity)sup a_n = L$\
+    - 如果$L in RR$，那么由@property-limit-sup-inf(7)，$L$是一个极限点，由@property-limit-sup-inf(6)，$L$大于任意极限点，所以$L$是最大极限点
+    - 如果$L = +infinity$，对任意极限点$c$都有$+infinity >= c$，所以$L$是最大极限点
+  ]
+]
+
+#problem[构造一个序列$(a_n)_(n=1)^infinity$，只有三个极限点$-infinity, 0, +infinity$][
+
+  #proof[
+    定义序列
+    $ a_n = cases(n&\,n=3q, -n&\,n=3q+1, 0&\,n=3q+2) $其中$q in NN$
+  ]
+]
+
+#problem[$(a_n)_(n=N)^infinity$和$(b_m)_(m=M)^infinity$是实数序列，且满足$forall m >= M, b_m$是$(a_n)_(n=N)^infinity$的极限点，令$c$是$(b_m)_(m=M)^infinity$的极限点，证明$c$也是$(a_n)_(n=N)^infinity$的极限点][
+
+  #proof[
+    由于$c$是$(b_m)_(m=M)^infinity$的极限点，那么
+    $ forall epsilon/2 in RR^+, forall K >= M, exists m >= K, abs(b_m - c) <= epsilon/2 $由于$b_m$是$(a_n)_(n=N)^infinity$的极限点，那么
+    $ forall epsilon/2 in RR^+, forall K' >= M, exists n >= K'm abs(a_n - b_m) <= epsilon $取$K'' = max(K, K')$就有
+    $ forall K'' >= max(N, M), exists n >= K'', abs(a_n - c) <= abs(a_n - b_m) + abs(b_m - c) <= epsilon/2 + epsilon/2 = epsilon $于是$c$也是$(a_n)_(n=N)^infinity$的一个极限点
+  ]
+]
+
+== 一些常用的极限
