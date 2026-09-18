@@ -1,39 +1,111 @@
+#import "@preview/theorion:0.6.0": *
+
+#let make_appendix_theorion = theorion-restate(
+  filter: it => it.outlined and it.identifier == "theorem",
+  render: it => it.render,
+)
+
+#let make_appendix_definition = theorion-restate(
+  filter: it => it.outlined and it.identifier == "definition",
+  render: it => it.render,
+)
+
+#let make_appendix_corollary = theorion-restate(
+  filter: it => it.outlined and it.identifier == "corollary",
+  render: it => it.render,
+)
+
+#let make_appendix_lemma = theorion-restate(
+  filter: it => it.outlined and it.identifier == "lemma",
+  render: it => it.render,
+)
+
+#let make_appendix_property = theorion-restate(
+  filter: it => it.outlined and it.identifier == "property",
+  render: it => it.render,
+)
 
 
-
-#let note-block(content, title: "侧记") = block(
-  fill: rgb("f5f5f5"),
-  width: 100%,
-  stroke: (left: 4pt + rgb("888888")),
-  inset: (left: 12pt, right: 12pt, top: 10pt, bottom: 10pt),
-)[
-
-  #box(
-    fill: rgb("e8e8e8"),
-    inset: (x: 8pt, y: 4pt),
-    radius: 3pt,
+#let note-cover(
+  title: "",
+  subtitle: none,
+  author: "",
+  date: datetime
+    .today()
+    .display(
+      "[year]年[month]月[day]日",
+    ),
+  cover_path: "../assets/瑞鹤图.png",
+) = {
+  page(
+    background: box(
+      width: 100%,
+      height: 100%,
+      image(cover_path, width: 100%, height: 100%, fit: "cover"),
+    ),
   )[
-    #text(weight: "bold", size: 0.95em, fill: rgb("444444"))[#title]
-  ]
-  #v(8pt)
-  #content
-]
 
-#let practice-separate() = block(
-  width: 100%,
-  breakable: false,
-  above: 3em,
-  below: 2.5em,
-  fill: rgb("eff3f0"),
-  radius: 8pt,
-  inset: (top: 16pt, bottom: 16pt),
-)[
-  #align(center)[
-    #text(
-      size: 2em,
-      weight: "bold",
-      tracking: 0.6em,
-      fill: rgb("3d4f41"),
-    )[练习]
+    #v(2.20fr)
+    #align(center)[
+
+      #text(size: 32pt, weight: "bold", fill: rgb("#f9f6ed"))[#title]
+
+      #line(length: 40%, stroke: 2.0pt + rgb("#e5c17d"))
+      #v(0.8em)
+
+      #if subtitle != none {
+        text(size: 15pt, weight: "bold", style: "italic", fill: rgb("#f9f6ed"))[#subtitle]
+      }
+    ]
+
+    #align(center)[
+
+      #grid(
+        columns: 1,
+        row-gutter: 0.8em,
+        align: center,
+        text(size: 15pt, weight: "bold", fill: rgb("#f9f6ed"))[#author #v(0.5em)],
+        text(weight: "bold", size: 15pt, fill: rgb("#f9f6ed"))[#date],
+      )
+    ]
+
+    #v(1.5fr)
+
   ]
-]
+  // pagebreak()
+}
+
+#let notation-column(items) = {
+  table(
+    columns: (auto, 1fr),
+    align: (center, left),
+    stroke: none,
+    inset: (x: 6pt, y: 4pt),
+
+    ..items.flatten(),
+  )
+}
+
+#let notation-table(items) = {
+  let n = items.len()
+  let mid = calc.ceil(n / 2)
+
+  let left = items.slice(0, mid)
+  let right = items.slice(mid)
+
+  grid(
+    columns: (1fr, 1fr),
+    column-gutter: 30pt,
+
+    notation-column(left), notation-column(right),
+  )
+}
+
+#let appendix-heading-numbering(letter) = (..nums) => {
+  let pos = nums.pos()
+  if pos.len() == 1 {
+    letter
+  } else {
+    letter + "." + pos.slice(1).map(str).join(".")
+  }
+}
