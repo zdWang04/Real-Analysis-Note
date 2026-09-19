@@ -36,7 +36,7 @@
   有序$n$-元组也被称为_$n$个元素的有序序列_，或称_有限序列_
 ]
 
-#note[
+#note-block[
   如果$x$是一个对象，那么_1-元组$(x)$_被认为和$x$是相等的，尽管严格来说是不一样，但是并不影响.
 ]
 
@@ -482,8 +482,8 @@
 
 #example[
   上面的定义中，可以把${i in NN: 1 <= i <= n}$替换为${i in NN: i<n}$，因为他们有相等的基数
-]<example:same-cardinality>
-#proof[证明@example:same-cardinality][
+]
+#proof[
 
   令$X = {i in NN: i<n}, Y={i in NN: 1<= i <= n}$，函数$f: X->Y$定义为$f(x) = x++$，接下来证明$f$是双射
 
@@ -498,8 +498,8 @@
   - 综上，可以构造出双射函数$f:X->Y$，所以$X$和$Y$有相同的基数，所以在计算基数的时候可以替换了
 ]
 
-#lemma[有限集基数引理][假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的.$forall x in X,"集合"X without {x}$的基数是$n-1$]<lemma:cardinality-of-finite-sets>
-#proof[证明@lemma:cardinality-of-finite-sets][
+#lemma[有限集基数引理][假设$n >= 1$，且$X$的基数为 $n$，那么$X$是非空的.$forall x in X,"集合"X without {x}$的基数是$n-1$]
+#proof[
   - 由于$X$的基数为$n$，那么存在一个双射函数$f:X -> Y = {i in NN: 1<=i<=n}$，由于$n>=1$，那么$Y$非空，取$y = 1 in Y$，由于满射性，$exists x in X, f(x) = 1$，所以$X$非空.
 
   - 由于$X$的基数为$n$，那么存在双射$f:X->{i in NN: 1<=i<=n}$
@@ -511,23 +511,21 @@
 
 #theorem[基数的唯一性][
   集合$X$的基数为$n$，那么$X$不可能还有其他的基数，也即$forall m != n$，$m$不是$X$的基数
-]<the:unique-cardinality>
-#proof[证明@the:unique-cardinality][
-
+]
+#proof[
   对$n$进行归纳，当$n=0$时，集合$X=emptyset$，空集不会非0基数.假设$n$的情况下，集合有唯一基数成立，现在证明$n++$的情况.
 
   假设存在$m != n++$，$m$也是$X$的基数，由引理，$X$是非空的，且如果$x in X$，那么$X without {x}$的基数为$n$，同时也是$m-1$，由归纳假设$n = m - 1 => n++ = m$，矛盾，归纳完毕
 ]
 
-
 #definition("有限集")[
   一个集合是有限的，当且仅当它的基数是某个自然数$n$，否则称之为无限的.如果$X$是一个有限集，记其基数为$\#(X)$.
 ]
 
-#theorem("自然数集" + [$NN$] + "是无限的")[
-  #proof[
-    假设$NN$是有限集，那么令$\#(NN) = n$，于是存在一个双射$f:{i in NN: 1<=i<=n} -> N$，那么存在$M in NN$，使得$forall 1<=i<=n, f(i) <= M$，那么$forall 1<=i<=n, f(i) < M++$，所以$M++$无法被$f$映射到，这与满射是矛盾的.于是$NN$是无限集
-  ]
+#theorem[自然数集$NN$是无限的]
+
+#proof[
+  假设$NN$是有限集，那么令$\#(NN) = n$，于是存在一个双射$f:{i in NN: 1<=i<=n} -> N$，那么存在$M in NN$，使得$forall 1<=i<=n, f(i) <= M$，那么$forall 1<=i<=n, f(i) < M++$，所以$M++$无法被$f$映射到，这与满射是矛盾的.于是$NN$是无限集
 ]
 
 #lemma[基数算术][

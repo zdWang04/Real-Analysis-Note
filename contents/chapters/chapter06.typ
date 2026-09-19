@@ -873,7 +873,72 @@
   $ forall K'' >= max(N, M), exists n >= K'', abs(a_n - c) <= abs(a_n - b_m) + abs(b_m - c) <= epsilon/2 + epsilon/2 = epsilon $于是$c$也是$(a_n)_(n=N)^infinity$的一个极限点
 ]
 
-== 一些常用的极限
+== 一些基础的极限
+
+#lemma[常实数序列$c,...,c,...$收敛到$c$]
+#proof[
+  $forall epsilon in RR^+, exists N >= 1, forall n >= N, abs(c - c) = 0 < epsilon$，于是$lim_(n->infinity) c = c$
+]
+
+#corollary[$forall k >= 1, lim_(n->infinity)(1/n)^(1/k) = 0$]
+#proof[
+  易知$(1/n)^(1/k)$是关于$n$的递减函数，并且易知$0$是该函数的一个界，那么极限一定存在
+
+  令极限为$L >= 0$，于是就有
+  $ L = lim_(n->infinity)(1/n)^(1/k) $由 @thm:limit-law 就有
+  $ L^k = lim_(n->infinity)1/n = 0 $由于$L>=0$，如果$L > 0$，那么$L^k > 0$，所以$L = 0$
+]
+
+#lemma[
+  $x in RR$
+  + $abs(x) < 1 => lim_(n->infinity)x^n = 0$
+  + $x = 1 => lim_(infinity)x^n = 1$
+  + $x = -1 or abs(x) > 1 =>$该极限发散
+]<lem:x-n-power-limit-depend-x>
+
+#lemma[
+  $forall x in RR^+, lim_(n->infinity) x^(1/n) = 1$
+]<lem:pos-x-0-power-1>
+
+#problem[证明：$forall q in QQ^+, lim_(n->infinity)1/(n^q) = 0$，并说明$lim_(n->infinity)n^q$为什么不存在]
+#proof[
+  令$q = a/ b, a, b in ZZ, b>0$，由于$q > 0$，那么$a > 0$，所以有
+  $ 1/(n^q) = (1/n)^q = (1/n)^(a/b) = ((1/n)^(1/b)"")^a $所以
+  $
+    lim_(n->infinity)1/(n^q) = lim_(n->infinity)((1/n)^(1/b)"")^a = (lim_(n->infinity)(1/n)^(1/b))^a = 0^a =0
+  $
+
+  由$lim_(n->infinity)1/(n^q)$收敛到$0$，所以其倒数序列的极限$lim_(n->infinity)n^q$会发散
+]
+
+#problem[证明 @lem:x-n-power-limit-depend-x]
+#proof[
+  易有$-abs(x) <= x <= abs(x)$
+  + 由于$0 <= abs(x) < 1$，那么易有$lim_(n->infinity)abs(x)^n = 0$，同时有$lim_(n->infinity)-abs(x)^n = -lim_(n->infinity)abs(x)^n = 0$，由于$forall n >= 1, -abs(x)^n <= x^n <= abs(x)^n$，于是由@cor:squeeze-test 就有$lim_(n->infinity)x^n = 0$
+  + $x = 1$时，$forall n >= 1, x^n = 1$，所以是一个常序列$1,...,1,...$，于是$lim_(n->infinity)x^n = 1$
+  + $x = -1$时，$a_n = cases(1&\, n=2k, -1&\,n=2k+1), k in NN$，该序列永远不收敛，所以极限不存在；$abs(x) > 1$时，有$x > 1 or x < -1$，如果$x > 1$，发散. 如果$x < -1$，那么$forall n >= 1, abs(x^(n+1) - x^n) = abs(x^n)abs(x - 1) > 2 abs(x^n) > 2$，所以一定发散
+]
+#problem[证明 @lem:pos-x-0-power-1]
+#proof[
+  任取$epsilon in RR^+$，就有$0 < 1/(1+epsilon) < 1$，于是利用@lem:x-n-power-limit-depend-x 可以知道
+  $ lim_(n->infinity)(1/(1+epsilon))^n = 0 $
+  所以
+  $ forall 1/M in RR^+, exists N >= 1, forall n >=N, abs(1/(1+epsilon)^n) = 1/(1+epsilon)^n <= 1/M $进一步有
+  $ 1/(1+epsilon) <= (1/M)^(1/n) =>M^(1/n) <= 1 + epsilon $
+
+  当$x >= 1$时，$ 1<=x^(1/n) <= 1+epsilon => abs(x^(1/n) - 1) <= epsilon $这说明收敛到了$1$
+
+  当$0 < x < 1$时，$1/x > 1$，重复上面的推理，就有
+  $
+    lim_(n->infinity)(1/x)^(1/n) = 1 => lim_(n->infinity)x^(1/n) = 1/1 = 1
+  $
+]
+#remark[
+  比较麻烦的是想到用@lem:x-n-power-limit-depend-x 以及极限的定义，来证明$forall M in RR^+, M^(1/n) -> 1$，这里涉及到$epsilon$和$M$的身份转变，在利用@lem:x-n-power-limit-depend-x 的时候$epsilon$是一个固定的底数，$M$充当了传统意义上的$epsilon$角色，而在判断$M^(1/n) -> 1$的时候，$1/M$成为了一个固定的数，而$epsilon$变成了邻域半径的角色，又因为$M,epsilon$都是任取的正实数，所以都没问题，反而方便的得到了$M^(1/n) -> 1$
+]
+
+== 子序列
+
 
 
 #pagebreak()
