@@ -934,11 +934,109 @@
   $
 ]
 #remark[
-  比较麻烦的是想到用@lem:x-n-power-limit-depend-x 以及极限的定义，来证明$forall M in RR^+, M^(1/n) -> 1$，这里涉及到$epsilon$和$M$的身份转变，在利用@lem:x-n-power-limit-depend-x 的时候$epsilon$是一个固定的底数，$M$充当了传统意义上的$epsilon$角色，而在判断$M^(1/n) -> 1$的时候，$1/M$成为了一个固定的数，而$epsilon$变成了邻域半径的角色，又因为$M,epsilon$都是任取的正实数，所以都没问题，反而方便的得到了$M^(1/n) -> 1$
+  比较麻烦的是想到用@lem:x-n-power-limit-depend-x 以及极限的定义来证明$forall M in RR^+, M^(1/n) -> 1$，这里涉及到$epsilon$和$M$的身份转变，在利用@lem:x-n-power-limit-depend-x 的时候$epsilon$是一个固定的底数，$M$充当了传统意义上的$epsilon$角色，而在判断$M^(1/n) -> 1$的时候，$1/M$成为了一个固定的数，而$epsilon$变成了邻域半径的角色，又因为$M,epsilon$都是任取的正实数，所以都没问题，反而方便的得到了$M^(1/n) -> 1$
 ]
 
 == 子序列
 
+#definition[子序列][
+  $(a_n)_(n=0)^infinity, (b_n)_(n=0)^infinity$是实数序列，称$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列，当且仅当存在严格单调递增函数$f:NN->NN$，满足
+  $
+    b_n = a_(f(n)), forall n in NN
+  $
+
+  更广泛的说法是$(b_n)_(n=m')^infinity$是$(a_n)_(n=m)^infinity$的子序列，当且仅当存在严格单调递增函数$f:{n in NN: n>= m'}->{n in NN: n >= m}$，满足
+  $
+    b_n = a_(f(n)), forall n in NN and n>=m'
+  $
+]
+
+#remark[
+  严格单调递增也就是$f(n+1) > f(n), forall n in NN$
+]
+
+#lemma[子序列自反、可传递，但是不对称][
+  $(a_n)_(n=0)^infinity, (b_n)_(n=0)^infinity, (c_n)_(n=0)^infinity$是实数序列，有以下成立：
+  + $(a_n)_(n=0)^infinity$是它本身的子序列
+  + 如果$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列，$(c_n)_(n=0)^infinity$是$(b_n)_(n=0)^infinity$的子序列，那么$(c_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列
+]<lem:subseq-refl-trans>
+
+
+
+#lemma[子序列与极限和极限点的关系][
+  $(a_n)_(n=0)^infinity$是实数序列，$L in RR$，有以下成立
+  + $lim_(n->infinity)a_n = L <=>$任意$(a_n)_(n=0)^infinity$的子序列都收敛到$L$
+  + $L$是$(a_n)_(n=0)^infinity$的极限点$<=>$存在一个$(a_n)_(n=0)^infinity$的子序列收敛到$L$
+]<lem:relation-lim-subseq>
+
+#theorem[波尔查诺–魏尔斯特拉斯定理(Bolzano–Weierstrass theorem)][
+  $(a_n)_(n=0)^infinity$是实数有界序列，那么存在$(a_n)_(n=0)^infinity$的子序列是收敛的
+]<thm:bolzano-Weierstrass>
+#proof[
+  由于序列有界，令界为$M in RR^+$，就有
+  $ -M <= a_n <= M, forall n in NN $令序列的上极限为$L$，于是由@lem:comparison-lemma 就有
+  $ -M <= L <= M $所以$L in RR$，由@prop:sequence-limit-point-properties 可知$L$是一个极限点，再由@lem:relation-lim-subseq(2)可知存在一个子序列收敛到$L$
+]
+
+#problem[证明@lem:subseq-refl-trans]
+#proof[
+  + 定义映射$f:NN->NN$为$f(n) = n$，易知$f$是严格单调递增的，由于$a_n = a_(f(n)) = a_n forall n in NN$，那么$(a_n)_(n=0)^infinity$本身就是自己的子序列
+  + 由于$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列，那么有一个严格单调递增的函数$f:NN->NN$，满足
+    $ b_n = a_(f(n)), forall n in NN $由于$(c_n)_(n=0)^infinity$是$(b_n)_(n=0)^infinity$的子序列，那么有一个严格单调递增的函数$g:NN->NN$，满足
+    $ c_n = b_(g(n)), forall n in NN $于是就有
+    $ c_n = a_(f(g(n))), forall n in NN $易知$f compose g$是严格单调递增的，所以$(c_n)_(n=0)^infinity$也是$(a_n)_(n=0)^infinity$的子序列
+]
+
+#problem[找到两个序列，它们不相同，但是互为子序列]
+#solution[
+  令两个序列为
+  $
+    a_n = (-1)^n, b_n = (-1)^(n+1), n in NN
+  $
+  易知
+  $ forall n in NN, a_n = (-1)^n != (-1)^(n+1) = b_n $所以它们是不相同的
+
+  令函数$f:NN -> NN$为$f(n) = n+1$，易知是严格单调递增的，所以就有
+  $ a_n = (-1)^n = (-1)^2 (-1)^n = (-1)^((n+1)+1) =(-1)^(f(n)+1) = b_(f(n)),forall n in NN $所以$(a_n)_(n=0)^infinity$是$(b_n)_(n=0)^infinity$的子序列
+
+  同时也有
+  $ b_n = (-1)^(n+1) = (-1)^(f(n)) = a_(f(n)) $所以$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列
+]
+
+#problem[
+  $(a_n)_(n=0)^infinity$是无界序列，证明该序列存在一个子序列$(b_n)_(n=0)^infinity$，满足$lim_(n->infinity)1/b_n = 0$
+]
+#proof[
+  定义$n_0 = 1$，同时递归的定义
+  $
+    n_j := {n in NN : abs(a_n) > j, n > n_(j-1)}
+  $
+  假设存在$n_J$是空的，也即$abs(a_n) <= J, n>n_(J- 1)$，这意味这序列以$max{abs(a_1),...,abs(a_(n_(J-1))), J}$为界，与条件矛盾，所以$n_j$一定非空
+
+  定义子序列为$b_j = a_(n_j)$，于是有$forall j in NN, abs(b_j) > j => abs(1/b_j - 0) < 1/j$，于是有子序列收敛到$0$
+]
+
+#problem[证明@lem:relation-lim-subseq(1)]
+#proof[
+  + $=>$\
+    由于$(a_n)_(n=0)^infinity$收敛到$L$，那么有
+    $ forall epsilon in RR^+, exists N in NN, forall n>= N, abs(a_n - L) <= epsilon $任取$(a_n)_(n=0)^infinity$的子序列，满足
+    $ b_n = a_(f(n)) $其中$f:NN->NN$且是严格单调递增的，那么$exists N' in NN, f(N') >= N$，就有
+    $ forall n >= N', abs(b_n - L) = abs(a_(f(n)) - L) <= epsilon $于是子序列也收敛到$L$
+  + $arrow.double.l$\
+    由于序列本身也是自己的一个子序列，那么如果任意子序列收敛，那么序列本身也是收敛的
+]
+#problem[证明@lem:relation-lim-subseq(2)]
+#proof[
+  + $=>$\
+    递归的定义
+    $ & n_0 := 0 \
+    & n_j := min{n > n_(j-1): abs(a_n - L) < 1/j} = min(E) $由于$(a_n)_(n=0)^infinity$的极限点是$L$，那么任意的$j in NN$都存在$n >= j$使得$abs(a_n - L) <= 1/j$，于是集合$E$总是非空，选取子序列$b_j = a_(n_j)$，易知收敛到$L$
+  + $arrow.double.l$\
+    由于一个子序列收敛，那么对任意$j in NN$，都存在$n_j$满足$abs(a_(n_j) - L) <= 1/j$，这说明$L$是一个极限点
+]
+
+== 实数的指数运算（第二部分）
 
 
 #pagebreak()
