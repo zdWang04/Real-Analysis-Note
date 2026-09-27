@@ -936,6 +936,9 @@
 #remark[
   比较麻烦的是想到用@lem:x-n-power-limit-depend-x 以及极限的定义来证明$forall M in RR^+, M^(1/n) -> 1$，这里涉及到$epsilon$和$M$的身份转变，在利用@lem:x-n-power-limit-depend-x 的时候$epsilon$是一个固定的底数，$M$充当了传统意义上的$epsilon$角色，而在判断$M^(1/n) -> 1$的时候，$1/M$成为了一个固定的数，而$epsilon$变成了邻域半径的角色，又因为$M,epsilon$都是任取的正实数，所以都没问题，反而方便的得到了$M^(1/n) -> 1$
 ]
+#corollary[指数逼近0的序列极限][
+  $forall epsilon, M in RR^+, exists n in ZZ^+, M^(1/n) <= 1 + epsilon$
+]<coro:power-to-0>
 
 == 子序列
 
@@ -1038,5 +1041,85 @@
 
 == 实数的指数运算（第二部分）
 
+#lemma[指数的连续性][
+  $x in RR^+, alpha in RR$，令$(q_n)_(n=1)^infinity$是有理数序列且收敛到$alpha$，那么序列$(x^(q_n))_(n=1)^infinity$也是个收敛序列；进一步的，如果另一个有理数序列$(q'_n)_(n=1)^infinity$也收敛到$alpha$，那么$(x^(q'_n))_(n=1)^infinity$和$(x^(q_n))_(n=1)^infinity$的极限相同
+  $
+    lim_(n->infinity)x^(q_n) = lim_(n->infinity)x^(q'_n)
+  $
+]<lem:exp-continue>
+#proof[
+  + 首先，当$x = 1$时，是常序列，两个命题显然都成立.
+  + 当$x > 1$时，$n >= m => x^n >= x^m$，由于$(q_n)_(n=1)^infinity$是收敛的，那么一定有界，令界为$M in RR^+$，于是有
+    $
+      forall n in ZZ^+, x^(q_n) <= x^M
+    $
+    判断$(x^(q_n))_(n=1)^infinity$是否收敛，关键是估算两项距离，于是对于任意$n, m$就有
+    $ d(x^(q_n), x^(q_m)) = abs(x^(q_n) - x^(q_m)) = abs(x^(q_m)) abs(x^(q_n - q_m) - 1) <= x^M abs(x^(q_n - q_m) - 1) $由@coro:power-to-0 易知$exists K >= 1$满足
+    $ abs(x^(1/K) - 1) <= epsilon x^(-M) $由于$(q_n)_(n=1)^infinity$是收敛的，那么$ exists N >= 1, forall n,m >= N, n>= m, q_n - q_m <= 1/K $于是就有
+    $ x^M abs(x^(q_n - q_m) - 1) <= x^M abs(x^(1/K) - 1) <= x^(M) epsilon x^(-M) = epsilon $所以$(x^(q_n))_(n=1)^infinity$是收敛的
 
+    接下来证明$lim_(n->infinity)x^(q_n - q'_n) = 1$，令$(r_n)_(n=1)^infinity = (q_n - q'_n)_(n=1)^infinity$，由于$(q_n)_(n=1)^infinity$和$(q'_n)_(n=1)^infinity$都收敛到$alpha$，那么$(r_n)_(n=1)^infinity$收敛到$0$
+
+    由@lem:pos-x-0-power-1 $(x^(1/n))_(n=1)^infinity$和$(x^(-1/n))_(n=1)^infinity$收敛到$1$，于是任取$epsilon in RR^+$，存在$K$，使得$x^(1/K), x^(-1/K)$都$epsilon$-接近于$1$，此外$(r_n)_(n=1)^infinity$是$1/K$接近于$0$的，那么$exists N in ZZ^+, forall n >= N, -1/K <= r_n <= 1/K => x^(-1/K) <= x^(r_n) <= x^(1/K)$，这意味这$x^(r_n)$收敛于$1$，于是$lim_(n->infinity)x^(q_n) = lim_(n->infinity)x^(q'_n)$\
+  + $0<x<1$的情况如上易得
+]
+
+#definition[实数次幂指数运算][
+  $x in RR^+, alpha in RR$，定义实数的实数次幂为
+  $ x^alpha = lim_(n->infinity)x^(q_n) $其中$alpha = lim_(n->infinity)q_n$，$(q_n)_(n=1)^infinity$是有理数序列
+]
+#remark[实数次幂指数运算是良定义的][
+  由实数的完备性，对于一个实数，总有一个有理数序列的极限是这个实数，所以一定存在这样的一个序列$(q_n)_(n=1)^infinity$；由@lem:exp-continue，$(x^(q_n))_(n=1)^infinity$的极限一定是存在的，并且收敛到同一实数的序列，它们作为指数时也会得到相同的极限
+]
+
+#property[实数次幂指数运算和有理数指数运算的性质是一致的][
+  $x, y in RR^+, alpha, beta in RR$，$(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是有理数序列且$lim_(n->infinity)a_n = alpha, lim_(n -> infinity)b_n = beta$，有以下成立
+  + $x^alpha > 0$
+  + $x^(alpha+beta) = x^alpha x^beta, (x^alpha)""^beta = x^(alpha beta)$
+  + $alpha != 0, x^(-alpha) = 1/x^(alpha)$
+  + $alpha > 0, x > y <=> x^alpha > y^alpha$
+  + $x > 1, x^alpha > x^beta <=> alpha > beta$
+  + $0 < x < 1 => x^alpha > x^beta <=> alpha < beta$
+  + $(x y)^alpha = x^alpha y^alpha$
+]<prop:real-real-power>
+
+#problem[证明@prop:real-real-power]
+#proof[
+  + 由于$lim_(n->infinity)a_n = alpha$，那么该序列一定有界，令界为$M in RR^+$，取$N = ceil(M) in ZZ^+, N >= M$，于是就有
+    $ & x^(-N) <= x^(a_n) <= x^N, x >= 1 \
+    & x^(N) <= x^(a_n) <= x^(-N), 0< x <1 \ $由于$x > 0, N in ZZ^+$，那么$x^(-N), x^(N) > 0$，于是$x > 0, x^(alpha) > 0$
+  + $alpha + beta = lim_(n->infinity)(a_n + b_n)$，于是
+    $
+      x^(alpha + beta) = lim_(n->infinity)x^(a_b + b_n) = lim_(n->infinity)x^(a_n) lim_(n->infinity)x^(b_n) = x^alpha x^beta
+    $
+  + 已证$(x^r)""^q = x^(r q), r in RR, q in QQ$，于是
+    $ (x^(alpha))""^beta = lim_(n->infinity)(x^(alpha))""^(b_n) = lim_(n->infinity)x^(alpha b_n) $由于$lim_(n->infinity)b_n = beta$，于是就有$alpha beta - alpha b_n -> 0$，于是$x^(alpha beta - alpha b_n) -> 1$，所以
+    $
+      lim_(n->infinity)x^(alpha b_n) = x^(alpha beta) => (x^alpha)""^beta = x^(alpha beta)
+    $
+  + $x^(-alpha+alpha) = x^0 = 1 => x^(-alpha) x^(alpha) = 1 => x^(-alpha) = 1/(x^alpha)$
+  + $alpha > 0 =>$存在序列$(a_n)_(n=1)^infinity$是正远离$0$的，于是$exists c in RR^+, forall n in ZZ^+, a_n >= c > 0$
+    - $=>$\
+      由于$x > y > 0$那么就有
+      $ (x/y) > 1 => (x/y)^(a_i) >= (x/y)^c > 1 $于是
+      $
+        (x/y)^alpha = lim_(n->infinity)(x/y)^(a_n) >= (x/y)^c > 1 => x^alpha > y^alpha
+      $
+    - $arrow.double.l$\
+      由于$x^alpha > y^alpha$，那么$(x/y)^alpha > 1$，已知$alpha, x, y > 0$，假设$x <= y$，那么$0 < x/y <= 1$，于是
+      $ forall n in ZZ^+, (x/y)^(a_n) <= 1^(a_n) = 1 $由保序性就有$(x/y)^alpha <= 1 => x^alpha <= y^alpha$，矛盾，所以$x > y$
+  + 由(1)$x > 1 > 0 => x^alpha, x^beta > 0$
+    - $x^alpha > x^beta => x^(alpha - beta) > 1$，如果$alpha <= beta$，那么$alpha - beta <= 0$，于是就有有理数序列满足
+      $ alpha - beta = lim_(n->infinity)(a_n - b_n)\
+      forall n in ZZ^+, a_n - b_n <= 0 $于是在$x > 1$时
+      $ forall n in ZZ^+, x^(a_n - b_n) <= x^0 = 1 $由保序性就有$x^(alpha - beta) <= 1$，矛盾，所以$alpha > beta$
+    - $alpha > beta$且$x > 1$，那么$alpha - beta > 0$，于是存在正远离$0$的有理数序列满足
+      $ c in RR^+, forall n in ZZ^+, a_n - b_n >= c > 0 $于是由保序性和指数连续性就有
+      $ x^(alpha - beta)=lim_(n->infinity)x^(a_n - b_n) >= x^c > 1 => x^alpha > x^beta $
+  + 证明同(6)，依赖底数小于$1$的有理数指数的递减性质
+  + 由指数的连续性就有
+    $
+      (x y)^alpha = lim_(n->infinity)(x y)^(a_n) = lim_(n->infinity)x^(a_n)y^(a_n) = lim_(n->infinity)x^(a_n) lim_(n->infinity)y^(a_n) = x^alpha y^alpha
+    $
+]
 #pagebreak()

@@ -22,7 +22,7 @@
   title: "实分析笔记",
   subtitle: "Note to《Analysis I & II》by Terence Tao",
   author: "zdWang04",
-  // date: [2026年9月17日],
+  date: [2026年7月23日],
 )
 
 #outline(title: "目录")
@@ -34,6 +34,7 @@
 #include "contents/chapters/chapter04.typ"
 #include "contents/chapters/chapter05.typ"
 #include "contents/chapters/chapter06.typ"
+#include "contents/chapters/chapter07.typ"
 
 #include "contents/appendix/appendixA.typ"
 #include "contents/appendix/appendixB.typ"
