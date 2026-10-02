@@ -14,15 +14,15 @@
 
 #set-qed-symbol[#math.qed]
 #show math.equation.where(block: true): eq => block(
-  width: 100%,
-  align(center, eq),
+    width: 100%,
+    align(center, eq),
 )
 
 #note-cover(
-  title: "实分析笔记",
-  subtitle: "Note to《Analysis I & II》by Terence Tao",
-  author: "zdWang04",
-  date: [2026年7月23日],
+    title: "实分析笔记",
+    subtitle: "Note to《Analysis I & II》by Terence Tao",
+    author: "zdWang04",
+    date: [2026年7月23日],
 )
 
 #outline(title: "目录")
