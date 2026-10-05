@@ -167,7 +167,7 @@
                                           & = sum_((y, x) in Y times X)f(x, y) \
                                           & = sum_(y in Y)(sum_(x in X)f(x, y))
     $
-]
+]<coro:fubini-finite-series>
 #proof[
     令函数$h:Y times X -> X times Y$为$h(y, x) = (x, y)$，现在证明这是双射
 
@@ -427,5 +427,101 @@
     最好的方法是写出待证明的式子，然后去拼凑
 ]
 
+#problem[$X$是一个有限集，$m in ZZ$，任意$x in X$，$(a_n (x))_(n=m)^infinity$都是一个收敛的实数序列，证明$(sum_(x in X)(a_n (x)))_(n=m)^infinity$也是收敛的，且$
+        lim_(n -> infinity) sum_(x in X)a_n (x) = sum_(x in X) lim_(n->infinity)a_n (x)
+    $]
+#proof[
+    由于$X$是一个有限集，对$\#(X)$进行归纳，当$\#(X) = 1$时，仅有一个元素$x' in X$，且$(a_n (x))_(n=m)^infinity$收敛，于是令$c = lim_(n->infinity)a_n (x'), c in RR$，此外还有$
+        (sum_(x in X) a_n (x))_(n=m)^infinity = (a_n (x'))_(n=m)^infinity
+    $显然是收敛的
 
+    进一步的，有
+    $
+        lim_(n->infinity)sum_(x in X)a_n (x) = lim_(n->infinity) a_n (x') = c\
+        sum_(x in X) lim_(n->infinity) a_n (x) = lim_(n->infinity) a_n (x') = c
+    $
+    是成立的.
+    归纳性的假设在$\#(X) = n$时成立，现在证明$\#(X) = n+1$的情况
+
+    令新有限集合$X' = X union {x_0}, x_0 in.not X, \#(X) = n$，由归纳假设，就有$(sum_(x in X) (a_n (x)))_(n=m)^infinity$是收敛的，令其极限为$d in RR$，此外由条件，$x_0 in X, (a_n (x_0))_(n=m)^infinity$是收敛的，令其极限为$c_0 in RR$，那么就有
+    $
+        (sum_(x in X') (a_n (x)))_(n=m)^infinity = (sum_(x in X) (a_n (x)))_(n=m)^infinity + (a_n (x_0))_(n=m)^infinity
+    $两个收敛序列的和也是收敛的，进一步的有
+    $
+        lim_(n->infinity) sum_(x in X') a_n (x) = lim_(n->infinity) sum_(x in X) a_n (x) + lim_(n->infinity) a_n (x_0)\
+        sum_(x in X') lim_(n->infinity) a_n (x) = sum_(x in X) lim_(n->infinity) a_n (x) + lim_(n->infinity) a_n (x_0)
+    $由归纳假设有
+    $
+        lim_(n->infinity) sum_(x in X) a_n (x) = sum_(x in X) lim_(n->infinity) a_n (x)
+    $代换并由极限运算可得
+    $
+        lim_(n -> infinity) sum_(x in X') a_n (x) = sum_(x in X') lim_(n->infinity)a_n (x)
+    $归纳结束
+]
+
+#remark[
+    有限个序列的和的极限 = 有限个序列的极限的和，但是扩展到无穷后会有若干问题
+]
+
+#problem[
+    $I$是有限集合，$forall i in I, E_i$是有限集合，且$forall i, j in I, i != j, E_i inter E_j = emptyset$，$forall x in union.big_(i in I)E_i, f(x) in RR$，证明
+    $
+        sum_(x in union.big_(i in I)E_i) f(x) = sum_(i in I) sum_(x in E_i)f(x)
+    $
+]
+#proof[
+    由于$I$是有限集合，对$\#(I)$进行归纳，当$\#(I) = 1$时，有$union.big_(i in I)E_i = E'$，显然有二者相等
+    $
+        sum_(x in union.big_(i in I)E_i) f(x) & = sum_(x in E')f(x) \
+               sum_(i in I)sum_(x in E_i)f(x) & = sum_(x in E')f(x)
+    $
+
+    归纳性的假设在$\#(I) = n$时成立，现在证明$\#(I) = n+1$的情况，令$I' = I union {i_0}, i_0 in.not I, \#(I) = n$，且$forall i, j in I', i!=j, E_i inter E_j = emptyset$于是有
+    $
+        sum_(x in union.big_(i in I')E_i)f(x) = sum_(x in (union.big_(i in I)E_i) union E_(i_0))f(x) = sum_(x in union.big_(i in I)E_i) f(x) + sum_(x in E_(i_0))f(x)\
+        sum_(i in I') sum_(x in E_i) f(x) = sum_(i in I union {i_0}) sum_(x in E_i)f(x) = sum_(i in I) sum_(x in E_i) f(x) + sum_(x in E_(i_0))f(x)
+    $由归纳假设有
+    $
+        sum_(x in union.big_(i in I)E_i) f(x) = sum_(i in I) sum_(x in E_i)f(x)
+    $代入易知相等，归纳结束
+]
+
+#problem[
+    $n, m in NN, forall 1<= i <= n, a_i in NN and a_i <= m$，那么有
+    $
+        sum_(i = 1)^m a_i = sum_(j=1)^m \#({1 <= i<= n: a_i >= j})
+    $
+]
+
+#tip-block[
+    这里要用双计数法进行证明，就是对同一个对象（这里就是一个集合）使用两种不同方法进行计数，由于计算的是同一个对象，那么计数结果必然相等，以此来建立等式
+
+    举一个例子：在任意$n$个人中，认识奇数个人的人数一定是偶数
+    - 计数方法1：每个人认识的次数加起来，得到“总认识次数”
+    - 计数方法2：由于每一对互相认识的人贡献了两次（A认识B算一次，B认识A算一次），所以“总认识次数”一定是偶数，但命题要求了是认识奇数个人的人数，那么想要满足“总认识次数”为偶数的约束，认识奇数个人的人数一定得是偶数个
+]
+
+#proof[
+    令$c_(i j) = cases(1\, j <= a_i, 0\, j > a_i)$，固定$i$就有
+    $
+        sum_(j = 1)^m c_(i j) = a_i
+    $这是因为$j$从$1$增长到$m$，每比$a_i$大一次，则加一，否则加0，正好是$a_i$的值，接着再对$1 <= i <= n$求和就有
+    $
+        sum_(i = 1)^n sum_(j = 1)^m c_(i j) = sum_(i = 1)^n a_i
+    $
+    接下来固定$j$，对$i$求和，显然有
+    $
+        sum_(i = 1)^n c_(i j) = \#(1 <= i <= n: a_i >= j)
+    $这是因为此时相当于是统计大于$j$的$a_i$的个数，对其从$1 <= j <= m$求和就有
+    $
+        sum_(j = 1)^m sum_(i = 1)^n c_(i j) = sum_(j = 1)^m \#{1 <= i <= n: a_i >= j}
+    $由@coro:fubini-finite-series 就有
+    $
+        &"    " sum_(i = 1)^n sum_(j = 1)^m c_(i j) = sum_(j = 1)^m sum_(i = 1)^n c_(i j) \
+        & => sum_(i = 1)^n a_i = sum_(j = 1)^m \#{1 <= i <= n: a_i >= j}
+    $
+
+]
+
+== 无穷级数
 #pagebreak()
