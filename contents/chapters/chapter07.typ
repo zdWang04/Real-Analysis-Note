@@ -24,7 +24,7 @@
     如无特殊说明，都是实数级数
 ]
 
-#lemma[有限级数的性质][
+#property[有限级数的性质][
     + $m,n,p in ZZ and m <= n < p$，有
         $
             sum_(i=m)^n a_i + sum_(i=n+1)^p a_i = sum_(i=m)^p a_i
@@ -49,7 +49,7 @@
         $
             forall m <= i <= n, a_i <= b_i => sum_(i=m)^n a_i <=sum_(i=m)^n b_i
         $
-]<lem:finite-series-algebra>
+]<prop:finite-series-algebra>
 
 #pagebreak()
 
@@ -257,7 +257,7 @@
     + 三角不等式变等式了
 ]
 
-#problem[证明@lem:finite-series-algebra]
+#problem[证明@prop:finite-series-algebra]
 #proof[
     + 对$p$进行归纳，当$p = n+1$时有
         $
@@ -524,4 +524,232 @@
 ]
 
 == 无穷级数
+
+#definition[形式无穷级数][
+    形式无穷级数是如下的表达式
+    $
+        sum_(n = m)^infinity a_n
+    $
+    其中$m, n in ZZ, n>= m, a_n in RR$
+]
+#note-block[
+    这里“形式”的意思和以前的形式减法、形式除法和形式极限是一样的，在对无穷级数进行了严格定义后，将会使用正式的无穷级数记号
+]
+
+#definition[形式无穷级数的收敛][
+    $sum_(n=m)^infinity a_n$是一个形式无穷级数，对于任意$N >= m$，定义前$N$项部分和为$
+        S_N := sum_(n = m)^N a_n
+    $其中$S_N in RR$，是一个有限级数，再定义无穷实数序列$(S_N)_(N = m)^infinity$，称形式无穷级数$sum_(n = m)^infinity a_n$是收敛的，当且仅当序列$(S_N)_(N=m)^infinity$是收敛的，进一步的有
+    $
+        sum_(n = m)^infinity a_n = lim_(N->infinity)S_N = L in RR
+    $$L$称作该形式无穷级数的和.
+
+    反之，如果$(S_N)_(N= m)^infinity$发散，则称该形式无穷级数发散，因此也不会给该无穷级数的和赋予任何实数
+]
+
+#lemma[形式无穷级数收敛性的判断][
+    $sum_(n = m)^infinity a_n$是一个无穷实数级数，那么该无穷级数收敛当且仅当
+    $
+        forall epsilon in RR^+, exists N >=m, forall p, q >= N, abs(sum_(n=p)^q a_n) <= epsilon
+    $
+]<lem:test-foraml-infinite-series-convergent>
+#proof[
+    - $=>$\
+        由定义，$(S_N)_(N= m)^infinity$收敛，即
+        $
+            forall epsilon in RR^+, exists N' >=m, forall p, q >= N', abs(S_p - S_q) <= epsilon
+        $不妨令$p <= q$，化简绝对值项有
+        $
+            abs(S_p - S_q) & = abs(sum_(n=m)^p a_n - sum_(n=m)^q a_n) \
+                           & = abs(sum_(n=m)^p a_n - (sum_(n=m)^p a_n + sum_(n=p+1)^q a_n)) \
+                           & = abs(sum_(n = p+1)^q a_n)
+        $由于$q >= p$，那么$q > p+1$，令$p' = p+1$，易知$p' > N'$，所以就有
+        $
+            abs(sum_(n = p')^q a_n) <= epsilon
+        $这正是结论
+    - $arrow.l.double$\
+        反之同理，只需要将一个级数写作两个级数的差即可
+        $
+            abs(sum_(n= p)^q a_n) = abs(sum_(n=m)^q a_n - sum_(n=m)^(p-1) a_n)
+        $
+]
+
+#corollary[无穷级数的零测试][
+    $sum_(n=m)^infinity a_n$是一个收敛的无穷级数，那么$lim_(n->infinity)a_n = 0$
+]<coro:zero-test-infinite-series>
+#proof[
+    由于该级数收敛，那么由@lem:test-foraml-infinite-series-convergent 就有
+    $
+        forall epsilon in RR^+, exists N >= m, forall p, q >= N, abs(sum_(n=p)^q a_n) <= epsilon
+    $由于任意大于等于$N$的$p, q$都满足上式，自然在$p = q = n' >=N$时也满足，于是就有
+    $
+        abs(sum_(n=p)^q a_n) = abs(a_(n')) = abs(a_(n') - 0) <= epsilon
+    $这正是$(a_n)_(n=m)^infinity$收敛到$0$的定义
+]
+#note-block[
+    这个引理的逆命题是不成立的，比如$sum_(n=1)^infinity 1/n$，$(1/n)_(n=1)^infinity$收敛到$0$，但是级数是不收敛的
+]
+
+#definition[绝对收敛][
+    $sum_(n=m)^infinity a_n$是形式实数级数，称其为绝对收敛的，当且仅当$sum_(n=m)^infinity abs(a_n)$是收敛的
+]
+
+#lemma[绝对收敛测试][
+    $sum_(n=m)^infinity a_n$是无穷级数，如果该级数绝对收敛，那么也一定是收敛的；进一步的有不等式成立：
+    $
+        abs(sum_(n=m)^infinity a_n) <= sum_(n=m)^infinity abs(a_n)
+    $
+]<lem:test-absolute-convergent>
+
+#proof[
+
+    1. 由于$sum_(n=m)^infinity a_n$绝对收敛，就有
+    $
+        forall epsilon in RR^+, exists N >= m, forall p, q >= N, abs(sum_(n=p)^q abs(a_n)) <= epsilon
+    $接着由@prop:finite-series-algebra 就有
+    $
+        abs(sum_(n=p)^q a_n) <= sum_(n=p)^q abs(a_n) = abs(sum_(n=p)^q abs(a_n)) <= epsilon
+    $这正是无穷级数收敛的定义，所以无穷级数绝对收敛也一定收敛
+
+    2. 令$S_N = sum_(n=m)^N abs(a_n), S'_N = abs(sum_(n=m)^N a_n)$，由@prop:finite-series-algebra 就有
+        $
+            forall N >= m, S_N >= S'_N
+        $由(1)，这两个极限都是存在的，那么由极限的保序性就有
+        $
+            lim_(N->infinity)S_N = sum_(n=m)^infinity abs(a_n) >= abs(sum_(n=m)^infinity a_n) = lim_(N->infinity)S'_N
+        $
+
+]
+
+#lemma[交错级数测试][
+    $(a_n)_(n=m)^infinity$是一个非负、单调递减的实数序列，那么无穷级数$sum_(n=m)^infinity (-1)^n a_n$收敛，当且仅当$lim_(n->infinity)a_n = 0$
+]
+#proof[
+    + $=>$\
+        由@coro:zero-test-infinite-series，序列$((-1)^n a_n)_(n=m)^infinity$收敛到$0$，所以$(a_n)_(n=m)^infinity$也收敛到$0$
+    + $arrow.double.l$\
+        如果$(a_n)_(n=m)^infinity$收敛到$0$，令$S_N$为前$N$项部分和，于是$forall N >= m$有
+        $
+            S_(N+2) & = S_N + (-1)^(N+1)a_(N+1) + (-1)^(N+2)a_(N+2) \
+                    & = S_N + (-1)^(N+1) (a_(N+1) - a_(N+2))
+        $由于$(a_n)_(n=m)^infinity$非负且单调递减，那么$a_(N+1) - a_(N+2) >= 0$，于是$N$为奇数时，$S_(N+2) >= S_N$；$N$为偶数时，$S_(N+2) <= S_N$
+
+        固定$N$是偶数，首先证明$forall k in NN, S_(N + 2k) <= S_N$，当$k = 0$时显然成立，现在归纳性的假设$k$时成立，证明$k+1$的情况
+        $
+            S_(N+2(k + 1)) & = S_(N+2k) + (-1)^(N+2k+1)a_(N+2k+1) + (-1)^(N+2k+2)a_(N+2k+2) \
+                           & = S_(N+2k) + a_(N+2k+2) - a_(N+2k+1) \
+                           & => S_(N+2(k+1)) - S_(N+2k) = a_(N+2k+2) - a_(N+2k+1)
+        $由于$(a_N)_(N=m)^infinity$单调递减，所以$S_(N+2(k+1)) - S_(N+2k) = a_(N+2k+2) - a_(N+2k+1) <= 0$，所以有$S_(N+2(k+1)) <= S_(N+2k) <= S_N$，归纳结束
+
+
+        接着证明$forall k in NN, S_(N+2k+1) >=S_(N+1)$，当$k=0$时显然成立，现在归纳性的假设$k$时成立，证明$k+1$的情况
+        $
+            S_(N + 2(k+1) + 1) = S_(N+2k+3) = S_(N+2k+1) + a_(N+2k+2) - a_(N+2k+3)
+        $由于序列$(a_n)_(n=m)^infinity$单调递减，那么$a_(N+2k+2) - a_(N+2k+3) >= 0$，再由归纳假设就有$S_(N+2(k+1)+1) >= S_(N+2k+1) >= S_(N+1)$，归纳完毕
+
+        此外，易有$S_(N+2k+1) = S_(N+2k) - a_(N+2k+1) <= S_(N+2k)$，综上就有
+        $
+            S_N - a_(N+1) = S_(N+1) <= S_(N+2k+1) <= S_(N+2k) <= S_N
+        $
+        那么$forall n >= N$，如果$n$是偶数，那么令$n = N + 2k$，于是就有
+        $
+            S_N - a_(N+1) <= S_n = S_(N+2k) <= S_N
+        $如果$n$是奇数，令$n = N+2k+1$，于是就有
+        $
+            S_N - a_(N+1) <= S_n = S_(N+2k+1) <= S_N
+        $这个结果说明
+        $
+            forall n>=N, -a_(N+1) <= S_n - S_N <= 0 => abs(S_n - S_N) <=a_(N+1)
+        $
+        由于$(a_n)_(n=m)^infinity$收敛到$0$，那么有
+        $
+            forall epsilon in RR^+, exists N' >=m, forall n >= N', abs(a_n - 0) = abs(a_n) <= epsilon
+        $于是对于给定$epsilon$，选偶数$N >=N'$，任意$p, q >= N$就有
+        $
+            abs(S_p - S_q) <= abs(S_p - S_N) + abs(S_N + S_q) <= 2a_(N+1) <= 2epsilon
+        $这说明$(S_N)_(N=m)^infinity$是柯西序列，因此该序列收敛，进一步的$sum_(n=m)^infinity (-1)^n a_n$收敛
+]
+#remark[
+    麻烦之处在于固定偶数$N$后，对$S_n$进行夹逼
+]
+
+#property[无穷级数定律][
+    $sum_(n=m)^infinity a_n, sum_(n=m)^infinity b_n$分别收敛到$x, y in RR$，$c in RR$，有以下成立
+    + $sum_(n=m)^infinity (a_n + b_n) = sum_(n=m)^infinity a_n + sum_(n=m)^infinity b_n = x + y$
+
+    + $sum_(n=m)^infinity c a_n = c sum_(n=m)^infinity a_n = c x$
+
+    + $k in NN$，如果$sum_(n=m)^infinity a_n$和$sum_(n=m+k)^infinity a_n$其一收敛，那么另一个也收敛，且有恒等式$
+            sum_(n=m)^infinity a_n = sum_(n=m)^(m+k-1) a_n + sum_(n=m+k)^infinity a_n
+        $
+    + $k in ZZ$，那么$sum_(n=m+k)^infinity a_(n-k) = sum_(n=m)^infinity a_n$
+]<prop:infinitie-series-law>
+
+#corollary[Telescoping 级数][
+    $(a_n)_(n=0)^infinity$是收敛到$0$的实数序列，那么无穷级数$sum_(n=0)^infinity (a_n - a_(n+1))$收敛到$a_0$
+]<coro:telescoping-series>
+
+#problem[
+    无穷级数$sum_(n=1)^infinity (-1)^n$是否收敛？
+]
+#proof[
+    易知序列$((-1)^n)_(n=1)^infinity$不收敛，那么由@coro:zero-test-infinite-series 的逆否，该级数一定不收敛
+]
+#problem[证明@lem:test-foraml-infinite-series-convergent][见前证明]
+#problem[证明@coro:zero-test-infinite-series][见前证明]
+#problem[证明@lem:test-absolute-convergent][见前证明]
+#problem[证明@prop:infinitie-series-law]
+#proof[
+    令$S_N, T_N$分别是$sum_(n=m)^infinity a_n, sum_(n=m)^infinity b_n$的前$N$项和
+    + 令$sum_(n=m)^infinity (a_n + b_n)$的前$N$项和为$B_N$，那么就有
+        $
+            B_N = sum_(n=m)^N (a_n + b_n) = sum_(n=m)^N a_n + sum_(n=m)^N b_n = S_N + T_N
+        $由于$(S_N)_(N=m)^infinity$和$(T_N)_(N=m)^infinity$都收敛，那么$(S_N+T_N)_(N=m)^infinity$也是收敛的，那么就有
+        $
+            sum_(n=m)^infinity (a_n + b_n) & = lim_(N->infinity) B_N \
+            & = lim_(N->infinity) (S_N + T_N) \
+            & = lim_(N->infinity)S_N + lim_(N->infinity)T_N \
+            & = sum_(n=m)^infinity a_n + sum_(n=m)^infinity b_n = x + y
+        $
+    + 由于$(S_N)_(N=m)^infinity$是收敛的，那么$(c S_N)_(N=m)^infinity$也是收敛的，于是就有
+        $
+            sum_(n=m)^infinity (c a_n) = lim_(N->infinity) (c S_N) = c lim_(N->infinity)S_N = c x
+        $
+    + 取$k in NN$，对于两个序列$(S_N)_(N=m)^infinity$和$(S_N)_(N=m+k)^infinity$，其收敛与否与序列起始元素无关，所以其一收敛则另一个必收敛，于是就有
+        $
+            & S_N = sum_(n=m)^(m+k-1)a_n + sum_(n=m+k)^N a_n \
+            & => lim_(N->infinity) S_N = sum_(n=m)^(m+k-1)a_n + lim_(N->infinity)S_N^(m+k) \
+            & => sum_(n=m)^infinity a_n = sum_(n=m)^(m+k-1)a_n + sum_(n=m+k)^infinity a_n
+        $其中$S_(N)^(m+k)$为从$m+k$项开始到第$N$项的和
+    + $S_N$为$sum_(n=m)^infinity a_n$的前$N$项和，记$sum_(n=m+k)^infinity a_(n-k)$的前$N$项和为$
+            T_N := sum_(n=m+k)^N a_(m-k), (N >= m+k)
+        $令$j = n-k$，于是就有$
+            T_N = sum_(j=m)^(N-k)a_j = S_(N-k)
+        $由于$N>= m+k => N-k>=m$，所以$T_N$也是$(S_N)_(N=m)^infinity$中的一项，令$M=N-k$，因此
+        $
+            lim_(N->infinity)S_N = lim_(M->infinity)S_M = x
+        $
+]
+
+#problem[证明@coro:telescoping-series]
+#proof[
+    易知前$N$项和为
+    $
+        S_N = sum_(n=0)^N (a_n - a_(n+1)) = a_0 - a_(N+1)
+    $由于序列$(a_n)_(n=0)^infinity$是柯西序列，那么
+    $
+        forall epsilon in RR^+, exists N >= 0, forall n,m >= N, abs(a_n - a_m) <= epsilon
+    $对于序列$(S_N)_(N=0)^infinity$来说，取$N' >= N >= 0$，任取$p, q >= N'$就有
+    $
+        abs(S_p - S_q) & = abs(a_0 - a_(p+1) - a_0 + a_(q+1)) \
+                       & = abs(a_(q+1) - a_(p+1)) <= epsilon
+    $于是$(S_N)_(N=0)^infinity$是柯西序列，进而级数$sum_(n=0)^infinity (a_n - a_(n+1))$是收敛的；由于$(a_n)_(n=0)^infinity$收敛到$0$，那么就有
+    $
+        lim_(n->infinity)a_n = 0
+    $于是就有
+    $
+        lim_(N->infinity)S_N = lim_(N->infinity)a_0 - a_(N+1) = a_0 + lim_(N->infinity) a_(N+1) = a_0
+    $
+]
+
 #pagebreak()
