@@ -733,23 +733,164 @@
 
 #problem[证明@coro:telescoping-series]
 #proof[
-    易知前$N$项和为
+    假设$sum_(n=0)^infinity (a_n - a_(n+1))$的前$N$项和为$S_N = a_0-a_(N+1)$，使用归纳法进行证明，当$N = 0$时，$S_0 = sum_(n=0)^0 (a_n - a_(n+1)) = a_0 - a_1$，成立，现在归纳性的假设$N$时成立，证明$N+1$的情况
     $
-        S_N = sum_(n=0)^N (a_n - a_(n+1)) = a_0 - a_(N+1)
-    $由于序列$(a_n)_(n=0)^infinity$是柯西序列，那么
+        S_(N+1) & = S_N + (a_(N+1) - a_(N+2)) \
+                & = a_0 - a_(N+1) + a_(N+1) - a_(N+2) = a_0 + a_(N+2)
+    $成立，归纳结束.
+
+    由于$(a_n)_(n=0)^infinity$收敛到$0$，于是$(a_0 + a_n)_(n=0)^infinity$也收敛，所以
     $
-        forall epsilon in RR^+, exists N >= 0, forall n,m >= N, abs(a_n - a_m) <= epsilon
-    $对于序列$(S_N)_(N=0)^infinity$来说，取$N' >= N >= 0$，任取$p, q >= N'$就有
+        sum_(n=0)^infinity (a_n - a_(n+1)) = lim_(N->infinity)S_N = lim_(N->infinity)(a_0 - a_(N+1)) = a_0 - 0 = a_0
     $
-        abs(S_p - S_q) & = abs(a_0 - a_(p+1) - a_0 + a_(q+1)) \
-                       & = abs(a_(q+1) - a_(p+1)) <= epsilon
-    $于是$(S_N)_(N=0)^infinity$是柯西序列，进而级数$sum_(n=0)^infinity (a_n - a_(n+1))$是收敛的；由于$(a_n)_(n=0)^infinity$收敛到$0$，那么就有
+    如果$(a_n)_(n=0)^infinity$收敛到$L != 0$，也有
     $
-        lim_(n->infinity)a_n = 0
-    $于是就有
+        sum_(n=0)^infinity (a_n - a_(n+1)) = a_0 - L
     $
-        lim_(N->infinity)S_N = lim_(N->infinity)a_0 - a_(N+1) = a_0 + lim_(N->infinity) a_(N+1) = a_0
+
+]
+
+== 非负数的和
+
+#proposition[$sum_(n=0)^infinity a_n$是非负无穷级数，那么该级数收敛当且仅当存在实数$M$，满足
+    $
+        sum_(n=m)^N a_n <= M, forall N >= n
     $
 ]
+#proof[
+    由于是非负级数，那么$forall N >=m, S_(N+1) - S_N = a_(N+1) >= 0$，所以$(S_N)_(N=m)^infinity$是单调递增的，单调递增有界必收敛，所以$(S_N)_(N=m)^infinity$一定有界
+]
+
+#corollary[比较测试][
+    $sum_(n=m)^infinity a_n, sum_(n=m)^infinity b_n$是两个无穷级数，$abs(a_n) <= b_n ,forall n >=m$，如果$sum_(n=m)^infinity b_n$收敛，那么$sum_(n=m)^infinity a_n$绝对收敛，并且有
+    $
+        abs(sum_(n=m)^infinity a_n) <= sum_(n=m)^infinity abs(a_n) <= sum_(n=m)^infinity b_n
+    $
+]<coro:comparison-test>
+#proof[
+    令$T_N = sum_(n=m)^N abs(a_n), S_N = sum_(n=m)^infinity b_n$，由于$forall n>=m, b_n >= abs(a_n) >= 0$所以有
+    $
+        T_N <= S_N, forall N >= m
+    $
+    由于$sum_(n=m)^infinity b_n$是一个收敛的非负级数那么一定有上界$M$
+    $
+        T_N <= S_N <= M, forall N >= m
+    $由于$sum_(n=m)^infinity abs(a_n)$也是一个非负级数且有上界$M$，那么$sum_(n=m)^infinity abs(a_n)$一定收敛，也就说明$sum_(n=m)^infinity a_n$绝对收敛，于是根据极限的保序性就有
+    $
+        & lim_(N->infinity) T_N <= lim_(N->infinity) S_N \
+        & => sum_(n=m)^infinity abs(a_n) <= sum_(n=m)^infinity b_n
+    $进一步的由@lem:test-absolute-convergent 就有
+    $
+        abs(sum_(n=m)^infinity a_n) <= sum_(n=m)^infinity abs(a_n) <= sum_(n=m)^infinity b_n
+    $
+]
+#remark[
+    由逆否就有：$abs(a_n) <= b_n, forall n>= m$，如果$sum_(n=m)^infinity a_n$不绝对收敛，那么$sum_(n=m)^infinity b_n$一定不收敛
+]
+
+#lemma[几何级数][
+    $x in RR$，如果$abs(x) >= 1$，那么无穷级数$sum_(n=0)^infinity x^n$发散；如果$abs(x) < 1$，那么该级数绝对收敛并且有
+    $
+        sum_(n=0)^infinity x^n = 1/(1 - x)
+    $
+]<lem:geometry-series>
+#proof[
+    由@coro:zero-test-infinite-series 的逆否命题可知，如果级数求和序列的极限不为$0$或不收敛，则级数也不收敛，由@lem:x-n-power-limit-depend-x 可知，对于序列$(x^n)_(n=0)^infinity$，如果$abs(x) > 1$则发散，如果$x = 1$则收敛到$1$，如果$x = -1$则发散，所以只有在$abs(x) < 1$时序列$(x^n)_(n=0)^infinity$收敛，进而$sum_(n=0)^infinity x^n$收敛，接下来证明在$abs(x) < 1$时的级数
+
+    假设该级数的前$N$项和为
+    $
+        S_N = (1 - x^(N+1))/(1-x)
+    $使用数学归纳法证明，当$N = 0$时
+    $
+        S_0 = (1-x^(0+1))/(1-x) = 1 = sum_(n=0)^0 x^n
+    $成立，现在归纳性的假设在$N$时成立，证明$N+1$的情况
+    $
+        S_(N+1) = S_N + x^(N+1) = (1-x^(N+1))/(1-x) + x^(N+1) = (1-x^(N+2))/(1-x)
+    $成立，归纳结束
+
+    前已证级数$sum_(n=0)^infinity x^n$在$abs(x) < 1$时收敛，那么就有
+    $
+        sum_(n=0)^infinity x^n & = lim_(N->infinity) (1-x^(N+1))/(1-x) \
+                               & = 1/(1-x) - 1/(1-x) lim_(N->infinity)x^(N+1) \
+                               & = 1/(1-x) - 1/(1 -x) 0 \
+                               & = 1/(1-x)
+    $这里使用了$abs(x) < 1$时，$n->infinity, x^n -> 0$
+]
+
+#proposition[柯西准则][
+    令$(a_n)_(n=1)^infinity$是递减非负实数序列，那么级数$sum_(n=1)^infinity a_n$收敛，当且仅当级数
+    $
+        sum_(k=0)^infinity 2^k a_(2^k) = a_1 + 2a_2 + 4a_4 + ...
+    $
+    收敛
+]
+
+#proof[
+    令$S_N = sum_(n=1)^N a_n, T_K = sum_(k=0)^K 2^K a_(2^K)$，由题述易知都是非负级数，那么只需证明$sum_(n=1)^infinity a_n$有界当且仅当$sum_(k=0)^infinity 2^k a_(2^k)$有界
+
+    但是先需证明$forall K in NN, S_(2^(K+1) - 1) <= T_K <= 2S_(2^K)$，使用数学归纳法，当$K=0$时
+    $
+        S_(2^(0+1) - 1) & =S_1 = a_1 \
+                    T_0 & = a_1 \
+               2S_(2^0) & = 2S_1 = 2a_1
+    $由于$(a_n)_(n=1)^infinity$是递减非负序列，那么就有$a_1 <= a_1 <= 2a_1$，成立，现在归纳性的假设$K$时成立，证明$K+1$的情况
+    $
+        T_(K+1) & = T_K + 2^(K+1)a_(2^(K+1))
+    $此外$forall 2^(K+1) >= n >= 2^K + 1, a_n >= a_(2^(K + 1))$，那么就有
+    $
+        S_(2^K +1) = S_(2^K) + sum_(n=2^K + 1)^(2^(K+1)) a_n >= S_(2^K) + sum_(n=2^K + 1)^(2^(K+1)) a_(2^(K + 1)) &= S_(2^K) + (2^(K+1) - (2^K + 1) + 1)a_(2^(K + 1))\
+        &= S_(2^K) + 2^K a_(2^(K + 1))
+    $值得注意的是，上式中的$sum_(n = 2^K + 1)^(2^(K+1))a_(2^K + 1)$共有$2^K$个$a_(2^K + 1)$求和.
+    于是就有
+    $
+        2S_(2^(K+1)) >= 2S_(2^K) + 2^(K+1)a_(2^(K+1))
+    $另外一边，$forall n >= 2^(K+1), a_n <= a_(2^(K+1))$同理有
+    $
+        S_(2^(K+2) - 1) & = S_(2^(K+1) - 1) + sum_(n=2^(K+1))^(2^(K+2) - 1) a_n \
+                        & <= S_(2^(K+1) - 1) + sum_(n = 2^(K+1))^(2^(K+2)-1)a_(2^(K+1)) \
+                        & = S_(2^(K+1) - 1) + 2^(K+1) a_(2^(K+1))
+    $综上，结合归纳假设
+    $
+        S_(2^(K+1) - 1) <= T_K <= 2S_(2^(K + 1))
+    $就有
+    $
+        S_(2^(K+2) - 1) <= T_(K+1) <= 2S_(2^(K+1))
+    $归纳结束
+
+    于是可以看到，如果$(S_N)_(N=1)^infinity$有界，那么$(T_K)_(K=0)^infinity$也一定有界，如果$(T_K)_(K=0)^infinity$有界，那么$S_(2^(K+1) - 1)$也是有界的，进而$(S_N)_(N=1)^infinity$也是有界的
+]
+
+#corollary[
+    $q in RR^+$，无穷级数$sum_(n=1)^infinity 1/n^q$在$q > 1$时收敛，在$q <= 1$时发散
+]
+#proof[
+    序列$(1/n^q)_(n=1)^infinity$是一个非负且递减的序列，那么$sum_(n=1)^infinity 1/n^q$收敛当且仅当$sum_(n=0)^infinity 2^k 1/((2^k)""^q) = sum_(k=0)^infinity 2^((1-q))""^k$收敛，对于这个几何级数，它收敛当且仅当$abs(2^(1-q)) < 1$，那么就有
+    $
+        0<2^(1-q) < 2^0 => 1-q < 0 => q > 1
+    $
+    于是在$q > 1$时收敛，在$0 < q <= 1$时发散
+]
+
+#problem[证明@coro:comparison-test][见前]
+#problem[证明@lem:geometry-series][见前]
+#problem[$sum_(n=0)^infinity a_n$是绝对收敛的实数级数，且满足$sum_(n=0)^infinity abs(a_n) = 0$，证明$forall n in NN, a_n = 0$]
+#proof[
+    假设存在$k in NN, a_k != 0$，那么对于该级数就有
+    $
+        sum_(n=0)^infinity abs(a_n) = sum_(n=0)^(k-1) abs(a_n) + abs(a_k) + sum_(n=k+1)^infinity abs(a_n) = 0
+    $于是就有
+    $
+        sum_(n=0)^(k-1) abs(a_n) + sum_(n=k+1)^infinity abs(a_n) = -abs(a_k) < 0
+    $显然矛盾，于是不存在$k in NN$使得$a_k != 0$，也即$forall k in NN, a_k = 0$
+]
+
+== 级数的重排
+
+
+
+
+
+
+
 
 #pagebreak()
