@@ -885,6 +885,105 @@
 ]
 
 == 级数的重排
+#proposition[非负级数重排不改变值][$sum_(n=0)^infinity a_n$是一个非负的收敛无穷级数，$f: NN->NN$是双射，那么级数$sum_(m=0)^infinity a_(f(m))$也是收敛的，而且有
+    $
+        sum_(n=0)^infinity a_n = sum_(m=0)^infinity a_(f(m))
+    $
+]<propositon:non-neg-series-rearrangment>
+#proof[
+    级数$sum_(n=0)^infinity a_n$收敛，记其级数为$S$，令其部分和为$S_N := sum_(n = 0)^N a_n$，由于$a_n >= 0$，那么$S_N$单调递增且有上界$S$
+
+    任选$M in NN$，重排部分和为$T_M = sum_(m=0)^M a_(f(m))$，由于$f:NN->NN$是双射，那么$Y := {f(m): m<=M} subset.eq NN$是一个有限集合，于是$exists N in NN, forall m <= M, f(m) <=N$，令集合$X = {n in NN : n<= N}$，易有$Y subset.eq X$
+    $
+        T_M = sum_(m in Y) a_(m) <= sum_(n in X) a_n <= S
+    $于是$T_M$单调递增且有上界，说明收敛，令其极限为$T$.
+
+    由于$f$是双射，其逆函数$f^(-1):NN->NN$也是一个双射，并有
+    $
+        a_n = a_(f(f^(-1)(n)))
+    $于是可以将$sum_(m=0)^infinity a_(f(m))$看作是原级数，$sum_(n=0)^infinity a_(f(f^(-1)(n))) = sum_(n=0)^infinity a_n$是重排级数，重复上面就有
+    $
+        S = sum_(n=0)^infinity a_n <= sum_(m=0)^infinity = T
+    $于是就有$S = T$，非负级数重排不改变值
+
+]
+
+#proposition[绝对收敛级数重排不改变值][
+    $sum_(n=0)^infinity a_n$绝对收敛，$f:NN->NN$是双射，那么$sum_(m=0)^infinity a_(f(m))$也绝对收敛且有
+    $
+        sum_(n=0)^infinity a_n = sum_(m=0)^infinity a_(f(m))
+    $
+]<proposition:absolute-convergent-series-rearrangment>
+#proof[
+    由于$sum_(n=0)^infinity a_n$绝对收敛，那么令$L := sum_(n=0)^infinity abs(a_n), L in RR^+$，这是一个非负级数，那么由@propositon:non-neg-series-rearrangment 也有$L = sum_(m=0)^infinity abs(a_(f(m)))$
+    由@lem:test-absolute-convergent 就有原级数和重排级数也是收敛的，令$L' = sum_(n=0)^infinity a_n$，那么需要证明$sum_(m=0)^infinity a_(f(m))$也收敛到$L'$
+
+    由于$sum_(n=0)^infinity abs(a_n)$收敛，那么任取$epsilon/2 in RR^+$，存在$N_1 >= 0, forall p, q >= N_1, sum_(n=p)^q abs(a_n) <= epsilon/2$；由于$sum_(n=0)^infinity a_n -> L'$，那么存在$N >= N_1$，使得$abs(sum_(n=0)^N a_n - L') <= epsilon/2$
+
+    由于$f:NN->NN$是双射，那么逆函数$f^(-1): NN->NN$也是双射，易知$(f^(-1)(n))_(n=0)^N$是有限的，那么也就有界，令上界为$M$，于是$forall M' >= M$，易有${f^(-1)(n): n <=N} subset.eq {m in NN: m <=M'}$，由于$f$是双射，那么这两个集合的前像就有如下成立
+    $
+        E & = f({f^(-1)(n): n<=N}) = {n in NN: n<=N} \
+        F & = f({m in NN: m<=M'}) = {f(m): m <= M'} \
+          & => E subset.eq F
+    $于是接着有
+    $
+        sum_(m=0)^(M')a_(f(m)) = sum_(n in F)a_n = sum_(n=0)^N a_n + sum_(n in F without E)a_n
+    $易知$F without E$也是有限的，进而存在$q in NN$，使得$F without E subset.eq{n in NN: N+1 <= n <= q}$，由于$q ,N+1 > N >=N'$于是就有
+    $
+        abs(sum_(n in F without E) a_n) <= sum_(n in F without E) abs(a_n) <= sum_(n = N+1)^q abs(a_n) <= epsilon/2
+    $结合先前的结果，就有
+    $
+        sum_(m=0)^(M')a_(f(m)) &= sum_(n=0)^N a_n + sum_(x in F without E) a_n <= sum_(n=0)^N a_n + epsilon/2 \ &=> abs(sum_(m=0)^(M') a_(f(m)) - sum_(n=0)^N a_n) <= epsilon/2
+    $再由
+    $
+        abs(sum_(n=0)^N a_n - L') <= epsilon/2
+    $就有
+    $
+        abs(sum_(m=0)^M' a_(f(m)) - L') <= abs(sum_(m=0)^(M') a_(f(m)) - sum_(n=0)^N a_n) + abs(sum_(n=0)^N a_n - L') <= epsilon
+    $于是绝对收敛级数在重排后仍然有相同的值
+]
+
+#problem[
+    $sum_(n=0)^infinity a_n$绝对收敛，$f:NN->NN$是严格单调递增函数，那么$sum_(n=0)^infinity a_(f(n))$也是绝对收敛的，如果$f:NN->NN$只是一个双射，会有什么结果？
+]
+#proof[
+    原级数是绝对收敛的，需要证明$sum_(n=0)^N abs(a_(f(n)))$也是收敛的
+
+    任取$N in NN$，记$sum_(n=0)^infinity abs(a_(f(n)))$的前$N$项和为$T_N := sum_(n=0)^N abs(a_(f(n)))$，定义集合$E = {f(n) : n in NN, n<=N}$，由于$f:NN->NN$是严格递增的，那么该集合的最大值为$f(N)$
+
+    对于$sum_(n=0)^infinity abs(a_n)$来说，其前$f(N)$项和为$S'_N := sum_(n=0)^(f(N)) abs(a_n)$，于是定义集合$F = {n in NN: n <= f(N)}$，易知$E subset.eq F$，那么就有
+    $
+        S'_N & = sum_(n=0)^(f(N)) abs(a_n)   & = sum_(n in F) abs(a_n) \
+         T_N & = sum_(n=0)^(N) abs(a_(f(n))) & = sum_(n in E) abs(a_n)
+    $接着有
+    $
+        T_N = sum_(n in E) abs(a_n) <= sum_(n in F) abs(a_n) = S'_N
+    $于是$sum_(n=0)^infinity a_(f(n))$也是绝对收敛的
+
+    如果$f:NN->NN$是双射，由@proposition:absolute-convergent-series-rearrangment 可知也是收敛的
+]
+
+#problem[使用@propositon:non-neg-series-rearrangment 和@prop:infinitie-series-law 重新证明@proposition:absolute-convergent-series-rearrangment]
+#proof[
+    $sum_(n=0)^infinity a_n$是绝对收敛的，那么$sum_(n=0)^infinity abs(a_n)$是非负收敛的，那么由@propositon:non-neg-series-rearrangment 可知$sum_(m=0)^infinity abs(a_(f(m)))$也是收敛的，进而$sum_(m=0)^infinity a_(f(m))$是绝对收敛的，接下来证明绝对收敛级数重排不改变值
+
+    有恒等式
+    $
+        a_n = a_n + abs(a_n) - abs(a_n)
+    $其中令$b_n := a_n - abs(a_n)$，$c_n := abs(a_n)$，易知$0 <= b_n <= 2abs(a_n), c_n >= 0$，于是由@propositon:non-neg-series-rearrangment，$sum_(m=0)^infinity b_(f(m))$和$sum_(m=0)^infinity c_(f(m))$都是收敛的，并且有
+    $
+        sum_(n=0)^infinity b_n = sum_(m=0)^infinity b_(f(m))\
+        sum_(n=0)^infinity c_n = sum_(m=0)^infinity c_(f(m))\
+    $由@prop:infinitie-series-law 就有
+    $
+        sum_(n=0)^infinity a_n & = sum_(n=0)^infinity (a_n + abs(a_n) - abs(a_n)) \
+        & = sum_(n=0)^infinity b_n + sum_(n=0)^infinity c_n\
+        & = sum_(m=0)^infinity b_(f(m)) + sum_(m=0)^infinity c_(f(m)) \
+        & = sum_(n=0)^infinity a_(f(m))
+    $得证
+]
+
+
 
 
 
