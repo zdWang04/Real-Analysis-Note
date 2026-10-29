@@ -860,9 +860,9 @@
     于是可以看到，如果$(S_N)_(N=1)^infinity$有界，那么$(T_K)_(K=0)^infinity$也一定有界，如果$(T_K)_(K=0)^infinity$有界，那么$S_(2^(K+1) - 1)$也是有界的，进而$(S_N)_(N=1)^infinity$也是有界的
 ]
 
-#corollary[
+#corollary[超调和级数的收敛性][
     $q in RR^+$，无穷级数$sum_(n=1)^infinity 1/n^q$在$q > 1$时收敛，在$q <= 1$时发散
-]
+]<coro:hyperharmonic-convergent>
 #proof[
     序列$(1/n^q)_(n=1)^infinity$是一个非负且递减的序列，那么$sum_(n=1)^infinity 1/n^q$收敛当且仅当$sum_(n=0)^infinity 2^k 1/((2^k)""^q) = sum_(k=0)^infinity 2^((1-q))""^k$收敛，对于这个几何级数，它收敛当且仅当$abs(2^(1-q)) < 1$，那么就有
     $
@@ -983,13 +983,154 @@
     $得证
 ]
 
+== 根值测试和比值测试
 
+#theorem[根值测试][
+    $sum_(n=m)^infinity a_n$是一个实无穷级数，令$alpha := limsup_(n->infinity) abs(a_n)^(1/n)$
+    + $alpha < 1 => sum_(n=0)^infinity a_n$绝对收敛
+    + $alpha > 1 => sum_(n=0)^infinity a_n$不收敛
+    + $alpha = 1$，无法得到任何结论
+]<thm:root-test>
+#proof[
+    不失一般性，考虑$m>=1, n>=m$
+    1. 当$alpha < 1$时，由于$forall n>=m, abs(a_n)^(1/n) > 0$，那么自然有$0 < alpha < 1$，于是存在$epsilon in RR^+$，满足
+        $ 0 < alpha < alpha + epsilon < 1 $
+        由于$alpha$是$(abs(a_n)^(1/n))_(n=m)^infinity$的上极限，那么就有
+        $
+            exists N >=m, forall n>=N, abs(a_n)^(1/n) < alpha + epsilon => abs(a_n) < (alpha + epsilon)^n
+        $由@lem:geometry-series 就有几何级数$sum_(n=N)^infinity (alpha+epsilon)^n$收敛，再由@coro:comparison-test 可知$sum_(n=N)^infinity abs(a_n)$收敛，那么根据
+        $
+            sum_(n=m)^infinity abs(a_n) = sum_(n=m)^(N-1) abs(a_n) + sum_(n=N)^infinity abs(a_n)
+        $和@prop:infinitie-series-law 可知$sum_(n=m)^infinity abs(a_n)$收敛，所以$sum_(n=0)^infinity a_n$绝对收敛
+    2. 当$alpha > 1$时，有
+        $
+            forall N >=m, exists n >=N, abs(a_n)^(1/n) > 1 => abs(a_n) > 1
+        $说明$(a_n)_(n=m)^infinity$无法收敛到$0$，因此由@coro:zero-test-infinite-series 可知$sum_(n=0)^infinity a_n$不收敛
 
+    3. 当$alpha = 1$时无法判断收敛性，使用特例进行证明，对于级数$sum_(n=1)^infinity 1/n$和级数$sum_(n=1)1/n^2$，二者上极限都是$1$，然前者发散、后者收敛
+]
 
+#note-block[
+    在根值测试中使用了上极限的说法，如果知道序列$(abs(a_n)^(1/n))_(n=m)^infinity$是收敛的话，用极限而非上极限也是可以的，因为序列收敛时上极限等于极限
+]
 
+#lemma[$(c_n)_(n=m)^infinity$是正实数序列，有以下成立
+    $
+        liminf_(n->infinity) c_(n+1)/c_n <= liminf_(n->infinity) c_n^(1/n) <= limsup_(n->infinity) c_n^(1/n) <= limsup_(n->infinity) c_(n+1)/c_n
+    $
+]<lem:lem-for-contrast-test>
+#proof[
 
+    1. 中间的不等式由@prop:sequence-limit-point-properties 易得
 
+    2. 对于右边的不等式，令$L := limsup_(n->infinity) c_(n+1)/c_n$，当$L = +infinity$时显然成立，同时由于$(c_n)_(n=m)^infinity$是正实数序列，那么$L != -infinity and L in RR_(>= 0)$，取$epsilon in RR^+$，就有$L+epsilon > L$，于是由@prop:sequence-limit-point-properties 就有
+        $
+            exists N >= m, forall n>=N, c_(n+1)/c_n <= L + epsilon
+        $不失一般性，令$N >= 1$，于是就有
+        $
+            c_(n+1) <= c_n (L + epsilon)
+        $假设满足$forall n>= N, c_n <= c_N (L+epsilon)^(n-N)$，对$n - N$归纳，当$n-N=0$时，有$c_n <= c_n$，显然对任意$n>=N$成立，现在归纳性的假设$n-N = m$时成立，证明$n-N=m+1$的情况，由已知$c_(n+1) <= c_n (L +epsilon)$就有
+        $
+            c_n = c_(N+m+1) <= c_(N+m) (L+epsilon)
+        $由归纳假设就有
+        $
+            & c_(n) <= c_N (L+epsilon)^(n-N) \
+            & => c_(N+m) <= c_N (L+epsilon)^m \
+            & => c_(N+m+1) <= c_(N+m) (L + epsilon) <= c_N (L+epsilon)^(m+1) \
+            & => c_n <= c_N (L + epsilon)^(n - N)
+        $归纳结束
 
+        令$A := c_N (L + epsilon)^(-N) in RR^+$，就有
+        $
+            c_n <= A (L+epsilon)^n => c_n^(1/n) <= A^(1/n) (L+epsilon), forall n >= N
+        $于是有
+        $
+            lim_(n->infinity) A^(1/n) (L+epsilon) = L+epsilon
+        $于是由@lem:comparison-lemma 就有
+        $
+            limsup_(n->infinity) c_n^(1/n) <= L + epsilon
+        $由于是对任意$epsilon in RR^+$成立的，于是
+        $
+            limsup_(n->infinity) c_n^(1/n) <= L = limsup c_(n+1)/c_n
+        $
 
+    3. 对于左边的不等式，令$L = liminf_(n->infinity) c_(n+1)/c_n$，易知$L$不可能为正负无穷，且由于是正实数序列，那么$L in RR_(>= 0)$，任取$epsilon in RR^+$，就有
+        $
+            L - epsilon < L
+        $于是根据@prop:sequence-limit-point-properties 就有
+        $
+            exists N >=m, forall n >= N, L -epsilon <= c_(n+1)/c_n
+        $假设有$c_n >= c_N (L - epsilon)^(n-N), forall n >=N$成立，使用如2中的归纳法可以证明，接着令$A := c_N (L - epsilon)^(-N)$，就有
+        $
+            c_n >= (L - epsilon)^n A => c_n^(1/n) >= (L -epsilon) A^(1/n)
+        $对于后者有
+        $
+            lim_(n->infinity) (L -epsilon) A^(1/n) = L - epsilon
+        $由@lem:comparison-lemma 就有
+        $
+            liminf_(n->infinity) c_n^(1/n) >= L - epsilon
+        $由于$epsilon$是任取的，就有
+        $
+            liminf_(n->infinity) c_n^(1/n) >= L = liminf_(n->infinity) c_(n+1)/c_n
+        $
 
+]
+
+#corollary[比值测试][
+    $sum_(n=m)^infinity a_n$是非零实数无穷序列，那么有
+    + 如果$limsup_(n->infinity) abs(a_(n+1))/abs(a_n) < 1$，那么$sum_(n=m)^infinity a_n$绝对收敛
+    + 如果$liminf_(n->infinity) abs(a_(n+1))/abs(a_n) > 1$，那么$sum_(n=m)^infinity a_n$不收敛
+    + 其他情况下，得不到任何结论
+]
+#proof[
+    1. 由@lem:lem-for-contrast-test 可知
+        $
+            limsup_(n->infinity) abs(a_n)^(1/n) <= limsup_(n->infinity) abs(a_(n+1))/abs(a_n) < 1
+        $再由@thm:root-test 可知$sum_(n=m)^infinity a_n$绝对收敛
+
+    2. 由@lem:lem-for-contrast-test 可知
+        $
+            1 < liminf_(n->infinity)abs(a_(n+1))/abs(a_n) <= limsup_(n->infinity) abs(a_n)^(1/n)
+        $再由@thm:root-test 可知$sum_(n=m)^infinity a_n$发散
+
+    3. 无法判定$limsup_(n->infinity) abs(a_n)^(1/n)$与$1$的关系
+
+]
+
+#proposition[
+    $lim_(n->infinity)n^(1/n) = 1$
+]
+#proof[
+    由@lem:lem-for-contrast-test 就有
+    $
+        & limsup_(n->infinity) n^(1/n) <= limsup_(n->infinity) (n+1)/n = 1 \
+        & liminf_(n->infinity) n^(1/n) >= liminf_(n->infinity) (n+1)/n = 1
+    $再由@prop:sequence-limit-point-properties 可知
+    $
+        lim_(n->infinity)n^(1/n) = 1
+    $
+]
+
+#problem[证明@lem:lem-for-contrast-test][见前]
+#problem[$x,q in RR and abs(x) < 1$，证明级数$sum_(n=1)^infinity n^q x^n$绝对收敛，且有$lim_(n->infinity)n^q x^n = 0$]
+#proof[
+    易有
+    $
+        lim_(n->infinity) abs(n^q x^n)^(1/n) = lim_(n->infinity) (n^(1/n))""^q abs(x) = 1^q abs(x) = abs(x) < 1
+    $@thm:root-test 可知$sum_(n=1)^infinity n^q x^n$绝对收敛，进而是收敛的，所以根据@coro:zero-test-infinite-series 可知
+    $
+        lim_(n->infinity)n^q x^n = 0
+    $
+]
+
+#problem[
+    试举一例：$sum_(n=1)^infinity a_n$是一个正实数级数，满足$lim_(n->infinity)a_(n+1)/a_n = lim_(n->infinity)a_n^(1/n) = 1$，但是级数却是发散的;
+
+    试举一例：$sum_(n=1)^infinity b_n$是一个正实数级数，满足$lim_(n->infinity)b_(n+1)/b_n = lim_(n->infinity)b_n^(1/n) = 1$，级数是收敛的;
+
+]
+#solution[
+    1. $a_n = 1/n$，满足$lim_(n->infinity) n/(n+1) = 1$，且$lim_(n->infinity)(1/n)^(1/n) = lim_(n->infinity) (n^(1/n))""^(-1) = 1$，但是$sum_(n=1)^infinity 1/n$是发散的
+    2. $b_n = 1/n^2$，满足$lim_(n->infinity)n^2/(n+2)^2 = 1$，且$lim_(n->infinity)(1/n^2)""^(1/n) = lim_(n->infinity)(n^(1/n))^(-2) = 1$，但是$sum_(n=1)^infinity 1/n^2$是收敛的
+]
 #pagebreak()
