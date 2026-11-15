@@ -245,7 +245,25 @@
 ]
 
 #problem[集合$X$是无穷的，当且仅当存在真子集$Y subset.neq X$和$X$有相同基数]
-#proof[这个证明需要选择公理，暂时搁置.]
+#proof[
+    1. $arrow.l.double$\
+        如果存在一个真子集$Y subset.neq X$与$X$有相同的基数，假设$X$是有限的，那么$\#(Y) < \#(X)$，这与条件矛盾，所以$X$一定是无穷的
+    2. $=>$\
+        由于$X$是无穷的，那么一定是非空的，先证明引理，无穷集合中包含一个可数无穷的子集，先递归的定义元素
+        $
+            x_0 in X, x_(n+1) in X without {x_0,...,x_n}
+        $这些元素组成的集合为
+        $
+            S := {x_n : n in NN} subset.eq X
+        $易有双射函数$h:NN->S, h(n) = x_n$，所以无穷集合中一定有一个可数无穷的子集
+
+        接下来定义一个函数$f: X -> X without {x_0}$，易知$X without {x_0} subset.neq X$
+        $
+            f(x) = cases(x_(n+1)&\, x = x_n in S, x&\, x in X without S)
+        $接下来证明$f$是单射，取$x, x' in X$且$f(x) = f(x')$，如果$x, x' in S$，那么存在$m,n>=1$使得$x_(m+1) = x_(n+1)$，$S$中元素互异，那么$m+1 = n+1 => x = x'$；如果$x, x' in X without S$，那么$f(x) = x = f(x') = x'$；如果$x in S, x' in X without S$，那么$f(x) in S, f(x') = x' in.not S, f(x) != f(x')$，与条件矛盾，综上$f$是单射
+
+        然后证明$f$是满射，取$y in X without {x_0}$，如果$y in S$，那么存在$n >= 1$使得$y = x_n => y = f(x_(n-1))$，如果$y in.not S$，那么$y = f(y) = y$，综上$f$是满射，所以$f$是双射，所以存在真子集$X without {x_0}$与$X$有相同基数
+]
 
 #problem[证明@proposition:well-ordering-principle，如果命题中的自然数换为$ZZ$是否还成立，如果换为$QQ^+$是否还成立？]
 #proof[
@@ -281,7 +299,23 @@
 #problem[证明@coro:countable-cartesian-countable][见前]
 
 #problem[集合$I$是至多可数的，$forall alpha in I, A_(alpha)$也是至多可数的，那么$union.big_(alpha in I) A_(alpha)$也是至多可数的]
-#proof[这个证明需要选择公理，暂时搁置.]
+#proof[
+    当$I = emptyset$时，显然$union.big_(alpha in I)A_alpha$也是至多可数的，接下来讨论$I$非空的情况
+
+    由于$I$是至多可数的，那么有单射$iota:I->NN$，由于任意$alpha in I, A_alpha$也至多可数，那么有单射族$j_alpha:A_alpha -> NN$，定义集合
+    $
+        S := union.big_(alpha in I) ({alpha} times A_alpha)
+    $定义映射$Phi:S->NN times NN, Phi((alpha, x)) = (iota(alpha), j_alpha (x))$，那么$Phi$是单射，由于@coro:NN-times-NN-countable 可知$NN times NN$是可数的，那么$S$是至多可数的
+
+    定义函数$pi:S-> union.big_(alpha in I)A_alpha, pi((alpha, x)) = x$，于是
+    $
+        pi(S) = {pi(s):s in S} = {x : (alpha, x) in S} = {x : exists alpha in I, x in A_alpha} = union.big_(alpha in I)A_alpha
+    $所以$pi$是满射，那么就有
+    $
+        \#(union.big_(alpha in I)A_alpha) = \#(pi(S)) <= \#(S)
+    $由于$\#(S)$是至多可数的，那么$\#(union.big_(alpha in I)A_alpha)$也是至多可数的
+
+]
 
 #problem[找到一个双射$f:NN->QQ$]
 #solution[
@@ -295,6 +329,610 @@
     $令$a_n = min(A_n)$，定义函数$h'$是在$A$上的限制，由@proposition:f-NN-countable 的讨论可知$h'$是双射，接着由@proposition:for-X-NN-conuntbale 可知一定存在唯一递增双射$phi:NN->A$，那么$phi compose h': NN->QQ$是双射，即为所求
 
 ]
+
+== 无穷集合上的求和
+
+#definition[无穷集合上的级数][
+    $X$是一个可数集，$f:X->RR$是一个函数，称级数$sum_(x in X)f(x)$是绝对收敛的，当且仅当存在双射$g:NN->X$，使得级数$sum_(n=0)^infinity f(g(n))$是绝对收敛的，并有
+    $
+        sum_(x in X)f(x) = sum_(n=0)^infinity f(g(n))
+    $
+]<def:infinite-series>
+
+#theorem[无穷级数Fubini定理][
+    $f:NN times NN -> RR$是一个函数，且$sum_((n,m) in NN times NN) f(n, m)$绝对收敛，那么就有
+    $
+        sum_(n=0)^infinity (sum_(m=0)^infinity f(n,m)) &= sum_((n,m) in NN times NN)f(n,m) \ &= sum_((m,n) in NN times NN) f(n, m)
+        \ & = sum_(m=0)^infinity (sum_(n=0)^infinity f(n, m))
+    $
+]
+#proof[
+    @proposition:absolute-convergent-series-rearrangment 易知$sum_((n,m) in NN times NN)f(n, m) = sum_((m,n) in NN times NN)f(n,m)$成立，因为有双射$g:NN times NN -> NN times NN, g(n,m) = (m,n)$
+
+    对于第一个等式，考虑$f(n, m)$是非负的，由于绝对收敛，令
+    $
+        L := sum_((n, m) in NN times NN)f(n, m)
+    $任取$X subset.eq NN times NN, X "is finite"$，由于@coro:countable-cartesian-countable，可知存在一个双射$g: NN times NN -> NN$，那么$g(X)$是$NN$的有限子集，因此是有界的，所以$sum_((n,m) in X) f(n, m)$有界.
+
+    特别的，任选$n in NN, M in NN$，都有$sum_(m=0)^M f(n, m) <= L$，由于单调有界收敛，可知对任意$n$，$sum_(m=0)^infinity f(n, m)$收敛，那么任取$N, M in NN$，根据@coro:fubini-finite-series 就有
+    $
+        sum_(n=0)^N sum_(m=0)^M f(n, m) = sum_((n, m) in X)f(n, m) <= L
+    $其中$X = {(n, m) in NN times NN: n<=N, m<=M}$，由于对任意$M in NN$都成立，且$f(n, m)$是非负的，由单调有界可知
+    $
+        sum_(n=0)^N sum_(m=0)^infinity f(n, m) <= L
+    $同样的，对于任意$N$来说也是单调有界的，就有
+    $
+        sum_(n=0)^infinity sum_(m=0)^infinity f(n, m) <= L
+    $所以确实是收敛的，接下来证明收敛到$L$，由于$sum_((n,m) in NN times NN)f(n,m) = L$那么就有，存在一个有限子集$Y subset.eq NN times NN$满足
+    $
+        abs(sum_((n, m) in Y) f(n, m) - L) <= epsilon => sum_((n, m) in Y)f(n, m) >= L - epsilon
+    $那么取$Y$的有限超集$X:= {(n, m) in NN times NN: n<=N, m<=M}$，就有
+    $
+        sum_(n=0)^N sum_(m=0)^N f(n, m) = sum_((n,m) in X)f(n, m) >= sum_((n,m) in Y)f(n,m) >= L -epsilon
+    $也因此
+    $
+        sum_(n=0)^infinity sum_(m=0)^infinity f(n, m) >= sum_(n=0)^N sum_(m=0)^M f(n,m) >= L - epsilon
+    $由于$epsilon$是任取的，这说明
+    $
+        sum_(n=0)^infinity sum_(m=0)^infinity f(n, m) = L = sum_((n,m) in NN times NN)f(n,m)
+    $
+
+    综上考虑了$f(n,m)$非负的情况，对于$f(n,m)$非正的情况，只需要加上负号进行推理即可；对于有正有负的情况，可以将正部、负部分开
+    $
+        f(n, m) = f_(+)(n, m) + f_(-)(n, m)
+    $如果$sum_((n,m) in NN times NN)f(n, m)$绝对收敛，那么每个分部的级数也是绝对收敛的，二者之和也是绝对收敛的
+]
+
+#lemma[$X$是一个可数集，$f: X -> RR$是一个函数，那么级数$sum_(x in X)f(x)$绝对收敛，当且仅当
+    $
+        sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} < infinity
+    $
+]<lemma:countable-series-absolute-convergent>
+#proof[
+    1. $=>$\
+        $sum_(x in X) f(x)$是绝对收敛的，$X$是可数的，那么有双射$g:NN->X$，使得$sum_(n=0)^infinity f(g(n))$也绝对收敛，并且有相同的值
+
+        任选$X$的有限子集$A$，其基数为$M$，那么一定有双射$g_A: {i in NN: i<= M-1}->A$，于是
+        $
+            sum_(x in A) abs(f(x)) = sum_(n=0)^(M-1) abs(f(g_A (n))) <= sum_(n=0)^infinity abs(f(g(n))) = sum_(x in X) abs(f(x)) < infinity
+        $由于$A$是任选的，那么
+        $
+            sup{sum_(x in A) abs(f(x)) : A subset.eq X, A "finite"} < infinity
+        $
+    2. $arrow.double.l$\
+        任取$X$的有限子集$A_N$，基数为$N$，$A_N := {g(i): i in NN, i<=N}$，于是就有
+        $
+            sum_(x in A_N) abs(f(x)) = sum_(n=0)^N abs(f(g(n)))
+        $由于
+        $
+            sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} < infinity
+        $那么令$M := sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"}, M in RR^+$，就有
+        $
+            forall N >= 0, sum_(n=0)^N abs(f(g(n))) <= M
+        $这说明序列$(sum_(n=0)^N abs(f(g(n))))_(N=0)^infinity$单调递增且有上界，那么必然收敛，进而$sum_(x in X)f(x)$绝对收敛
+]
+
+#definition[不可数集合上的求和][
+    $X$是一个集合（可能是不可数的），$f:X->RR$是函数，称$sum_(x in X)f(x)$是绝对收敛的，当且仅当
+    $
+        sup{sum_(x in A)abs(f(x)) : A subset.eq X, A "finite"} < infinity
+    $
+]
+
+#lemma[
+    $X$是一个集合（可能是不可数的），$f:X->RR$是函数，如果$sum_(x in X) f(x)$绝对收敛，那么集合$Y = {x in X: f(x) != 0}$是至多可数的
+]<lemma:non-countable-series-absolute-convergent-non-zero-element-countable>
+#proof[
+    由于该级数绝对收敛，那么令
+    $
+        M := sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} in RR^+
+    $定义集合
+    $
+        Z_n := {x in X: abs(f(x)) > 1/n}
+    $接下来需要证明，当$n in ZZ^+$时，$Z_n$都是有限的，假设存在一个$Z_n$是无穷的，那么，可以取$Z_n$的、含有$k$个元素的子集$A$，那么就有
+    $
+        sum_(x in A) abs(f(x)) > k/n
+    $于是当$k->+infinity$时
+    $
+        M >= sum_(x in A) abs(f(x)) > k/n > infinity
+    $矛盾，所以任意$n in ZZ^+$，$Z_n$都是有限的，于是集合
+    $
+        Z = union.big_(n in ZZ^+)Z_n
+    $是至多可数的
+
+    还需要证明$Z = Y$，任取$z in Z$，那么存在$n in ZZ^+$，使得$z in Z_n$，这意味这$abs(f(z)) > 1/n > 0$，于是$z in Y$，所以$Z subset.eq Y$
+
+    任取$y in Y$，那么$f(y) != 0 => abs(f(y)) > 0$，所以存在$n in ZZ^+$，满足$abs(f(y)) > 1/n$，所以$y in Z_n => y in Z$，所以$Y subset.eq Z$，于是$Y = Z$，所以$Y$是至多可数的
+]
+
+#proposition[绝对收敛级数定律][
+    $X$是一个任意集合，$f:X->RR, g:X->RR$是函数，且$sum_(x in X)f(x), sum_(x in X)g(x)$都绝对收敛，那么有以下成立
+    1. $sum_(x in X)(f(x) + g(x))$绝对收敛，且
+        $
+            sum_(x in X) (f(x) + g(x)) = sum_(x in X)f(x) + sum_(x in X)g(x)
+        $
+    2. $c in RR$，那么$sum_(x in X)c f(x)$绝对收敛，且
+        $
+            sum_(x in X)c f(x) = c sum_(x in X)f(x)
+        $
+    3. 如果$X = X_1 union X_2$且$X_1 inter X_2 = emptyset$，那么
+        $
+            sum_(x in X_1 union X_2) f(x) = sum_(x in X_1)f(x) + sum_(x in X_2)f(x)
+        $同理，如果函数$h:X->RR$满足$sum_(x in X_1)h(x), sum_(x in X_2)h(x)$都是绝对收敛的，那么$sum_(x in X_1 union X_2) h(x)$也是绝对收敛的，且
+        $
+            sum_(x in X_1 union X_2) h(x) = sum_(x in X_1)h(x) + sum_(x in X_2)h(x)
+        $
+    4. 如果$Y$是另一个集合，且$phi: Y->X$是双射，那么$sum_(y in Y)f(phi(y))$也是绝对收敛的，且
+        $
+            sum_(y in Y) f(phi(y)) = sum_(x in X)f(x)
+        $
+]<proposition:convergent-series-laws>
+
+#lemma[$sum_(n=0)^infinity a_n$是一个条件收敛的实数级数，定义集合$A_+ := {n in NN： a_n >= 0}, A_- := {n in NN: a_n < 0}$，那么$A_+ union A_- = NN, A_+ inter A_- = emptyset$，那么$sum_(n in A_+) a_n, sum_(n in A_-) a_n$都不是绝对收敛的]<lemma:conditional-convergent-neg-pos-not-convergent>
+#proof[
+    由于原级数收敛，那么就有
+    $
+        sum_(n in NN)a_n = sum_(n in A_+) a_n - sum_(n in A_-)abs(a_n)
+    $假设$sum_(n in A_+)a_n$绝对收敛，那么可知$sum_(n in A_-)abs(a_n)$也是收敛的且
+    $
+        sum_(n in A_-)abs(a_n) = sum_(n in A_+)a_n - sum_(n in NN)a_n
+    $也是收敛的，于是
+    $
+        sum_(n in NN)abs(a_n) = sum_(n in A_+)abs(a_n) + sum_(n in A_-)abs(a_n) < infinity
+    $这说明$sum_(n in NN)a_n$是绝对收敛的，与条件矛盾
+
+    同上假设$sum_(n in A_+)a_n$绝对收敛，也会得到矛盾.
+    综上，条件收敛的级数，其正/负部的子级数都不会是绝对收敛的
+
+]
+
+
+// #theorem[$sum_(n=0)^infinity a_n$是一个条件收敛的序列，$L in RR$，那么存在双射$f: NN->NN$使得$sum_(m=0)^infinity a_(f(m))$条件收敛到$L$]
+// #proof[
+//     定义集合
+//     $
+//         A_+ := {n in NN: a_n >= 0}\
+//         A_- := {n in NN: a_n < 0}\
+//     $由@lemma:conditional-convergent-neg-pos-not-convergent 可知$sum_(n in A_+)a_n$和$sum_(n in A_-)a_n$都不是绝对收敛的
+//
+//     此外，由于$A_+, A_-$都是$NN$的无穷子集，那么由@proposition:for-X-NN-conuntbale 可知有单调递增的双射函数$f_+:NN->A_+$和$f_-:NN->A_-$，于是
+//     $
+//         sum_(m=0)^infinity a_(f_+(m)) = sum_(n in A_+)a_n\
+//         sum_(m=0)^infinity a_(f_-(m)) = sum_(n in A_-)a_n\
+//     $都不是绝对收敛的
+//
+//     接下来按照如下规则，递归的定义序列$n_0, n_1,...$
+//     - 如果$sum_(i=0)^(j-1) a_(n_i) < L$，则定义
+//         $
+//             n_j := min{n in A_+: n!=n_i, forall i < j}
+//         $
+//     - 如果$sum_(i=0)^(j-1) a_(n_i) >=L$，则定义
+//         $
+//             n_j := min{n in A_-: n!=n_i, forall i <= j}
+//         $
+//     直觉上，如果级数比$L$小，就加进去一个正数放大，如果大于$L$，就加进去一个负数拉低
+//
+//     首先证明$g:NN->NN, j|->n_j$是一个单射，任取$n_k = n_m$，如果$n_k, n_m in A_-$，那么
+//     $
+//         n_k = min{n in A_-: n!=n_i, forall i < k}\
+//         n_m = min{n in A_-: n!=n_i, forall i < m}\
+//     $由@proposition:well-ordering-principle 可知只能是$k=m$，如果$n_k,n_m in A_+$同理也有$k = m$，如果$n_k in A_+, n_m in A_-$，那么就有
+//     $
+//         n_k = min{n in A_+: n!=n_i, forall i < k}\
+//         n_m = min{n in A_-: n!=n_i, forall i < m}\
+//     $由于$A_+ inter A_- = emptyset$，所以$n_k != n_m$，与条件矛盾，综上$g$是单射
+// ]
+
+#problem[证明@lemma:countable-series-absolute-convergent][见前]
+#problem[证明@lemma:non-countable-series-absolute-convergent-non-zero-element-countable][见前]
+#problem[证明@proposition:convergent-series-laws]
+#proof[
+    由于$sum_(x in X)f(x), sum_(x in X)g(x)$都绝对收敛，所以定义
+    $
+        F := sup{sum_(x in A)abs(f(x)) : A subset.eq X, A "finite"} in RR^+\
+        G := sup{sum_(x in A)abs(g(x)) : A subset.eq X, A "finite"} in RR^+\
+    $同时易知以下两个集合都是可数的
+    $
+        X_f := {x in X: f(x) != 0}\
+        X_g := {x in X: g(x) != 0}
+    $
+
+    1. 对于级数$sum_(x in X)(f(x) + g(x))$，定义集合
+        $
+            T := {sum_(x in A) abs(f(x) + g(x)): A subset.eq X, A "finite"}
+        $对任意的有限子集$A$都有
+        $
+            sum_(x in A) abs(f(x) + g(x)) <= sum_(x in A)abs(f(x)) + sum_(x in A)abs(g(x))
+        $于是
+        $
+            sup(T) <= F + G < infinity
+        $于是$sum_(x in X)(f(x) + g(x))$是绝对收敛的，级数和可以看作只由非零项贡献，于是定义集合
+        $
+            X_(f+g) := {x in X: f(x) + g(x) != 0} subset.eq X_f union X_g
+        $易知$X_(f+g)$是至多可数的，令$S:= X_f union X_g$所以
+        $
+            sum_(x in X)(f(x) + g(x)) & = sum_(x in X_(f+g))(f(x) + g(x)) = sum_(x in S)(f(x) + g(x)) \
+            sum_(x in X)f(x) & = sum_(x in X_f)f(x) = sum_(x in S)(f(x))\
+            sum_(x in X)g(x) & = sum_(x in X_g)g(x) = sum_(x in S)(g(x))\
+        $由可数无穷级数定律易有
+        $
+            sum_(x in S)(f(x) + g(x)) = sum_(x in S) f(x) + sum_(x in S)g(x)
+        $于是
+        $
+            sum_(x in X)(f(x) + g(x)) = sum_(x in X) f(x) + sum_(x in X)g(x)
+        $
+
+    2. 定义集合
+        $
+            T := {sum_(x in A) abs(c f(x)): A subset.eq X, A "finite"}
+        $于是对$X$的任意有限子集都有
+        $
+            sum_(x in A)abs(c f(x)) = abs(c) sum_(x in A)abs(f(x))
+        $于是
+        $
+            sup(T) = abs(c)F < +infinity
+        $于是$sum_(x in X)c f(x)$是绝对收敛的，由于集合$X_f$是至多可数的，那么
+        $
+            sum_(x in X)c f(x) = sum_(x in X_f)c f(x) = c sum_(x in X_f)f(x) = c sum_(x in X)f(x)
+        $
+    3. (整体到部分和)由于$sum_(x in X)f(x)$绝对收敛，由于$X = X_1 union X_2$，那么
+        $
+            sum_(x in X_1)abs(f(x)) <= sum_(x in X)abs(f(x))
+        $同理$X_2$，所以$sum_(x in X_1)f(x)$和$sum_(x in X_2)f(x)$都是绝对收敛的，取$S_1 = X_f inter X_1, S_2 = X_f inter X_2$，易知$S_1,S_2$都是至多可数的，且$S_1 inter S_2 = emptyset, S_1 union S_2 = X_f$，于是就有
+        $
+            sum_(x in X)f(x) = sum_(x in X_f)f(x) = sum_(x in S_1)f(x) + sum_(x in S_2)f(x) = sum_(x in X_1)f(x) + sum_(x in X_2)f(x)
+        $
+    3. (部分和到整体)由于$sum_(x in X_1)h(x)$和$sum_(x in X_2)h(x)$都是绝对收敛的，那么下列两个集合都是至多可数的
+        $
+            X_h^1 := {x in X_1: h(x) != 0}\
+            X_h^2 := {x in X_2: h(x) != 0}\
+        $并且易知${x in X_1 union X_2: h(x) != 0 } = X_h^1 union X_h^2$，这也是至多可数的，并且$X_h^1 inter X_h^2 = emptyset$，所以根据可数无穷级数定律就有
+        $
+            sum_(x in X_1 union X_2)h(x) = sum_(x in X_h^1 union X_h^2)h(x) = sum_(x in X_h^1)h(x) + sum_(x in X_h^2)h(x) = sum_(x in X_1)h(x) + sum_(x in X_2)h(x)
+        $
+    4. 由于$phi:Y->X$是一个双射，那么$phi^(-1)$存在，且$Y_f = phi^(-1)(X_f) subset.eq Y$也是一个至多可数集合，此外有$X_f = phi(Y_f)$，那么就有
+    $
+        sum_(y in Y)f(phi(y)) =sum_(y in Y_f)f(phi(y)) = sum_(x in X_f)f(x) = sum_(x in X)f(x)
+    $
+
+]
+
+#problem[证明@lemma:conditional-convergent-neg-pos-not-convergent][见前]
+
+#note-block[原书习题8.2.5/8.2.6跳过]
+
+== 不可数集合
+
+#theorem[Cantor 定理][
+    $X$是一个任意集合，那么$X$和$2^X$不会有相同的基数
+]<theorem:cantor-powerset-set-not-eq>
+#proof[
+    假设$X$与$2^X$有相同的基数，那么有一个双射$f: X->2^X$，定义一个集合
+    $
+        A := {x in X: x in.not f(x)}
+    $$f(x) in 2^X$，因此$f(x)$是一个$X$的子集，同时显然$A$也是$X$的一个子集，那么$A in 2^X$
+
+    由于$f$是双射，那么存在$x in X$使得$f(x) = A$，对于$x$和$A$来说有两种可能
+    - $x in A$，那么由$A$的定义，$x in.not f(x) = A$，矛盾
+    - $x in.not A$，那么由$A$的定义，$x in.not f(x)$，那么$x in A$，矛盾
+
+    所有情况都是矛盾的，所以$X$和$2^X$不会有相同的基数
+]
+
+#corollary[$2^NN$是不可数的]
+#proof[
+    由@theorem:cantor-powerset-set-not-eq 可知$NN$和$2^NN$没有相同的基数，所以$2^NN$不是可数的，所以是不可数或有限的
+
+    同时定义一个集合
+    $
+        S := {{i} : i in NN}
+    $易知$S subset.eq 2^NN$，并且有双射$g: NN -> S, g(n) = {n}$，所以$S$是可数的，那么$2^NN$就不可能是有限的，综上$2^NN$是不可数的
+]
+
+#corollary[$RR$是不可数的]
+#proof[
+    定义函数$f: 2^NN ->RR$为
+    $
+        f(A) := sum_(n in A)10^(-n)
+    $由@lem:geometry-series 可知$sum_(n=0)^infinity 10^(-n)$是绝对收敛的，那么函数$f$也是良定义的，现在假设$f$不是一个单射，来寻找矛盾，比如有两个集合$A != B$，但是$f(A) = f(B)$.
+
+    令$S := (A without B) union (B without A)$，由于$A != B$，那么$S subset.eq 2^NN$并且是非空的，那么由@proposition:well-ordering-principle 可知有$n_0 := min(S)$，所以$n_0 in A without B or n_0 in B without A$
+
+    不妨设$n_0 in A without B$，那么$n_0 in A and n_0 in.not B$，那么对于任意$n < n_0$就有$n in A, B or n in.not A, B$，因此就有
+    $
+        0 & = f(A) - f(B) \
+          & = sum_(n in A)10^(-n) + sum_(n in B)10^(-n) \
+          & = (sum_(n<n_0 : n in A)10^(-n) + 10^(-n_0) + sum_(n>n_0:n in A)10^(-n))
+            - (sum_(n<n_0:n in B)10^(-n) + sum_(n>n_0:n in B)10^(-n))
+    $由于$n < n_0$，那么$n$只能同时在$A,B$中，或同时不在$A,B$中，所以总有
+    $
+        sum_(n < n_0: n in A)10^(-n) = sum_(n < n_0: n in B)10^(-n)
+    $于是就有
+    $
+        0 & = f(A) - f(B) \
+          & = 10^(-n_0) + sum_(n > n_0: n in A)10^(-n) - sum_(n > n_0: n in B)10^(-n) \
+          & >= 10^(-n_0) + 0 - sum_(n > n_0)10^(-n)
+    $这里是两次放缩，$sum_(n>n_0:n in A)10^(-n) > 0$，然后是$-sum_(n > n_0 : n in B) 10^(-n) > -sum_(n > n_0)10^(-n)$，这是因为${n > n_0: n in B} subset.eq {n > n_0: n in NN}$
+
+    根据几何级数的计算就有
+    $
+        sum_(n > n_0) 10^(-n) = sum_(m=0)^infinity 10^(-(n_0 + 1 + m)) = 10^(-(n_0 + 1))sum_(m=0)^infinity 10^(-m) =10^(-(n_0 + 1)) * 10/9 = 10^(-n_0)/9
+    $代入到原式就有
+    $
+        0 = f(A) - f(B) >= 10^(-n_0) - 10^(-n_0)/9 > 0
+    $矛盾，所以$f$一定是单射，这说明$f(2^NN)$和$2^NN$有相同的基数，都是不可数的，而$f(2^NN) subset.eq RR$，那么$RR$也一定是不可数的
+]
+
+#problem[$X$是一个有限集合，基数为$n$，证明$2^X$也是一个有限集合，且基数为$2^n$]
+#proof[
+    对$n$进行归纳，当$n=0$时，$X = emptyset, 2^X = {emptyset}$，有$\#({emptyset}) =1 = 2^0$
+
+    归纳性的假设$n$时成立，$\#(X) = n, \#(2^X) = 2^n$，现在证明$n+1$的情况，令$X' = X union {x_0}, x_0 in.not X, \#(X') = n+1$
+
+    定义一个函数$g:2^X times {{x_0}, emptyset} -> 2^(X'), g(T, W) = T union W$，令$g$的像为$G$，于是就有
+    $
+        G &:= g(2^X times {{x_0}, emptyset})\ &= {T union {x_0}: forall T in 2^X} union {T union emptyset: forall T in 2^X}\ &= {T union {x_0}: forall T in 2^X} union 2^X
+    $任选$S in 2^(X')$，如果$x_0 in S$，那么$S without {x_0} in 2^X$，于是有$S in {T union {x_0}: forall T in 2^X}$；如果$x_0 in.not S$，那么$S in 2^X$，所以$S in G$
+
+    任选$P in G$，如果$P in 2^X$，那么$P in 2^X'$，如果$P in {T union {x_0}: forall T in 2^X}$，那么$P in 2^X'$，所以$P in 2^X'$，综上就有$G = 2^X'$，所以$\#(2^X') = \#(G)$
+
+    又因为$x_0 in.not X$，那么${T union {x_0}: forall T in 2^X} inter 2^X = emptyset$，所以$\#(G) = \#(2^X) + \#({T union {x_0}: forall T in 2^X})$
+
+    易有双射函数$h: {T union {x_0}: forall T in 2^X} -> 2^X, h(t) = t without {x_0}$，所以$\#(2^X times {x_0}) = \#(2^X)$，代入归纳假设就有
+    $
+        \#(2^X') & = \#({T union {x_0}: forall T in 2^X}) + \#(2^X) \
+                 & = 2^n + 2^n \
+                 & = 2^(n+1)
+    $
+    归纳结束
+]
+
+#problem[$A,B,C$是集合且$A subset.eq B subset.eq C$，有单射$f:C->A$，递归的定义集合
+    $
+        D_0 := B without A, D_(n+1) := f(D_n), n in NN
+    $证明$forall n,m in NN, n!=m, D_n inter D_m = emptyset$
+
+    进一步的，定义函数
+    $
+        g(x) = cases(f^(-1)(x) &\, x in union.big_(n=1)^infinity D_n, x &\, x in.not union.big_(n=1)^infinity D_n)
+    $证明$g$将$A$中元素都映射到了$B$中，且$g:A->B$是双射
+]
+#proof[
+    假设$exists k, j in NN, 1<= j < k, D_j inter D_k != emptyset$，那么任取$d in D_j inter D_k$，由于$f$是单射，那么存在
+    $
+        m_(k-1) in D_(k-1), f(m_(k-1)) = d
+    $同理也存在
+    $
+        n_(j-1) in D_(j-1), f(n_(j-1)) = d
+    $由于$f$是单射，那么$m_(k-1) = n_(j-1)$，这说明$D_(k-1) inter D_(j-1) != emptyset$，于是重复这个过程，就有$D_(k-j) inter D_0 != emptyset$
+
+    由于$f:C->A$，那么$f(C) subset.eq A$，由于$A subset.eq B$，那么$B without A inter A = emptyset$，但是由于$D_(n+1) = f(D_n) subset.eq A$，那么$D_0 inter D_(n) = emptyset, n>=1$，与$D_(k-j) inter D_0 != emptyset$矛盾，所以假设不成立，所以$D_n, n in NN$两两不相交.
+
+    接下来证明$g$将所有$A$映射到$B$中
+    - $x in union.big_(n=1)^infinity D_n$时，由于$D_n$两两不相交，那么唯一有一个$D_k$使得$x in D_k$，那么$g(x) = f^(-1)(x) in D_(k-1) = f(D_k) subset.eq A subset.eq B$
+    - $x in.not union.big_(n=1)^infinity D_n$时，$g(x) = x subset.eq A subset.eq B$
+    于是$g$确实将$A$映射到$B$中，接下来证明是双射
+
+    - 首先证明是单射，取$x, y in A$，令$g(x) = g(y)$
+        - $x, y in union.big_(n=1)^infinity D_n$时,由于$D_n$两两不相交，那么存在唯一的$k, j$使得
+            $
+                g(x) = f^(-1)(x) in D_(k-1)\
+                g(y) = f^(-1)(y) in D_(j-1)\
+            $如果$g(x) = g(y)$，那么只能是$k - 1 = j - 1 => k = j$，于是$x, y in D_k$，那么
+            $
+                f(f^(-1)(x)) = f(f^(-1)(y)) => x = y
+            $
+        - $x, y in.not union.big_(n=1)^infinity D_n$，此时
+            $
+                g(x) = x , g(y) = y
+            $自然有$x = y$
+        - $x in union.big_(n=1)^infinity D_n, y in.not union.big_(n=1)^infinity D_n$时，不妨令$x in D_k$，那么$g(x) = f^(-1)(x) in D_(k-1), g(y) = y$，如果$g(x) = g(y)$，那么说明$y in D_(k-1)$，如果$k-1>0$，这和假设的$y in.not union.big_(n=1)^infinity D_n$，矛盾；如果$k-1=0=>k=1$，那么$y in D_0 = B without A$，矛盾，所以这种情况不可能发生
+        - 综上，所有情况下都有$g(x) = g(y) => x = y$，所以$g$是单射
+    - 接下来证明$g$是满射，任取$y in B$，由于$B = A union D_0, A inter D_0 = emptyset$，所以分开讨论
+        - $y in A$时
+            - $y in union.big_(n=1)^infinity D_n$时，由于$D_n$两两不相交，不妨令$y in D_k$，由于$D_k = f(D_(k-1))$，那么存在$x in D_(k-1)$使得$f(x) = y$，那么$g(y) = f^(-1)(f(x)) = x in union.big_(n=1)^infinity D_n$，成立
+            - $y in.not union.big_(n=1)^infinity D_n$，那么取$x = y$，就有$g(y) = g(x) = x$，成立
+        - $y in D_0$时，就有$y in D_0 subset.eq B subset.eq C$，那么$x = f(y) in f(D_0) = D_1 subset.eq union.big_(n=1)^infinity D_n$，于是$g(x) = f^(-1)(f(y)) = y$，于是确实有$x = f(y) in A$使得$g(x) = y$
+        - 综上，各种情况下都有$x$使得$y = g(x)$
+
+    所以$g$是双射，进而$A$和$B$有相同的基数
+]
+
+#problem[
+    称$A$的基数小于等于$B$，当且仅当有$A$到$B$的单射
+
+    如果$A$的基数小于等于$B$且$B$的基数小于等于$A$，那么$A$和$B$有相同的基数
+]
+#proof[
+    由上一个问题，若$A subset.eq B subset.eq C$且有$C->A$的单射，那么$A,B$间存在双射.
+
+    由于$\#(A) <= \#(B) and \#(B) <= \#(A)$，那么存在两个单射$i:A->B, j:B->A$，接着令$B' := (B without i(A) ) union A$，定义函数$h:B' -> B$为
+    $
+        h(x) = cases(x &\, x in B without i(A), i(x) &\, x in A)
+    $由于$i$是单射，易知$h:B'->B$是双射，那么$\#(B) = \#(B')$，同时显然有$A subset.eq B'$
+
+    接下来构造$B'->A$的单射，易知$f:j compose h$是一个单射，接下来令$C = B'$，那么就有
+    $
+        A subset.eq B = B' and f "单射"
+    $于是一定有$A,B$之间的双射，进一步的$A$和$B$有相同的基数
+]
+
+#problem[
+    称集合$A$的基数严格小于$B$，当且仅当$A$的基数小于等于$B$的级数并且$A$的基数不等于$B$的基数.
+
+    证明：$X$是一个集合，那么$X$的基数严格小于等于$2^X$的基数
+
+    证明：$A$的基数严格小于等于$B$的基数，$B$的基数严格小于等于$C$的基数，那么$A$的基数严格小于等于$C$的基数
+]
+#proof[
+    1. 定义函数$g: X -> 2^X, g(x) = {x}$，易知$g$是单射，那么$X$的基数小于等于$2^X$，由@theorem:cantor-powerset-set-not-eq 可知，$X$不可能与$2^X$有相同的基数，所以$X$的基数严格小于$2^X$的基数
+    2. $A$的基数严格小于等于$B$的基数，$B$的基数严格小于等于$C$的基数，那么存在两个单射$i: A->B, j:B->C$，于是也有单射$k:A->C, k = j compose i$，所以$\#(A) <= \#(C)$，假设存在双射$t:A->C$，那么$t^(-1) compose j: B->A$是单射，又因为$i:A->B$是单射，这说明$A,B$之间存在双射，所以$A$和$B$有相同基数，与条件矛盾，所以$\#(A) < \#(C)$
+]
+
+#problem[证明没有一个集合的幂集是可数无穷的][
+    - 如果$X$是有限的，那么$2^X$也是有限的，不是可数无穷
+    - 如果$X$是可数无穷的，假设$2^X$是可数无穷的，那么有两个双射$g: NN -> X, f: NN -> 2^X$，于是有双射$f compose g^(-1): X -> 2^X$是双射，这说明$X$和$2^X$有相同的基数，这和@theorem:cantor-powerset-set-not-eq 矛盾
+    - 如果$X$是不可数的，有单射$g: X -> 2^X, g(x) = {x}$，所以$\#(X) <= \#(2^X)$，那么$2^X$也是不可数的
+
+    综上没有一个集合的幂集是可数无穷的
+]
+
+== 选择公理
+
+#definition[无穷笛卡尔积][
+    $I$是一个集合，任意$alpha in I, X_alpha$也是一个集合，定义无穷笛卡尔积为
+    $
+        product_(alpha in I) X_alpha = {(x_alpha)_(alpha in I) in (union.big_(beta in I)X_beta)^I: x_alpha in X_alpha, forall alpha in I}
+    $
+]
+
+无穷笛卡尔积实际上是下面这个集合的子集
+$
+    (union.big_(beta in I)X_beta)^I = {f: I->union.big_(beta in I)X_beta}
+$
+但是这个集合太大了，所以加了一个限制，对于指标集中的一个元素$alpha$，希望函数$f(alpha) in X_alpha$
+
+接下来将这些函数写成紧凑的函数族形式，也即
+$
+    (x_alpha)_(alpha in I) : I -> union.big_(beta in I)X_beta
+$$(x_alpha)_(alpha in I)$是函数，$x_alpha$是该函数在$alpha$处的求值
+
+之所以要用这样繁琐的形式是为了处理不可数无穷个集合，对于有限个集合，我可以显式的枚举每一个集合，并从中取一个元素；对于可数无穷个集合，可以使用自然数为索引在每个集合中选一个，但是不可数无穷的集合，枚举和自然数索引都失效了，只能以函数的形式呈现.
+
+#axiom[选择公理][
+    $I$是集合，$forall alpha in I, X_alpha != emptyset => product_(alpha in I)X_alpha != emptyset$，也即存在函数$(x_alpha)_(alpha in I)$为每一个$alpha in I$分配一个元素$x_alpha in X_alpha$
+]
+这个公理意味这，对于（不）可数无穷多的非空集合，可以在每个集合中取一个元素，然后将取出元素拼接为一个（不）可数无穷长的元组.
+
+
+#lemma[选择公理应用1][$E$是实数的非空子集，并且$sup(E) < +infinity$，那么存在一个序列$(a_n)_(n=1)^infinity$，满足$forall a_n in E$且$lim_(n->infinity)a_n = sup(E)$]
+#proof[
+    定义集合
+    $
+        forall n in ZZ^+, X_n := {x in E: sup(E) - 1/n <= x <= sup(E)}
+    $易知任意正整数，$X_n$都是非空的，那么利用选择公理就可以得到序列$(a_n)_(n=1)^infinity$满足，这里$ZZ^+$扮演了指标集的角色，$X_n$则是待选择的可数无穷多的集合
+    $
+        forall n in ZZ^+, a_n in X_n
+    $于是就有
+    $
+        forall n in ZZ^+, sup(E) -1/n <= a_n <= sup(E)
+    $由夹逼定理易有
+    $
+        lim_(n->infinity) a_n = sup(E)
+    $
+]
+选择公理爆率真的很高！
+
+#problem[$X, Y$是集合，$P(x, y)$是一个有关$x in X, y in Y$的性质，对于任意$x in X$，存在$y in Y$，使得$P(x, y)$成立，那么存在一个函数$f:X -> Y$，使得对于任意$x in X$，都有$P(x, f(x))$成立]
+#proof[
+    以$X$为指标集，定义如下集合
+    $
+        Y_x = {y in Y: P(x, y)}
+    $由于任意$x in X$，都存在$y in Y$使得$P(x, y)$成立，那么$forall x in X, Y_x != emptyset$，于是使用选择公理，可以得到函数
+    $
+        f: X -> union.big_(x in X)Y_x subset.eq Y
+    $该函数满足$f(x) in Y_x$，所以确实存在这样的函数$f$满足条件
+]
+
+#problem[$I$是一个集合，$forall alpha in I, X_alpha != emptyset$，并且任意$X_alpha$两两不相交
+    + 使用选择公理证明存在集合$Y$满足$\#(Y inter X_alpha) = 1, forall alpha in I$
+    + 对任意一族非空集合(可能相交)，如果存在上述的$Y$，那么选择公理是正确的
+]
+#proof[
+    + 由于任意$X_alpha$非空，由选择公理可以定义函数
+        $
+            f:I->union.big_(alpha in I)X_alpha, f(alpha) = x_alpha in X_alpha
+        $定义集合$Y := {f(alpha) : forall alpha in I}$，由于$X_alpha$两两不相交，那么$Y inter X_alpha = {x_alpha} => \#(Y inter X_alpha) = 1$，所以确实存在这样的集合
+
+    + 定义新的集合
+        $
+            X'_alpha = {alpha} times X = {(alpha, x): x in X_alpha}
+        $这样任意$X'_alpha$两两不相交，由条件存在$Y$使得$\#(Y inter X'_alpha) = 1$，那么令
+        $
+            (alpha, x_alpha) := Y inter X'_alpha
+        $接下来定义函数
+        $
+            f: I-> union.big_(alpha in I)X_alpha, f(alpha) = x_alpha
+        $其中$x_alpha$由$alpha$唯一确定，所以确实存在这样的函数，于是选择公理是正确的
+]
+
+#problem[集合$A, B$之间存在满射$g:B->A$，使用选择公理证明存在单射$f:A->B$，使得$g compose f = id_A$]
+#proof[
+    由于$g:B->A$是满射，那么对于任意$a in A$，集合
+    $
+        B_a = {b in B: g(b) = a}
+    $非空，根据选择公理，有函数
+    $
+        f: A-> union.big_(a in A)B_a, f(a) in B_a
+    $接下来验证$g compose f = id_A$，任意$a in A$，$f(a) in B_a = g^(-1)({a})$，于是
+    $
+        g(f(a)) = a
+    $接下来验证$f$是单射，取$a, a' in A$，令$f(a) = f(a')$，两边同时作用$g$就有
+    $
+        g(f(a)) = g(f((a')) => a = a'
+    $所以$f$是单射
+]
+
+== 有序集
+
+#definition[偏序集(Partially ordered subset/poset)][
+    偏序集是一个配备了$scripts(<=)_X$关系的集合$X$，这个关系满足如下三条性质
+    + (自反性) $forall x in X, x scripts(<=)_X x$
+    + (反对称性) $x, y in X, x scripts(<=)_X y and y scripts(<=)_X x => x = y$
+    + (传递性) $x, y, z in X, x scripts(<=)_X y and y scripts(<=)_X z => x scripts(<=)_X z$
+
+    我们将这样的关系$scripts(<=)_X$称作是$X$上的序关系
+]
+#tip-block[
+    + 在$NN, ZZ, QQ, RR, RR^*$上使用的$<=$关系都是序关系
+    + $subset.eq$是集合上的序关系
+]
+
+#definition[全序集(Totally ordered set/chain)][
+    $X$是一个有偏序关系$scripts(<=)_X$的集合，其子集$Y$被称作是全序的，当且仅当
+    $
+        forall y, y' in Y => y scripts(<=)_X y' or y' scripts(<=)_X y
+    $如果$X$本身就是全序的，则称$X$是配备了序关系$scripts(<=)_X$的全序集
+]
+#tip-block[
+    + 同样的，在$NN, ZZ, QQ, RR, RR^*$上的$<=$也是全序的
+    + 在集合上的$subset.eq$就不一定是全序的了，比如$X = {{5}, {1,2}, {2,3}, {2}, {2,3,4}$中，${2, 3}, {1, 2}$之间无法用$subset.eq$进行比较，因为${2, 3} subset.eq.not {1, 2}$
+    + 偏序集比较宽松，允许有无法比较的元素对；全序集很严格，任意的两个元素之间都要可以进行比较
+]
+
+#definition[极大元/极小元(Maximal/Minimal elements)][
+    $X$是一个偏序集，$Y subset.eq X$，称$y in Y$是$Y$的极小元，当且仅当不存在$y' in Y$，使得$y' < y$；称$y in Y$是$Y$的极大元，当且仅当不存在$y' in Y$，使得$y < y'$
+]
+#tip-block[
+    对于集合$X = {{5}, {1,2}, {2,3}, {2}, {2,3,4}$，和$X$上的关系$subset.eq$来说，${2}$是极小元，因为没有任何一个其他元素满足$y subset.eq {2}$；极大元是${1, 2}$和${2, 3, 4}$，因为没有其他元素可以包含这两个集合了；${5}$即是极大元也是极小元，因为${5}$即不被任何其他元素包含，也不包含其他任何元素
+]
+
+#definition[良序集][
+    $X$是一个偏序集，$Y subset.eq X$是一个全序集，称$Y$是良序集，当且仅当$Y$的任意非空子集$Z$都有极小元$min(Z)$
+]
+#tip-block[
+    + $NN$是良序集，但是$ZZ,QQ,RR$都不是
+    + 每个有限的全序集都是良序集
+    + 良序集的任意子集都是良序的
+]
+
+#proposition[强归纳法原理][
+    $X$是配备了关系$scripts(<=)_X$的良序集，令$P(n)$是一个有关$n in X$的性质，如果任意$n in X$，都有如下蕴含
+    $
+        (forall m scripts(<)_X n, P(m)) => P(n)
+    $那么$P(n)$对任意$n in X$均为真
+]
+
+
+
+
+
+
+
+
+
+
+
 
 
 
