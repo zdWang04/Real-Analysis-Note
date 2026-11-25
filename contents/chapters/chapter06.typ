@@ -1148,9 +1148,6 @@
     $
 ]
 
-#remark[
-    严格单调递增也就是$f(n+1) > f(n), forall n in NN$
-]
 
 #lemma[子序列自反、可传递，但是不对称][
     $(a_n)_(n=0)^infinity, (b_n)_(n=0)^infinity, (c_n)_(n=0)^infinity$是实数序列，有以下成立：

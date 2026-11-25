@@ -36,6 +36,7 @@
 #include "contents/chapters/chapter06.typ"
 #include "contents/chapters/chapter07.typ"
 #include "contents/chapters/chapter08.typ"
+#include "contents/chapters/chapter09.typ"
 
 #include "contents/appendix/appendixA.typ"
 #include "contents/appendix/appendixB.typ"
