@@ -6,19 +6,19 @@
 == 柯西序列
 
 #definition[序列][
-    $m in ZZ$，_有理数序列_是一个函数，记作$(a_n)_(n=m)^infinity: {n in ZZ : n>=m}-> QQ$，比如$(a_n)_(n=m)^infinity$是一组有理数$a_m,a_(m+1),a_(m+2),...$
+    $m in ZZ$，_有理数序列_是一个函数，记作$(a_n)_(n=m)^oo: {n in ZZ : n>=m}-> QQ$，比如$(a_n)_(n=m)^oo$是一组有理数$a_m,a_(m+1),a_(m+2),...$
 ]
 
 #definition[$epsilon$-稳定性][
-    $epsilon > 0$，序列$(a_n)_(n=0)^infinity$是$epsilon$-稳定的，当且仅当$forall j,k in NN$，都有$d(a_j,a_k) <= epsilon$
+    $epsilon > 0$，序列$(a_n)_(n=0)^oo$是$epsilon$-稳定的，当且仅当$forall j,k in NN$，都有$d(a_j,a_k) <= epsilon$
 ]
 #remark[
-    注意这里序列的角标是从$0$开始的，意味这有理数序列是函数$(a_n)_(n=0)^infinity : NN -> QQ$，所以在之后表示序列中任意两项都是$epsilon$-接近的时候，角标$j , k$都在自然数中选取
+    注意这里序列的角标是从$0$开始的，意味这有理数序列是函数$(a_n)_(n=0)^oo : NN -> QQ$，所以在之后表示序列中任意两项都是$epsilon$-接近的时候，角标$j , k$都在自然数中选取
 ]
 
 
 #definition[最终$epsilon$-稳定性][
-    $epsilon > 0$，称序列$(a_n)_(n=0)^infinity$是最终$epsilon$-稳定的，当且仅当存在一个$N >= 0$，使得$forall j,k >= N, d(a_j, d_k) <= epsilon$
+    $epsilon > 0$，称序列$(a_n)_(n=0)^oo$是最终$epsilon$-稳定的，当且仅当存在一个$N >= 0$，使得$forall j,k >= N, d(a_j, d_k) <= epsilon$
 ]
 
 #remark[
@@ -26,7 +26,7 @@
 ]
 
 #definition[柯西序列（Cauchy sequences）][
-    有理数序列$(a_n)_(n=0)^infinity$被称作_柯西序列_，当且仅当$forall epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^infinity$都是$epsilon$-稳定的
+    有理数序列$(a_n)_(n=0)^oo$被称作_柯西序列_，当且仅当$forall epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^oo$都是$epsilon$-稳定的
 ]
 
 #remark[
@@ -51,12 +51,12 @@
     $M >= 0$是有理数
     + 有限序列$a_1,a_2,...,a_n$以$M$为界，当且仅当$abs(a_i) <= M, forall 1<=i<=n$
 
-    + 无限序列$(a_n)_(n=1)^infinity$以$M$为界，当且仅当$abs(a_i) <= M, forall i >= 1$
+    + 无限序列$(a_n)_(n=1)^oo$以$M$为界，当且仅当$abs(a_i) <= M, forall i >= 1$
 
     + 称一个序列是有界的，当且仅当存在一个正有理数$M$，使得该序列以$M$为界
 ]
 
-#example[无限序列$((-1)^(n-1) n)_(n=1)^infinity$不是有界的][
+#example[无限序列$((-1)^(n-1) n)_(n=1)^oo$不是有界的][
     倘若以$M in QQ and M >= 0$为界，那么令$x = floor(M)$，易知$x$是正整数，于是$a_(x+1) = a(floor(M) + 1)$，$abs(a_(x+1)) = floor(M) + 1 > M$，矛盾，所以是无界的
 ]
 
@@ -71,7 +71,7 @@
 
 #lemma[柯西序列是有界的]<lemma:cauchy-is-bounded>
 #proof[证明@lemma:cauchy-is-bounded][
-    $(a_n)_(n=0)^infinity$是柯西序列，那么任意$epsilon > 0$，存在$N in NN$，使得任意$j,k >= N$，都有$d(a_j,a_k) <= epsilon$成立.
+    $(a_n)_(n=0)^oo$是柯西序列，那么任意$epsilon > 0$，存在$N in NN$，使得任意$j,k >= N$，都有$d(a_j,a_k) <= epsilon$成立.
 
     那么对于一个给定的$epsilon$，可以将该柯西序列分为$a_1,...,a_(N-1)$和$a_N,...$
     两个序列
@@ -95,15 +95,15 @@
 == 等价的柯西序列
 
 #definition[$epsilon$-接近的序列][
-    $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是两个序列，$epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^infinity$是_$epsilon$-接近_于序列$(b_n)_(n=0)^infinity$的，当且仅当$abs(a_i- b_i) <= epsilon,forall i in NN$
+    $(a_n)_(n=0)^oo$和$(b_n)_(n=0)^oo$是两个序列，$epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^oo$是_$epsilon$-接近_于序列$(b_n)_(n=0)^oo$的，当且仅当$abs(a_i- b_i) <= epsilon,forall i in NN$
 ]
 
 #definition[最终$epsilon$-接近的序列][
-    $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是两个序列，$epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^infinity$是_最终$epsilon$-接近_于序列$(b_n)_(n=0)^infinity$的，当且仅当存在$N in NN$，使得$abs(a_i- b_i) <= epsilon, forall i >= N$成立
+    $(a_n)_(n=0)^oo$和$(b_n)_(n=0)^oo$是两个序列，$epsilon in QQ and epsilon > 0$，序列$(a_n)_(n=0)^oo$是_最终$epsilon$-接近_于序列$(b_n)_(n=0)^oo$的，当且仅当存在$N in NN$，使得$abs(a_i- b_i) <= epsilon, forall i >= N$成立
 ]
 
 #definition[等价序列][
-    $(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$两个序列是等价的，当且仅当对于任意$epsilon in QQ^+$，存在$N in NN$，使得$abs(a_i - b_i) <= epsilon, forall i >= N$
+    $(a_n)_(n=0)^oo$和$(b_n)_(n=0)^oo$两个序列是等价的，当且仅当对于任意$epsilon in QQ^+$，存在$N in NN$，使得$abs(a_i - b_i) <= epsilon, forall i >= N$
 ]
 #note-block[
     对于一个序列内部，它的收敛行为我们使用了（最终）$epsilon$-稳定性和柯西序列进行描述
@@ -111,7 +111,7 @@
     对于两个序列之间，将上面的内容进行类比，就得到（最终）$epsilon$-接近性和等价序列
 ]
 
-#example[$(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是两个序列，其中$a_n = 1 + 10^(-n), b_n = 1 - 10^(-n)$，那么他们是等价的]
+#example[$(a_n)_(n=0)^oo$和$(b_n)_(n=0)^oo$是两个序列，其中$a_n = 1 + 10^(-n), b_n = 1 - 10^(-n)$，那么他们是等价的]
 #proof[
     $forall epsilon > 0$，要找到$N in NN$，使得$abs(a_n - b_n) <= epsilon, forall n >= N$，那么就有$
         abs(1+10^(-n) - 1 + 10^(-n)) = 2 times 10^(-n) <= epsilon
@@ -123,17 +123,17 @@
 ]
 
 
-#problem[证明：如果$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的有理数序列，那么$(a_n)_(n=1)^infinity$是柯西序列，当且仅当$(b_n)_(n=1)^infinity$是柯西序列]
+#problem[证明：如果$(a_n)_(n=1)^oo$和$(b_n)_(n=1)^oo$是等价的有理数序列，那么$(a_n)_(n=1)^oo$是柯西序列，当且仅当$(b_n)_(n=1)^oo$是柯西序列]
 #proof[
     由于两个序列是等价序列，那么$forall epsilon in QQ^+, exists N in NN$，使得$abs(a_n - b_n) <= epsilon/3, forall n >= N$
 
     - $=>$
 
-        当$(a_n)_(n=1)^infinity$是柯西序列时，$forall epsilon in QQ^+, exists N' in NN$，使得$abs(a_j - a_k) <= epsilon/3, forall j, k >= N'$
+        当$(a_n)_(n=1)^oo$是柯西序列时，$forall epsilon in QQ^+, exists N' in NN$，使得$abs(a_j - a_k) <= epsilon/3, forall j, k >= N'$
 
         那么当$N'' = max(N, N')$时，就有$
             abs(b_j - b_k) <= abs(b_j - a_j) + abs(a_j - a_k) + abs(a_k - b_k) <=epsilon/3 + epsilon/3 + epsilon/3 = epsilon, forall j, k >= N''
-        $于是$(b_n)_(n=1)^infinity$是柯西序列
+        $于是$(b_n)_(n=1)^oo$是柯西序列
 
     - $arrow.l.double$同理
 ]
@@ -141,15 +141,15 @@
     证明关键是利用$epsilon/3$凑配出$abs(b_j - b_k) <= epsilon$的不等式
 ]
 
-#problem[证明：如果$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的有理数序列，那么$(a_n)_(n=1)^infinity$是有界的，当且仅当$(b_n)_(n=1)^infinity$是有界的]
+#problem[证明：如果$(a_n)_(n=1)^oo$和$(b_n)_(n=1)^oo$是等价的有理数序列，那么$(a_n)_(n=1)^oo$是有界的，当且仅当$(b_n)_(n=1)^oo$是有界的]
 #proof[
     两序列为等价序列，那么$forall epsilon in QQ^+, exists N in NN$，使得$abs(a_j - b_j) <= epsilon, forall j >= N$
 
     - $=>$
 
-        由于$(a_n)_(n=1)^infinity$是有界的，那么$exists M in QQ^+$，使得$abs(a_i) <= M, forall i in ZZ^+$，于是$
+        由于$(a_n)_(n=1)^oo$是有界的，那么$exists M in QQ^+$，使得$abs(a_i) <= M, forall i in ZZ^+$，于是$
             abs(b_i) <= abs(b_i - a_i) + abs(a_i) <= epsilon + M
-        $于是$(b_n)_(n=1)^infinity$是有界的
+        $于是$(b_n)_(n=1)^oo$是有界的
 
     - $arrow.l.double$同理
 ]
@@ -157,8 +157,8 @@
 == 实数的构造
 
 #definition[实数][
-    + _实数_被定义为形如$"LIM"_(n -> infinity) a_n$的对象，其中$(a_n)_(n=1)^infinity$是_有理数柯西序列_
-    + 两个实数$"LIM"_(n -> infinity) a_n$和$"LIM"_(n -> infinity) b_n$称作是_相等的_，当且仅当$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是_等价的柯西序列_
+    + _实数_被定义为形如$"LIM"_(n -> oo) a_n$的对象，其中$(a_n)_(n=1)^oo$是_有理数柯西序列_
+    + 两个实数$"LIM"_(n -> oo) a_n$和$"LIM"_(n -> oo) b_n$称作是_相等的_，当且仅当$(a_n)_(n=1)^oo$和$(b_n)_(n=1)^oo$是_等价的柯西序列_
     + 所有实数组成的集合记作$RR$
 ]
 #remark[
@@ -168,14 +168,14 @@
 #lemma[实数相等是良定义的][形式极限满足相等的自反、对称和传递性质]<lemma:well-definedness-eq-RR>
 #proof[证明@lemma:well-definedness-eq-RR][
 
-    令$x = "LIM"_(n -> infinity) a_n,y = "LIM"_(n -> infinity) b_n,z= "LIM"_(n -> infinity) c_n, x,y,z in RR$
+    令$x = "LIM"_(n -> oo) a_n,y = "LIM"_(n -> oo) b_n,z= "LIM"_(n -> oo) c_n, x,y,z in RR$
     + $x = x$
 
-        $a_n(n=1)^infinity$和$a_n(n=1)^infinity$是等价的柯西序列，所以就有$x = x$
+        $a_n(n=1)^oo$和$a_n(n=1)^oo$是等价的柯西序列，所以就有$x = x$
 
     + $x = y => y = x$
 
-        $x = y =>$，$a_n(n=1)^infinity$和$b_n(n=1)^infinity$是等价的柯西序列，于是$b_n(n=1)^infinity$和$a_n(n=1)^infinity$是等价的柯西序列，于是$y = x$
+        $x = y =>$，$a_n(n=1)^oo$和$b_n(n=1)^oo$是等价的柯西序列，于是$b_n(n=1)^oo$和$a_n(n=1)^oo$是等价的柯西序列，于是$y = x$
 
     + $x = y and y = z => x = z$
 
@@ -185,62 +185,62 @@
 
         所以有$
             abs(a_i - c_i) <= abs(a_i - b_i) + abs(b_i - c_i) <= epsilon/2 + epsilon/2 = epsilon, i>= max(N_1, N_2)
-        $成立，所以$(a_n)_(n=1)^infinity$和$(c_n)_(n=1)^infinity$是等价的柯西序列，所以$x = z$
+        $成立，所以$(a_n)_(n=1)^oo$和$(c_n)_(n=1)^oo$是等价的柯西序列，所以$x = z$
 
     + 综上证明了实数相等的自反、对称和传递性质，实数的相等是良定义的
 ]
 #definition[实数加法][
 
-    $x = "LIM"_(n -> infinity) a_n, y = "LIM"_(n -> infinity) b_n$是实数，那么定义$x + y := "LIM"_(n -> infinity) (a_n + b_n)$
+    $x = "LIM"_(n -> oo) a_n, y = "LIM"_(n -> oo) b_n$是实数，那么定义$x + y := "LIM"_(n -> oo) (a_n + b_n)$
 ]
 
 #lemma[柯西序列的和也是柯西的][
-    $x = "LIM"_(n -> infinity) a_n, y = "LIM"_(n -> infinity) b_n, x,y in RR => x + y in RR$（即证明$(a_n+b_n)_(n=1)^infinity$也是柯西序列）
+    $x = "LIM"_(n -> oo) a_n, y = "LIM"_(n -> oo) b_n, x,y in RR => x + y in RR$（即证明$(a_n+b_n)_(n=1)^oo$也是柯西序列）
 ]<lemma:sum-of-cauchy-is-cauchy>
 #proof[证明@lemma:sum-of-cauchy-is-cauchy][
 
     由实数定义，有$
         forall epsilon/2 in QQ^+,exists N_1 in ZZ^+,abs(a_j - a_k) <= epsilon/2, forall j,k >= N_1\ forall epsilon/2 in QQ^+, exists N_2 in ZZ^+, abs(b_j - b_k) <= epsilon/2, forall j,k >= N_2
-    $根据实数加法定义$x + y = "LIM"_(n -> infinity)(a_n + b_n)$，于是有$
+    $根据实数加法定义$x + y = "LIM"_(n -> oo)(a_n + b_n)$，于是有$
         abs(a_i + b_i - a_k -b_k) <= abs(a_j - a_k)+ abs(b_j - b_k) <= epsilon/2 + epsilon/2 = epsilon, forall j,k>= max(N_1, N_2)
-    $所以$(a_n + b_n)_(n=1)^infinity$是柯西序列，综上，柯西序列的和也是柯西的
+    $所以$(a_n + b_n)_(n=1)^oo$是柯西序列，综上，柯西序列的和也是柯西的
 ]
 
 
 #lemma[等价的柯西序列的和也是等价的][
-    $x = "LIM"_(n -> infinity) a_n, y = "LIM"_(n -> infinity) b_n,x' = "LIM"_(n -> infinity) a'_n, y' = "LIM"_(n -> infinity) b'_n, x, x', y in RR and x = x' => x+y = x' + y$
+    $x = "LIM"_(n -> oo) a_n, y = "LIM"_(n -> oo) b_n,x' = "LIM"_(n -> oo) a'_n, y' = "LIM"_(n -> oo) b'_n, x, x', y in RR and x = x' => x+y = x' + y$
 ]<lemma:well-definedness-add-cauchy>
 #proof[证明@lemma:well-definedness-add-cauchy][
 
     由于$x = x'$，那么$forall epsilon in QQ^+, exists N in ZZ^+,abs(a_i - a'_i) <= epsilon, forall i >= N$于是就有$
         abs(a_i +b_i - a'_i - b_i) <= epsilon, forall i >= N
-    $于是柯西序列$(a_n+b_n)_(n=1)^infinity$和$(a'_n + b_n)_(n=1)^infinity$是等价的，所以$x = x' => x + y = x' + y$
+    $于是柯西序列$(a_n+b_n)_(n=1)^oo$和$(a'_n + b_n)_(n=1)^oo$是等价的，所以$x = x' => x + y = x' + y$
 ]
 #note-block[
     @lemma:well-definedness-add-cauchy 其实就是证明实数加法是良定义的，完整的证明应当是$x = x' and y = y' => x+y = x'+y'$，这里只写了一部分，另外一部分在证明时使用$epsilon/2$不难得到
 ]
 
 #definition[实数的乘法][
-    $x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n$，$x,y$都是实数，定义$x y:="LIM"_(n->infinity)a_n b_n$
+    $x = "LIM"_(n->oo)a_n, y = "LIM"_(n->oo)b_n$，$x,y$都是实数，定义$x y:="LIM"_(n->oo)a_n b_n$
 ]
 
 #lemma[实数乘法是良定义的][
-    令$x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n,x'="LIM"_(n->infinity)a'_n, x,x',y in RR$，那么$x y = x'y$
+    令$x = "LIM"_(n->oo)a_n, y = "LIM"_(n->oo)b_n,x'="LIM"_(n->oo)a'_n, x,x',y in RR$，那么$x y = x'y$
 ]<lemma:well-definedness-multi-RR>
 #proof[证明@lemma:well-definedness-multi-RR][
 
-    由于$(b_n)_(n=1)^infinity$是柯西序列，那么它是有界的，令界为$M$，由于$x = x'$，那么$
+    由于$(b_n)_(n=1)^oo$是柯西序列，那么它是有界的，令界为$M$，由于$x = x'$，那么$
         exists N in ZZ^+, abs(a_j - a'_j) <= epsilon/M, epsilon in QQ^+,j>= N
     $所以有$
         abs(a_j b_j - a'_j b_j) = abs(a_j - a'_j) abs(b_j) <= epsilon/M M = epsilon, j>= N
-    $于是序列$(a_n b_n)_(n=1)^infinity$和$(a'_n b_n)_(n=1)^infinity$是等价的，所以$x y = x'y$
+    $于是序列$(a_n b_n)_(n=1)^oo$和$(a'_n b_n)_(n=1)^oo$是等价的，所以$x y = x'y$
 ]
 #note-block[
     证明@lemma:well-definedness-multi-RR 时还应当证明$y = y' => x y = x y'$，这和@lemma:well-definedness-add-cauchy 的证明是一个道理
 ]
 
 #tip-block[
-    一个有理数可以看作是一个各个项相等的柯西序列，比如$x in QQ, x = "LIM"_(n->infinity) x$，其中是序列是$x,x,x,...,x,...$
+    一个有理数可以看作是一个各个项相等的柯西序列，比如$x in QQ, x = "LIM"_(n->oo) x$，其中是序列是$x,x,x,...,x,...$
     ，正因如此，可以将有理数“嵌入”到实数中去，证明细节见问题 5.34的证明
 ]
 
@@ -249,8 +249,8 @@
 ]
 
 #remark[
-    令$x = "LIM"_(n->infinity)a_n$根据实数相反数的定义和乘法就有$
-        -x = -1 times x = "LIM"_(n->infinity)-1 times "LIM"_(n->infinity)a_n = "LIM"_(n->infinity)-a_n
+    令$x = "LIM"_(n->oo)a_n$根据实数相反数的定义和乘法就有$
+        -x = -1 times x = "LIM"_(n->oo)-1 times "LIM"_(n->oo)a_n = "LIM"_(n->oo)-a_n
     $
 ]
 
@@ -258,8 +258,8 @@
     $x - y := x + (-y)$
 ]
 #remark[
-    令$x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n$，类似的，根据实数相反数的定义以及乘法和加法就有$
-        x - y = x + (-y) = "LIM"_(n->infinity)a_n + "LIM"_(n->infinity)-b_n = "LIM"_(n->infinity)(a_n - b_n)
+    令$x = "LIM"_(n->oo)a_n, y = "LIM"_(n->oo)b_n$，类似的，根据实数相反数的定义以及乘法和加法就有$
+        x - y = x + (-y) = "LIM"_(n->oo)a_n + "LIM"_(n->oo)-b_n = "LIM"_(n->oo)(a_n - b_n)
     $
 ]
 
@@ -268,45 +268,45 @@
 ]
 
 #definition[远离0的序列][
-    一个有理数序列$(a_n)_(n=1)^infinity$是远离$0$的，当且仅当$exists c > 0$，满足$abs(a_i) >= c, forall i >= 1$
+    一个有理数序列$(a_n)_(n=1)^oo$是远离$0$的，当且仅当$exists c > 0$，满足$abs(a_i) >= c, forall i >= 1$
 ]
 
-#lemma[$x in RR and x != 0$，那么存在远离$0$的柯西序列$(a_n)_(n=1)^infinity$，满足$x = "LIM"_(n->infinity)a_n$]<lemma:non-zero-RR-eq-seq-away-from-zero>
+#lemma[$x in RR and x != 0$，那么存在远离$0$的柯西序列$(a_n)_(n=1)^oo$，满足$x = "LIM"_(n->oo)a_n$]<lemma:non-zero-RR-eq-seq-away-from-zero>
 #proof[证明@lemma:non-zero-RR-eq-seq-away-from-zero][
 
-    由于$x in RR$，那么不妨令$x = "LIM"_(n->infinity)b_n$，那么序列$(b_n)_(n=1)^infinity$是柯西序列，因此有$
+    由于$x in RR$，那么不妨令$x = "LIM"_(n->oo)b_n$，那么序列$(b_n)_(n=1)^oo$是柯西序列，因此有$
         forall epsilon/2 in QQ^+, exists N in ZZ^+, abs(b_n - b_m) <= epsilon/2, forall n,m >= N
-    $此外，由于$x != 0$，那么序列$(b_n)_(n=0)^infinity$与序列${0,...,0,...}$
+    $此外，由于$x != 0$，那么序列$(b_n)_(n=0)^oo$与序列${0,...,0,...}$
     不等价，于是存在$n_0 >=N$，使得$abs(b_(n_0)) = abs(b_(n_0) - 0) > epsilon$.
     结合之前的结果就有$
                                       abs(b_(n_0) - b_n) & <= epsilon/2, n>=N \
                                             abs(b_(n_0)) & > epsilon \
         => abs(b_n) >= abs(b_(n_0)) - abs(b_(n_0) - b_n) & >= epsilon/2, n>= N
     $
-    接下来定义一个新的序列$(a_n)_(n=0)^infinity$，它满足$
+    接下来定义一个新的序列$(a_n)_(n=0)^oo$，它满足$
         a_n = cases(epsilon/2 \, &n<N, b_n\, &n>=N)
     $
 
-    容易验证序列$(a_n)_(n=0)^infinity$是远离$0$的，接下来证明它与序列$(b_n)_(n=0)^infinity$是等价的.
+    容易验证序列$(a_n)_(n=0)^oo$是远离$0$的，接下来证明它与序列$(b_n)_(n=0)^oo$是等价的.
     $
         abs(a_i - b_i) = cases(abs(epsilon/2 - b_i)&\, i<N, 0&\, i>=N)
-    $所以对于任意正有理数$epsilon$，存在正整数$N$，当$i >=N$时，$abs(a_i - b_i) = 0 < epsilon$，于是$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是等价的
+    $所以对于任意正有理数$epsilon$，存在正整数$N$，当$i >=N$时，$abs(a_i - b_i) = 0 < epsilon$，于是$(a_n)_(n=1)^oo$和$(b_n)_(n=1)^oo$是等价的
 ]
 
 #remark[
     @lemma:non-zero-RR-eq-seq-away-from-zero 说明每个非零实数总与某个远离0的柯西序列对应
 ]
 
-#lemma[如果一个柯西序列$(a_n)_(n=1)^infinity$是远离$0$的，那么序列$(a_n^(-1))_(n=1)^infinity$也是柯西序列]<lemma:x-and-x-reciprocal-both-away-from-zero>
+#lemma[如果一个柯西序列$(a_n)_(n=1)^oo$是远离$0$的，那么序列$(a_n^(-1))_(n=1)^oo$也是柯西序列]<lemma:x-and-x-reciprocal-both-away-from-zero>
 #proof[证明@lemma:x-and-x-reciprocal-both-away-from-zero][
 
-    由于$(a_n)_(n=1)^infinity$是远离$0$的，那么$
+    由于$(a_n)_(n=1)^oo$是远离$0$的，那么$
         exists c >0, abs(a_i)>= c, forall i in ZZ^+
-    $由于$(a_n)_(n=1)^infinity$是柯西序列，那么$
+    $由于$(a_n)_(n=1)^oo$是柯西序列，那么$
         forall c^2 epsilon >0, exists N in ZZ^+, abs(a_j - a_k) <= c^2 epsilon, j,k >= N
-    $接下来考察序列$(a_n^(-1))_(n=1)^infinity$，有$
+    $接下来考察序列$(a_n^(-1))_(n=1)^oo$，有$
         abs(a^(-1)_j - a^(-1)_m) = abs((a_j-a_k)/(a_j a_k)) <= abs(a_j - a_k)/c^2 <= (c^2 epsilon)/c^2 = epsilon, forall j,k>= N
-    $于是序列$(a_n^(-1))_(n=1)^infinity$也是柯西序列
+    $于是序列$(a_n^(-1))_(n=1)^oo$也是柯西序列
 ]
 
 #remark[
@@ -317,30 +317,30 @@
 ]
 
 #definition[实数的倒数][
-    $x$是一个非零实数，$(a_n)_(n=1)^infinity$是一个远离$0$的柯西序列，且满足$x = "LIM"_(n->infinity)a_n$，则定义$x$的倒数为$
-        x^(-1) := "LIM"_(n->infinity)a_n^(-1)
+    $x$是一个非零实数，$(a_n)_(n=1)^oo$是一个远离$0$的柯西序列，且满足$x = "LIM"_(n->oo)a_n$，则定义$x$的倒数为$
+        x^(-1) := "LIM"_(n->oo)a_n^(-1)
     $
 ]
 
 #lemma[实数的倒数是良定义的][
-    $(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$是远离$0$的柯西序列且$"LIM"_(n->infinity)a_n = "LIM"_(n->infinity)b_n$，那么$"LIM"_(n->infinity)a_n^(-1) = "LIM"_(n->infinity)b_n^(-1)$
+    $(a_n)_(n=1)^oo$和$(b_n)_(n=1)^oo$是远离$0$的柯西序列且$"LIM"_(n->oo)a_n = "LIM"_(n->oo)b_n$，那么$"LIM"_(n->oo)a_n^(-1) = "LIM"_(n->oo)b_n^(-1)$
 ]<lemma:well-definedness-RR-reciprocal>
 #proof[证明@lemma:well-definedness-RR-reciprocal][
 
     令$P$是一个实数，定义为
     $
-        P := ("LIM"_(n->infinity)a_n^(-1)) times ("LIM"_(N->infinity)a_n) times ("LIM"_(n->infinity)b_n^(-1))
+        P := ("LIM"_(n->oo)a_n^(-1)) times ("LIM"_(N->oo)a_n) times ("LIM"_(n->oo)b_n^(-1))
     $
     利用实数乘法就有
     $
-        P= "LIM"_(n->infinity)a_n^(-1) a_n b_n^(-1) = "LIM"_(n->infinity)b_n^(-1)
+        P= "LIM"_(n->oo)a_n^(-1) a_n b_n^(-1) = "LIM"_(n->oo)b_n^(-1)
     $
-    由于$"LIM"_(n->infinity)a_n = "LIM"_(n->infinity)b_n$，也有$
-        P = ("LIM"_(n->infinity)a_n^(-1)) times ("LIM"_(n->infinity)b_n) times ("LIM"_(n->infinity)b_n^(-1))
+    由于$"LIM"_(n->oo)a_n = "LIM"_(n->oo)b_n$，也有$
+        P = ("LIM"_(n->oo)a_n^(-1)) times ("LIM"_(n->oo)b_n) times ("LIM"_(n->oo)b_n^(-1))
     $根据实数乘法$
-        P = "LIM"_(n->infinity)a_n^(-1) b_n b_n^(-1) = "LIM"_(n->infinity)a_n^(-1)
+        P = "LIM"_(n->oo)a_n^(-1) b_n b_n^(-1) = "LIM"_(n->oo)a_n^(-1)
     $所以就有$
-        "LIM"_(n->infinity)a_n^(-1) = "LIM"_(n->infinity)b_n^(-1)
+        "LIM"_(n->oo)a_n^(-1) = "LIM"_(n->oo)b_n^(-1)
     $因此，实数的倒数运算是良定义的
 ]
 
@@ -356,7 +356,7 @@
 
 #problem[证明@lemma:well-definedness-eq-RR][见@lemma:well-definedness-eq-RR 的证明]
 #problem[证明@lemma:well-definedness-multi-RR][见@lemma:well-definedness-multi-RR 的证明]
-#problem[$a,b in QQ$，证明$a = b <=> "LIM"_(n->infinity)a = "LIM"_(n->infinity)b$]
+#problem[$a,b in QQ$，证明$a = b <=> "LIM"_(n->oo)a = "LIM"_(n->oo)b$]
 #proof[
     + $=>$
 
@@ -364,44 +364,44 @@
 
         于是$forall epsilon in QQ^+, abs(a -b) = 0 < epsilon$，所以序列$a,...,a,...$
         和序列$b,...,b,...$
-        等价，于是$"LIM"_(n->infinity)a = "LIM"_(n->infinity)b$
+        等价，于是$"LIM"_(n->oo)a = "LIM"_(n->oo)b$
 
     + $arrow.double.l$
 
-        由于$"LIM"_(n->infinity)a = "LIM"_(n->infinity)b$，那么$
+        由于$"LIM"_(n->oo)a = "LIM"_(n->oo)b$，那么$
             forall epsilon in QQ^+, exists N in ZZ^+, abs(a - b) <= epsilon
         $取$epsilon = abs(a-b)/2$，就有$
             abs(a-b) <= abs(a-b)/2 => abs(a-b)/2 <= 0
         $由于绝对值的非负性，所以$abs(a-b)/2 = 0 => a = b$
 ]
 
-#problem[$(a_n)_(n=0)^infinity$是有界有理数序列，令$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的等价序列，证明$(b_n)_(n=0)^infinity$也是有界的]
+#problem[$(a_n)_(n=0)^oo$是有界有理数序列，令$(b_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的等价序列，证明$(b_n)_(n=0)^oo$也是有界的]
 #proof[
-    由于$(a_n)_(n=0)^infinity$是有界序列，那么$
+    由于$(a_n)_(n=0)^oo$是有界序列，那么$
         abs(a_i) <= M, i in NN,M in QQ^+
     $
-    由于$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的等价序列，那么$
+    由于$(b_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的等价序列，那么$
         forall epsilon in QQ^+, exists N in NN, abs(b_i - a_i) <= epsilon, i >= N
     $
     于是就有$
         abs(b_i) <= abs(b_i - a_i) + abs(b_i) <= epsilon + M, i >= N
-    $对于${b_i:i<N}$的部分，是一个有限序列，先前证明过引理：有限序列也是有界的，不妨令界为$W$，于是$abs(b_i) <= max(W, M+epsilon), forall i in NN$，于是序列$(b_n)_(n=0)^infinity$也是有界的
+    $对于${b_i:i<N}$的部分，是一个有限序列，先前证明过引理：有限序列也是有界的，不妨令界为$W$，于是$abs(b_i) <= max(W, M+epsilon), forall i in NN$，于是序列$(b_n)_(n=0)^oo$也是有界的
 ]
 
-#problem[证明$"LIM"_(n->infinity)1/n = 0$]
+#problem[证明$"LIM"_(n->oo)1/n = 0$]
 #proof[
-    即证明序列$(1/n)_(n=1)^infinity$与序列$(0)_(n=1)^infinity$是等价的$
+    即证明序列$(1/n)_(n=1)^oo$与序列$(0)_(n=1)^oo$是等价的$
         1/n >= epsilon => 0< n <= 1/epsilon
     $取$N = ceil(1/epsilon)$，于是$
         forall epsilon in QQ^+, exists N in ZZ^+,forall j >= N, abs(1/j - 0) = abs(1/j) <= epsilon
-    $于是二序列等价，于是$"LIM"_(n->infinity)1/n = 0$
+    $于是二序列等价，于是$"LIM"_(n->oo)1/n = 0$
 ]
 
 == 实数的序
 
 #definition[正/负远离$0$的序列][
 
-    $(a_n)_(n=1)^infinity$是一个有理数序列
+    $(a_n)_(n=1)^oo$是一个有理数序列
     1. 该序列是正远离$0$的$<=> exists c in QQ^+, forall i in ZZ^+, a_i >= c$
     2. 该序列是负远离$0$的$<=> exists -c in QQ^-, forall i in ZZ^+, a_i <= -c$
 ]<def:rational-seq-bounded-away-from-zero>
@@ -411,12 +411,12 @@
 ]
 
 #definition[实数的正负][
-    + 实数$x$是正的$<=> x = "LIM"_(n->infinity)a_n and a_n$是正远离$0$的
-    + 实数$x$是负的$<=> x = "LIM"_(n->infinity)a_n and a_n$是负远离$0$的
+    + 实数$x$是正的$<=> x = "LIM"_(n->oo)a_n and a_n$是正远离$0$的
+    + 实数$x$是负的$<=> x = "LIM"_(n->oo)a_n and a_n$是负远离$0$的
 ]
 
 #theorem[实数的三歧性][
-    实数$x = "LIM"_(n->infinity)a_n$是正的、负的、$0$，这三种情况同时只有一个成立
+    实数$x = "LIM"_(n->oo)a_n$是正的、负的、$0$，这三种情况同时只有一个成立
 ]<thm:real-trichotomy>
 #proof[证明@thm:real-trichotomy][
     + 首先证明至少有一个成立，也即证明三种同时不成立是不可能的
@@ -427,7 +427,7 @@
 
         如果$x$是$0$，那么$forall epsilon in QQ^+, exists N in ZZ^+, abs(a_i - 0) = abs(a_i) <= epsilon, forall i >=N$
 
-        假设上述三个都不成立，由于$(a_n)_(n=0)^infinity$是柯西序列，那么$
+        假设上述三个都不成立，由于$(a_n)_(n=0)^oo$是柯西序列，那么$
             abs(a_n - a_m) <= epsilon/2, n,m>=N
         $由于不是0，那么$ abs(a_i) > epsilon, exists i >= N $取$n_0>=N$，就有$
             abs(a_(n_0)) > epsilon => a_(n_0) > epsilon or a_(n_0) < -epsilon
@@ -443,11 +443,11 @@
         综上，至少有一个成立
 
     + 现在证明至多有一个成立
-        - 如果$x$是正的，那么$exists c in QQ^+, forall i in ZZ^+, a_i >= c$，显然$forall i in ZZ^+, a_i >= c > -c$，所以$x$不会是负的，同时$abs(a_i - 0) = abs(a_i) >= c$，所以对于任意的$epsilon in QQ^+$，无法找到$N in ZZ^+$，使得$abs(a_i - 0) = abs(a_i) <= epsilon, i>=N$，所以$(a_n)_(n=1)^infinity$与柯西序列$0,0,...$
+        - 如果$x$是正的，那么$exists c in QQ^+, forall i in ZZ^+, a_i >= c$，显然$forall i in ZZ^+, a_i >= c > -c$，所以$x$不会是负的，同时$abs(a_i - 0) = abs(a_i) >= c$，所以对于任意的$epsilon in QQ^+$，无法找到$N in ZZ^+$，使得$abs(a_i - 0) = abs(a_i) <= epsilon, i>=N$，所以$(a_n)_(n=1)^oo$与柯西序列$0,0,...$
             不等价，所以$x$也不是0
-        - 如果$x$是负的，那么$exists -c in QQ^-,forall i in ZZ^+, a_i <= -c$，显然$forall i in ZZ^+, a_i <= -c <=c$，所以$x$不是正的，同时$abs(a_i - 0) = abs(a_i) >= c$，同理，$(a_n)_(n=1)^infinity$不与柯西序列$0,0,...$
+        - 如果$x$是负的，那么$exists -c in QQ^-,forall i in ZZ^+, a_i <= -c$，显然$forall i in ZZ^+, a_i <= -c <=c$，所以$x$不是正的，同时$abs(a_i - 0) = abs(a_i) >= c$，同理，$(a_n)_(n=1)^oo$不与柯西序列$0,0,...$
             等价，所以$x$也不是0
-        - 如果$x=0$，那么$(a_n)_(n=1)^infinity$与柯西序列$0,0,...$
+        - 如果$x=0$，那么$(a_n)_(n=1)^oo$与柯西序列$0,0,...$
             等价，于是$
                 forall epsilon in QQ^+, exists N in ZZ^+, forall i>=N, abs(a_i - 0)=abs(a_i) <= epsilon
             $于是$
@@ -458,20 +458,20 @@
 #lemma[实数$x$是负的，当且仅当$-x$是正的]<lem:negation-of-negative-is-positive>
 #proof[证明@lem:negation-of-negative-is-positive][
 
-    由于$x in RR$，那么令$x = "LIM"_(n->infinity)a_n$
+    由于$x in RR$，那么令$x = "LIM"_(n->oo)a_n$
     + $=>$
 
-        由于$x$是负的，那么$(a_n)_(n=1)^infinity$是负远离$0$的，所以$
+        由于$x$是负的，那么$(a_n)_(n=1)^oo$是负远离$0$的，所以$
             exists -c in QQ^-, forall i in ZZ^+, a_i <= -c
-        $根据实数的相反数运算，就有$-x = "LIM"_(n->infinity)(-a_n)$，所以就有$
+        $根据实数的相反数运算，就有$-x = "LIM"_(n->oo)(-a_n)$，所以就有$
             forall i in ZZ^+, -a_i >= c
         $其中$c in QQ^+$，这正是柯西序列正远离$0$的定义，于是$-x$是正的
 
     + $arrow.double.l$
 
-        由于$-x$是正的，那么$(-a_n)_(n=1)^infinity$是正远离$0$的，那么$
+        由于$-x$是正的，那么$(-a_n)_(n=1)^oo$是正远离$0$的，那么$
             exists c in QQ^+, forall i in ZZ^+, -a_i >=c
-        $根据实数的相反数运算，就有$x = "LIM"_(n->infinity)a_n = "LIM"_(n->infinity)(-(-a_n))$，于是$
+        $根据实数的相反数运算，就有$x = "LIM"_(n->oo)a_n = "LIM"_(n->oo)(-(-a_n))$，于是$
             forall i in ZZ^+, a_i = -(-a_i) <= -c
         $其中$-c in QQ^-$，这正是柯西序列负远离$0$的定义，于是$x$是负的
 ]
@@ -480,18 +480,18 @@
 #lemma[实数$x,y$都是正的，那么$x+y$和$x y$也是正的]<lem:positivity-of-sum-and-product>
 #proof[证明@lem:positivity-of-sum-and-product][
 
-    令$x = "LIM"_(n->infinity)a_n$，$y = "LIM"_(n->infinity)b_n$
+    令$x = "LIM"_(n->oo)a_n$，$y = "LIM"_(n->oo)b_n$
 
     - 由于$x,y$都是正的，那么$
             & exists c_1 in QQ^+, forall i in ZZ^+, a_i >= c_1 \
             & exists c_2 in QQ^+, forall i in ZZ^+, b_i >= c_2
-        $由于$x + y = "LIM"_(n->infinity)(a_n+b_n)$，所以有$
+        $由于$x + y = "LIM"_(n->oo)(a_n+b_n)$，所以有$
             forall i in ZZ^+, a_i + b_i >= c_1 + c_2
-        $其中$c_1+c_2 in QQ^+$，于是$(a_n+b_n)_(n=1)^infinity$是正远离$0$的，所以$x+y$是正的
+        $其中$c_1+c_2 in QQ^+$，于是$(a_n+b_n)_(n=1)^oo$是正远离$0$的，所以$x+y$是正的
 
-    - 其他同前，由于$x y = "LIM"_(n->infinity)(a_n b_n)$，那么$
+    - 其他同前，由于$x y = "LIM"_(n->oo)(a_n b_n)$，那么$
             forall i in ZZ^+, a_i b_i >= c_1 c_2
-        $其中$c_1 c_2 in QQ^+$，于是序列$(a_n b_n)_(n=1)^infinity$是正远离$0$的，所以$x y$是正的
+        $其中$c_1 c_2 in QQ^+$，于是序列$(a_n b_n)_(n=1)^oo$是正远离$0$的，所以$x y$是正的
 ]
 
 #definition[实数的绝对值][
@@ -519,7 +519,7 @@
 ]<prop:real-order-basic-properties>
 #proof[证明@prop:real-order-basic-properties][
 
-    令$x = "LIM"_(n->infinity)a_n,y = "LIM"_(n->infinity)b_n,z = "LIM"_(n->infinity)c_n$
+    令$x = "LIM"_(n->oo)a_n,y = "LIM"_(n->oo)b_n,z = "LIM"_(n->oo)c_n$
     + 见@thm:real-trichotomy 的证明
     + $x > y <=> y < x$
         - $=>$
@@ -584,26 +584,26 @@
     $于是$1 > 1$，矛盾，由实数的序的三歧性，$x^(-1) < y^(-1)$
 ]
 
-#lemma[非负柯西序列的形式极限也是非负的][$(a_n)_(n=1)^infinity$是非负有理数组成的柯西序列，那么实数$x = "LIM"_(n->infinity)a_n$是非负实数]<lem:limit-of-nonneg-cauchy-is-nonneg>
+#lemma[非负柯西序列的形式极限也是非负的][$(a_n)_(n=1)^oo$是非负有理数组成的柯西序列，那么实数$x = "LIM"_(n->oo)a_n$是非负实数]<lem:limit-of-nonneg-cauchy-is-nonneg>
 #proof[证明@lem:limit-of-nonneg-cauchy-is-nonneg][
-    假设$x = "LIM"_(n->infinity)a_n$是负的，根据负实数的定义$x = "LIM"_(n->infinity)b_n$，其中$(b_n)_(n=1)^infinity$是负远离$0$的序列，所以$
+    假设$x = "LIM"_(n->oo)a_n$是负的，根据负实数的定义$x = "LIM"_(n->oo)b_n$，其中$(b_n)_(n=1)^oo$是负远离$0$的序列，所以$
         exists -c in QQ^+, forall i in ZZ^+, b_i <= -c
-    $但是条件中$(a_n)_(n=1)^infinity$是非负有理数组成的，那么$
+    $但是条件中$(a_n)_(n=1)^oo$是非负有理数组成的，那么$
         forall i in ZZ^+, a_i >= 0
     $于是$
         forall i in ZZ^+, abs(a_i - b_i) >= c
-    $所以序列$(a_n)_(n=1)^infinity$与$(b_n)_(n=1)^infinity$不等价，矛盾
+    $所以序列$(a_n)_(n=1)^oo$与$(b_n)_(n=1)^oo$不等价，矛盾
 ]
 
 #corollary[极限的保序性][
-    $(a_n)_(n=1)^infinity$与$(b_n)_(n=1)^infinity$是有理数柯西序列，满足$forall i in ZZ^+, a_i >= b_i$，那么$"LIM"_(n->infinity)a_n >= "LIM"_(n->infinity)b_n$
+    $(a_n)_(n=1)^oo$与$(b_n)_(n=1)^oo$是有理数柯西序列，满足$forall i in ZZ^+, a_i >= b_i$，那么$"LIM"_(n->oo)a_n >= "LIM"_(n->oo)b_n$
 ]<cor:order-preservation-of-limits>
 #proof[证明@cor:order-preservation-of-limits][
-    定义新序列$(a_n - b_n)_(n=1)^infinity$，由于$(a_n)_(n=1)^infinity$与$(b_n)_(n=1)^infinity$是有理数柯西序列，满足$
+    定义新序列$(a_n - b_n)_(n=1)^oo$，由于$(a_n)_(n=1)^oo$与$(b_n)_(n=1)^oo$是有理数柯西序列，满足$
         forall i in ZZ^+, a_i >= b_i
     $那么$
         forall i in ZZ^+, a_i - b_i >= 0
-    $所以序列$(a_n - b_n)_(n=1)^infinity$是非负有理数组成的，那么$z = "LIM"_(n->infinity)(a_n-b_n)$是非负实数，令$x = "LIM"_(n->infinity)a_n, y = "LIM"_(n->infinity)b_n$，所以$x - y$是非负的，所以$x >= y$，所以$"LIM"_(n->infinity)a_n >= "LIM"_(n->infinity)b_n$
+    $所以序列$(a_n - b_n)_(n=1)^oo$是非负有理数组成的，那么$z = "LIM"_(n->oo)(a_n-b_n)$是非负实数，令$x = "LIM"_(n->oo)a_n, y = "LIM"_(n->oo)b_n$，所以$x - y$是非负的，所以$x >= y$，所以$"LIM"_(n->oo)a_n >= "LIM"_(n->oo)b_n$
 ]
 #remark[
     @lem:limit-of-nonneg-cauchy-is-nonneg 和@cor:order-preservation-of-limits 表明，非负实数集合是闭的
@@ -613,14 +613,14 @@
     $forall x in RR^+, exists q in QQ^+,N in ZZ^+, q<=x<=N$
 ]<lem:rational-bounds-for-positive-real>
 #proof[证明@lem:rational-bounds-for-positive-real][
-    令$x = "LIM"_(n->infinity)a_n$，由于$x$是正的，那么$(a_n)_(n=1)^infinity$是正远离$0$的，所以有$
+    令$x = "LIM"_(n->oo)a_n$，由于$x$是正的，那么$(a_n)_(n=1)^oo$是正远离$0$的，所以有$
         exists q in QQ^+, forall i in ZZ^+, a_i >= q > 0
-    $由于$(a_n)_(n=1)^infinity$是柯西序列，柯西序列是有界的，令界为$M in QQ^+$，就有$
+    $由于$(a_n)_(n=1)^oo$是柯西序列，柯西序列是有界的，令界为$M in QQ^+$，就有$
         forall i in ZZ^+, 0 < a_i <= M
     $由于$M$是有理数，先前证明了两个整数之间至少有一个有理数，不妨令$N = ceil(M)$，易知$N in ZZ^+ and N >= M$，于是就有$
         forall i in ZZ^+, a_i <= M <= N
     $综上就有$ forall i in ZZ^+, q<= a_i <= N $所以有$
-        "LIM"_(n->infinity)q <= "LIM"_(n->infinity)a_n <= "LIM"_(n->infinity)N => q <= x <= N
+        "LIM"_(n->oo)q <= "LIM"_(n->oo)a_n <= "LIM"_(n->oo)N => q <= x <= N
     $
 ]
 
@@ -794,18 +794,18 @@
             $x = y => x - y = 0$，由于$forall epsilon in RR^+,epsilon > 0 = x - y = abs(x - y)$，所以有$abs(x - y) < epsilon => abs(x - y) <= epsilon$
 ]
 
-#problem[$(a_n)_(n=1)^infinity$是有理数柯西序列，$x in RR$，证明$forall i in ZZ^+, a_i <= x => "LIM"_(n->infinity)a_n <= x$，证明$forall i in ZZ^+, a_i >= x => "LIM"_(n->infinity)a_n >= x$]
+#problem[$(a_n)_(n=1)^oo$是有理数柯西序列，$x in RR$，证明$forall i in ZZ^+, a_i <= x => "LIM"_(n->oo)a_n <= x$，证明$forall i in ZZ^+, a_i >= x => "LIM"_(n->oo)a_n >= x$]
 #proof[
-    由于$(a_n)_(n=1)^infinity$是柯西序列，那么$y = "LIM"_(n->infinity)a_n, y in RR$，由于$x in RR$，那么令$x = "LIM"_(n->infinity)b_n, (b_n)_(n=1)^infinity$是柯西序列
+    由于$(a_n)_(n=1)^oo$是柯西序列，那么$y = "LIM"_(n->oo)a_n, y in RR$，由于$x in RR$，那么令$x = "LIM"_(n->oo)b_n, (b_n)_(n=1)^oo$是柯西序列
 
-    + $forall i in ZZ^+, a_i <= x => "LIM"_(n->infinity)a_n <= x$
-        假设推出$y = "LIM"_(n->infinity)a_n > x => y - x > 0$，那么一定存在一个有理数，满足$(y-x)/2 > q > 0$，那么令$epsilon = q > 0$，由于$(a_n)_(n=1)^infinity$是柯西序列，那么$
+    + $forall i in ZZ^+, a_i <= x => "LIM"_(n->oo)a_n <= x$
+        假设推出$y = "LIM"_(n->oo)a_n > x => y - x > 0$，那么一定存在一个有理数，满足$(y-x)/2 > q > 0$，那么令$epsilon = q > 0$，由于$(a_n)_(n=1)^oo$是柯西序列，那么$
             exists N in ZZ^+, forall i >= N, abs(a_i - y) <= epsilon = q < (x-y)/2
         $于是$
             a_i >= -(y-x)/2 + y = (x+y)/2 > x
-        $与$forall i in ZZ^+, a_i <= x$矛盾，所以只能是$"LIM"_(n->infinity)a_n <= x$
+        $与$forall i in ZZ^+, a_i <= x$矛盾，所以只能是$"LIM"_(n->oo)a_n <= x$
 
-    + $forall i in ZZ^+, a_i >= x => "LIM"_(n->infinity)a_n >= x$
+    + $forall i in ZZ^+, a_i >= x => "LIM"_(n->oo)a_n >= x$
 
         同理可证
 
@@ -979,17 +979,17 @@
     $综上就有$
         forall n,n'>=N>=1, abs(m_n/n - m_(n')/n') <= 1/N
     $这正是柯西序列的定义，且$m_n/n in QQ$，那么定义实数$
-        S:= "LIM"_(n->infinity)m_n/n
-    $由于$"LIM"_(n->infinity)1/n = 0$，那么$ S = "LIM"_(n->infinity)(m_n-1)/n $
+        S:= "LIM"_(n->oo)m_n/n
+    $由于$"LIM"_(n->oo)1/n = 0$，那么$ S = "LIM"_(n->oo)(m_n-1)/n $
 
     至此构造出了"可能"的最小上界$S$，接下来需要验证$S$满足最小上界的定义
 
     由于$forall n in ZZ^+, m_n/n$都是$E$的上界，那么$
         forall x in E, x<=m_n/n
-    $于是$ x <= "LIM"_(n->infinity)m_n/n = S $所以$S$是$E$的上界
+    $于是$ x <= "LIM"_(n->oo)m_n/n = S $所以$S$是$E$的上界
 
     令$y$是$E$的任意上界，由于$(m_n -1)/n$不是上界，所以就有$
-        y > (m_n - 1)/n => y > "LIM"_(n->infinity)(m_n - 1)/n = S
+        y > (m_n - 1)/n => y > "LIM"_(n->oo)(m_n - 1)/n = S
     $所以$S$是所有上界中最小的，所以$S$确实是最小上界
 
     综上，最小上界是存在的
@@ -998,13 +998,13 @@
 #definition[上确界（Supremum）][
     + $E subset.eq RR and E != emptyset$且$E$有上界，定义$sup(E)$是$E$的最小上界
     + $E subset.eq RR and E != emptyset$且$E$没有上界，定义$
-            sup(E) := +infinity
+            sup(E) := +oo
         $
-    + $E = emptyset$，定义$ sup(E) := -infinity $
+    + $E = emptyset$，定义$ sup(E) := -oo $
 ]
 #remark[
     + 上确界的良定义由@thm:existence-of-supremum 和@lem:uniqueness-of-supremum 所保障
-    + 目前$+infinity, -infinity$还没有什么特别的意思，具体的性质在广义实数系中讨论
+    + 目前$+oo, -oo$还没有什么特别的意思，具体的性质在广义实数系中讨论
 ]
 
 #example[$exists x in RR^+, x^2 = 2$]
@@ -1089,7 +1089,7 @@
     + 上界分水岭的存在性和上界分水岭的唯一性可以合称为_二分法引理_
 ]
 
-#problem[令有理数序列$(q_n)_(n=1)^infinity$满足$forall M in ZZ^+,n,n' in ZZ^+ and n,n'>=M, abs(q_n-q_(n')) <= 1/M$，证明：$(q_n)_(n=1)^infinity$是柯西序列；进一步的，定义$S:="LIM"_(n->infinity)q_n$，证明：$forall M in ZZ^+, abs(q_M - S) <= 1/M$]
+#problem[令有理数序列$(q_n)_(n=1)^oo$满足$forall M in ZZ^+,n,n' in ZZ^+ and n,n'>=M, abs(q_n-q_(n')) <= 1/M$，证明：$(q_n)_(n=1)^oo$是柯西序列；进一步的，定义$S:="LIM"_(n->oo)q_n$，证明：$forall M in ZZ^+, abs(q_M - S) <= 1/M$]
 #proof[
     + 由阿基米德原理，$epsilon in QQ^+, exists N in ZZ^+,$满足$
             epsilon > 1/N
@@ -1097,18 +1097,18 @@
             forall M in ZZ^+, abs(q_n -q_(n')) <= 1/M
         $可以取$M >= N => 1/M <= 1/N$，于是就有$
             forall epsilon in QQ^+,exists M in ZZ^+, forall n, n' >=M, abs(q_n-q_(n')) <= 1/M <= 1/N < epsilon
-        $这正是柯西序列的定义，所以$(q_n)_(n=1)^infinity$是柯西序列
+        $这正是柯西序列的定义，所以$(q_n)_(n=1)^oo$是柯西序列
 
     + 取$n = M, n' > M$，就有$
             abs(q_M - q_(n')) <= 1/M
-        $定义常数柯西序列$(q_M)_(n=M+1)^infinity$和常数柯西序列$(1/M)_(n=M+1)^infinity$，定义序列$(q_M - q_n)_(n=M+1)^infinity$，易知这是常数柯西序列$(q_M)_(n=M+1)^infinity$与柯西序列$(q_n)_(n=1)^infinity$的差，也是一个柯西序列
+        $定义常数柯西序列$(q_M)_(n=M+1)^oo$和常数柯西序列$(1/M)_(n=M+1)^oo$，定义序列$(q_M - q_n)_(n=M+1)^oo$，易知这是常数柯西序列$(q_M)_(n=M+1)^oo$与柯西序列$(q_n)_(n=1)^oo$的差，也是一个柯西序列
 
         由于$
             forall n' >= M + 1, abs(q_M - q_(n')) <= 1/M => -1/M <=q_M - q_(n') <= 1/M
         $于是在序列可选的角标范围内，逐项都满足不等式，所以就有$
-            -"LIM"_(n->infinity)1/M & <= "LIM"_(n->infinity)(q_M - q_n)<= "LIM"_(n->infinity)1/M \
-            & => -1/M <= q_M -S <= 1/M \
-            & => abs(q_M - S) <= 1/M
+            -"LIM"_(n->oo)1/M & <= "LIM"_(n->oo)(q_M - q_n)<= "LIM"_(n->oo)1/M \
+                              & => -1/M <= q_M -S <= 1/M \
+                              & => abs(q_M - S) <= 1/M
         $
 ]
 #note-block[

@@ -15,17 +15,17 @@
 ]
 
 #definition[实数柯西序列][
-    $epsilon in RR^+, N in ZZ, (a_n)_(n=N)^infinity$是实数序列
+    $epsilon in RR^+, N in ZZ, (a_n)_(n=N)^oo$是实数序列
 
-    + $(a_n)_(n=N)^infinity$是$epsilon$-稳定的$<=> forall j, k >= N, d(a_j, a_k) <= epsilon$
-    + $(a_n)_(n=m)^infinity$是最终$epsilon$-稳定的$<=> exists N >= m, (a_n)_(n=N)^infinity$是$epsilon$-稳定的
-    + $forall epsilon in RR^+, (a_n)_(n=m)^infinity$都是最终$epsilon$-稳定的$<=> (a_n)_(n=m)^infinity$是柯西序列
+    + $(a_n)_(n=N)^oo$是$epsilon$-稳定的$<=> forall j, k >= N, d(a_j, a_k) <= epsilon$
+    + $(a_n)_(n=m)^oo$是最终$epsilon$-稳定的$<=> exists N >= m, (a_n)_(n=N)^oo$是$epsilon$-稳定的
+    + $forall epsilon in RR^+, (a_n)_(n=m)^oo$都是最终$epsilon$-稳定的$<=> (a_n)_(n=m)^oo$是柯西序列
 ]
 
 #note-block[
     更加常见的定义是：
 
-    $forall epsilon in RR^+, exists N in ZZ^+, forall j,k >= N, abs(a_j - a_k) <= epsilon <=> (a_n)_(n=m)^infinity$是柯西序列
+    $forall epsilon in RR^+, exists N in ZZ^+, forall j,k >= N, abs(a_j - a_k) <= epsilon <=> (a_n)_(n=m)^oo$是柯西序列
 ]
 
 
@@ -47,24 +47,24 @@
 
 #definition[序列的收敛][
     $epsilon in RR^+, L in RR$
-    + 实数序列$(a_n)_(n = N)^infinity$是$epsilon$-接近于$L$的$<=> forall n>= N, abs(a_n - L) <= epsilon$，即$forall n >=N, a_n$都是$epsilon$-接近于$L$的
-    + 实数序列$(a_n)_(n = m)^infinity$是最终$epsilon$-接近于$L$的$<=>exists N >= m, (a_n)_(n=N)^infinity$是$epsilon$-接近于$L$的
-    + 实数序列$(a_n)_(n = m)^infinity$收敛于$L <=> forall epsilon in RR^+, (a_n)_(n = m)^infinity$都是最终$epsilon$-接近于$L$
+    + 实数序列$(a_n)_(n = N)^oo$是$epsilon$-接近于$L$的$<=> forall n>= N, abs(a_n - L) <= epsilon$，即$forall n >=N, a_n$都是$epsilon$-接近于$L$的
+    + 实数序列$(a_n)_(n = m)^oo$是最终$epsilon$-接近于$L$的$<=>exists N >= m, (a_n)_(n=N)^oo$是$epsilon$-接近于$L$的
+    + 实数序列$(a_n)_(n = m)^oo$收敛于$L <=> forall epsilon in RR^+, (a_n)_(n = m)^oo$都是最终$epsilon$-接近于$L$
 ]
 #note-block[
     更加常见的定义是：
 
-    $L in RR, (a_n)_(n=m)^infinity$是实数序列，如果
+    $L in RR, (a_n)_(n=m)^oo$是实数序列，如果
     $
         forall epsilon in RR^+, exists N >= m, forall j >= N, abs(a_j - L) <= epsilon
-    $那么称$(a_n)_(n=m)^infinity$收敛于$L$
+    $那么称$(a_n)_(n=m)^oo$收敛于$L$
 ]
 
 #theorem[不可能收敛到两个不同的实数][
-    $(a_n)_(n=m)^infinity$是实数序列，$L, L' in RR, L != L'$，那么$(a_n)_(n=m)^infinity$不可能同时收敛于$L,L'$
+    $(a_n)_(n=m)^oo$是实数序列，$L, L' in RR, L != L'$，那么$(a_n)_(n=m)^oo$不可能同时收敛于$L,L'$
 ]<thm:uniqueness-of-real-limit>
 #proof[
-    取$epsilon = abs(L-L')/3$，由于$L != L'$，那么$abs(L - L') > 0$，假设$(a_n)_(n=m)^infinity$同时收敛于$L, L'$，那么有
+    取$epsilon = abs(L-L')/3$，由于$L != L'$，那么$abs(L - L') > 0$，假设$(a_n)_(n=m)^oo$同时收敛于$L, L'$，那么有
     $
         exists M_1 >= m, forall i >= M_1, abs(a_i - L) <= epsilon\
         exists M_2 >= m, forall i >= M_2, abs(a_i - L') <= epsilon
@@ -79,87 +79,87 @@
 ]
 
 #definition[极限的定义][
-    $(a_n)_(n=m)^infinity$是实数序列，如果该序列收敛到实数$L$，那么称该序列收敛且极限为$L$，记作：
+    $(a_n)_(n=m)^oo$是实数序列，如果该序列收敛到实数$L$，那么称该序列收敛且极限为$L$，记作：
     $
-        L = lim_(n->infinity)a_n
+        L = lim_(n->oo)a_n
     $
-    如果序列无法收敛到任何实数，则称该序列_发散_，且令$lim_(n->infinity)a_n$为未定义
+    如果序列无法收敛到任何实数，则称该序列_发散_，且令$lim_(n->oo)a_n$为未定义
 ]
 
 #note-block[
     @thm:uniqueness-of-real-limit 保证了极限是良定义的
 ]
 
-#example[$lim_(n->infinity)1/n = 0$]
+#example[$lim_(n->oo)1/n = 0$]
 #proof[
     取$epsilon in RR^+$，那么$
         abs(1/n - 0) = 1/n <= epsilon => n >= 1/epsilon
     $取$N=ceil(1/epsilon)$，那么$
         forall n >= N, 1/n < epsilon
-    $所以$(1/n)_(n=1)^infinity$收敛于$0$，因此其极限是$0$
+    $所以$(1/n)_(n=1)^oo$收敛于$0$，因此其极限是$0$
 ]
 
 #lemma[收敛序列也是柯西序列][
-    $(a_n)_(n=m)^infinity$是实数序列，且$lim_(n->infinity)a_n = L$，那么$(a_n)_(n=m)^infinity$也是柯西序列
+    $(a_n)_(n=m)^oo$是实数序列，且$lim_(n->oo)a_n = L$，那么$(a_n)_(n=m)^oo$也是柯西序列
 ]<lem:convergent-implies-cauchy>
 #proof[
-    由于$lim_(n->infinity)a_n = L$，那么有$
+    由于$lim_(n->oo)a_n = L$，那么有$
         forall epsilon in RR^+, exists N >=m, forall i >= N, abs(a_i - L) <= epsilon
     $任取$j,k>=N$，于是有
     $
         & "    "abs(a_j - L) <= epsilon, abs(a_k - L) <= epsilon \
         & => abs(a_j - a_k) <= abs(a_j - L) + abs(L - a_k) <= 2 epsilon
-    $所以$(a_n)_(n=m)^infinity$也是柯西序列
+    $所以$(a_n)_(n=m)^oo$也是柯西序列
 ]
 
 
 
 #definition[有界序列][
-    + 实数序列$(a_n)_(n=m)^infinity$以实数$M$为界$<=> forall n>=m, abs(a_n) <= M$
-    + 实数序列$(a_n)_(n=m)^infinity$是有界的$<=> exists M in RR^+, forall n>=m, abs(a_n) <= M$
+    + 实数序列$(a_n)_(n=m)^oo$以实数$M$为界$<=> forall n>=m, abs(a_n) <= M$
+    + 实数序列$(a_n)_(n=m)^oo$是有界的$<=> exists M in RR^+, forall n>=m, abs(a_n) <= M$
 ]
 
 #corollary[所有收敛实数序列都是有界的]<cor:convergent-real-seq-is-bounded>
 #proof[
-    $(a_n)_(n=m)^infinity$是一个收敛的实数序列，假设收敛到$L$，就有
+    $(a_n)_(n=m)^oo$是一个收敛的实数序列，假设收敛到$L$，就有
     $
         forall epsilon in RR^+, exists N >= m, forall n >= N, abs(a_n - L) <= epsilon => abs(a_n) <= epsilon + abs(L)
     $对于有限序列$(a_n)_(n=m)^(n=N)$，一定是有界的，令界为$M$，于是取$M' = max(M, epsilon + abs(L))$，可见$M'$是序列的一个界
 ]
 
 #theorem[极限定律][
-    $(a_n)_(n=m)^infinity, (b_n)_(n=m)^infinity$都是收敛的实数序列，$x, y in RR$，令$x := lim_(n->infinity)a_n, y := lim_(n->infinity)b_n$
-    + 序列$(a_n+b_n)_(n=m)^infinity$收敛到$x + y$
+    $(a_n)_(n=m)^oo, (b_n)_(n=m)^oo$都是收敛的实数序列，$x, y in RR$，令$x := lim_(n->oo)a_n, y := lim_(n->oo)b_n$
+    + 序列$(a_n+b_n)_(n=m)^oo$收敛到$x + y$
         $
-            lim_(n->infinity)(a_n + b_n) = lim_(n->infinity)(a_n) + lim_(n->infinity)(b_n)
+            lim_(n->oo)(a_n + b_n) = lim_(n->oo)(a_n) + lim_(n->oo)(b_n)
         $
-    + 序列$(a_n b_n)_(n=m)^infinity$收敛到$x y$
+    + 序列$(a_n b_n)_(n=m)^oo$收敛到$x y$
         $
-            lim_(n->infinity)(a_n b_n) = lim_(n->infinity)a_n lim_(n->infinity)b_n
+            lim_(n->oo)(a_n b_n) = lim_(n->oo)a_n lim_(n->oo)b_n
         $
-    + $forall c in RR$，序列$(c a_n)_(n=m)^infinity$收敛到$c x$
-        $ lim_(n->infinity)(c a_n)= c lim_(n->infinity)a_n $
-    + 序列$(a_n-b_n)_(n=m)^infinity$收敛到$x-y$
+    + $forall c in RR$，序列$(c a_n)_(n=m)^oo$收敛到$c x$
+        $ lim_(n->oo)(c a_n)= c lim_(n->oo)a_n $
+    + 序列$(a_n-b_n)_(n=m)^oo$收敛到$x-y$
         $
-            lim_(n->infinity)(a_n - b_n) = lim_(n->infinity)a_n - lim_(n->infinity)b_n
+            lim_(n->oo)(a_n - b_n) = lim_(n->oo)a_n - lim_(n->oo)b_n
         $
-    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(b_n^(-1))_(n=m)^infinity$收敛到$y^(-1)$
-        $ lim_(n->infinity)b_n^(-1) = (lim_(n->infinity)b_n)^(-1) $
-    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(a_n / b_n)_(n=m)^infinity$收敛到$x/y$
+    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(b_n^(-1))_(n=m)^oo$收敛到$y^(-1)$
+        $ lim_(n->oo)b_n^(-1) = (lim_(n->oo)b_n)^(-1) $
+    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(a_n / b_n)_(n=m)^oo$收敛到$x/y$
         $
-            lim_(n->infinity)(a_n/b_n) = (lim_(n->infinity)a_n) / (lim_(n->infinity)b_n)
+            lim_(n->oo)(a_n/b_n) = (lim_(n->oo)a_n) / (lim_(n->oo)b_n)
         $
-    + 序列$(max(a_n, b_n))_(n=m)^infinity$收敛到$max(x, y)$
+    + 序列$(max(a_n, b_n))_(n=m)^oo$收敛到$max(x, y)$
         $
-            lim_(n->infinity)max(a_n, b_n) = max(lim_(n->infinity)a_n, lim_(n->infinity)b_n)
+            lim_(n->oo)max(a_n, b_n) = max(lim_(n->oo)a_n, lim_(n->oo)b_n)
         $
-    + 序列$(min(a_n, b_n))_(n=m)^infinity$收敛到$min(x, y)$
+    + 序列$(min(a_n, b_n))_(n=m)^oo$收敛到$min(x, y)$
     $
-        lim_(n->infinity)min(a_n, b_n) = min(lim_(n->infinity)a_n, lim_(n->infinity)b_n)
+        lim_(n->oo)min(a_n, b_n) = min(lim_(n->oo)a_n, lim_(n->oo)b_n)
     $
 ]<thm:limit-law>
 
-#problem[$(a_n)_(n=0)^infinity$是实数序列，且$forall n in NN, a_(n+1) > a_n$，证明：$forall m,n in NN, m> n => a_m > a_n$]
+#problem[$(a_n)_(n=0)^oo$是实数序列，且$forall n in NN, a_(n+1) > a_n$，证明：$forall m,n in NN, m> n => a_m > a_n$]
 #proof[
     由于$m, n in NN$，并且$m > n$，那么$m >= n+1$，令$k := m - n >= 1$，对$k$进行归纳
     - 当$k = 1$时，$m = n$，显然有$a_m = a_(n+1) > a_n$
@@ -171,40 +171,40 @@
         $因此$forall k >= 1, a_(n+k) > a_n$即$forall m > n, a_m > a_n$
 ]
 
-#problem[$(a_n)_(n=m)^infinity$是实数序列，$L$是实数，那么$(a_n)_(n=m)^infinity$收敛到$L$，当且仅当，对于任意正实数$epsilon$，都存在正整数$N >=m$，满足$forall n >= N, abs(a_n - L) <= epsilon$]
+#problem[$(a_n)_(n=m)^oo$是实数序列，$L$是实数，那么$(a_n)_(n=m)^oo$收敛到$L$，当且仅当，对于任意正实数$epsilon$，都存在正整数$N >=m$，满足$forall n >= N, abs(a_n - L) <= epsilon$]
 #proof[
     这个证明实际上就是将实数序列与实数的最终$epsilon$-稳定性的定义展开
 ]
 
-#problem[$(a_n)_(n=m)^infinity$是实数序列，$c in RR$，令整数$m'>m$，那么$(a_n)_(n=m)^infinity$收敛到$c$，当且仅当$(a_n)_(n=m')^infinity$收敛到$c$]
+#problem[$(a_n)_(n=m)^oo$是实数序列，$c in RR$，令整数$m'>m$，那么$(a_n)_(n=m)^oo$收敛到$c$，当且仅当$(a_n)_(n=m')^oo$收敛到$c$]
 #proof[
     - $=>$
 
-        由于$(a_n)_(n=m)^infinity$收敛到$c$，那么
+        由于$(a_n)_(n=m)^oo$收敛到$c$，那么
         $
             forall epsilon in RR^+, exists N_0 >= m, forall j>=N, abs(a_j - c) <= epsilon
         $取$N = max(N_0, m')$，那么$N >= m'$，于是有$
             forall j >= N, abs(a_j - c) <= epsilon
         $
-        这也是序列$(a_n)_(n=m')^infinity$收敛到$c$的定义
+        这也是序列$(a_n)_(n=m')^oo$收敛到$c$的定义
     - $arrow.double.l$
 
-        由于$(a_n)_(n=m')^infinity$收敛到$c$，那么
+        由于$(a_n)_(n=m')^oo$收敛到$c$，那么
         $
             forall epsilon in RR^+, exists N >= m', forall j >= N, abs(a_j - c) <= epsilon
         $由于$m' > m$，那么$N > m$，于是$
             forall j >= N, abs(a_j - c) <= epsilon
-        $这也是序列$(a_n)_(n=m)^infinity$收敛到$c$的定义
+        $这也是序列$(a_n)_(n=m)^oo$收敛到$c$的定义
 ]
 
-#problem[$(a_n)_(n=m)^infinity$是实数序列，$c in RR, k in ZZ_(>=0)$，那么$(a_n)_(n=m)^infinity$收敛到$c$，当且仅当$(a_(n+k))_(n=m)^infinity$收敛到$c$]
+#problem[$(a_n)_(n=m)^oo$是实数序列，$c in RR, k in ZZ_(>=0)$，那么$(a_n)_(n=m)^oo$收敛到$c$，当且仅当$(a_(n+k))_(n=m)^oo$收敛到$c$]
 #proof[
 
     由于$k>=0$，当$k=0$时，二者为完全相同的序列，所以会收敛到同样的实数
 
-    当$k > 0$时，$n+k > n$，所以$(a_(n+k))_(n=m)^infinity$与序列$(a_n)_(n=m+k)^infinity$是同一个序列，令$m' = m+k$，就有$m' > m$，就得到了序列$(a_n)_(n=m')^infinity$
+    当$k > 0$时，$n+k > n$，所以$(a_(n+k))_(n=m)^oo$与序列$(a_n)_(n=m+k)^oo$是同一个序列，令$m' = m+k$，就有$m' > m$，就得到了序列$(a_n)_(n=m')^oo$
 
-    $(a_n)_(n=m')^infinity$与$(a_n)_(n=m)^infinity$收敛到同样的实数，这在前面已经证明过了
+    $(a_n)_(n=m')^oo$与$(a_n)_(n=m)^oo$收敛到同样的实数，这在前面已经证明过了
 ]
 
 #note-block[
@@ -214,17 +214,17 @@
 #problem[证明@lem:convergent-implies-cauchy][见@lem:convergent-implies-cauchy 的证明]
 
 #problem[证明形式极限就是正式极限][
-    $(a_n)_(n=1)^infinity$是有理数柯西序列，那么$(a_n)_(n=1)^infinity$收敛到$"LIM"_(n->infinity)a_n$，即
+    $(a_n)_(n=1)^oo$是有理数柯西序列，那么$(a_n)_(n=1)^oo$收敛到$"LIM"_(n->oo)a_n$，即
     $
-        "LIM"_(n->infinity)a_n = lim_(n->infinity)a_n
+        "LIM"_(n->oo)a_n = lim_(n->oo)a_n
     $
 ]
 #proof[
-    由于$(a_n)_(n=1)^infinity$是柯西序列，那么令实数$L := "LIM"_(n->infinity)a_n$，现在假设$(a_n)_(n=1)^infinity$不收敛到$L$，于是$
+    由于$(a_n)_(n=1)^oo$是柯西序列，那么令实数$L := "LIM"_(n->oo)a_n$，现在假设$(a_n)_(n=1)^oo$不收敛到$L$，于是$
         exists epsilon in RR^+, forall N >= 1, exists m >= N, abs(a_m -L) > epsilon
     $
 
-    由于$(a_n)_(n=1)^infinity$是柯西序列，那么$
+    由于$(a_n)_(n=1)^oo$是柯西序列，那么$
         forall epsilon/2 in RR^+, exists N_0 >=1, forall j,k >= N_0, abs(a_j - a_k) <= epsilon/2
     $
 
@@ -232,31 +232,31 @@
     - 由假设，$exists m_0 >= N_0, a_(m_0) - L > epsilon$，那么$
             forall n >= N_0, abs(a_n - a_(m_0)) <= epsilon/2 => a_n >= -epsilon/2 + a_(m_0) > -epsilon/2 + L + epsilon = epsilon/2 + L
         $由形式极限的保序性就有$
-            "LIM"_(n->infinity)a_n = L > epsilon/2 + L => epsilon < 0
+            "LIM"_(n->oo)a_n = L > epsilon/2 + L => epsilon < 0
         $矛盾
     - 由假设，$exists m_0 >= N_0, a_(m_0) - L < -epsilon$，那么$
             forall n >= N_0, abs(a_n - a_(m_0)) <= epsilon/2 => a_n <= epsilon/2 + a_(m_0) < epsilon/2 + L -epsilon = -epsilon/2 + L
         $由形式极限的保序性就有$
-            "LIM"_(n->infinity)a_n = L < -epsilon/2 + L => epsilon < 0
+            "LIM"_(n->oo)a_n = L < -epsilon/2 + L => epsilon < 0
         $矛盾
-    - 综上，$(a_n)_(n=1)^infinity$收敛到$L$
+    - 综上，$(a_n)_(n=1)^oo$收敛到$L$
 ]
 #note-block[
     这个证明说明先前的形式极限可以被正式极限所替代了，因为它们的行为一致
 ]
 
 #problem[证明实数有界序列的定义与先前有理数有界序列的定义是一致的][
-    实数序列$(a_n)_(n=m)^infinity$是有理数版的有界序列，当且仅当它是实数版的有界序列
+    实数序列$(a_n)_(n=m)^oo$是有理数版的有界序列，当且仅当它是实数版的有界序列
 ]
 #proof[
     - $=>$\
-        $(a_n)_(n=m)^infinity$是有理数版的有界序列，那么$
+        $(a_n)_(n=m)^oo$是有理数版的有界序列，那么$
             exists M in QQ^+, forall j >= m, abs(a_j) <= M
         $由阿基米德性质，存在实数$M' >= M$，于是$
             forall j >= m, abs(a_j) <= M <= M', M' in RR^+
         $这正是实数版本的有界序列的定义
     - $arrow.double.l$\
-        $(a_n)_(n=m)^infinity$是实数版的有界序列，那么$
+        $(a_n)_(n=m)^oo$是实数版的有界序列，那么$
             exists M in RR^+, forall j >=m, abs(a_j) <= M
         $由阿基米德性质，存在正有理数$M' >= M$，于是$
             forall j >= m, abs(a_j) <= M <= M', M' in QQ^+
@@ -265,92 +265,92 @@
 
 #problem[证明@thm:limit-law]
 #proof[
-    $(a_n)_(n=m)^infinity, (b_n)_(n=m)^infinity$都是收敛的实数序列，$x, y in RR$，令$x := lim_(n->infinity)a_n, y := lim_(n->infinity)b_n$
+    $(a_n)_(n=m)^oo, (b_n)_(n=m)^oo$都是收敛的实数序列，$x, y in RR$，令$x := lim_(n->oo)a_n, y := lim_(n->oo)b_n$
 
-    + 序列$(a_n+b_n)_(n=m)^infinity$收敛到$x + y$
+    + 序列$(a_n+b_n)_(n=m)^oo$收敛到$x + y$
 
-        由于$(a_n)_(n=m)^infinity$收敛到$x$，那么
+        由于$(a_n)_(n=m)^oo$收敛到$x$，那么
         $
             forall epsilon/2 in RR^+, exists M_1 >= m, forall i >= M_1, abs(a_i - x) <= epsilon/2
         $
 
-        由于$(b_n)_(n=m)^infinity$收敛到$y$，那么
+        由于$(b_n)_(n=m)^oo$收敛到$y$，那么
         $
             forall epsilon/2 in RR^+, exists M_2 >= m, forall i >= M_2, abs(b_i - y) <= epsilon/2
         $
         $
             forall i >= max(M_1, M_2) ,abs(a_i + b_i - (x + y)) <= abs(a_i - x) + abs(b_i - y) <= epsilon
-        $于是序列$(a_n+b_n)_(n=m)^infinity$收敛到$x + y$
+        $于是序列$(a_n+b_n)_(n=m)^oo$收敛到$x + y$
 
-    + 序列$(a_n b_n)_(n=m)^infinity$收敛到$x y$\
+    + 序列$(a_n b_n)_(n=m)^oo$收敛到$x y$\
 
         $a_n b_n - x y =a_n b_n + a_n y - a_n y - x y = a_n (b_n -y) + (a_n - x)y\
         => abs(a_n b_n - x y) = abs(a_n (b_n -y) + (a_n - x)y) <= abs(a_n)abs(b_n - y) + abs(y)abs(a_n - x)$
 
-        由于$(a_n)_(n=m)^infinity$收敛到$y$，那么必然有界
+        由于$(a_n)_(n=m)^oo$收敛到$y$，那么必然有界
         $
             exists M in RR^+, forall n >= m, abs(a_n) <= M
-        $由于$(b_n)_(n=m)^infinity$收敛到$y$，那么
+        $由于$(b_n)_(n=m)^oo$收敛到$y$，那么
         $
             forall epsilon/(2M) in RR^+, exists N_1, forall n >= M_1, abs(b_n - y) <= epsilon/(2M)
         $
-        由于$(a_n)_(n=m)^infinity$收敛到$y$，那么
+        由于$(a_n)_(n=m)^oo$收敛到$y$，那么
         $
             forall epsilon/(2(abs(y) + 1)) in RR^+, exists N_2 >= m, forall n >= N_2, abs(a_n - x) <= epsilon/(2(abs(y) + 1))
         $于是结合最先的不等式就有
         $
             forall n >= max(N_1, &N_2), abs(a_n b_n - x y) <= M epsilon/(2M) + abs(y) epsilon/(2(abs(y) + 1)) < epsilon/2 + epsilon/2 = epsilon
-        $于是序列$(a_n b_n)_(n=m)^infinity$收敛到$x y$
-    + $forall c in RR$，序列$(c a_n)_(n=m)^infinity$收敛到$c x$
-        - 若$c = 0$，那么$(c a_n)_(n=m)^infinity$为常序列$0,...,0,...$
+        $于是序列$(a_n b_n)_(n=m)^oo$收敛到$x y$
+    + $forall c in RR$，序列$(c a_n)_(n=m)^oo$收敛到$c x$
+        - 若$c = 0$，那么$(c a_n)_(n=m)^oo$为常序列$0,...,0,...$
             ，显然收敛到$0 x = 0$
-        - 若$c != 0$，由于$(a_n)_(n=m)^infinity$收敛到$y$，那么$
+        - 若$c != 0$，由于$(a_n)_(n=m)^oo$收敛到$y$，那么$
                 forall epsilon/abs(c) in RR^+, exists N >= m, forall i >= N, abs(c a_i - c x) = abs(c)abs(a_i - x) <= abs(c) epsilon/abs(c) = epsilon
-            $于是$forall c in RR$，序列$(c a_n)_(n=m)^infinity$收敛到$c x$
+            $于是$forall c in RR$，序列$(c a_n)_(n=m)^oo$收敛到$c x$
 
-    + 序列$(a_n-b_n)_(n=m)^infinity$收敛到$x-y$
+    + 序列$(a_n-b_n)_(n=m)^oo$收敛到$x-y$
 
         由(1)和(3)的证明，$
-            lim_(n->infinity)(a_n-b_n) = lim_(n->infinity)a_n + (-1) times lim_(n->infinity)b_n = x - y
-        $于是序列$(a_n-b_n)_(n=m)^infinity$收敛到$x-y$
+            lim_(n->oo)(a_n-b_n) = lim_(n->oo)a_n + (-1) times lim_(n->oo)b_n = x - y
+        $于是序列$(a_n-b_n)_(n=m)^oo$收敛到$x-y$
 
-    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(b_n^(-1))_(n=m)^infinity$收敛到$y^(-1)$
+    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(b_n^(-1))_(n=m)^oo$收敛到$y^(-1)$
 
-        由于$(b_n^(-1))_(n=m)^infinity$收敛到$y^(-1)$，那么取$epsilon = abs(y)/2 > 0$，就有$
+        由于$(b_n^(-1))_(n=m)^oo$收敛到$y^(-1)$，那么取$epsilon = abs(y)/2 > 0$，就有$
             & exists N_1 >= m, forall n >= N_1, abs(b_n - y) <= abs(y)/2 \
             & => abs(b_n)>= abs(y) - abs(b_n - y) >= abs(y)/2 \
             & => 1/abs(b_n) <= 2/abs(y)
         $
 
-        对于序列$(b_n^(-1))_(n=m)^infinity$有$
+        对于序列$(b_n^(-1))_(n=m)^oo$有$
             forall epsilon in RR^+, exists N_2 >= m, forall n>= N_2, abs(b_n - y) <= epsilon abs(y)^2/2
         $
 
         于是取$N = max(N_1, N_2)$，就有$
             forall n >= N, abs(1/(b_n) - 1/y) = abs((y - b_n)/(b_n y)) <= epsilon abs(y)^2/abs(y) 2/abs(y) = epsilon
-        $于是当$y != 0$且$forall n>=m,b_n != 0$时，序列$(b_n^(-1))_(n=m)^infinity$收敛到$y^(-1)$
-    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(a_n / b_n)_(n=m)^infinity$收敛到$x/y$
+        $于是当$y != 0$且$forall n>=m,b_n != 0$时，序列$(b_n^(-1))_(n=m)^oo$收敛到$y^(-1)$
+    + 当$y != 0$且$forall n>=m,b_n != 0$时，序列$(a_n / b_n)_(n=m)^oo$收敛到$x/y$
 
         由(2)和(5)的证明，$
-            lim_(n->infinity)(a_n/b_n) = lim_(n->infinity)a_n times lim_(n->infinity)b_n^(-1) = x/y
+            lim_(n->oo)(a_n/b_n) = lim_(n->oo)a_n times lim_(n->oo)b_n^(-1) = x/y
         $
 
-    + 序列$(max(a_n, b_n))_(n=m)^infinity$收敛到$max(x, y)$
+    + 序列$(max(a_n, b_n))_(n=m)^oo$收敛到$max(x, y)$
         - 如果$x > y$，那么取$delta = (x-y)/2 > 0$，那么$
                 exists N_1 >=m, forall i >= N_1, abs(a_i - x) <= delta => abs(a_i) >= x - delta = (x+y)/2
             $对于相同的$epsilon$也有$
                 exists N_2 >= m, forall i >= N_2, abs(b_i - y) <= delta => abs(b_i) <= delta + y = (x+y)/2
             $于是$
                 forall i >= N = max(N_1, N_2), abs(b_i) <= (x+y)/2 <= abs(a_i)
-            $所以$lim_(n->infinity)max(a_n, b_n) = lim_(n->infinity)a_n = x = max(x, y)$
-        - 如果$x = y$，那么序列$(a_n)_(n=m)^infinity$与序列$(b_n)_(n=m)^infinity$等价，所以$
-                lim_(n->infinity)max(a_n, b_n) = lim_(n->infinity)a_n = x = max(x, y)
+            $所以$lim_(n->oo)max(a_n, b_n) = lim_(n->oo)a_n = x = max(x, y)$
+        - 如果$x = y$，那么序列$(a_n)_(n=m)^oo$与序列$(b_n)_(n=m)^oo$等价，所以$
+                lim_(n->oo)max(a_n, b_n) = lim_(n->oo)a_n = x = max(x, y)
             $
         - 如果$x < y$，那么取$delta = (y - x)/2$，同理可得$
-                lim_(n->infinity)max(a_n, b_n) = lim_(n->infinity)b_n = y = max(x, y)
+                lim_(n->oo)max(a_n, b_n) = lim_(n->oo)b_n = y = max(x, y)
             $
 
-    + 序列$(min(a_n, b_n))_(n=m)^infinity$收敛到$min(x, y)$
+    + 序列$(min(a_n, b_n))_(n=m)^oo$收敛到$min(x, y)$
 
         类似(7)的证明
 ]
@@ -359,31 +359,31 @@
     本题最麻烦的地方在于(2)中需要凑配出$a_n b_n - x y$的不等式，此外在$epsilon$的选取也有技巧，另外值得注意的是$epsilon/(2(abs(y) + 1))$的选取，由于$abs(y)$可能为零，所以不能简单的使用$epsilon/(2 abs(y))$，而要用$epsilon/(2 (abs(y) + 1))$，搭配$abs(y)/(abs(y) + 1) < 1$即可得到结果
 ]
 
-#problem[序列$(a_n)_(n=m)^infinity$和$(b_n)_(n=m)^infinity$都是收敛序列，分别收敛到$x, y$，如果$(b_n)_(n=m)^infinity$收敛到$0$，那么$
-        lim_(n->infinity)(a_n/(b_n)) = (lim_(n->infinity)a_n)/(lim_(n->infinity)b_n)
+#problem[序列$(a_n)_(n=m)^oo$和$(b_n)_(n=m)^oo$都是收敛序列，分别收敛到$x, y$，如果$(b_n)_(n=m)^oo$收敛到$0$，那么$
+        lim_(n->oo)(a_n/(b_n)) = (lim_(n->oo)a_n)/(lim_(n->oo)b_n)
     $会失效，为什么？]
 #proof[
     回顾对这个运算的证明，它依赖极限倒数的证明，对于倒数的证明$
-        lim_(n->infinity)(b_n^(-1)) = (lim_(n->infinity)b_n)^(-1)
-    $的条件是——该序列不会收敛到$0$，如果$(b_n)_(n=m)^infinity$收敛到$0$，即$
+        lim_(n->oo)(b_n^(-1)) = (lim_(n->oo)b_n)^(-1)
+    $的条件是——该序列不会收敛到$0$，如果$(b_n)_(n=m)^oo$收敛到$0$，即$
         forall epsilon in RR^+, exists N >= m, forall n >= N, abs(b_j - 0) = abs(b_j) <= epsilon => abs(1/b_j) >= epsilon
-    $也即$(1/(b_n))_(n=m)^infinity$是发散的，发散的极限是未定义的，这导致了收敛到$0$的序列的倒数的极限是未定义的，进而导致了极限除法中使用收敛到$0$的极限作为分母会产生未定义的结果
+    $也即$(1/(b_n))_(n=m)^oo$是发散的，发散的极限是未定义的，这导致了收敛到$0$的序列的倒数的极限是未定义的，进而导致了极限除法中使用收敛到$0$的极限作为分母会产生未定义的结果
 ]
 
 #problem[证明有理数版本的等价柯西序列的定义与实数版本的柯西序列的定义是一致的][
-    $(a_n)_(n=m)^infinity$和$(b_n)_(n=m)^infinity$是实数序列，那么它们是有理数版本的等价柯西序列，当且仅当它们是实数版本的等价柯西序列
+    $(a_n)_(n=m)^oo$和$(b_n)_(n=m)^oo$是实数序列，那么它们是有理数版本的等价柯西序列，当且仅当它们是实数版本的等价柯西序列
 ]
 #proof[
     - $=>$\
 
-        $(a_n)_(n=m)^infinity$和$(b_n)_(n=m)^infinity$是有理数版本的等价柯西序列，那么
+        $(a_n)_(n=m)^oo$和$(b_n)_(n=m)^oo$是有理数版本的等价柯西序列，那么
         $
             forall epsilon in QQ^+, exists N >= m, forall j >= N, abs(a_j - b_j) <= epsilon
         $由于有理数可以被嵌入到实数中，所以$epsilon in RR^+$，所以上面的定义就是实数版本的等价柯西序列
 
     - $arrow.double.l$\
 
-        $(a_n)_(n=m)^infinity$和$(b_n)_(n=m)^infinity$是实数版本的等价柯西序列，那么
+        $(a_n)_(n=m)^oo$和$(b_n)_(n=m)^oo$是实数版本的等价柯西序列，那么
         $
             forall epsilon in RR^+, exists N >= m, forall j >= N, abs(a_j - b_j) <= epsilon
         $那么由阿基米德性质，存在有理数$epsilon'$满足$0 < epsilon' <= epsilon$，于是$
@@ -395,26 +395,26 @@
 
 #definition[广义实数系][
 
-    广义实数系是实数系$RR$加上两个额外元素$-infinity, +infinity$
+    广义实数系是实数系$RR$加上两个额外元素$-oo, +oo$
     - 广义实数系记作$RR^*$
-    - $-infinity, +infinity$不同于任何$RR$中的元素
+    - $-oo, +oo$不同于任何$RR$中的元素
     - 对于任意$RR^*$中的元素$x$
         - $x in RR <=> x$是有限的
-        - $x = -infinity or x = +infinity <=> x$是无限的
+        - $x = -oo or x = +oo <=> x$是无限的
 ]
 
 #definition[广义实数的相反数][
     $forall x in RR^*$，如果：
     - $x in RR$，相反数为$-x$
-    - $x = -infinity$，相反数定义为$-(-infinity) := +infinity$
-    - $x = +infinity$，相反数定义为$-(+infinity) := -infinity$
+    - $x = -oo$，相反数定义为$-(-oo) := +oo$
+    - $x = +oo$，相反数定义为$-(+oo) := -oo$
 ]
 
 #definition[广义实数系上的序][
     $x, y in RR^*$，称$x <= y$，当且仅当下列其一为真：
     - $x, y in RR and x <= y$
-    - $x = -infinity$
-    - $y = +infinity$
+    - $x = -oo$
+    - $y = +oo$
 ]
 
 #property[广义实数系的序的性质][
@@ -429,8 +429,8 @@
 
     1. $E subset.eq RR^*$，定义$E$的最小上界/上确界$sup(E)$为：
     - $E subset.eq RR$，那么$sup(E)$的定义如实数子集的上确界的定义
-    - $-infinity in E and +infinity in.not E$，定义$sup(E) := sup(E without {-infinity})$，此时的定义亦如实数子集的上确界的定义
-    - $+infinity in E$，定义$sup(E) := +infinity$
+    - $-oo in E and +oo in.not E$，定义$sup(E) := sup(E without {-oo})$，此时的定义亦如实数子集的上确界的定义
+    - $+oo in E$，定义$sup(E) := +oo$
 
     2. $E subset.eq RR^*$，定义$E$的最小下界/下确界$inf(E)$为
     $ inf(E) := -sup(-E) $其中$-E := {-x : x in E}$
@@ -450,31 +450,31 @@
     $x, y, z in RR^*$
     + 自反性
         - 如果$x in RR$，即为实数的自反性
-        - 如果$x = +infinity$，由定义$forall y in RR^*, y <= +infinity$总成立，所以$+infinity <= +infinity$
-        - 如果$x = -infinity$，由定义$forall y in RR^*, -infinity <= y$总成立，所以$-infinity <= -infinity$
+        - 如果$x = +oo$，由定义$forall y in RR^*, y <= +oo$总成立，所以$+oo <= +oo$
+        - 如果$x = -oo$，由定义$forall y in RR^*, -oo <= y$总成立，所以$-oo <= -oo$
     + 三歧性
-        - 如果$x = +infinity$
-            - $y = +infinity$，那么$y = x$
-            - $y = -infinity$，由定义$forall x in RR^*, -infinity <= x$，于是$y <= x and y != x$，所以$y < x$
-            - $y in RR$，再由定义$y <= +infinity and y != +infinity$，那么$y < x$
-        - 如果$x = -infinity$
-            - $y = -infinity$，那么$x = y$
-            - $y = +infinity$，那么$x <= y and x != y$，那么$x < y$
-            - $y in RR$，那么$x = -infinity < y$
-        - 如果$x in RR and y in {+infinity, -infinity}$
-            - $y = -infinity$，那么$x > y$
-            - $y = +infinity$，那么$y > x$
+        - 如果$x = +oo$
+            - $y = +oo$，那么$y = x$
+            - $y = -oo$，由定义$forall x in RR^*, -oo <= x$，于是$y <= x and y != x$，所以$y < x$
+            - $y in RR$，再由定义$y <= +oo and y != +oo$，那么$y < x$
+        - 如果$x = -oo$
+            - $y = -oo$，那么$x = y$
+            - $y = +oo$，那么$x <= y and x != y$，那么$x < y$
+            - $y in RR$，那么$x = -oo < y$
+        - 如果$x in RR and y in {+oo, -oo}$
+            - $y = -oo$，那么$x > y$
+            - $y = +oo$，那么$y > x$
         - 如果$x in RR and y in RR$，这种情况在实数的三歧性中业已证明
     + 传递性
         由于$x <= y and y <= z$
-        - $x = -infinity$，那么总有$x = -infinity <= z$
-        - $x = +infinity$，由于$x <= y$，那么$y = +infinity$，由于$y <= z$，那么$z = +infinity$，于是$x <= z$
+        - $x = -oo$，那么总有$x = -oo <= z$
+        - $x = +oo$，由于$x <= y$，那么$y = +oo$，由于$y <= z$，那么$z = +oo$，于是$x <= z$
         - $x in RR$
-            - $y in RR or y = +infinity$
-                - $(z in RR and y <= z )or z = +infinity$，无论那种情况，都有$x <= z$
+            - $y in RR or y = +oo$
+                - $(z in RR and y <= z )or z = +oo$，无论那种情况，都有$x <= z$
     + 相反数反号
-        - $x = -infinity$，那么$-x = +infinity$，总有$-x >= -y$
-        - $y = +infinity$，那么$-y = -infinity$，总有$-x >= -y$
+        - $x = -oo$，那么$-x = +oo$，总有$-x >= -y$
+        - $y = +oo$，那么$-y = -oo$，总有$-x >= -y$
         - $x,y in RR$，由实数的序的性质可证
 ]
 
@@ -482,56 +482,56 @@
 #proof[
     $E subset.eq RR^*$
     + $forall x in E, x <= sup(E) and x >= inf(E)$
-        - $+infinity in E and -infinity in.not E$
-            - 那么$sup(E) = +infinity$，总有$forall x in E, sup(E) >= x$
-            - 由于$+infinity in E and -infinity in.not E$，那么$+infinity in.not -E and -infinity in -E$，由于$
-                    inf(E) = -sup(-E without {-infinity})
+        - $+oo in E and -oo in.not E$
+            - 那么$sup(E) = +oo$，总有$forall x in E, sup(E) >= x$
+            - 由于$+oo in E and -oo in.not E$，那么$+oo in.not -E and -oo in -E$，由于$
+                    inf(E) = -sup(-E without {-oo})
                 $于是
             $
-                & forall x in E, -x in -E, -x <= sup(-E without {-infinity}) \
-                & => x >= -sup(-E without {-infinity}) = inf(E)
+                & forall x in E, -x in -E, -x <= sup(-E without {-oo}) \
+                & => x >= -sup(-E without {-oo}) = inf(E)
             $
-        - $-infinity in E and +infinity in.not E$
-            - $sup(E) = sup(E without {-infinity}) in RR$，于是
+        - $-oo in E and +oo in.not E$
+            - $sup(E) = sup(E without {-oo}) in RR$，于是
                 $
-                    forall x in E & => x = -infinity or x in E without {-infinity} \
+                    forall x in E & => x = -oo or x in E without {-oo} \
                 $
 
-                如果$x = -infinity$，那么一定也有$x < sup(E)$
+                如果$x = -oo$，那么一定也有$x < sup(E)$
 
-                如果$x in E without {-infinity}$，那么$x <= sup(E without {-infinity}) = sup(E)$
-            - $inf(E) = -sup(-E) = -infinity$，易有$x <= inf(E)$
-        - $-infinity in E and +infinity in E$
-            易有$sup(E) = +infinity, inf(E) = -sup(-E) = -infinity$，于是总有$forall x in E, x <= sup(E), x >= inf(E)$
-        - $-infinity in.not E and +infinity in.not E$，那么即为实数上的上下确界，前面业已证明
+                如果$x in E without {-oo}$，那么$x <= sup(E without {-oo}) = sup(E)$
+            - $inf(E) = -sup(-E) = -oo$，易有$x <= inf(E)$
+        - $-oo in E and +oo in E$
+            易有$sup(E) = +oo, inf(E) = -sup(-E) = -oo$，于是总有$forall x in E, x <= sup(E), x >= inf(E)$
+        - $-oo in.not E and +oo in.not E$，那么即为实数上的上下确界，前面业已证明
     + $M in RR^*$，是$E$的一个上界，那么$sup(E) <= M$
-        - $+infinity in E$，由于$M$是$E$的上界，那么$M = +infinity$，同时$sup(E) = +infinity = M$
+        - $+oo in E$，由于$M$是$E$的上界，那么$M = +oo$，同时$sup(E) = +oo = M$
         - $E subset.eq RR$，那么如实数中，上界总大于等于上确界
-        - $+infinity in.not E and -infinity in E$，那么$sup(E) = sup(E without {-infinity}) in RR$，如实数中的情况
+        - $+oo in.not E and -oo in E$，那么$sup(E) = sup(E without {-oo}) in RR$，如实数中的情况
     + $M in RR^*$，是$E$的一个下界，那么$inf(E) <= M$
-        - $-infinity in E$，那么$M = -infinity$，于是$inf(E) = -infinity = M$
+        - $-oo in E$，那么$M = -oo$，于是$inf(E) = -oo = M$
         - $E subset.eq RR$，那么如实数中，下界总大于等于下确界
-        - $-infinity in.not E and +infinity in E$，那么$+infinity in.not -E and -infinity in -E$，那么$inf(E) = -sup(-E) = -sup(-E without {-infinity}) in RR$，如实数中的情况
+        - $-oo in.not E and +oo in E$，那么$+oo in.not -E and -oo in -E$，那么$inf(E) = -sup(-E) = -sup(-E without {-oo}) in RR$，如实数中的情况
 ]
 
 == 序列的上确界和下确界
 
 #definition[序列的上确界和下确界][
 
-    $(a_n)_(n=m)^infinity$是实数序列，定义：
+    $(a_n)_(n=m)^oo$是实数序列，定义：
 
-    + 序列的上确界为$ sup((a_n)_(n=m)^infinity) := sup{a_n:n>=m} $
-    + 序列的下确界为$ inf((a_n)_(n=m)^infinity) := inf{a_n:n>=m} $
+    + 序列的上确界为$ sup((a_n)_(n=m)^oo) := sup{a_n:n>=m} $
+    + 序列的下确界为$ inf((a_n)_(n=m)^oo) := inf{a_n:n>=m} $
 
     有时也记作
     $
-        sup((a_n)_(n=m)^infinity) = sup_(n>=m)a_n\
-        inf((a_n)_(n=m)^infinity) = inf_(n>=m)a_n
+        sup((a_n)_(n=m)^oo) = sup_(n>=m)a_n\
+        inf((a_n)_(n=m)^oo) = inf_(n>=m)a_n
     $
 ]
 
 #property[最小上界性质][
-    $(a_n)_(n=m)^infinity$是实数序列，$x = sup(a_n)_(n=m)^infinity in RR^*$，那么
+    $(a_n)_(n=m)^oo$是实数序列，$x = sup(a_n)_(n=m)^oo in RR^*$，那么
 
     + $forall n >=m, a_n <= x$
     + $M in RR^*$，是序列的一个上界，那么有$x <= M$
@@ -539,7 +539,7 @@
 ]<prop:least-upper-bound-property>
 
 #property[最大下界性质][
-    $(a_n)_(n=m)^infinity$是实数序列，$x = inf(a_n)_(n=m)^infinity in RR^*$，那么
+    $(a_n)_(n=m)^oo$是实数序列，$x = inf(a_n)_(n=m)^oo in RR^*$，那么
 
     + $forall n >=m, a_n >= x$
     + $M in RR^*$，是序列的一个下界，那么有$x >= M$
@@ -552,14 +552,14 @@
 ]
 
 #lemma[单调有界序列必然收敛][
-    $(a_n)_(n=m)^infinity$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛，并且有
+    $(a_n)_(n=m)^oo$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛，并且有
     $
-        lim_(n->infinity)(a_n) = sup_(n>=m) a_n <= M
+        lim_(n->oo)(a_n) = sup_(n>=m) a_n <= M
     $
 
     类似的，$M in RR$是该序列的下界，并且该序列递减，那么该序列收敛，并且有
     $
-        lim_(n->infinity)(a_n) = inf_(n>=m) a_n >= M
+        lim_(n->oo)(a_n) = inf_(n>=m) a_n >= M
     $
 ]
 
@@ -568,7 +568,7 @@
 ]
 
 
-#problem[验证序列$(1/n)_(n=1)^infinity$的上确界是$1$，下确界是$0$]
+#problem[验证序列$(1/n)_(n=1)^oo$的上确界是$1$，下确界是$0$]
 #solution[
     + $sup_(n>=1)1/n = 1$
 
@@ -590,13 +590,13 @@
 #problem[证明@prop:least-upper-bound-property]
 #proof[
 
-    $(a_n)_(n=m)^infinity$是实数序列，$x = sup(a_n)_(n=m)^infinity in RR^*$
+    $(a_n)_(n=m)^oo$是实数序列，$x = sup(a_n)_(n=m)^oo in RR^*$
 
     + 由@prop:extended-real-sup-inf-properties 可证
     + 由@prop:extended-real-sup-inf-properties 可证
     + $forall y in RR^*, y < x => exists n >= m, y < a_n <=x$
 
-        由于$x$是最小上界，那么有$a_n <= x$，由于$y < x$，那么$y != +infinity$，如果$y = -infinity$，那么一定有$y < a_n <= x$，因为$(a_n)_(n=m)^infinity$是实数序列
+        由于$x$是最小上界，那么有$a_n <= x$，由于$y < x$，那么$y != +oo$，如果$y = -oo$，那么一定有$y < a_n <= x$，因为$(a_n)_(n=m)^oo$是实数序列
 
         如果$y in RR$，定义集合$E := {a_n : n>= m}$，所以$x = sup_(n>=m)a_n = sup(E)$
 
@@ -604,7 +604,7 @@
 ]
 
 #problem[单调有界序列必然收敛][
-    $(a_n)_(n=m)^infinity$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛
+    $(a_n)_(n=m)^oo$是实数序列，$M in RR$是该序列的上界，并且该序列递增，那么该序列收敛
 ]
 #proof[
     由于$M in RR$是该序列的一个上界，那么上确界有一定是实数，所以令$x = sup_(n>=m)a_n in RR$，那么任取$epsilon in RR^+$，就有$x - epsilon < x$，于是$
@@ -616,30 +616,30 @@
                     & => abs(a_n - x) < epsilon
     $这正是序列收敛的定义，于是就有
     $
-        lim_(n->infinity)a_n = sup_(n>=m)a_n <= M
+        lim_(n->oo)a_n = sup_(n>=m)a_n <= M
     $
 ]
 
-#problem[证明$x > 1$时，$(x^n)_(n=1)^infinity$不收敛]
+#problem[证明$x > 1$时，$(x^n)_(n=1)^oo$不收敛]
 #proof[
-    定义新序列$(1/x^n)_(n=1)^infinity$，由于$x > 1$，那么$
+    定义新序列$(1/x^n)_(n=1)^oo$，由于$x > 1$，那么$
         forall n,m in ZZ^+, n>=m => x^n > x^m > 1 => 0 < 1/x^n <1/x^m < 1
-    $于是$(1/x^n)_(n=1)^infinity$是单调递减的，且有$inf_(n>=m)1/x^n = 0$，于是$
-        lim_(n->infinity)1/x^n = 0
+    $于是$(1/x^n)_(n=1)^oo$是单调递减的，且有$inf_(n>=m)1/x^n = 0$，于是$
+        lim_(n->oo)1/x^n = 0
     $
 
-    现在假设$(x^n)_(n=1)^infinity$收敛到$L$，同时根据$1/x^n x^n = 1$，就有$0 L = 0 = 1$，矛盾，所以$x > 1$时，$(x^n)_(n=1)^infinity$不收敛
+    现在假设$(x^n)_(n=1)^oo$收敛到$L$，同时根据$1/x^n x^n = 1$，就有$0 L = 0 = 1$，矛盾，所以$x > 1$时，$(x^n)_(n=1)^oo$不收敛
 ]
 
 == 上极限、下极限和极限点
 
 #definition[极限点][
-    $x in RR, epsilon in RR^+, (a_n)_(n=m)^infinity$是实数序列，定义：
-    + $x$是$epsilon$-贴附于$(a_n)_(n=m)^infinity$的$<=>$存在一个$n>= m$，使得$a_n$可以$epsilon$-接近于$x$
-    + $x$是持续$epsilon$-贴附于$(a_n)_(n=m)^infinity$的$<=> forall N >= m, (a_n)_(n=N)^infinity$是$epsilon$-贴附于$x$的
-    + $x$是$(a_n)_(n=m)^infinity$的极限点/黏附点$<=> forall epsilon in RR^+$，$x$是持续$epsilon$-贴附于$(a_n)_(n=m)^infinity$的
+    $x in RR, epsilon in RR^+, (a_n)_(n=m)^oo$是实数序列，定义：
+    + $x$是$epsilon$-贴附于$(a_n)_(n=m)^oo$的$<=>$存在一个$n>= m$，使得$a_n$可以$epsilon$-接近于$x$
+    + $x$是持续$epsilon$-贴附于$(a_n)_(n=m)^oo$的$<=> forall N >= m, (a_n)_(n=N)^oo$是$epsilon$-贴附于$x$的
+    + $x$是$(a_n)_(n=m)^oo$的极限点/黏附点$<=> forall epsilon in RR^+$，$x$是持续$epsilon$-贴附于$(a_n)_(n=m)^oo$的
 
-    将上述定义展开就有，如果$x$是序列$(a_n)_(n=m)^infinity$的极限点，那么就有
+    将上述定义展开就有，如果$x$是序列$(a_n)_(n=m)^oo$的极限点，那么就有
     $
         forall epsilon in RR^+, forall N >= m, exists n>= N, abs(a_n - x) <= epsilon
     $
@@ -649,7 +649,7 @@
 ]
 
 #lemma[极限其实也是极限点][
-    实数序列$(a_n)_(n=m)^infinity$收敛到$L$，那么$L$也是该序列的极限点，且是唯一的极限点
+    实数序列$(a_n)_(n=m)^oo$收敛到$L$，那么$L$也是该序列的极限点，且是唯一的极限点
 ]<lem:limit-is-unique-limit-point>
 #proof[
     任取$epsilon in RR^+, N >= m$，由收敛定义有
@@ -667,24 +667,24 @@
 
 #definition[上极限和下极限][
 
-    $(a_n)_(n=m)^infinity$是序列，现在定义序列$(a_N^+)_(N=m)^infinity$，其中
+    $(a_n)_(n=m)^oo$是序列，现在定义序列$(a_N^+)_(N=m)^oo$，其中
     $
-        a_N^+ := sup(a_n)_(n = N)^infinity
+        a_N^+ := sup(a_n)_(n = N)^oo
     $
 
-    定义_序列$(a_n)_(n=m)^infinity$的上极限_为
-    $ lim_(n->infinity) sup a_n := inf(a_N^+)_(N = m)^infinity $
+    定义_序列$(a_n)_(n=m)^oo$的上极限_为
+    $ lim_(n->oo) sup a_n := inf(a_N^+)_(N = m)^oo $
 
-    类似的，定义序列$(a_N^-)_(N=m)^infinity$，其中
-    $ a_N^- := inf(a_n)_(n=N)^infinity $
-    并定义_序列$(a_n)_(n=m)^infinity$的下极限_为
+    类似的，定义序列$(a_N^-)_(N=m)^oo$，其中
+    $ a_N^- := inf(a_n)_(n=N)^oo $
+    并定义_序列$(a_n)_(n=m)^oo$的下极限_为
     $
-        lim_(n->infinity)inf a_n := sup(a_N^-)_(N = m)^infinity
+        lim_(n->oo)inf a_n := sup(a_N^-)_(N = m)^oo
     $
     // 有时也将上下极限记作
     // $
-    //   lim_(n->infinity)sup a_n = overline(lim)_(n->infinity)a_n\
-    //   lim_(n->infinity)inf a_n = underline(lim)_(n->infinity)a_n\
+    //   lim_(n->oo)sup a_n = overline(lim)_(n->oo)a_n\
+    //   lim_(n->oo)inf a_n = underline(lim)_(n->oo)a_n\
     // $
 ]
 
@@ -693,45 +693,45 @@
 ]
 
 #property[序列上/下极限点的性质][
-    $(a_n)_(n=m)^infinity$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点，有下列成立
+    $(a_n)_(n=m)^oo$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点，有下列成立
 
     + $forall x > L^+, exists N >= m, forall n >= N, a_n < x$
     + $forall y < L^-, exists N >= m, forall n >= N, a_n > y$
     + $forall x < L^+, forall N >= m, exists n >= N, a_n > x$
     + $forall y > L^-, forall N >= m, exists n >= N, a_n < y$
-    + $inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$
-    + $c$是序列$(a_n)_(n=m)^infinity$的任意极限点，那么$L^- <= c <= L^+$
+    + $inf(a_n)_(n=m)^oo <= L^- <= L^+ <= sup(a_n)_(n=m)^oo$
+    + $c$是序列$(a_n)_(n=m)^oo$的任意极限点，那么$L^- <= c <= L^+$
     + $L^+$是有限的，那么$L^+$是序列的一个极限点
     + $L^-$是有限的，那么$L^-$是序列的一个极限点
-    + $c in RR, lim_(n->infinity)a_n = c <=> L^+ = L^- = c$
+    + $c in RR, lim_(n->oo)a_n = c <=> L^+ = L^- = c$
 ]<prop:sequence-limit-point-properties>
 
 #lemma[比较引理][
-    $(a_n)_(n=m)^infinity,(b_n)_(n=m)^infinity$是两个实数序列，满足$forall n >= m, a_n <= b_n$，那么有如下不等式成立
-    + $ sup(a_n)_(n=m)^infinity <= sup(b_n)_(n=m)^infinity $
-    + $ inf(a_n)_(n=m)^infinity <= inf(b_n)_(n=m)^infinity $
-    + $ lim_(n->infinity) sup a_n <= lim_(n->infinity) sup b_n $
-    + $ lim_(n->infinity) inf a_n <= lim_(n->infinity) inf b_n $
+    $(a_n)_(n=m)^oo,(b_n)_(n=m)^oo$是两个实数序列，满足$forall n >= m, a_n <= b_n$，那么有如下不等式成立
+    + $ sup(a_n)_(n=m)^oo <= sup(b_n)_(n=m)^oo $
+    + $ inf(a_n)_(n=m)^oo <= inf(b_n)_(n=m)^oo $
+    + $ lim_(n->oo) sup a_n <= lim_(n->oo) sup b_n $
+    + $ lim_(n->oo) inf a_n <= lim_(n->oo) inf b_n $
 ]<lem:comparison-lemma>
 
 #corollary[夹逼检验][
-    $(a_n)_(n=m)^infinity, (b_n)_(n=m)^infinity, (c_n)_(n=m)^infinity$是实数序列，满足
+    $(a_n)_(n=m)^oo, (b_n)_(n=m)^oo, (c_n)_(n=m)^oo$是实数序列，满足
     $
         forall n >= m, a_n <= b_n <= c_n
     $
-    如果$(a_n)_(n=m)^infinity, (c_n)_(n=m)^infinity$都收敛到$L$，那么$(b_n)_(n=m)^infinity$也收敛到$L$
+    如果$(a_n)_(n=m)^oo, (c_n)_(n=m)^oo$都收敛到$L$，那么$(b_n)_(n=m)^oo$也收敛到$L$
 ]<cor:squeeze-test>
 
 #corollary[数列零检验][
-    实数序列$(a_n)_(n=m)^infinity$的极限存在且等于$0$，当且仅当极限$lim_(n->infinity)abs(a_n)$存在且等于$0$
+    实数序列$(a_n)_(n=m)^oo$的极限存在且等于$0$，当且仅当极限$lim_(n->oo)abs(a_n)$存在且等于$0$
 ]<cor:zero-limit-test>
 
 #theorem[实数的完备性][
-    实数序列$(a_n)_(n=m)^infinity$是柯西序列，当且仅当它是收敛的
+    实数序列$(a_n)_(n=m)^oo$是柯西序列，当且仅当它是收敛的
 ]<thm:completeness-of-real-numbers>
 #proof[
     - $=>$\
-        $(a_n)_(n=m)^infinity$是柯西序列，那么它是有界的，所以由@prop:sequence-limit-point-properties(5)可得$L^+,L^- in RR$
+        $(a_n)_(n=m)^oo$是柯西序列，那么它是有界的，所以由@prop:sequence-limit-point-properties(5)可得$L^+,L^- in RR$
 
         利用柯西序列的定义就有
         $
@@ -739,20 +739,20 @@
         $
         由@lem:comparison-lemma 就有
         $
-            -epsilon/2 + a_N <= inf(a_n)_(n=N)^infinity <= sup(a_n)_(n=N)^infinity <= epsilon/2 + a_N
+            -epsilon/2 + a_N <= inf(a_n)_(n=N)^oo <= sup(a_n)_(n=N)^oo <= epsilon/2 + a_N
         $再次利用@lem:comparison-lemma 搭配上下极限定义，就有
         $
             & -epsilon/2 + a_N <= L^- <=L^+ <= epsilon/2 + a_N \
             & => 0<=L^+ - L^-<= epsilon => abs(L^+ - L^-) <= epsilon
-        $由于$epsilon$是任取的，那么$L^+ = L^-$，结合@prop:sequence-limit-point-properties(9)，说明$(a_n)_(n=1)^infinity$是收敛的
+        $由于$epsilon$是任取的，那么$L^+ = L^-$，结合@prop:sequence-limit-point-properties(9)，说明$(a_n)_(n=1)^oo$是收敛的
 
     - $arrow.double.l$ 见@lem:convergent-implies-cauchy 的证明
 ]
 
 #definition[没有有限上下界][
-    对于序列$(a_n)_(n=m)^infinity$，其极限点为$c$
-    - $c = +infinity <=>$该序列没有有限上界
-    - $c = -infinity <=>$该序列没有有限下界
+    对于序列$(a_n)_(n=m)^oo$，其极限点为$c$
+    - $c = +oo <=>$该序列没有有限上界
+    - $c = -oo <=>$该序列没有有限下界
 ]
 
 
@@ -760,26 +760,26 @@
 #proof[见 @lem:limit-is-unique-limit-point 的证明]
 
 #problem[证明极限点/上极限/下极限的定义中，起始角标的选取是无关紧要的][
-    + $(a_n)_(n=m)^infinity$是实数序列，$m >= m'$，那么$c$是$(a_n)_(n=m)^infinity$的极限点，当且仅当$c$是$(a_n)_(n=m')^infinity$的极限点
-    + $(a_n)_(n=m)^infinity$和$(a_(n+k))_(n=m)^infinity$是两个实数序列，且$k >= 0$，那么$c$是$(a_n)_(n=m)^infinity$的极限点，当且仅当$c$是$(a_(n+k))_(n=m)^infinity$的极限点
-    + $(a_n)_(n=m)^infinity$是实数序列，$m <= m'$，那么$c$是$(a_n)_(n=m)^infinity$的上极限，当且仅当$c$是$(a_n)_(n=m')^infinity$的上极限
-    + $(a_n)_(n=m)^infinity$是实数序列，$k >= 0$，那么$c$是$(a_(n+k))_(n=m)^infinity$的上极限，当且仅当$c$是$(a_n)_(n=m)^infinity$的上极限
-    + $(a_n)_(n=m)^infinity$是实数序列，$m <= m'$，那么$c$是$(a_n)_(n=m)^infinity$的下极限，当且仅当$c$是$(a_n)_(n=m')^infinity$的下极限
-    + $(a_n)_(n=m)^infinity$是实数序列，$k >= 0$，那么$c$是$(a_(n+k))_(n=m)^infinity$的下极限，当且仅当$c$是$(a_n)_(n=m)^infinity$的下极限
+    + $(a_n)_(n=m)^oo$是实数序列，$m >= m'$，那么$c$是$(a_n)_(n=m)^oo$的极限点，当且仅当$c$是$(a_n)_(n=m')^oo$的极限点
+    + $(a_n)_(n=m)^oo$和$(a_(n+k))_(n=m)^oo$是两个实数序列，且$k >= 0$，那么$c$是$(a_n)_(n=m)^oo$的极限点，当且仅当$c$是$(a_(n+k))_(n=m)^oo$的极限点
+    + $(a_n)_(n=m)^oo$是实数序列，$m <= m'$，那么$c$是$(a_n)_(n=m)^oo$的上极限，当且仅当$c$是$(a_n)_(n=m')^oo$的上极限
+    + $(a_n)_(n=m)^oo$是实数序列，$k >= 0$，那么$c$是$(a_(n+k))_(n=m)^oo$的上极限，当且仅当$c$是$(a_n)_(n=m)^oo$的上极限
+    + $(a_n)_(n=m)^oo$是实数序列，$m <= m'$，那么$c$是$(a_n)_(n=m)^oo$的下极限，当且仅当$c$是$(a_n)_(n=m')^oo$的下极限
+    + $(a_n)_(n=m)^oo$是实数序列，$k >= 0$，那么$c$是$(a_(n+k))_(n=m)^oo$的下极限，当且仅当$c$是$(a_n)_(n=m)^oo$的下极限
 ]
 #proof[
-    + 由于$c$是$(a_n)_(n=m)^infinity$的极限点，就有
+    + 由于$c$是$(a_n)_(n=m)^oo$的极限点，就有
         $
             forall epsilon in RR^+, forall N >= m, exists n>= N, abs(a_n - c) <= epsilon
         $自然有$N >= m >= m'$，于是
         $
             forall epsilon in RR^+, forall N >= m',exists n >= N, abs(a_n - c) <= epsilon
-        $这说明$c$是$(a_n)_(n=m')^infinity$的极限点\ \
+        $这说明$c$是$(a_n)_(n=m')^oo$的极限点\ \
 
-        由于$c$是$(a_n)_(n=m')^infinity$的极限点，那么有
+        由于$c$是$(a_n)_(n=m')^oo$的极限点，那么有
         $
             forall epsilon in RR^+, forall N >= m', exists n >= N, abs(a_n - c) <= epsilon
-        $对于$(a_n)_(n=m)^infinity$取$N >= m >= m'$，于是有$
+        $对于$(a_n)_(n=m)^oo$取$N >= m >= m'$，于是有$
             forall epsilon in RR^+, forall N >= m>=m', exists n >= N, abs(a_n - c) <= epsilon
         $
 
@@ -788,12 +788,12 @@
         ]
 
     + 令$m' = m+k>=m$，那么$
-            (a_(n+k))_(n=m)^infinity=(a_n)_(n=m')^infinity
+            (a_(n+k))_(n=m)^oo=(a_n)_(n=m')^oo
         $由(1)易证
 
     + 由上极限的定义，有
-        $ lim_(n->infinity) sup a_n = inf (a_N^+)_(N = m)^infinity $
-        其中$(a_N^+) = sup(a_n)_(n=N)^infinity$，所以有
+        $ lim_(n->oo) sup a_n = inf (a_N^+)_(N = m)^oo $
+        其中$(a_N^+) = sup(a_n)_(n=N)^oo$，所以有
         $
             a_m^+ >= a_(m-1)^+ >= ... >= a_(m')^+>= ...
         $
@@ -801,7 +801,7 @@
 
     + 令$m' = m + k >= m$，那么就有
         $
-            (a_(n+k))_(n=m)^infinity = (a_n)_(n = m')^infinity
+            (a_(n+k))_(n=m)^oo = (a_n)_(n = m')^oo
         $
         由(3)易证
 
@@ -816,64 +816,64 @@
 
 #problem[证明@prop:sequence-limit-point-properties ]
 #proof[
-    $(a_n)_(n=m)^infinity$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点
+    $(a_n)_(n=m)^oo$是一个实数序列，$L^+, L^- in RR^*$是该序列的上/下极限点
     + $forall x > L^+, exists N >= m, forall n >= N, a_n < x$\
-        $x > L^+$，由于$L^+ = inf(a_N^+)_(N =m)^infinity$，那么$x > inf(a_N^+)_(N =m)^infinity$，于是
-        $ exists N >= m, x > a_N^+ = sup(a_n)_(n=N)^infinity $进一步就有
+        $x > L^+$，由于$L^+ = inf(a_N^+)_(N =m)^oo$，那么$x > inf(a_N^+)_(N =m)^oo$，于是
+        $ exists N >= m, x > a_N^+ = sup(a_n)_(n=N)^oo $进一步就有
         $ forall n>= N, x > a_n $综上得证
 
     + $forall y < L^-, exists N >= m, forall n >= N, a_n > y$\
-        $y < L^-$，由于$L^- = sup(a_N^-)_(N = m)^infinity$，那么$y < sup(a_N^-)_(N = m)^infinity$，于是
-        $ exists N >= m, y < a_N^+ = inf(a_n)_(n=N)^infinity $进一步有
+        $y < L^-$，由于$L^- = sup(a_N^-)_(N = m)^oo$，那么$y < sup(a_N^-)_(N = m)^oo$，于是
+        $ exists N >= m, y < a_N^+ = inf(a_n)_(n=N)^oo $进一步有
         $ forall n >= N, y < a_n $综上得证
 
     + $forall x < L^+, forall N >= m, exists n >= N, a_n > x$\
-        $x < L^+$，由于$L^+ = inf(a_N^+)_(N = m)^infinity$，那么$x < inf(a_N^+)_(N = m)^infinity$，于是
-        $ forall N >= m, x < a_N^+ = sup(a_n)_(n=N)^infinity $进一步有
+        $x < L^+$，由于$L^+ = inf(a_N^+)_(N = m)^oo$，那么$x < inf(a_N^+)_(N = m)^oo$，于是
+        $ forall N >= m, x < a_N^+ = sup(a_n)_(n=N)^oo $进一步有
         $ exists n >= N, x < a_n $综上得证
 
     + $forall y > L^-, forall N >= m, exists n >= N, a_n < y$\
-        $y > L^-$，由于$L^- = sup(a_N^-)_(N = m)^infinity$，$y > sup(a_N^-)_(N = m)^infinity$，于是
-        $ forall N >= m, y > a_N^- = inf(a_n)_(n=N)^infinity $进一步有
+        $y > L^-$，由于$L^- = sup(a_N^-)_(N = m)^oo$，$y > sup(a_N^-)_(N = m)^oo$，于是
+        $ forall N >= m, y > a_N^- = inf(a_n)_(n=N)^oo $进一步有
         $ exists n >= N, y > a_n $综上得证
 
-    + $inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$\
+    + $inf(a_n)_(n=m)^oo <= L^- <= L^+ <= sup(a_n)_(n=m)^oo$\
 
-        $L^+ = inf(a_N^+)_(N=m)^infinity$，定义集合$E = {sup(a_n)_(n=N)^infinity:N>=m }$，于是$sup(a_n)_(n=m)^infinity in E$，由于$L^+ = inf(E)$，那么就有$L^+ <= sup(a_n)_(n=m)^infinity$
+        $L^+ = inf(a_N^+)_(N=m)^oo$，定义集合$E = {sup(a_n)_(n=N)^oo:N>=m }$，于是$sup(a_n)_(n=m)^oo in E$，由于$L^+ = inf(E)$，那么就有$L^+ <= sup(a_n)_(n=m)^oo$
 
-        同理，就有$inf(a_n)_(n=m)^infinity <= L^-$
+        同理，就有$inf(a_n)_(n=m)^oo <= L^-$
 
         假设$L^- > L^+$，所以
-        $ exists N >= m, sup(a_N^-)_(N=m)^infinity > a_N^+\ $进而有
+        $ exists N >= m, sup(a_N^-)_(N=m)^oo > a_N^+\ $进而有
         $
-            exists M >= m, a_N^+ < a_M^- <=sup(a_N^-)_(N=m)^infinity
+            exists M >= m, a_N^+ < a_M^- <=sup(a_N^-)_(N=m)^oo
         $取$p = N + M + 1$，那么$p > N, p > M$，于是就有$a_p < a_N^+ < a_M^- < a_p => a_p < a_p$，矛盾
 
-        综上$inf(a_n)_(n=m)^infinity <= L^- <= L^+ <= sup(a_n)_(n=m)^infinity$
+        综上$inf(a_n)_(n=m)^oo <= L^- <= L^+ <= sup(a_n)_(n=m)^oo$
 
-    + $c$是序列$(a_n)_(n=m)^infinity$的任意极限点，那么$L^- <= c <= L^+$\
+    + $c$是序列$(a_n)_(n=m)^oo$的任意极限点，那么$L^- <= c <= L^+$\
         假设$c > L^+$，那么取$epsilon = (c - L^+)/2 > 0$，由于$c$是极限点，那么就有
         $
             forall N >= m, exists n >= N, abs(a_n - c) <= epsilon\
             => a_n >= -epsilon + c =( L^+ + c )/2 > L^+
-        $因为任意的$N>=m$都存在$n >= N$满足上式，说明序列$(a_n)_(n=N)^infinity$至少有一项大于$( L^+ + c )/2$，所以有
+        $因为任意的$N>=m$都存在$n >= N$满足上式，说明序列$(a_n)_(n=N)^oo$至少有一项大于$( L^+ + c )/2$，所以有
         $
-            a_N^+ = sup(a_n)_(n=N)^infinity >= ( L^+ + c )/2
-        $可以看到序列$(a_N^+)_(N=m)^infinity$中的每一项都满足大于等于$( L^+ + c )/2$，所以就有
+            a_N^+ = sup(a_n)_(n=N)^oo >= ( L^+ + c )/2
+        $可以看到序列$(a_N^+)_(N=m)^oo$中的每一项都满足大于等于$( L^+ + c )/2$，所以就有
         $
-            L^+ = inf(a_N^+)_(N=m)^infinity >= (L^+ + c)/2 => c <= L^+
+            L^+ = inf(a_N^+)_(N=m)^oo >= (L^+ + c)/2 => c <= L^+
         $与假设矛盾，所以$c <= L^+$
 
         假设$L^- > c$，那么取$epsilon = (L^- - c )/ 2 > 0$，由于$c$是一个极限点，那么
         $
             forall N >= m, exists n >= N, abs(a_n - c) <= epsilon\
             => a_n <= epsilon + c = (L^- + c) / 2 < L^-
-        $于是说明任意的$N >= m$，总存在$n >= N$满足上式，说明序列$(a_n)_(n=N)^infinity$至少有一项小于$(L^- + c) / 2$，所以有
+        $于是说明任意的$N >= m$，总存在$n >= N$满足上式，说明序列$(a_n)_(n=N)^oo$至少有一项小于$(L^- + c) / 2$，所以有
         $
-            a_N^- = inf(a_n)_(n=N)^infinity <= (L^- + c) / 2
-        $可以看到序列$(a_N^-)_(N=m)^infinity$的每一项都小于等于$(L^- + c) / 2$，所以有
+            a_N^- = inf(a_n)_(n=N)^oo <= (L^- + c) / 2
+        $可以看到序列$(a_N^-)_(N=m)^oo$的每一项都小于等于$(L^- + c) / 2$，所以有
         $
-            L^- = sup(a_N^-)_(N=m)^infinity <= (L^- + c)/2 => L^- <= c
+            L^- = sup(a_N^-)_(N=m)^oo <= (L^- + c)/2 => L^- <= c
         $与假设矛盾，所以有$L^- <= c$
 
         综上$L^- <= c <= L^+$
@@ -911,7 +911,7 @@
         $
             forall N'' >= m, exists n >= N'', L^- - epsilon < a_n < L^- + epsilon => abs(a_n - L^-) < epsilon
         $这说明$L^-$是一个极限点
-    + $c in RR, lim_(n->infinity)a_n = c <=> L^+ = L^- = c$\
+    + $c in RR, lim_(n->oo)a_n = c <=> L^+ = L^- = c$\
         - $=>$\
             由于极限也是极限点，那么由(6)就有
             $ L^- <= c <= L^+ $由于序列收敛到$c$，那么就有
@@ -920,12 +920,12 @@
             $
             于是就有
             $
-                forall n >= N, a_n <= epsilon + c => a_N^+ = sup(a_n)_(n=N)^infinity <= epsilon + c\
-                forall n >= N, a_n >= -epsilon + c => a_N^- = inf(a_n)_(n=N)^infinity >= -epsilon + c
+                forall n >= N, a_n <= epsilon + c => a_N^+ = sup(a_n)_(n=N)^oo <= epsilon + c\
+                forall n >= N, a_n >= -epsilon + c => a_N^- = inf(a_n)_(n=N)^oo >= -epsilon + c
             $进而有
             $
-                L^+ = inf(a_k^+)_(k = N)^infinity <= epsilon + c\
-                L^- = sup(a_k^-)_(k = N)^infinity >= -epsilon + c\
+                L^+ = inf(a_k^+)_(k = N)^oo <= epsilon + c\
+                L^- = sup(a_k^-)_(k = N)^oo >= -epsilon + c\
             $所以就有
             $
                 -epsilon + c <= L^- <= L^+ <= epsilon + c\
@@ -952,51 +952,51 @@
 
 #problem[证明@lem:comparison-lemma]
 #proof[
-    $(a_n)_(n=m)^infinity,(b_n)_(n=m)^infinity$是两个实数序列，满足$forall n >= m, a_n <= b_n$
-    + $sup(a_n)_(n=m)^infinity <= sup(b_n)_(n=m)^infinity$\
+    $(a_n)_(n=m)^oo,(b_n)_(n=m)^oo$是两个实数序列，满足$forall n >= m, a_n <= b_n$
+    + $sup(a_n)_(n=m)^oo <= sup(b_n)_(n=m)^oo$\
         $
             & forall n>=m, a_n <= b_n \
-            & => a_n <= b_n <= sup(b_n)_(n=m)^infinity \
-            & => sup(a_n)_(n=m)^infinity <= sup(b_n)_(n=m)^infinity
+            & => a_n <= b_n <= sup(b_n)_(n=m)^oo \
+            & => sup(a_n)_(n=m)^oo <= sup(b_n)_(n=m)^oo
         $
-    + $inf(a_n)_(n=m)^infinity <= inf(b_n)_(n=m)^infinity$\
+    + $inf(a_n)_(n=m)^oo <= inf(b_n)_(n=m)^oo$\
         $
             & forall n >= m, a_n <= b_n \
-            & => inf(a_n)_(n=m)^infinity <= a_n <= b_n \
-            & => inf(a_n)_(n=m)^infinity <= inf(a_n)_(n=m)^infinity
+            & => inf(a_n)_(n=m)^oo <= a_n <= b_n \
+            & => inf(a_n)_(n=m)^oo <= inf(a_n)_(n=m)^oo
         $
-    + $lim_(n->infinity) sup a_n <= lim_(n->infinity) sup b_n$\
+    + $lim_(n->oo) sup a_n <= lim_(n->oo) sup b_n$\
         $
-            & forall N >= m,forall n >= N >=m, a_n <= b_n =>sup(a_n)_(n=N)^infinity <= sup(b_n)_(n=N)^infinity \
+            & forall N >= m,forall n >= N >=m, a_n <= b_n =>sup(a_n)_(n=N)^oo <= sup(b_n)_(n=N)^oo \
             & => forall N >=m, a_N^+ <= b_N^+ \
-            & => inf(a_N^+)_(N=m)^infinity <= inf(b_N^+)_(N=m)^infinity \
-            & => lim_(n->infinity) sup a_n <= lim_(n->infinity) sup b_n
+            & => inf(a_N^+)_(N=m)^oo <= inf(b_N^+)_(N=m)^oo \
+            & => lim_(n->oo) sup a_n <= lim_(n->oo) sup b_n
         $
-    + $lim_(n->infinity) inf a_n <= lim_(n->infinity) inf b_n$\
+    + $lim_(n->oo) inf a_n <= lim_(n->oo) inf b_n$\
         同(3)的证明
 ]
 
 #problem[证明@cor:squeeze-test]
 #proof[
-    由于$(a_n)_(n=m)^infinity, (c_n)_(n=m)^infinity$都收敛到$L$，那么就有
+    由于$(a_n)_(n=m)^oo, (c_n)_(n=m)^oo$都收敛到$L$，那么就有
     $
-        lim_(n->infinity) sup a_n = lim_(n->infinity) inf a_n = L\
-        lim_(n->infinity) sup c_n = lim_(n->infinity) inf c_n = L\
+        lim_(n->oo) sup a_n = lim_(n->oo) inf a_n = L\
+        lim_(n->oo) sup c_n = lim_(n->oo) inf c_n = L\
     $
     由于$forall n >= m, a_n <= b_n <= c_n$，那么就有
     $
-        & L = lim_(n->infinity) sup a_n<=lim_(n->infinity) sup b_n <= lim_(n->infinity) sup c_n = L \
-        & L = lim_(n->infinity) inf a_n<=lim_(n->infinity) inf b_n <= lim_(n->infinity) inf c_n = L \
+        & L = lim_(n->oo) sup a_n<=lim_(n->oo) sup b_n <= lim_(n->oo) sup c_n = L \
+        & L = lim_(n->oo) inf a_n<=lim_(n->oo) inf b_n <= lim_(n->oo) inf c_n = L \
     $
-    所以$lim_(n->infinity) inf b_n = lim_(n->infinity) sup b_n = L$，所以$(b_n)_(n=m)^infinity$收敛且收敛到$L$
+    所以$lim_(n->oo) inf b_n = lim_(n->oo) sup b_n = L$，所以$(b_n)_(n=m)^oo$收敛且收敛到$L$
 ]
 
-#problem[构造一个例子：序列$(a_n)_(n=1)^infinity$和$(b_n)_(n=1)^infinity$，满足$forall n in ZZ^+, a_n < b_n$，但是$sup(a_n)_(n=1)^infinity lt.not sup(b_n)_(n=1)^infinity$]
+#problem[构造一个例子：序列$(a_n)_(n=1)^oo$和$(b_n)_(n=1)^oo$，满足$forall n in ZZ^+, a_n < b_n$，但是$sup(a_n)_(n=1)^oo lt.not sup(b_n)_(n=1)^oo$]
 #solution[
 
     取$a_n = 1 - 1/n, b_n = 1$，所以$forall n in ZZ^+, a_n = 1- 1/n < 1 = b_n$
 
-    易知$sup(b_n)_(n=m)^infinity = sup(a_n)_(n=m)^infinity = 1$，所以$sup(a_n)_(n=m)^infinity lt.not sup(b_n)_(n=m)^infinity$
+    易知$sup(b_n)_(n=m)^oo = sup(a_n)_(n=m)^oo = 1$，所以$sup(a_n)_(n=m)^oo lt.not sup(b_n)_(n=m)^oo$
 
     // @lem:comparison-lemma 中要求$<=$而非$<$，所以不冲突
 ]
@@ -1004,58 +1004,58 @@
 #problem[证明@cor:zero-limit-test]
 #proof[
     - $=>$\
-        $lim_(n->infinity)a_n=0$说明
+        $lim_(n->oo)a_n=0$说明
         $
             forall epsilon in RR^+, exists N >= m, forall n >= N, abs(a_n - 0) = abs(a_n) = abs(abs(a_n)) <= epsilon
-        $这正是序列$(abs(a_n))_(n=m)^infinity$收敛到$0$的定义
+        $这正是序列$(abs(a_n))_(n=m)^oo$收敛到$0$的定义
 
     - $arrow.double.l$\
-        $lim_(n->infinity)abs(a_n)=0$说明
+        $lim_(n->oo)abs(a_n)=0$说明
         $
             forall epsilon in RR^+, exists N >=m, forall n>=N,abs(abs(a_n) - 0) = abs(abs(a_n))= abs(a_n) = abs(a_n - 0) <= epsilon
-        $这正是序列$(a_n)_(n=m)^infinity$收敛到$0$的定义
+        $这正是序列$(a_n)_(n=m)^oo$收敛到$0$的定义
 ]
 
-#problem[$c != 0, lim_(n->infinity)a_n = c <=> lim_(n->infinity)abs(a_n) = c$，是否还正确？]
+#problem[$c != 0, lim_(n->oo)a_n = c <=> lim_(n->oo)abs(a_n) = c$，是否还正确？]
 #proof[
-    - $c < 0$时显然不正确，例如$lim_(n->infinity)(-1) = -1$，$lim_(n->infinity)(abs(-1)) = 1$
+    - $c < 0$时显然不正确，例如$lim_(n->oo)(-1) = -1$，$lim_(n->oo)(abs(-1)) = 1$
     - $c > 0$时
         - $=>$\
             取$epsilon = c/2 > 0$，那么
             $
                 exists N >= m, forall n >= N, abs(a_n - c) <= c/2 => 0 < c/2 <= a_n <= (3c)/2
-            $所以$n >= N$时$abs(a_n) = a_n$，于是$lim_(n->infinity)abs(a_n) = c$
+            $所以$n >= N$时$abs(a_n) = a_n$，于是$lim_(n->oo)abs(a_n) = c$
         - $arrow.double.l$\
-            取$a_n = -1$，那么$abs(a_n) = 1$，于是$lim_(n->infinity)abs(a_n) = 1, lim_(n->infinity)a_n = -1$，二者不相等
+            取$a_n = -1$，那么$abs(a_n) = 1$，于是$lim_(n->oo)abs(a_n) = 1, lim_(n->oo)a_n = -1$，二者不相等
 
-    综上当$c > 0$时，$lim_(n->infinity)a_n = c => lim_(n->infinity)abs(a_n) = c$
+    综上当$c > 0$时，$lim_(n->oo)a_n = c => lim_(n->oo)abs(a_n) = c$
 ]
 
-#problem[证明$lim_(n->infinity)sup a_n$是序列$(a_n)_(n=m)^infinity$的一个极限点，而且是最大的极限点]
+#problem[证明$lim_(n->oo)sup a_n$是序列$(a_n)_(n=m)^oo$的一个极限点，而且是最大的极限点]
 #proof[
-    令$lim_(n->infinity)sup a_n = L$\
+    令$lim_(n->oo)sup a_n = L$\
     - 如果$L in RR$，那么由@prop:sequence-limit-point-properties(7)，$L$是一个极限点，由@prop:sequence-limit-point-properties(6)，$L$大于任意极限点，所以$L$是最大极限点
-    - 如果$L = +infinity$，对任意极限点$c$都有$+infinity >= c$，所以$L$是最大极限点
+    - 如果$L = +oo$，对任意极限点$c$都有$+oo >= c$，所以$L$是最大极限点
 ]
 
-#problem[构造一个序列$(a_n)_(n=1)^infinity$，只有三个极限点$-infinity, 0, +infinity$]
+#problem[构造一个序列$(a_n)_(n=1)^oo$，只有三个极限点$-oo, 0, +oo$]
 #proof[
     定义序列
     $ a_n = cases(n&\,n=3q, -n&\,n=3q+1, 0&\,n=3q+2) $其中$q in NN$
 ]
 
-#problem[$(a_n)_(n=N)^infinity$和$(b_m)_(m=M)^infinity$是实数序列，且满足$forall m >= M, b_m$是$(a_n)_(n=N)^infinity$的极限点，令$c$是$(b_m)_(m=M)^infinity$的极限点，证明$c$也是$(a_n)_(n=N)^infinity$的极限点]
+#problem[$(a_n)_(n=N)^oo$和$(b_m)_(m=M)^oo$是实数序列，且满足$forall m >= M, b_m$是$(a_n)_(n=N)^oo$的极限点，令$c$是$(b_m)_(m=M)^oo$的极限点，证明$c$也是$(a_n)_(n=N)^oo$的极限点]
 #proof[
-    由于$c$是$(b_m)_(m=M)^infinity$的极限点，那么
+    由于$c$是$(b_m)_(m=M)^oo$的极限点，那么
     $
         forall epsilon/2 in RR^+, forall K >= M, exists m >= K, abs(b_m - c) <= epsilon/2
-    $由于$b_m$是$(a_n)_(n=N)^infinity$的极限点，那么
+    $由于$b_m$是$(a_n)_(n=N)^oo$的极限点，那么
     $
         forall epsilon/2 in RR^+, forall K' >= M, exists n >= K'm abs(a_n - b_m) <= epsilon
     $取$K'' = max(K, K')$就有
     $
         forall K'' >= max(N, M), exists n >= K'', abs(a_n - c) <= abs(a_n - b_m) + abs(b_m - c) <= epsilon/2 + epsilon/2 = epsilon
-    $于是$c$也是$(a_n)_(n=N)^infinity$的一个极限点
+    $于是$c$也是$(a_n)_(n=N)^oo$的一个极限点
 ]
 
 == 一些基础的极限
@@ -1063,55 +1063,55 @@
 #lemma[常实数序列$c,...,c,...$
     收敛到$c$]
 #proof[
-    $forall epsilon in RR^+, exists N >= 1, forall n >= N, abs(c - c) = 0 < epsilon$，于是$lim_(n->infinity) c = c$
+    $forall epsilon in RR^+, exists N >= 1, forall n >= N, abs(c - c) = 0 < epsilon$，于是$lim_(n->oo) c = c$
 ]
 
-#corollary[$forall k >= 1, lim_(n->infinity)(1/n)^(1/k) = 0$]
+#corollary[$forall k >= 1, lim_(n->oo)(1/n)^(1/k) = 0$]
 #proof[
     易知$(1/n)^(1/k)$是关于$n$的递减函数，并且易知$0$是该函数的一个界，那么极限一定存在
 
     令极限为$L >= 0$，于是就有
-    $ L = lim_(n->infinity)(1/n)^(1/k) $由 @thm:limit-law 就有
+    $ L = lim_(n->oo)(1/n)^(1/k) $由 @thm:limit-law 就有
     $
-        L^k = lim_(n->infinity)1/n = 0
+        L^k = lim_(n->oo)1/n = 0
     $由于$L>=0$，如果$L > 0$，那么$L^k > 0$，所以$L = 0$
 ]
 
 #lemma[
     $x in RR$
-    + $abs(x) < 1 => lim_(n->infinity)x^n = 0$
-    + $x = 1 => lim_(infinity)x^n = 1$
+    + $abs(x) < 1 => lim_(n->oo)x^n = 0$
+    + $x = 1 => lim_(oo)x^n = 1$
     + $x = -1 or abs(x) > 1 =>$该极限发散
 ]<lem:x-n-power-limit-depend-x>
 
 #lemma[
-    $forall x in RR^+, lim_(n->infinity) x^(1/n) = 1$
+    $forall x in RR^+, lim_(n->oo) x^(1/n) = 1$
 ]<lem:pos-x-0-power-1>
 
-#problem[证明：$forall q in QQ^+, lim_(n->infinity)1/(n^q) = 0$，并说明$lim_(n->infinity)n^q$为什么不存在]
+#problem[证明：$forall q in QQ^+, lim_(n->oo)1/(n^q) = 0$，并说明$lim_(n->oo)n^q$为什么不存在]
 #proof[
     令$q = a/ b, a, b in ZZ, b>0$，由于$q > 0$，那么$a > 0$，所以有
     $ 1/(n^q) = (1/n)^q = (1/n)^(a/b) = ((1/n)^(1/b)"")^a $所以
     $
-        lim_(n->infinity)1/(n^q) = lim_(n->infinity)((1/n)^(1/b)"")^a = (lim_(n->infinity)(1/n)^(1/b))^a = 0^a =0
+        lim_(n->oo)1/(n^q) = lim_(n->oo)((1/n)^(1/b)"")^a = (lim_(n->oo)(1/n)^(1/b))^a = 0^a =0
     $
 
-    由$lim_(n->infinity)1/(n^q)$收敛到$0$，所以其倒数序列的极限$lim_(n->infinity)n^q$会发散
+    由$lim_(n->oo)1/(n^q)$收敛到$0$，所以其倒数序列的极限$lim_(n->oo)n^q$会发散
 ]
 
 #problem[证明 @lem:x-n-power-limit-depend-x]
 #proof[
     易有$-abs(x) <= x <= abs(x)$
-    + 由于$0 <= abs(x) < 1$，那么易有$lim_(n->infinity)abs(x)^n = 0$，同时有$lim_(n->infinity)-abs(x)^n = -lim_(n->infinity)abs(x)^n = 0$，由于$forall n >= 1, -abs(x)^n <= x^n <= abs(x)^n$，于是由@cor:squeeze-test 就有$lim_(n->infinity)x^n = 0$
+    + 由于$0 <= abs(x) < 1$，那么易有$lim_(n->oo)abs(x)^n = 0$，同时有$lim_(n->oo)-abs(x)^n = -lim_(n->oo)abs(x)^n = 0$，由于$forall n >= 1, -abs(x)^n <= x^n <= abs(x)^n$，于是由@cor:squeeze-test 就有$lim_(n->oo)x^n = 0$
     + $x = 1$时，$forall n >= 1, x^n = 1$，所以是一个常序列$1,...,1,...$
-        ，于是$lim_(n->infinity)x^n = 1$
+        ，于是$lim_(n->oo)x^n = 1$
     + $x = -1$时，$a_n = cases(1&\, n=2k, -1&\,n=2k+1), k in NN$，该序列永远不收敛，所以极限不存在；$abs(x) > 1$时，有$x > 1 or x < -1$，如果$x > 1$，发散.
         如果$x < -1$，那么$forall n >= 1, abs(x^(n+1) - x^n) = abs(x^n)abs(x - 1) > 2 abs(x^n) > 2$，所以一定发散
 ]
 #problem[证明 @lem:pos-x-0-power-1]
 #proof[
     任取$epsilon in RR^+$，就有$0 < 1/(1+epsilon) < 1$，于是利用@lem:x-n-power-limit-depend-x 可以知道
-    $ lim_(n->infinity)(1/(1+epsilon))^n = 0 $
+    $ lim_(n->oo)(1/(1+epsilon))^n = 0 $
     所以
     $
         forall 1/M in RR^+, exists N >= 1, forall n >=N, abs(1/(1+epsilon)^n) = 1/(1+epsilon)^n <= 1/M
@@ -1124,7 +1124,7 @@
 
     当$0 < x < 1$时，$1/x > 1$，重复上面的推理，就有
     $
-        lim_(n->infinity)(1/x)^(1/n) = 1 => lim_(n->infinity)x^(1/n) = 1/1 = 1
+        lim_(n->oo)(1/x)^(1/n) = 1 => lim_(n->oo)x^(1/n) = 1/1 = 1
     $
 ]
 #remark[
@@ -1137,12 +1137,12 @@
 == 子序列
 
 #definition[子序列][
-    $(a_n)_(n=0)^infinity, (b_n)_(n=0)^infinity$是实数序列，称$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列，当且仅当存在严格单调递增函数$f:NN->NN$，满足
+    $(a_n)_(n=0)^oo, (b_n)_(n=0)^oo$是实数序列，称$(b_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的子序列，当且仅当存在严格单调递增函数$f:NN->NN$，满足
     $
         b_n = a_(f(n)), forall n in NN
     $
 
-    更广泛的说法是$(b_n)_(n=m')^infinity$是$(a_n)_(n=m)^infinity$的子序列，当且仅当存在严格单调递增函数$f:{n in NN: n>= m'}->{n in NN: n >= m}$，满足
+    更广泛的说法是$(b_n)_(n=m')^oo$是$(a_n)_(n=m)^oo$的子序列，当且仅当存在严格单调递增函数$f:{n in NN: n>= m'}->{n in NN: n >= m}$，满足
     $
         b_n = a_(f(n)), forall n in NN and n>=m'
     $
@@ -1150,21 +1150,21 @@
 
 
 #lemma[子序列自反、可传递，但是不对称][
-    $(a_n)_(n=0)^infinity, (b_n)_(n=0)^infinity, (c_n)_(n=0)^infinity$是实数序列，有以下成立：
-    + $(a_n)_(n=0)^infinity$是它本身的子序列
-    + 如果$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列，$(c_n)_(n=0)^infinity$是$(b_n)_(n=0)^infinity$的子序列，那么$(c_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列
+    $(a_n)_(n=0)^oo, (b_n)_(n=0)^oo, (c_n)_(n=0)^oo$是实数序列，有以下成立：
+    + $(a_n)_(n=0)^oo$是它本身的子序列
+    + 如果$(b_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的子序列，$(c_n)_(n=0)^oo$是$(b_n)_(n=0)^oo$的子序列，那么$(c_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的子序列
 ]<lem:subseq-refl-trans>
 
 
 
 #lemma[子序列与极限和极限点的关系][
-    $(a_n)_(n=0)^infinity$是实数序列，$L in RR$，有以下成立
-    + $lim_(n->infinity)a_n = L <=>$任意$(a_n)_(n=0)^infinity$的子序列都收敛到$L$
-    + $L$是$(a_n)_(n=0)^infinity$的极限点$<=>$存在一个$(a_n)_(n=0)^infinity$的子序列收敛到$L$
+    $(a_n)_(n=0)^oo$是实数序列，$L in RR$，有以下成立
+    + $lim_(n->oo)a_n = L <=>$任意$(a_n)_(n=0)^oo$的子序列都收敛到$L$
+    + $L$是$(a_n)_(n=0)^oo$的极限点$<=>$存在一个$(a_n)_(n=0)^oo$的子序列收敛到$L$
 ]<lem:relation-lim-subseq>
 
 #theorem[波尔查诺–魏尔斯特拉斯定理(Bolzano–Weierstrass theorem)][
-    $(a_n)_(n=0)^infinity$是实数有界序列，那么存在$(a_n)_(n=0)^infinity$的子序列是收敛的
+    $(a_n)_(n=0)^oo$是实数有界序列，那么存在$(a_n)_(n=0)^oo$的子序列是收敛的
 ]<thm:bolzano-Weierstrass>
 #proof[
     由于序列有界，令界为$M in RR^+$，就有
@@ -1178,15 +1178,15 @@
 
 #problem[证明@lem:subseq-refl-trans]
 #proof[
-    + 定义映射$f:NN->NN$为$f(n) = n$，易知$f$是严格单调递增的，由于$a_n = a_(f(n)) = a_n forall n in NN$，那么$(a_n)_(n=0)^infinity$本身就是自己的子序列
-    + 由于$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列，那么有一个严格单调递增的函数$f:NN->NN$，满足
+    + 定义映射$f:NN->NN$为$f(n) = n$，易知$f$是严格单调递增的，由于$a_n = a_(f(n)) = a_n forall n in NN$，那么$(a_n)_(n=0)^oo$本身就是自己的子序列
+    + 由于$(b_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的子序列，那么有一个严格单调递增的函数$f:NN->NN$，满足
         $
             b_n = a_(f(n)), forall n in NN
-        $由于$(c_n)_(n=0)^infinity$是$(b_n)_(n=0)^infinity$的子序列，那么有一个严格单调递增的函数$g:NN->NN$，满足
+        $由于$(c_n)_(n=0)^oo$是$(b_n)_(n=0)^oo$的子序列，那么有一个严格单调递增的函数$g:NN->NN$，满足
         $ c_n = b_(g(n)), forall n in NN $于是就有
         $
             c_n = a_(f(g(n))), forall n in NN
-        $易知$f compose g$是严格单调递增的，所以$(c_n)_(n=0)^infinity$也是$(a_n)_(n=0)^infinity$的子序列
+        $易知$f compose g$是严格单调递增的，所以$(c_n)_(n=0)^oo$也是$(a_n)_(n=0)^oo$的子序列
 ]
 
 #problem[找到两个序列，它们不相同，但是互为子序列]
@@ -1201,16 +1201,16 @@
     令函数$f:NN -> NN$为$f(n) = n+1$，易知是严格单调递增的，所以就有
     $
         a_n = (-1)^n = (-1)^2 (-1)^n = (-1)^((n+1)+1) =(-1)^(f(n)+1) = b_(f(n)),forall n in NN
-    $所以$(a_n)_(n=0)^infinity$是$(b_n)_(n=0)^infinity$的子序列
+    $所以$(a_n)_(n=0)^oo$是$(b_n)_(n=0)^oo$的子序列
 
     同时也有
     $
         b_n = (-1)^(n+1) = (-1)^(f(n)) = a_(f(n))
-    $所以$(b_n)_(n=0)^infinity$是$(a_n)_(n=0)^infinity$的子序列
+    $所以$(b_n)_(n=0)^oo$是$(a_n)_(n=0)^oo$的子序列
 ]
 
 #problem[
-    $(a_n)_(n=0)^infinity$是无界序列，证明该序列存在一个子序列$(b_n)_(n=0)^infinity$，满足$lim_(n->infinity)1/b_n = 0$
+    $(a_n)_(n=0)^oo$是无界序列，证明该序列存在一个子序列$(b_n)_(n=0)^oo$，满足$lim_(n->oo)1/b_n = 0$
 ]
 #proof[
     定义$n_0 = 1$，同时递归的定义
@@ -1225,10 +1225,10 @@
 #problem[证明@lem:relation-lim-subseq(1)]
 #proof[
     + $=>$\
-        由于$(a_n)_(n=0)^infinity$收敛到$L$，那么有
+        由于$(a_n)_(n=0)^oo$收敛到$L$，那么有
         $
             forall epsilon in RR^+, exists N in NN, forall n>= N, abs(a_n - L) <= epsilon
-        $任取$(a_n)_(n=0)^infinity$的子序列，满足
+        $任取$(a_n)_(n=0)^oo$的子序列，满足
         $
             b_n = a_(f(n))
         $其中$f:NN->NN$且是严格单调递增的，那么$exists N' in NN, f(N') >= N$，就有
@@ -1245,7 +1245,7 @@
         $
             & n_0 := 0 \
             & n_j := min{n > n_(j-1): abs(a_n - L) < 1/j} = min(E)
-        $由于$(a_n)_(n=0)^infinity$的极限点是$L$，那么任意的$j in NN$都存在$n >= j$使得$abs(a_n - L) <= 1/j$，于是集合$E$总是非空，选取子序列$b_j = a_(n_j)$，易知收敛到$L$
+        $由于$(a_n)_(n=0)^oo$的极限点是$L$，那么任意的$j in NN$都存在$n >= j$使得$abs(a_n - L) <= 1/j$，于是集合$E$总是非空，选取子序列$b_j = a_(n_j)$，易知收敛到$L$
     + $arrow.double.l$\
         由于一个子序列收敛，那么对任意$j in NN$，都存在$n_j$满足$abs(a_(n_j) - L) <= 1/j$，这说明$L$是一个极限点
 ]
@@ -1253,48 +1253,48 @@
 == 实数的指数运算（第二部分）
 
 #lemma[指数的连续性][
-    $x in RR^+, alpha in RR$，令$(q_n)_(n=1)^infinity$是有理数序列且收敛到$alpha$，那么序列$(x^(q_n))_(n=1)^infinity$也是个收敛序列；进一步的，如果另一个有理数序列$(q'_n)_(n=1)^infinity$也收敛到$alpha$，那么$(x^(q'_n))_(n=1)^infinity$和$(x^(q_n))_(n=1)^infinity$的极限相同
+    $x in RR^+, alpha in RR$，令$(q_n)_(n=1)^oo$是有理数序列且收敛到$alpha$，那么序列$(x^(q_n))_(n=1)^oo$也是个收敛序列；进一步的，如果另一个有理数序列$(q'_n)_(n=1)^oo$也收敛到$alpha$，那么$(x^(q'_n))_(n=1)^oo$和$(x^(q_n))_(n=1)^oo$的极限相同
     $
-        lim_(n->infinity)x^(q_n) = lim_(n->infinity)x^(q'_n)
+        lim_(n->oo)x^(q_n) = lim_(n->oo)x^(q'_n)
     $
 ]<lem:exp-continue>
 #proof[
     + 首先，当$x = 1$时，是常序列，两个命题显然都成立.
-    + 当$x > 1$时，$n >= m => x^n >= x^m$，由于$(q_n)_(n=1)^infinity$是收敛的，那么一定有界，令界为$M in RR^+$，于是有
+    + 当$x > 1$时，$n >= m => x^n >= x^m$，由于$(q_n)_(n=1)^oo$是收敛的，那么一定有界，令界为$M in RR^+$，于是有
         $
             forall n in ZZ^+, x^(q_n) <= x^M
         $
-        判断$(x^(q_n))_(n=1)^infinity$是否收敛，关键是估算两项距离，于是对于任意$n, m$就有
+        判断$(x^(q_n))_(n=1)^oo$是否收敛，关键是估算两项距离，于是对于任意$n, m$就有
         $
             d(x^(q_n), x^(q_m)) = abs(x^(q_n) - x^(q_m)) = abs(x^(q_m)) abs(x^(q_n - q_m) - 1) <= x^M abs(x^(q_n - q_m) - 1)
         $由@coro:power-to-0 易知$exists K >= 1$满足
         $
             abs(x^(1/K) - 1) <= epsilon x^(-M)
-        $由于$(q_n)_(n=1)^infinity$是收敛的，那么$
+        $由于$(q_n)_(n=1)^oo$是收敛的，那么$
             exists N >= 1, forall n,m >= N, n>= m, q_n - q_m <= 1/K
         $于是就有
         $
             x^M abs(x^(q_n - q_m) - 1) <= x^M abs(x^(1/K) - 1) <= x^(M) epsilon x^(-M) = epsilon
-        $所以$(x^(q_n))_(n=1)^infinity$是收敛的
+        $所以$(x^(q_n))_(n=1)^oo$是收敛的
 
-        接下来证明$lim_(n->infinity)x^(q_n - q'_n) = 1$，令$(r_n)_(n=1)^infinity = (q_n - q'_n)_(n=1)^infinity$，由于$(q_n)_(n=1)^infinity$和$(q'_n)_(n=1)^infinity$都收敛到$alpha$，那么$(r_n)_(n=1)^infinity$收敛到$0$
+        接下来证明$lim_(n->oo)x^(q_n - q'_n) = 1$，令$(r_n)_(n=1)^oo = (q_n - q'_n)_(n=1)^oo$，由于$(q_n)_(n=1)^oo$和$(q'_n)_(n=1)^oo$都收敛到$alpha$，那么$(r_n)_(n=1)^oo$收敛到$0$
 
-        由@lem:pos-x-0-power-1 $(x^(1/n))_(n=1)^infinity$和$(x^(-1/n))_(n=1)^infinity$收敛到$1$，于是任取$epsilon in RR^+$，存在$K$，使得$x^(1/K), x^(-1/K)$都$epsilon$-接近于$1$，此外$(r_n)_(n=1)^infinity$是$1/K$接近于$0$的，那么$exists N in ZZ^+, forall n >= N, -1/K <= r_n <= 1/K => x^(-1/K) <= x^(r_n) <= x^(1/K)$，这意味这$x^(r_n)$收敛于$1$，于是$lim_(n->infinity)x^(q_n) = lim_(n->infinity)x^(q'_n)$\
+        由@lem:pos-x-0-power-1 $(x^(1/n))_(n=1)^oo$和$(x^(-1/n))_(n=1)^oo$收敛到$1$，于是任取$epsilon in RR^+$，存在$K$，使得$x^(1/K), x^(-1/K)$都$epsilon$-接近于$1$，此外$(r_n)_(n=1)^oo$是$1/K$接近于$0$的，那么$exists N in ZZ^+, forall n >= N, -1/K <= r_n <= 1/K => x^(-1/K) <= x^(r_n) <= x^(1/K)$，这意味这$x^(r_n)$收敛于$1$，于是$lim_(n->oo)x^(q_n) = lim_(n->oo)x^(q'_n)$\
     + $0<x<1$的情况如上易得
 ]
 
 #definition[实数次幂指数运算][
     $x in RR^+, alpha in RR$，定义实数的实数次幂为
     $
-        x^alpha = lim_(n->infinity)x^(q_n)
-    $其中$alpha = lim_(n->infinity)q_n$，$(q_n)_(n=1)^infinity$是有理数序列
+        x^alpha = lim_(n->oo)x^(q_n)
+    $其中$alpha = lim_(n->oo)q_n$，$(q_n)_(n=1)^oo$是有理数序列
 ]
 #remark[实数次幂指数运算是良定义的][
-    由实数的完备性，对于一个实数，总有一个有理数序列的极限是这个实数，所以一定存在这样的一个序列$(q_n)_(n=1)^infinity$；由@lem:exp-continue，$(x^(q_n))_(n=1)^infinity$的极限一定是存在的，并且收敛到同一实数的序列，它们作为指数时也会得到相同的极限
+    由实数的完备性，对于一个实数，总有一个有理数序列的极限是这个实数，所以一定存在这样的一个序列$(q_n)_(n=1)^oo$；由@lem:exp-continue，$(x^(q_n))_(n=1)^oo$的极限一定是存在的，并且收敛到同一实数的序列，它们作为指数时也会得到相同的极限
 ]
 
 #property[实数次幂指数运算和有理数指数运算的性质是一致的][
-    $x, y in RR^+, alpha, beta in RR$，$(a_n)_(n=0)^infinity$和$(b_n)_(n=0)^infinity$是有理数序列且$lim_(n->infinity)a_n = alpha, lim_(n -> infinity)b_n = beta$，有以下成立
+    $x, y in RR^+, alpha, beta in RR$，$(a_n)_(n=0)^oo$和$(b_n)_(n=0)^oo$是有理数序列且$lim_(n->oo)a_n = alpha, lim_(n -> oo)b_n = beta$，有以下成立
     + $x^alpha > 0$
     + $x^(alpha+beta) = x^alpha x^beta, (x^alpha)""^beta = x^(alpha beta)$
     + $alpha != 0, x^(-alpha) = 1/x^(alpha)$
@@ -1306,29 +1306,29 @@
 
 #problem[证明@prop:real-real-power]
 #proof[
-    + 由于$lim_(n->infinity)a_n = alpha$，那么该序列一定有界，令界为$M in RR^+$，取$N = ceil(M) in ZZ^+, N >= M$，于是就有
+    + 由于$lim_(n->oo)a_n = alpha$，那么该序列一定有界，令界为$M in RR^+$，取$N = ceil(M) in ZZ^+, N >= M$，于是就有
         $
             & x^(-N) <= x^(a_n) <= x^N, x >= 1 \
             & x^(N) <= x^(a_n) <= x^(-N), 0< x <1 \
         $由于$x > 0, N in ZZ^+$，那么$x^(-N), x^(N) > 0$，于是$x > 0, x^(alpha) > 0$
-    + $alpha + beta = lim_(n->infinity)(a_n + b_n)$，于是
+    + $alpha + beta = lim_(n->oo)(a_n + b_n)$，于是
         $
-            x^(alpha + beta) = lim_(n->infinity)x^(a_b + b_n) = lim_(n->infinity)x^(a_n) lim_(n->infinity)x^(b_n) = x^alpha x^beta
+            x^(alpha + beta) = lim_(n->oo)x^(a_b + b_n) = lim_(n->oo)x^(a_n) lim_(n->oo)x^(b_n) = x^alpha x^beta
         $
     + 已证$(x^r)""^q = x^(r q), r in RR, q in QQ$，于是
         $
-            (x^(alpha))""^beta = lim_(n->infinity)(x^(alpha))""^(b_n) = lim_(n->infinity)x^(alpha b_n)
-        $由于$lim_(n->infinity)b_n = beta$，于是就有$alpha beta - alpha b_n -> 0$，于是$x^(alpha beta - alpha b_n) -> 1$，所以
+            (x^(alpha))""^beta = lim_(n->oo)(x^(alpha))""^(b_n) = lim_(n->oo)x^(alpha b_n)
+        $由于$lim_(n->oo)b_n = beta$，于是就有$alpha beta - alpha b_n -> 0$，于是$x^(alpha beta - alpha b_n) -> 1$，所以
         $
-            lim_(n->infinity)x^(alpha b_n) = x^(alpha beta) => (x^alpha)""^beta = x^(alpha beta)
+            lim_(n->oo)x^(alpha b_n) = x^(alpha beta) => (x^alpha)""^beta = x^(alpha beta)
         $
     + $x^(-alpha+alpha) = x^0 = 1 => x^(-alpha) x^(alpha) = 1 => x^(-alpha) = 1/(x^alpha)$
-    + $alpha > 0 =>$存在序列$(a_n)_(n=1)^infinity$是正远离$0$的，于是$exists c in RR^+, forall n in ZZ^+, a_n >= c > 0$
+    + $alpha > 0 =>$存在序列$(a_n)_(n=1)^oo$是正远离$0$的，于是$exists c in RR^+, forall n in ZZ^+, a_n >= c > 0$
         - $=>$\
             由于$x > y > 0$那么就有
             $ (x/y) > 1 => (x/y)^(a_i) >= (x/y)^c > 1 $于是
             $
-                (x/y)^alpha = lim_(n->infinity)(x/y)^(a_n) >= (x/y)^c > 1 => x^alpha > y^alpha
+                (x/y)^alpha = lim_(n->oo)(x/y)^(a_n) >= (x/y)^c > 1 => x^alpha > y^alpha
             $
         - $arrow.double.l$\
             由于$x^alpha > y^alpha$，那么$(x/y)^alpha > 1$，已知$alpha, x, y > 0$，假设$x <= y$，那么$0 < x/y <= 1$，于是
@@ -1338,7 +1338,7 @@
     + 由(1)$x > 1 > 0 => x^alpha, x^beta > 0$
         - $x^alpha > x^beta => x^(alpha - beta) > 1$，如果$alpha <= beta$，那么$alpha - beta <= 0$，于是就有有理数序列满足
             $
-                alpha - beta = lim_(n->infinity)(a_n - b_n)\
+                alpha - beta = lim_(n->oo)(a_n - b_n)\
                 forall n in ZZ^+, a_n - b_n <= 0
             $于是在$x > 1$时
             $
@@ -1349,12 +1349,12 @@
                 c in RR^+, forall n in ZZ^+, a_n - b_n >= c > 0
             $于是由保序性和指数连续性就有
             $
-                x^(alpha - beta)=lim_(n->infinity)x^(a_n - b_n) >= x^c > 1 => x^alpha > x^beta
+                x^(alpha - beta)=lim_(n->oo)x^(a_n - b_n) >= x^c > 1 => x^alpha > x^beta
             $
     + 证明同(6)，依赖底数小于$1$的有理数指数的递减性质
     + 由指数的连续性就有
         $
-            (x y)^alpha = lim_(n->infinity)(x y)^(a_n) = lim_(n->infinity)x^(a_n)y^(a_n) = lim_(n->infinity)x^(a_n) lim_(n->infinity)y^(a_n) = x^alpha y^alpha
+            (x y)^alpha = lim_(n->oo)(x y)^(a_n) = lim_(n->oo)x^(a_n)y^(a_n) = lim_(n->oo)x^(a_n) lim_(n->oo)y^(a_n) = x^alpha y^alpha
         $
 ]
 #pagebreak()

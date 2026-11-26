@@ -32,7 +32,7 @@
     $X$是$NN$的无穷子集，那么存在唯一双射$f: NN->X$，且是单调递增的；特别的，$X$与$NN$有相同的基数，因此$X$是可数的
 ]<proposition:for-X-NN-conuntbale>
 #proof[
-    定义一个自然数序列$(a_n)_(n=0)^infinity$，每一项如下
+    定义一个自然数序列$(a_n)_(n=0)^oo$，每一项如下
     $
         a_n := min{x in X: x != a_m forall m < n}
     $
@@ -51,7 +51,7 @@
         X = S_n union {a_m: forall m< n}
     $${a_m : forall m < n}$是有限集合，根据假设$S_n$也是有限集合，所以$X$也是有限集合，这与$X$是无穷集合的条件矛盾，所以$S_n$是无穷集合，进而$S_n$是非空的，所以$a_n$是良定义的.
 
-    接下来证明序列$(a_n)_(n=0)^infinity$是单调递增的，也即$a_n < a_(n+1), forall n in NN$成立，对$n$归纳，当$n = 0$时
+    接下来证明序列$(a_n)_(n=0)^oo$是单调递增的，也即$a_n < a_(n+1), forall n in NN$成立，对$n$归纳，当$n = 0$时
     $
         a_0 = min(X), a_1 = min(X without {a_0})
     $假设$a_0 >= a_1$，由$a_n$的定义，总有$a_m != a_n, forall m!=n$，此外可以得到$a_1 = min(X)$，这说明存在两个不同的自然数都是该子集的最小值，与@proposition:well-ordering-principle 矛盾，所以$a_0 < a_1$
@@ -65,7 +65,7 @@
 
     接下来证明$f$是满射，任取$x in X$，假设任意$n in NN$，都有$x != a_n$，这意味这$forall n in NN, x in {x in X: x!= a_m, forall m < n}$，由$a_n$定义，就有$forall n in NN, x > a_n$.
 
-    接下来需要证明一个额外的引理：$(a_n)_(n=0)^infinity$是严格单调递增自然数序列，那么总有$a_n >= n$成立，对$n$进行归纳，$n=0$时，$a_0 >= 0$总成立，因为任意自然数都大于等于$0$，归纳性的假设$n$时成立，那么就有$a_n >= n$，现在证明$n+1$的情况，由于$(a_n)_(n=0)^infinity$单调递增，所以就有
+    接下来需要证明一个额外的引理：$(a_n)_(n=0)^oo$是严格单调递增自然数序列，那么总有$a_n >= n$成立，对$n$进行归纳，$n=0$时，$a_0 >= 0$总成立，因为任意自然数都大于等于$0$，归纳性的假设$n$时成立，那么就有$a_n >= n$，现在证明$n+1$的情况，由于$(a_n)_(n=0)^oo$单调递增，所以就有
     $
         a_(n+1) > a_n >= n => a_(n+1) >= n+1
     $成立，归纳结束
@@ -333,17 +333,18 @@
 == 无穷集合上的求和
 
 #definition[无穷集合上的级数][
-    $X$是一个可数集，$f:X->RR$是一个函数，称级数$sum_(x in X)f(x)$是绝对收敛的，当且仅当存在双射$g:NN->X$，使得级数$sum_(n=0)^infinity f(g(n))$是绝对收敛的，并有
+    $X$是一个可数集，$f:X->RR$是一个函数，称级数$sum_(x in X)f(x)$是绝对收敛的，当且仅当存在双射$g:NN->X$，使得级数$sum_(n=0)^oo f(g(n))$是绝对收敛的，并有
     $
-        sum_(x in X)f(x) = sum_(n=0)^infinity f(g(n))
+        sum_(x in X)f(x) = sum_(n=0)^oo f(g(n))
     $
 ]<def:infinite-series>
 
 #theorem[无穷级数Fubini定理][
     $f:NN times NN -> RR$是一个函数，且$sum_((n,m) in NN times NN) f(n, m)$绝对收敛，那么就有
     $
-        sum_(n=0)^infinity (sum_(m=0)^infinity f(n,m)) &= sum_((n,m) in NN times NN)f(n,m) \ &= sum_((m,n) in NN times NN) f(n, m)
-        \ & = sum_(m=0)^infinity (sum_(n=0)^infinity f(n, m))
+        sum_(n=0)^oo (sum_(m=0)^oo f(n,m)) & = sum_((n,m) in NN times NN)f(n,m) \
+                                           & = sum_((m,n) in NN times NN) f(n, m) \
+                                           & = sum_(m=0)^oo (sum_(n=0)^oo f(n, m))
     $
 ]
 #proof[
@@ -354,15 +355,15 @@
         L := sum_((n, m) in NN times NN)f(n, m)
     $任取$X subset.eq NN times NN, X "is finite"$，由于@coro:countable-cartesian-countable，可知存在一个双射$g: NN times NN -> NN$，那么$g(X)$是$NN$的有限子集，因此是有界的，所以$sum_((n,m) in X) f(n, m)$有界.
 
-    特别的，任选$n in NN, M in NN$，都有$sum_(m=0)^M f(n, m) <= L$，由于单调有界收敛，可知对任意$n$，$sum_(m=0)^infinity f(n, m)$收敛，那么任取$N, M in NN$，根据@coro:fubini-finite-series 就有
+    特别的，任选$n in NN, M in NN$，都有$sum_(m=0)^M f(n, m) <= L$，由于单调有界收敛，可知对任意$n$，$sum_(m=0)^oo f(n, m)$收敛，那么任取$N, M in NN$，根据@coro:fubini-finite-series 就有
     $
         sum_(n=0)^N sum_(m=0)^M f(n, m) = sum_((n, m) in X)f(n, m) <= L
     $其中$X = {(n, m) in NN times NN: n<=N, m<=M}$，由于对任意$M in NN$都成立，且$f(n, m)$是非负的，由单调有界可知
     $
-        sum_(n=0)^N sum_(m=0)^infinity f(n, m) <= L
+        sum_(n=0)^N sum_(m=0)^oo f(n, m) <= L
     $同样的，对于任意$N$来说也是单调有界的，就有
     $
-        sum_(n=0)^infinity sum_(m=0)^infinity f(n, m) <= L
+        sum_(n=0)^oo sum_(m=0)^oo f(n, m) <= L
     $所以确实是收敛的，接下来证明收敛到$L$，由于$sum_((n,m) in NN times NN)f(n,m) = L$那么就有，存在一个有限子集$Y subset.eq NN times NN$满足
     $
         abs(sum_((n, m) in Y) f(n, m) - L) <= epsilon => sum_((n, m) in Y)f(n, m) >= L - epsilon
@@ -371,10 +372,10 @@
         sum_(n=0)^N sum_(m=0)^N f(n, m) = sum_((n,m) in X)f(n, m) >= sum_((n,m) in Y)f(n,m) >= L -epsilon
     $也因此
     $
-        sum_(n=0)^infinity sum_(m=0)^infinity f(n, m) >= sum_(n=0)^N sum_(m=0)^M f(n,m) >= L - epsilon
+        sum_(n=0)^oo sum_(m=0)^oo f(n, m) >= sum_(n=0)^N sum_(m=0)^M f(n,m) >= L - epsilon
     $由于$epsilon$是任取的，这说明
     $
-        sum_(n=0)^infinity sum_(m=0)^infinity f(n, m) = L = sum_((n,m) in NN times NN)f(n,m)
+        sum_(n=0)^oo sum_(m=0)^oo f(n, m) = L = sum_((n,m) in NN times NN)f(n,m)
     $
 
     综上考虑了$f(n,m)$非负的情况，对于$f(n,m)$非正的情况，只需要加上负号进行推理即可；对于有正有负的情况，可以将正部、负部分开
@@ -385,19 +386,19 @@
 
 #lemma[$X$是一个可数集，$f: X -> RR$是一个函数，那么级数$sum_(x in X)f(x)$绝对收敛，当且仅当
     $
-        sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} < infinity
+        sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} < oo
     $
 ]<lemma:countable-series-absolute-convergent>
 #proof[
     1. $=>$\
-        $sum_(x in X) f(x)$是绝对收敛的，$X$是可数的，那么有双射$g:NN->X$，使得$sum_(n=0)^infinity f(g(n))$也绝对收敛，并且有相同的值
+        $sum_(x in X) f(x)$是绝对收敛的，$X$是可数的，那么有双射$g:NN->X$，使得$sum_(n=0)^oo f(g(n))$也绝对收敛，并且有相同的值
 
         任选$X$的有限子集$A$，其基数为$M$，那么一定有双射$g_A: {i in NN: i<= M-1}->A$，于是
         $
-            sum_(x in A) abs(f(x)) = sum_(n=0)^(M-1) abs(f(g_A (n))) <= sum_(n=0)^infinity abs(f(g(n))) = sum_(x in X) abs(f(x)) < infinity
+            sum_(x in A) abs(f(x)) = sum_(n=0)^(M-1) abs(f(g_A (n))) <= sum_(n=0)^oo abs(f(g(n))) = sum_(x in X) abs(f(x)) < oo
         $由于$A$是任选的，那么
         $
-            sup{sum_(x in A) abs(f(x)) : A subset.eq X, A "finite"} < infinity
+            sup{sum_(x in A) abs(f(x)) : A subset.eq X, A "finite"} < oo
         $
     2. $arrow.double.l$\
         任取$X$的有限子集$A_N$，基数为$N$，$A_N := {g(i): i in NN, i<=N}$，于是就有
@@ -405,17 +406,17 @@
             sum_(x in A_N) abs(f(x)) = sum_(n=0)^N abs(f(g(n)))
         $由于
         $
-            sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} < infinity
+            sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"} < oo
         $那么令$M := sup{sum_(x in A) abs(f(x)): A subset.eq X, A "finite"}, M in RR^+$，就有
         $
             forall N >= 0, sum_(n=0)^N abs(f(g(n))) <= M
-        $这说明序列$(sum_(n=0)^N abs(f(g(n))))_(N=0)^infinity$单调递增且有上界，那么必然收敛，进而$sum_(x in X)f(x)$绝对收敛
+        $这说明序列$(sum_(n=0)^N abs(f(g(n))))_(N=0)^oo$单调递增且有上界，那么必然收敛，进而$sum_(x in X)f(x)$绝对收敛
 ]
 
 #definition[不可数集合上的求和][
     $X$是一个集合（可能是不可数的），$f:X->RR$是函数，称$sum_(x in X)f(x)$是绝对收敛的，当且仅当
     $
-        sup{sum_(x in A)abs(f(x)) : A subset.eq X, A "finite"} < infinity
+        sup{sum_(x in A)abs(f(x)) : A subset.eq X, A "finite"} < oo
     $
 ]
 
@@ -432,9 +433,9 @@
     $接下来需要证明，当$n in ZZ^+$时，$Z_n$都是有限的，假设存在一个$Z_n$是无穷的，那么，可以取$Z_n$的、含有$k$个元素的子集$A$，那么就有
     $
         sum_(x in A) abs(f(x)) > k/n
-    $于是当$k->+infinity$时
+    $于是当$k->+oo$时
     $
-        M >= sum_(x in A) abs(f(x)) > k/n > infinity
+        M >= sum_(x in A) abs(f(x)) > k/n > oo
     $矛盾，所以任意$n in ZZ^+$，$Z_n$都是有限的，于是集合
     $
         Z = union.big_(n in ZZ^+)Z_n
@@ -468,7 +469,7 @@
         $
 ]<proposition:convergent-series-laws>
 
-#lemma[$sum_(n=0)^infinity a_n$是一个条件收敛的实数级数，定义集合$A_+ := {n in NN： a_n >= 0}, A_- := {n in NN: a_n < 0}$，那么$A_+ union A_- = NN, A_+ inter A_- = emptyset$，那么$sum_(n in A_+) a_n, sum_(n in A_-) a_n$都不是绝对收敛的]<lemma:conditional-convergent-neg-pos-not-convergent>
+#lemma[$sum_(n=0)^oo a_n$是一个条件收敛的实数级数，定义集合$A_+ := {n in NN： a_n >= 0}, A_- := {n in NN: a_n < 0}$，那么$A_+ union A_- = NN, A_+ inter A_- = emptyset$，那么$sum_(n in A_+) a_n, sum_(n in A_-) a_n$都不是绝对收敛的]<lemma:conditional-convergent-neg-pos-not-convergent>
 #proof[
     由于原级数收敛，那么就有
     $
@@ -478,7 +479,7 @@
         sum_(n in A_-)abs(a_n) = sum_(n in A_+)a_n - sum_(n in NN)a_n
     $也是收敛的，于是
     $
-        sum_(n in NN)abs(a_n) = sum_(n in A_+)abs(a_n) + sum_(n in A_-)abs(a_n) < infinity
+        sum_(n in NN)abs(a_n) = sum_(n in A_+)abs(a_n) + sum_(n in A_-)abs(a_n) < oo
     $这说明$sum_(n in NN)a_n$是绝对收敛的，与条件矛盾
 
     同上假设$sum_(n in A_+)a_n$绝对收敛，也会得到矛盾.
@@ -487,7 +488,7 @@
 ]
 
 
-// #theorem[$sum_(n=0)^infinity a_n$是一个条件收敛的序列，$L in RR$，那么存在双射$f: NN->NN$使得$sum_(m=0)^infinity a_(f(m))$条件收敛到$L$]
+// #theorem[$sum_(n=0)^oo a_n$是一个条件收敛的序列，$L in RR$，那么存在双射$f: NN->NN$使得$sum_(m=0)^oo a_(f(m))$条件收敛到$L$]
 // #proof[
 //     定义集合
 //     $
@@ -497,8 +498,8 @@
 //
 //     此外，由于$A_+, A_-$都是$NN$的无穷子集，那么由@proposition:for-X-NN-conuntbale 可知有单调递增的双射函数$f_+:NN->A_+$和$f_-:NN->A_-$，于是
 //     $
-//         sum_(m=0)^infinity a_(f_+(m)) = sum_(n in A_+)a_n\
-//         sum_(m=0)^infinity a_(f_-(m)) = sum_(n in A_-)a_n\
+//         sum_(m=0)^oo a_(f_+(m)) = sum_(n in A_+)a_n\
+//         sum_(m=0)^oo a_(f_-(m)) = sum_(n in A_-)a_n\
 //     $都不是绝对收敛的
 //
 //     接下来按照如下规则，递归的定义序列$n_0, n_1,...$
@@ -545,7 +546,7 @@
             sum_(x in A) abs(f(x) + g(x)) <= sum_(x in A)abs(f(x)) + sum_(x in A)abs(g(x))
         $于是
         $
-            sup(T) <= F + G < infinity
+            sup(T) <= F + G < oo
         $于是$sum_(x in X)(f(x) + g(x))$是绝对收敛的，级数和可以看作只由非零项贡献，于是定义集合
         $
             X_(f+g) := {x in X: f(x) + g(x) != 0} subset.eq X_f union X_g
@@ -570,7 +571,7 @@
             sum_(x in A)abs(c f(x)) = abs(c) sum_(x in A)abs(f(x))
         $于是
         $
-            sup(T) = abs(c)F < +infinity
+            sup(T) = abs(c)F < +oo
         $于是$sum_(x in X)c f(x)$是绝对收敛的，由于集合$X_f$是至多可数的，那么
         $
             sum_(x in X)c f(x) = sum_(x in X_f)c f(x) = c sum_(x in X_f)f(x) = c sum_(x in X)f(x)
@@ -634,7 +635,7 @@
     定义函数$f: 2^NN ->RR$为
     $
         f(A) := sum_(n in A)10^(-n)
-    $由@lem:geometry-series 可知$sum_(n=0)^infinity 10^(-n)$是绝对收敛的，那么函数$f$也是良定义的，现在假设$f$不是一个单射，来寻找矛盾，比如有两个集合$A != B$，但是$f(A) = f(B)$.
+    $由@lem:geometry-series 可知$sum_(n=0)^oo 10^(-n)$是绝对收敛的，那么函数$f$也是良定义的，现在假设$f$不是一个单射，来寻找矛盾，比如有两个集合$A != B$，但是$f(A) = f(B)$.
 
     令$S := (A without B) union (B without A)$，由于$A != B$，那么$S subset.eq 2^NN$并且是非空的，那么由@proposition:well-ordering-principle 可知有$n_0 := min(S)$，所以$n_0 in A without B or n_0 in B without A$
 
@@ -656,7 +657,7 @@
 
     根据几何级数的计算就有
     $
-        sum_(n > n_0) 10^(-n) = sum_(m=0)^infinity 10^(-(n_0 + 1 + m)) = 10^(-(n_0 + 1))sum_(m=0)^infinity 10^(-m) =10^(-(n_0 + 1)) * 10/9 = 10^(-n_0)/9
+        sum_(n > n_0) 10^(-n) = sum_(m=0)^oo 10^(-(n_0 + 1 + m)) = 10^(-(n_0 + 1))sum_(m=0)^oo 10^(-m) =10^(-(n_0 + 1)) * 10/9 = 10^(-n_0)/9
     $代入到原式就有
     $
         0 = f(A) - f(B) >= 10^(-n_0) - 10^(-n_0)/9 > 0
@@ -694,7 +695,7 @@
 
     进一步的，定义函数
     $
-        g(x) = cases(f^(-1)(x) &\, x in union.big_(n=1)^infinity D_n, x &\, x in.not union.big_(n=1)^infinity D_n)
+        g(x) = cases(f^(-1)(x) &\, x in union.big_(n=1)^oo D_n, x &\, x in.not union.big_(n=1)^oo D_n)
     $证明$g$将$A$中元素都映射到了$B$中，且$g:A->B$是双射
 ]
 #proof[
@@ -709,12 +710,12 @@
     由于$f:C->A$，那么$f(C) subset.eq A$，由于$A subset.eq B$，那么$B without A inter A = emptyset$，但是由于$D_(n+1) = f(D_n) subset.eq A$，那么$D_0 inter D_(n) = emptyset, n>=1$，与$D_(k-j) inter D_0 != emptyset$矛盾，所以假设不成立，所以$D_n, n in NN$两两不相交.
 
     接下来证明$g$将所有$A$映射到$B$中
-    - $x in union.big_(n=1)^infinity D_n$时，由于$D_n$两两不相交，那么唯一有一个$D_k$使得$x in D_k$，那么$g(x) = f^(-1)(x) in D_(k-1) = f(D_k) subset.eq A subset.eq B$
-    - $x in.not union.big_(n=1)^infinity D_n$时，$g(x) = x subset.eq A subset.eq B$
+    - $x in union.big_(n=1)^oo D_n$时，由于$D_n$两两不相交，那么唯一有一个$D_k$使得$x in D_k$，那么$g(x) = f^(-1)(x) in D_(k-1) = f(D_k) subset.eq A subset.eq B$
+    - $x in.not union.big_(n=1)^oo D_n$时，$g(x) = x subset.eq A subset.eq B$
     于是$g$确实将$A$映射到$B$中，接下来证明是双射
 
     - 首先证明是单射，取$x, y in A$，令$g(x) = g(y)$
-        - $x, y in union.big_(n=1)^infinity D_n$时,由于$D_n$两两不相交，那么存在唯一的$k, j$使得
+        - $x, y in union.big_(n=1)^oo D_n$时,由于$D_n$两两不相交，那么存在唯一的$k, j$使得
             $
                 g(x) = f^(-1)(x) in D_(k-1)\
                 g(y) = f^(-1)(y) in D_(j-1)\
@@ -722,17 +723,17 @@
             $
                 f(f^(-1)(x)) = f(f^(-1)(y)) => x = y
             $
-        - $x, y in.not union.big_(n=1)^infinity D_n$，此时
+        - $x, y in.not union.big_(n=1)^oo D_n$，此时
             $
                 g(x) = x , g(y) = y
             $自然有$x = y$
-        - $x in union.big_(n=1)^infinity D_n, y in.not union.big_(n=1)^infinity D_n$时，不妨令$x in D_k$，那么$g(x) = f^(-1)(x) in D_(k-1), g(y) = y$，如果$g(x) = g(y)$，那么说明$y in D_(k-1)$，如果$k-1>0$，这和假设的$y in.not union.big_(n=1)^infinity D_n$，矛盾；如果$k-1=0=>k=1$，那么$y in D_0 = B without A$，矛盾，所以这种情况不可能发生
+        - $x in union.big_(n=1)^oo D_n, y in.not union.big_(n=1)^oo D_n$时，不妨令$x in D_k$，那么$g(x) = f^(-1)(x) in D_(k-1), g(y) = y$，如果$g(x) = g(y)$，那么说明$y in D_(k-1)$，如果$k-1>0$，这和假设的$y in.not union.big_(n=1)^oo D_n$，矛盾；如果$k-1=0=>k=1$，那么$y in D_0 = B without A$，矛盾，所以这种情况不可能发生
         - 综上，所有情况下都有$g(x) = g(y) => x = y$，所以$g$是单射
     - 接下来证明$g$是满射，任取$y in B$，由于$B = A union D_0, A inter D_0 = emptyset$，所以分开讨论
         - $y in A$时
-            - $y in union.big_(n=1)^infinity D_n$时，由于$D_n$两两不相交，不妨令$y in D_k$，由于$D_k = f(D_(k-1))$，那么存在$x in D_(k-1)$使得$f(x) = y$，那么$g(y) = f^(-1)(f(x)) = x in union.big_(n=1)^infinity D_n$，成立
-            - $y in.not union.big_(n=1)^infinity D_n$，那么取$x = y$，就有$g(y) = g(x) = x$，成立
-        - $y in D_0$时，就有$y in D_0 subset.eq B subset.eq C$，那么$x = f(y) in f(D_0) = D_1 subset.eq union.big_(n=1)^infinity D_n$，于是$g(x) = f^(-1)(f(y)) = y$，于是确实有$x = f(y) in A$使得$g(x) = y$
+            - $y in union.big_(n=1)^oo D_n$时，由于$D_n$两两不相交，不妨令$y in D_k$，由于$D_k = f(D_(k-1))$，那么存在$x in D_(k-1)$使得$f(x) = y$，那么$g(y) = f^(-1)(f(x)) = x in union.big_(n=1)^oo D_n$，成立
+            - $y in.not union.big_(n=1)^oo D_n$，那么取$x = y$，就有$g(y) = g(x) = x$，成立
+        - $y in D_0$时，就有$y in D_0 subset.eq B subset.eq C$，那么$x = f(y) in f(D_0) = D_1 subset.eq union.big_(n=1)^oo D_n$，于是$g(x) = f^(-1)(f(y)) = y$，于是确实有$x = f(y) in A$使得$g(x) = y$
         - 综上，各种情况下都有$x$使得$y = g(x)$
 
     所以$g$是双射，进而$A$和$B$有相同的基数
@@ -805,12 +806,12 @@ $$(x_alpha)_(alpha in I)$是函数，$x_alpha$是该函数在$alpha$处的求值
 这个公理意味这，对于（不）可数无穷多的非空集合，可以在每个集合中取一个元素，然后将取出元素拼接为一个（不）可数无穷长的元组.
 
 
-#lemma[选择公理应用1][$E$是实数的非空子集，并且$sup(E) < +infinity$，那么存在一个序列$(a_n)_(n=1)^infinity$，满足$forall a_n in E$且$lim_(n->infinity)a_n = sup(E)$]
+#lemma[选择公理应用1][$E$是实数的非空子集，并且$sup(E) < +oo$，那么存在一个序列$(a_n)_(n=1)^oo$，满足$forall a_n in E$且$lim_(n->oo)a_n = sup(E)$]
 #proof[
     定义集合
     $
         forall n in ZZ^+, X_n := {x in E: sup(E) - 1/n <= x <= sup(E)}
-    $易知任意正整数，$X_n$都是非空的，那么利用选择公理就可以得到序列$(a_n)_(n=1)^infinity$满足，这里$ZZ^+$扮演了指标集的角色，$X_n$则是待选择的可数无穷多的集合
+    $易知任意正整数，$X_n$都是非空的，那么利用选择公理就可以得到序列$(a_n)_(n=1)^oo$满足，这里$ZZ^+$扮演了指标集的角色，$X_n$则是待选择的可数无穷多的集合
     $
         forall n in ZZ^+, a_n in X_n
     $于是就有
@@ -818,7 +819,7 @@ $$(x_alpha)_(alpha in I)$是函数，$x_alpha$是该函数在$alpha$处的求值
         forall n in ZZ^+, sup(E) -1/n <= a_n <= sup(E)
     $由夹逼定理易有
     $
-        lim_(n->infinity) a_n = sup(E)
+        lim_(n->oo) a_n = sup(E)
     $
 ]
 选择公理爆率真的很高！
